@@ -1,0 +1,24 @@
+---
+title: Introduction to ggplot2
+author: Aravind Hebbali
+date: '2017-12-20'
+slug: introduction-to-ggplot2
+categories:
+  - R
+  - Visualization
+tags:
+  - ggplot2
+---
+
+## Simple Plot
+
+```{r load, echo=FALSE, message=FALSE}
+library(ggplot2)
+```
+
+
+```{r gg-intro}
+ggplot(mtcars) +
+  geom_point(aes(disp, mpg))
+```
+
