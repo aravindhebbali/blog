@@ -48,7 +48,7 @@ ignoreFiles = ["\\.Rmd$", "\\.Rmarkdown$", "_files$", "_cache$"]
     pre = "<i class='fa fa-list fa-fw'></i>"
     weight = 3
     identifier = "post"
-    url = "/post/"
+    url = "/post"
   [[menu.main]]
     name = "About"
     pre = "<i class='fa fa-user fa-fw'></i>"
@@ -71,7 +71,6 @@ ignoreFiles = ["\\.Rmd$", "\\.Rmarkdown$", "_files$", "_cache$"]
 
   # SNS photo/video sharing
   youtube = "rsquaredin"
-  vimeo = "rsquaredacademy"
   slideshare = "rsquaredin"
   linkedin = "rsquared-academy"
 
