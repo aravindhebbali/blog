@@ -27,7 +27,7 @@ This blog is built using blogdown and published on Netlify</description>
       <pubDate>Wed, 20 Dec 2017 00:00:00 +0000</pubDate>
       
       <guid>/2017/12/20/introduction-to-ggplot2/</guid>
-      <description>Simple Plotggplot(mtcars) +geom_point(aes(disp, mpg))</description>
+      <description>Simple Plot# simple plotggplot(mtcars) +geom_point(aes(disp, mpg))Addition Functionadd &amp;lt;- function(a, b) {a + b}</description>
     </item>
     
     <item>

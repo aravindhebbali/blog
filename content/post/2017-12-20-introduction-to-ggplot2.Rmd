@@ -13,12 +13,22 @@ tags:
 ## Simple Plot
 
 ```{r load, echo=FALSE, message=FALSE}
+# load library
 library(ggplot2)
 ```
 
 
 ```{r gg-intro}
+# simple plot
 ggplot(mtcars) +
   geom_point(aes(disp, mpg))
+```
+
+## Addition Function
+
+```{r func}
+add <- function(a, b) {
+  a + b
+}
 ```
 
