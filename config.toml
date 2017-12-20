@@ -6,7 +6,7 @@ theme = "blackburn"
 copyright = "&copy; 2017. Aravind Hebbali."
 canonifyurls = true
 paginate = 10
-ignoreFiles = ["\\.Rmd$", "\\.Rmarkdown$", "_files$", "_cache$"]
+ignoreFiles = ["\\.Rmarkdown$", "_files$", "_cache$"]
 
 [permalinks]
   post = "/:year/:month/:day/:slug/"
