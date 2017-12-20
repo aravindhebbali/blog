@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Posts on Aravind Hebbali Blog</title>
+    <link>/post/</link>
+    <description>Recent content in Posts on Aravind Hebbali Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 20 Dec 2017 21:13:14 -0500</lastBuildDate>
+    
+	<atom:link href="/post/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Welcome</title>
+      <link>/2017/12/20/welcome/</link>
+      <pubDate>Wed, 20 Dec 2017 21:13:14 -0500</pubDate>
+      
+      <guid>/2017/12/20/welcome/</guid>
+      <description>Welcome to my personal blog. Here, you can find posts related to R, Statistics &amp;amp; Economics. My posts are also published on the official blog of Rsquared Academy and you can find posts on a variety of topics related to R there as well.
+This blog is built using blogdown and published on Netlify</description>
+    </item>
+    
+    <item>
+      <title>Introduction to ggplot2</title>
+      <link>/2017/12/20/introduction-to-ggplot2/</link>
+      <pubDate>Wed, 20 Dec 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/2017/12/20/introduction-to-ggplot2/</guid>
+      <description>Simple Plotggplot(mtcars) +geom_point(aes(disp, mpg))</description>
+    </item>
+    
+  </channel>
+</rss>
