@@ -1,13 +1,75 @@
 baseurl = "https://blog.aravindhebbali.com/"
 languageCode = "en-us"
-title = "Aravind Hebbali : Personal Blog"
-theme = "hugo-lithium-theme"
+title = "Aravind Hebbali"
+theme = "hugo-creative-portfolio-theme"
+twitterAuthor = "@aravindhebbali"
+enableEmoji = true
+pluralizeListTitles = false
 googleAnalytics = "UA-57270671-5"
 disqusShortname = ""
 ignoreFiles = ["\\.Rmd$", "\\.Rmarkdown$", "_files$", "_cache$"]
 
 [permalinks]
-    post = "/:year/:month/:day/:slug/"
+    blog = "blog/:year/:month/:day/:slug"
+    
+relativeurls = false
+
+[params]
+  # Style options: default (pink), blue, green, pink, red, sea, violet
+  # Use custom.css for your custom styling
+  style = "default"
+  description = "My personal blog where I share my R packages, shiny apps and tutorials related to R and Statistics."
+  copyright = "&copy;2017 Aravind Hebbali"
+  sidebarAbout = [
+    "Hello! Welcome to my blog. My name is Aravind Hebbali and am from Bengaluru, India. I have a master's in Economics and am the co-founder of Rsquared Academy and Rsquared Labs.",
+    "This is my personal blog where I share packages, apps and tutorials related to R and Statistics."
+  ]
+  # Contact page
+     # Since this template is static, the contact form uses www.formspree.io as a
+     # proxy. The form makes a POST request to their servers to send the actual
+     # email. Visitors can send up to a 1000 emails each month for free.
+     #
+     # What you need to do for the setup?
+     #
+     # - set your email address under 'email' below
+     # - upload the generated site to your server
+     # - send a dummy email yourself to confirm your account
+     # - click the confirm link in the email from www.formspree.io
+     # - you're done. Happy mailing!
+  email = "hebbali.aravind@gmail.com"
+
+  # Nav links in the side bar
+  [[params.navlinks]]
+  name = "Home"
+  url = "https://blog.aravindhebbali.com/"
+
+  [[params.navlinks]]
+  name = "About"
+  url = "https://www.aravindhebbali.com/#about"
+  
+  [[params.navlinks]]
+  name = "Blog"
+  url = "https://blog.aravindhebbali.com/blog/"
+  
+  [[params.navlinks]]
+  name = "Projects"
+  url = "https://www.aravindhebbali.com/#portfolio"
+
+  [[params.navlinks]]
+  name = "Get in touch"
+  url = "https://www.aravindhebbali.com/#contact"
+
+  [params.social]
+  email         = "hebbali.aravind@gmail.com"
+  twitter       = "https://twitter.com/aravindhebbali"
+  linkedin      = "https://in.linkedin.com/company/rsquared-academy"
+  github        = "https://github.com/aravindhebbali"
+  
+  [params.widgets]
+    categories = true
+    tags = true
+    search = true
+
 
 [[menu.main]]
     name = "About"
@@ -19,8 +81,6 @@ ignoreFiles = ["\\.Rmd$", "\\.Rmarkdown$", "_files$", "_cache$"]
     name = "Twitter"
     url = "https://twitter.com/rsquaredacademy"
 
-[params]
-    description = "Personal blog of Aravind Hebbali."
 
     # options for highlight.js (version, additional languages, and theme)
     highlightjsVersion = "9.11.0"
@@ -31,9 +91,5 @@ ignoreFiles = ["\\.Rmd$", "\\.Rmarkdown$", "_files$", "_cache$"]
     MathJaxCDN = "//cdn.bootcss.com"
     MathJaxVersion = "2.7.1"
 
-    [params.logo]
-    url = "aravind.jpg"
-    width = 50
-    height = 50
-    alt = "Aravind Hebbali"
+    
 

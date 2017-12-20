@@ -1,0 +1,18 @@
+---
+title: "Welcome!"
+author: "Aravind Hebbali"
+date: 2017-12-16
+categories: ["R", "Economics"]
+tags: []
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(collapse = TRUE)
+```
+
+## Welcome
+
+Welcome to my personal blog. Here, you can find posts related to R, Statistics & Economics. My posts are also published on the official blog of [Rsquared Academy](http://www.rsquaredacademy.com/blog/) and you can find posts on a variety of topics related to R there as well.
+
+This blog is built using [blogdown](https://github.com/rstudio/blogdown) and published on [Netlify](https://www.netlify.com/)
+

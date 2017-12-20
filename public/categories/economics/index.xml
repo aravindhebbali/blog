@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Economics on Aravind Hebbali : Personal Blog</title>
+    <title>Economics on Aravind Hebbali</title>
     <link>/categories/economics/</link>
-    <description>Recent content in Economics on Aravind Hebbali : Personal Blog</description>
+    <description>Recent content in Economics on Aravind Hebbali</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
+    <copyright>&amp;copy;2017 Aravind Hebbali</copyright>
     <lastBuildDate>Sat, 16 Dec 2017 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/categories/economics/index.xml" rel="self" type="application/rss+xml" />
@@ -13,11 +14,12 @@
     
     <item>
       <title>Welcome!</title>
-      <link>/2017/12/16/welcome/</link>
+      <link>/blog/2017/12/16/welcome/</link>
       <pubDate>Sat, 16 Dec 2017 00:00:00 +0000</pubDate>
       
-      <guid>/2017/12/16/welcome/</guid>
-      <description>WelcomeWelcome to my personal blog.
+      <guid>/blog/2017/12/16/welcome/</guid>
+      <description>WelcomeWelcome to my personal blog. Here, you can find posts related to R, Statistics &amp;amp; Economics. My posts are also published on the official blog of Rsquared Academy and you can find posts on a variety of topics related to R there as well.
+This blog is built using blogdown and published on Netlify
 </description>
     </item>
     
