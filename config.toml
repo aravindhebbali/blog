@@ -8,14 +8,17 @@ canonifyurls = true
 paginate = 10
 ignoreFiles = ["\\.Rmd$", "\\.Rmarkdown$", "_files$", "_cache$"]
 
+[permalinks]
+  post = "/:year/:month/:day/:slug/"
+
 [indexes]
   tag = "tags"
   topic = "topics"
 
 [params]
   # Shown in the home page
-  subtitle = "Explore..Discover..Learn"
-  brand = "Aravind Hebbali"
+  subtitle = "Personal blog of Aravind Hebbali"
+  brand = "Rsquared"
   googleAnalytics = "UA-57270671-5"
   disqus = ""
   # CSS name for highlight.js
@@ -48,7 +51,7 @@ ignoreFiles = ["\\.Rmd$", "\\.Rmarkdown$", "_files$", "_cache$"]
     pre = "<i class='fa fa-list fa-fw'></i>"
     weight = 3
     identifier = "post"
-    url = "/post"
+    url = "/post/"
   [[menu.main]]
     name = "About"
     pre = "<i class='fa fa-user fa-fw'></i>"
