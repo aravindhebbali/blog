@@ -1,8 +1,8 @@
-baseurl = "https://blog.aravindhebbali.com/"
+baseurl = "/"
 languageCode = "en-us"
-title = "Aravind Hebbali Blog"
+title = "A Hugo website"
 theme = "hugo-lithium-theme"
-googleAnalytics = "UA-57270671-5"
+googleAnalytics = ""
 disqusShortname = ""
 ignoreFiles = ["\\.Rmd$", "\\.Rmarkdown$", "_files$", "_cache$"]
 
@@ -11,16 +11,16 @@ ignoreFiles = ["\\.Rmd$", "\\.Rmarkdown$", "_files$", "_cache$"]
 
 [[menu.main]]
     name = "About"
-    url = "https://blog.aravindhebbali.com/"
+    url = "/about/"
 [[menu.main]]
     name = "GitHub"
-    url = "https://github.com/aravindhebbali"
+    url = "https://github.com/rstudio/blogdown"
 [[menu.main]]
     name = "Twitter"
-    url = "https://twitter.com/aravindhebbali"
+    url = "https://twitter.com/rstudio"
 
 [params]
-    description = "Personal blog of Aravind Hebbali, built through Hugo and blogdown."
+    description = "A website built through Hugo and blogdown."
 
     # options for highlight.js (version, additional languages, and theme)
     highlightjsVersion = "9.11.0"
@@ -32,8 +32,8 @@ ignoreFiles = ["\\.Rmd$", "\\.Rmarkdown$", "_files$", "_cache$"]
     MathJaxVersion = "2.7.1"
 
     [params.logo]
-    url = "logo.jpg"
+    url = "logo.png"
     width = 50
     height = 50
-    alt = "Aravind Hebbali"
+    alt = "Logo"
 
