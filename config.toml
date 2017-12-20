@@ -49,7 +49,7 @@ relativeurls = false
   
   [[params.navlinks]]
   name = "Blog"
-  url = "https://blog.aravindhebbali.com/blog/"
+  url = "blog/"
   
   [[params.navlinks]]
   name = "Projects"
