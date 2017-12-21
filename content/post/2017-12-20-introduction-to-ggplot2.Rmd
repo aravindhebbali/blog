@@ -3,6 +3,7 @@ title: Introduction to ggplot2
 author: Aravind Hebbali
 date: '2017-12-20'
 slug: introduction-to-ggplot2
+keywords: ggplot2 introduction beginners R
 categories:
   - R
   - Visualization

@@ -1,3 +1,20 @@
+@font-face {
+  font-family: 'Merriweather';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Merriweather'), local('Merriweather-Regular'),
+       url('../fonts/merriweather-v13-latin-regular.woff2') format('woff2'),
+       url('../fonts/merriweather-v13-latin-regular.woff') format('woff');
+}
+@font-face {
+  font-family: 'Lato';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Lato Regular'), local('Lato-Regular'),
+       url('../fonts/lato-v11-latin-regular.woff2') format('woff2'),
+       url('../fonts/lato-v11-latin-regular.woff') format('woff');
+}
+
 html,
 body {
   margin: 0;
@@ -6,6 +23,7 @@ body {
 }
 
 body {
+  font-family: 'Merriweather', serif;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -18,15 +36,12 @@ h3,
 h4,
 h5,
 h6 {
+  font-family: 'Lato', sans-serif;
   color: #222;
 }
 
 a {
   outline: none;
-}
-
-code {
-  background-color: rgba(0, 0, 0, 0.02);
 }
 
 .wrapper {
@@ -37,14 +52,15 @@ code {
 .header {
   padding: 20px 0;
   position: relative;
-  background: #f5f5f5;
+  background: #0C3D4C;
   border-bottom: 1px solid #eaeaea;
 }
 
 .nav {
-  max-width: 800px;
+  max-width: 1000px;
   margin: 0 auto;
   padding: 0 15px;
+  font-family: 'Lato', sans-serif;
   text-align: right;
 }
 
@@ -62,7 +78,6 @@ code {
   display: block;
   max-height: 40px;
   width: auto;
-  border-radius: 50%;
 }
 
 .nav-links {
@@ -83,20 +98,20 @@ code {
 
 .nav-links a {
   text-decoration: none;
-  color: #111;
+  color: #f5f5f5;
 }
 
 .nav-links a:hover {
-  color: #000;
+  color: #fff;
 }
 
 .content {
   max-width: 900px;
-  margin: 40px auto 10px;
+  margin: 60px auto 80px;
   padding: 0 15px;
   font-size: 16px;
   line-height: 1.7;
-  color: #333;
+  color: #555;
 }
 
 .article-title {
@@ -114,6 +129,7 @@ code {
   margin-top: 12px;
   float: right;
   font-size: 10px;
+  font-family: 'Lato', sans-serif;
   padding: 1px 5px;
   font-weight: bold;
   border-radius: 3px;
@@ -190,6 +206,7 @@ code {
   display: inline-block;
   text-decoration: none;
   font-size: 21px;
+  font-family: 'Lato', sans-serif;
   font-weight: bold;
   color: #222;
   padding: 5px 0;
@@ -203,6 +220,7 @@ code {
 .footer {
   padding: 25px 0;
   text-align: center;
+  font-family: 'Lato', sans-serif;
 }
 
 .footer-links {
@@ -270,6 +288,7 @@ code {
   .content {
     font-size: 19px;
     line-height: 1.8;
+    margin: 100px auto;
   }
 
   .highlight {
@@ -291,13 +310,6 @@ code {
     float: right;
   }
 
-  .archive-item-link {
-    text-overflow: ellipsis;
-    max-width: calc(100% - 120px);
-    white-space: nowrap;
-    overflow: hidden;
-  }
-
   .article-title {
     font-size: 42px;
   }
@@ -308,14 +320,5 @@ code {
 
   .footer-links {
     font-size: inherit;
-  }
-}
-
-@media print {
-  .header, .footer {
-    display: none;
-  }
-  .article-content a {
-    box-shadow: none;
   }
 }
