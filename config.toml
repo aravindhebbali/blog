@@ -1,6 +1,6 @@
 baseurl = "https://blog.aravindhebbali.com/"
 languageCode = "en-us"
-title = "Aravind's Blog | R | Statistics | Finance"
+title = "Aravind's Blog | R | Economics | Finance"
 theme = "hugo-lithium-theme"
 googleAnalytics = "UA-57270671-5"
 disqusShortname = ""
