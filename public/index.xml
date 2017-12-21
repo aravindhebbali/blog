@@ -17,17 +17,7 @@
       <pubDate>Wed, 20 Dec 2017 21:13:14 -0500</pubDate>
       
       <guid>/2017/12/20/welcome/</guid>
-      <description>Welcome to my personal blog. Here, you can find posts related to R, Statistics &amp;amp; Economics. My posts are also published on the official blog of Rsquared Academy and you can find posts on a variety of topics related to R there as well.
-This blog is built using blogdown and published on Netlify</description>
-    </item>
-    
-    <item>
-      <title>Introduction to ggplot2</title>
-      <link>/2017/12/20/introduction-to-ggplot2/</link>
-      <pubDate>Wed, 20 Dec 2017 00:00:00 +0000</pubDate>
-      
-      <guid>/2017/12/20/introduction-to-ggplot2/</guid>
-      <description>Simple Plot# simple plotggplot(mtcars) +geom_point(aes(disp, mpg))Addition Functionadd &amp;lt;- function(a, b) {a + b}</description>
+      <description>Welcome to my personal blog. Here, you can find posts related to R, Statistics &amp;amp; Economics. This blog is built using blogdown and published on Netlify. I am currently in porting all my old blog posts to this new site and it should be completed by the end of 2017. Thank you for visiting my blog.</description>
     </item>
     
     <item>
