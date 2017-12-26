@@ -1,0 +1,469 @@
+---
+title: Hacking strings with stringr
+author: Aravind Hebbali
+date: '2017-12-25'
+slug: hacking-strings-with-stringr
+categories:
+  - data wrangling
+tags:
+  - strings
+---
+
+## Introduction
+
+In this post, we will learn to work with string data in R using [stringr](http://stringr.tidyverse.org). As we did in the other posts, we will use a case study to explore the various features of the stringr package. Let us begin by installing and loading stringr and a set of other pacakges we will be using.
+
+<br>
+ 
+## Libraries, Code & Data
+
+We will use [stringr](http://lubridate.tidyverse.org/index.html), [dplyr](http://dplyr.tidyverse.org/index.html), [magrittr](http://magrittr.tidyverse.org/index.html), [tibble](http://tibble.tidyverse.org/index.html), [purrr](http://purrr.tidyverse.org/index.html) and [readr](http://readr.tidyverse.org/index.html) packages. The data sets can be downloaded from [here](https://github.com/rsquaredacademy/datasets) and the codes from [here](https://gist.github.com/aravindhebbali/5d1799744e55dc76cdf1af6b1cc03c82).
+
+
+```{r str1, message=FALSE}
+library(stringr)
+library(tibble)
+library(magrittr)
+library(purrr)
+library(dplyr)
+library(readr)
+```
+
+<br>
+
+## Case Study
+
+- extract domain name from random email ids
+- extract image type from url
+- extract image dimension from url
+- extract extension from domain name
+- extract http protocol from url
+- extract domain name from url
+- extract extension from url
+- extract file type from url
+
+<br>
+
+
+### Data
+
+```{r show, message=FALSE}
+mockstring <- readr::read_csv('https://raw.githubusercontent.com/rsquaredacademy/datasets/master/mock_strings.csv')
+mockstring
+```
+
+<br>
+
+### Data Dictionary
+
+<br>
+
+## Extract domain name from email ids
+
+```{r str15}
+emails <- mockstring %>%
+  pull(email) %>%
+  head
+emails
+```
+
+<br>
+
+```{r str16}
+emails %>%
+  str_split(pattern = '@')
+```
+
+<br>
+
+```{r str17}
+emails %>%
+  str_split(pattern = '@') %>%
+  map_chr(2)
+```
+
+<br>
+
+```{r str18}
+emails %>%
+  str_split(pattern = '@') %>%
+  map_chr(2) %>%
+  str_split(pattern = '\\.') 
+```
+
+<br>
+
+```{r str19}
+emails %>%
+  str_split(pattern = '@') %>%
+  map_chr(2) %>%
+  str_split(pattern = '\\.') %>%
+  map_chr(extract(1))
+```
+
+<br>
+
+```{r str20}
+emails %>%
+  str_split(pattern = '@') %>%
+  map_chr(2) %>%
+  str_split(pattern = '\\.', simplify = TRUE) %>%
+  extract(, 2)
+```
+
+<br>
+
+## Extract image type from URL
+
+```{r str21}
+img <- mockstring %>%
+  pull(imageurl) %>%
+  head
+img
+```
+
+<br>
+
+```{r str22}
+img %>%
+  str_split(pattern = '\\.')
+```
+
+<br>
+
+```{r str23}
+img %>%
+  str_split(pattern = '\\.') %>%
+  map_chr(extract(3))
+```
+
+<br>
+
+```{r str24}
+img %>%
+  str_split(pattern = '\\.') %>%
+  map_chr(extract(3)) %>%
+  str_sub(start = 1, end = 3)
+``` 
+
+<br>
+
+```{r str25}
+img %>%
+  str_split(pattern = '\\.') %>%
+  map_chr(extract(3)) %>%
+  str_split(pattern = '/') %>%
+  map_chr(extract(1))
+```
+
+<br>
+
+## Extract Image Dimesion from URL
+
+```{r str26}
+img %>%
+  str_locate(pattern = "[0-9]") 
+```
+
+<br>
+
+```{r str27}
+img %>%
+  str_sub(start = 23) 
+```
+
+<br>
+
+```{r str28}
+img %>%
+  str_sub(start = 23) %>%
+  str_split(pattern = '\\.') 
+```
+
+<br>
+
+```{r str29}
+img %>%
+  str_sub(start = 23) %>%
+  str_split(pattern = '\\.') %>%
+  map_chr(extract(1))
+```
+
+<br>
+  
+## Extract HTTP Protocol from URL
+
+```{r str30}
+url1 <- mockstring %>%
+  pull(url) %>%
+  first
+url1
+```
+
+<br>
+
+```{r str31}
+url1 %>%
+  str_split(pattern = '://') 
+```
+
+<br>
+
+```{r str32}
+url1 %>%
+  str_split(pattern = '://') %>%
+  map_chr(extract(1))
+```
+
+<br>
+
+```{r str33}
+url1 %>%
+  str_locate(pattern = '://') 
+```
+
+<br>
+
+```{r str34}
+url1 %>%
+  str_locate(pattern = '://') %>%
+  data.frame() 
+```
+
+<br>
+
+```{r str35}
+url1 %>%
+  str_locate(pattern = '://') %>%
+  data.frame() %>%
+  extract2('start') 
+```
+
+<br>
+
+```{r str36}
+url1 %>%
+  str_locate(pattern = '://') %>%
+  data.frame() %>%
+  extract2('start') %>%
+  subtract(1)
+```
+
+<br>
+
+```{r str37}
+urls <- mockstring %>%
+  pull(url) %>%
+  head
+```
+
+<br>
+
+```{r str38}
+k <- urls %>%
+  str_locate(pattern = '://') %>%
+  data.frame() %>%
+  extract2('start') %>%
+  subtract(1)
+```
+
+<br>
+
+```{r str39}
+urls %>%
+  str_sub(start = 1, end = k)
+```
+
+<br>
+
+## Extract Domain Name
+
+```{r str40}
+url1 %>%
+  str_locate_all(pattern = "/") 
+```
+
+<br>
+
+```{r str41}
+url1 %>%
+  str_locate_all(pattern = "/") %>%
+  map_int(extract(3))
+```
+
+<br>
+
+```{r str42}
+n <- url1 %>%
+  str_locate_all(pattern = "/") %>%
+  map_int(extract(3))
+```
+
+<br>
+
+```{r str43}
+urls %>%
+  str_sub(end = n) 
+```
+
+<br>
+
+```{r str44}
+urls %>%
+  str_sub(end = n) %>%
+  str_split(pattern = '\\.') 
+```
+
+<br>
+
+```{r str45}
+urls %>%
+  str_sub(end = n) %>%
+  str_split(pattern = '\\.') %>%
+  map_chr(extract(1)) 
+```
+
+<br>
+
+```{r str46}
+urls %>%
+  str_sub(end = n) %>%
+  str_split(pattern = '\\.') %>%
+  map_chr(extract(1)) %>%
+  str_sub(start = k + 4)
+```
+
+<br>
+
+## Extract domain extension
+
+```{r str47}
+url1 %>%
+  str_sub(end = n) 
+```
+
+<br>
+
+```{r str48}
+url1 %>%
+  str_sub(end = n) %>%
+  str_split(pattern = '\\.') 
+```
+
+<br>
+
+```{r str49}
+url1 %>%
+  str_sub(end = n) %>%
+  str_split(pattern = '\\.') %>%
+  map_chr(extract(2)) 
+```
+
+<br>
+
+```{r str50}
+url1 %>%
+  str_sub(end = n) %>%
+  str_split(pattern = '\\.') %>%
+  map_chr(extract(2)) %>%
+  str_split(pattern = '/') 
+```
+
+<br>
+
+```{r str51}
+url1 %>%
+  str_sub(end = n) %>%
+  str_split(pattern = '\\.') %>%
+  map_chr(extract(2)) %>%
+  str_split(pattern = '/') %>%
+  map_chr(extract(1))
+```
+
+<br>
+
+```{r str52}
+urls %>%
+  str_sub(end = n) %>%
+  str_split(pattern = '\\.') %>%
+  map_chr(extract(2)) %>%
+  str_split(pattern = '/') %>%
+  map_chr(extract(1))
+```
+
+<br>
+
+## Extract file type
+
+```{r str14}
+mockstring$url[1:3]
+```
+
+<br>
+
+## Steps
+
+- check if there are only 2 dots in the URL
+- check if there is only 1 question mark in the URL
+- detect the location of the second dot 
+- detect the location of the first question mark
+- use the locations to specify the index position for extracting file type
+
+<br>
+
+#### Step 1: Check if there are only 2 dots in the URL
+
+```{r str9}
+mockstring$url[1:3] %>%
+  str_locate_all(pattern = '\\.') %>%
+  map_int(nrow) %>%
+  is_greater_than(2) %>%
+  sum()
+```
+
+<br>
+
+#### Step 2: Check if there is only 1 question mark in the URL
+
+```{r str10}  
+mockstring$url[1:3] %>%
+  str_locate_all(pattern = "[?]") %>%
+  map_int(nrow) %>%
+  is_greater_than(1) %>%
+  sum()
+```
+
+<br>
+
+#### Step 3: Detect the location of the second dot
+
+```{r str11}
+d <- mockstring$url[1:3] %>%
+  str_locate_all(pattern = '\\.') %>%
+  map_int(extract(2)) %>%
+  add(1)
+
+d  
+```
+
+<br>
+
+#### Step 4: Detect the location of the first question mark
+
+```{r str12}
+q <- mockstring$url[1:3] %>%
+  str_locate_all(pattern = "[?]") %>%
+  map_int(extract(1)) %>%
+  subtract(1)
+
+q
+```
+
+<br>
+
+#### Step 5: Specify the index position for extracting file type
+
+```{r str13}
+mockstring$url[1:3] %>% 
+  str_sub(start = d, end = q)
+```
