@@ -1,0 +1,319 @@
+---
+title: Data Wrangling with dplyr - Part 3
+author: Aravind Hebbali
+date: '2017-12-25'
+slug: data-wrangling-with-dplyr-part-3
+categories:
+  - data wrangling
+tags:
+  - dplyr
+---
+
+## Introduction
+
+In the previous [post](), we learnt to combine tables using different `*_join` functions provided in dplyr. In this module, we will explore a set of helper functions in order to:
+
+- extract unique rows 
+- rename columns
+- sample data
+- extract columns
+- slice rows
+- arrange rows
+- compare tables
+- extract/mutate data using predicate functions
+- count observations for different levels of a variable
+
+<br>
+
+## Libraries, Code & Data
+
+We will use the [dplyr](http://dplyr.tidyverse.org/index.html) and [readr](http://readr.tidyverse.org/index.html) packages. The data sets can be downloaded from [here](https://github.com/rsquaredacademy/datasets) and the codes from [here](https://gist.github.com/aravindhebbali/55c4f40476028c09949b73af97bb1619).
+
+```{r dplyr1, message=FALSE}
+library(dplyr)
+library(readr)
+options(tibble.width = Inf)
+```
+
+<br>
+
+## Case Study
+
+Let us look at a case study (e-commerce data) and see how we can use dplyr helper functions to answer questions we have about and to modify/transform the underlying data set. You can download the data from [here](https://github.com/rsquaredacademy/datasets/blob/master/web.csv) or import it directly using `read_csv()` from the [readr](readr.tidyverse.org) package.
+
+<br>
+
+### Data
+
+```{r show, message=FALSE}
+ecom <- readr::read_csv('https://raw.githubusercontent.com/rsquaredacademy/datasets/master/web.csv')
+ecom
+```
+
+<br>
+
+### Data Dictionary
+
+- id: row id
+- referrer: referrer website/search engine
+- os: operating system
+- browser: browser
+- device: device used to visit the website
+- n_pages: number of pages visited
+- duration: time spent on the website (in seconds)
+- repeat: frequency of visits
+- country: country of origin
+- purchase: whether visitor purchased
+- order_value: order value of visitor (in dollars)
+
+<br>
+
+## Data Sanitization
+
+- `distinct()`
+- `rename()`
+
+<br>
+
+#### Traffic Sources
+
+```{r dplyr2}
+ecom %>%
+  distinct(referrer)
+```
+
+<br>
+
+#### Device Types
+
+```{r dplyr30}
+ecom %>%
+  distinct(device)
+```
+
+<br>
+
+#### Rename Columns
+
+```{r dplyr3}
+ecom %>%
+  rename(time_on_site = duration)
+```
+
+<br>
+
+## Sampling Data
+
+```{r dplyr4}
+ecom %>%
+  sample_n(700)
+```
+
+```{r dplyr5}
+ecom %>%
+  group_by(referrer) %>%
+  sample_n(100)
+```
+
+```{r dplyr6}
+ecom %>%
+  sample_frac(size = 0.7)
+```
+
+```{r dplyr7}
+ecom %>%
+  group_by(referrer) %>%
+  sample_frac(0.3)
+```
+
+<br>
+
+## Data Extraction
+
+<br>
+
+#### Extract Device Column
+
+```{r dplyr8}
+ecom %>%
+  pull(device)
+```
+
+<br>
+
+#### Extract First Column
+
+```{r dplyr9}
+ecom %>%
+  pull(1)
+```
+
+<br>
+
+#### Extract Last Column
+
+```{r dplyr10}
+ecom %>%
+  pull(-1)
+```
+
+<br>
+
+#### Extract First 20 Rows
+
+```{r dplyr11}
+ecom %>%
+  slice(1:20)
+```
+
+<br>
+
+#### Extract Last Row
+
+```{r dplyr12}
+ecom %>%
+  slice(n())
+```
+
+<br>
+
+## Data Tabulation
+
+<br>
+
+#### Total Observations in Data
+
+```{r dplyr13}
+ecom %>%
+  tally()
+```
+
+<br>
+
+#### Tabulate Referrers
+
+```{r dplyr14}
+ecom %>%
+  group_by(referrer) %>%
+  tally()
+```
+
+<br>
+
+#### Tabulate referrers and bouncers
+
+```{r dplyr15}
+ecom %>%
+  group_by(referrer, bouncers) %>%
+  tally()
+```
+
+<br>
+
+#### Tabulate referrers and purchasers
+
+```{r dplyr16}
+ecom %>%
+  group_by(referrer, purchase) %>%
+  tally()
+```
+
+<br>
+
+#### Tabulate Referrers & Converts
+
+```{r dplyr25}
+ecom %>%
+  group_by(referrer, purchase) %>%
+  tally() %>%
+  filter(purchase == 'true')
+```
+
+<br>
+
+#### Count
+
+```{r dplyr17}
+ecom %>%
+  count(referrer, purchase)
+```
+
+<br>
+
+## Sort Data
+
+<br>
+
+#### Top 2 referrers by orders
+
+```{r dplyr18}
+ecom %>%
+  count(referrer, purchase) %>%
+  filter(purchase == 'true') %>%
+  arrange(desc(n)) %>%
+  top_n(n = 2)
+```
+
+<br>
+
+## Between
+
+```{r dplyr19}
+ecom %>%
+  pull(n_pages) %>%
+  between(5, 15) 
+```
+
+<br>
+
+## Case When
+
+```{r dplyr20}
+mtcars %>%
+  select(mpg, disp, cyl, gear, carb) %>%
+  mutate(
+    type = case_when(
+      disp > 200 ~ 'High',
+      cyl == 8 ~ 'Eight',
+      TRUE ~ 'True'
+    )
+  )
+```
+
+<br>
+
+## Select Observations
+
+<br>
+
+#### Select First Observation
+
+```{r dplyr21}
+ecom %>%
+  pull(referrer) %>%
+  nth(1)
+
+ecom %>%
+  pull(referrer) %>%
+  first()
+```
+
+<br>
+
+#### Select 1000th Observation
+
+```{r dplyr22}
+ecom %>%
+  pull(referrer) %>%
+  nth(1000)
+```
+
+<br>
+
+#### Select Last Observation
+
+```{r dplyr23}
+ecom %>%
+  pull(referrer) %>%
+  last()
+```
