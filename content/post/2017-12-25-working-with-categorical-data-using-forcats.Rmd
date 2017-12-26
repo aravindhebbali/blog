@@ -1,0 +1,300 @@
+---
+title: Working with Categorical Data using forcats
+author: Aravind Hebbali
+date: '2017-12-25'
+slug: working-with-categorical-data-using-forcats
+categories:
+  - data wrangling
+tags:
+  - forcats
+  - factor
+  - categorical
+---
+
+## Introduction
+
+In this post, we will learn to work with categorical/qualitative data in R using [forcats](http://forcats.tidyverse.org). Let us begin by installing and loading forcats and a set of other pacakges we will be using.
+
+<br>
+
+## Libraries, Code & Data
+
+We will use [forcats](http://forcats.tidyverse.org/index.html), [dplyr](http://dplyr.tidyverse.org/index.html), [magrittr](http://magrittr.tidyverse.org/index.html), [ggplot2](http://ggplot2.tidyverse.org/index.html), [tibbe](http://tibble.tidyverse.org/index.html), [purrr](http://purrr.tidyverse.org/index.html) and [readr](http://readr.tidyverse.org/index.html) packages. The data sets can be downloaded from [here](https://github.com/rsquaredacademy/datasets) and the codes from [here](https://gist.github.com/aravindhebbali/85fac536f563ae3fd8e2605fd56a7086).
+
+```{r cat1, message=FALSE}
+library(forcats)
+library(tibble)
+library(magrittr)
+library(purrr)
+library(dplyr)
+library(ggplot2)
+library(readr)
+```
+
+<br>
+
+## Case Study
+
+We will use a case study to explore the various features of the forcats package. You can download the data for the case study from [here](https://raw.githubusercontent.com/rsquaredacademy/datasets/master/web.csv) or directly import the data using the readr package. We will do the following in this case study:
+
+- compute the frequency of different referrers
+- plot average number of pages browsed for different referrers
+- collapse referrers with low sample size into a single group
+- club traffic from social media websites into a new category
+- group referrers with traffic below a threshold into a single category
+ 
+<br>
+
+### Data
+
+```{r show, message=FALSE}
+ecom <- read_csv('https://raw.githubusercontent.com/rsquaredacademy/datasets/master/web.csv')
+ecom
+```
+
+<br>
+
+### Data Dictionary
+
+- id: row id
+- referrer: referrer website/search engine
+- os: operating system
+- browser: browser
+- device: device used to visit the website
+- n_pages: number of pages visited
+- duration: time spent on the website (in seconds)
+- repeat: frequency of visits
+- country: country of origin
+- purchase: whether visitor purchased
+- order_value: order value of visitor (in dollars)
+
+
+<br>
+ 
+## Tabulate Referrers
+
+```{r cat2}
+ecom %>%
+  count(referrer)
+```
+
+<br>
+
+#### Avg. page visits by referrer type
+
+```{r cat3}
+refer_summary <- ecom %>%
+  group_by(referrer) %>%
+  summarise(
+    page = mean(n_pages),
+    tos = mean(duration),
+    n = n()
+  )
+
+refer_summary
+```
+
+<br>
+
+```{r cat10, fig.align='center', fig.width=6, fig.height=4}
+ggplot(refer_summary, aes(page, referrer)) + geom_point()
+```
+
+<br>
+
+## Reorder Referrers
+
+```{r cat11, fig.align='center', fig.width=6, fig.height=4}
+ggplot(refer_summary, aes(page, fct_reorder(referrer, page))) + geom_point()
+```
+
+<br>
+
+## Plot Referrer Frequency (Descending Order)
+
+```{r cat21}
+ecom %>%
+  count(referrer, sort = TRUE)
+```
+
+<br>
+
+```{r cat22}
+ecom %>%
+  pull(referrer) %>%
+  as_factor() %>%
+  levels
+```
+
+<br>
+
+```{r cat23}
+ecom %>%
+  pull(referrer) %>%
+  as_factor() %>%
+  fct_infreq() %>%
+  levels
+```
+
+<br>
+
+```{r cat4, fig.align='center', fig.width=6, fig.height=4}
+ecom %>%
+  mutate(ref = referrer %>% fct_infreq()) %>%
+  ggplot(aes(ref)) +
+  geom_bar()
+```
+
+<br>
+
+## Plot Referrer Frequency (Ascending Order)
+
+```{r cat24}
+ecom %>%
+  pull(referrer) %>%
+  as_factor() %>%
+  levels
+```
+
+<br>
+
+```{r cat25}
+ecom %>%
+  pull(referrer) %>%
+  as_factor() %>%
+  fct_rev() %>%
+  levels 
+```
+
+<br>
+
+```{r cat5, fig.align='center', fig.width=6, fig.height=4}
+ecom %>%
+  mutate(ref = referrer %>% fct_infreq() %>% fct_rev()) %>%
+  ggplot(aes(ref)) +
+  geom_bar()
+```
+
+## Case Study 2
+
+<br>
+
+### Data 
+
+```{r import2, message=FALSE}
+traffic <- readr::read_csv('https://raw.githubusercontent.com/rsquaredacademy/datasets/master/web_traffic.csv')
+traffic
+```
+
+<br>
+
+## Tabulate Referrer
+
+```{r cat6}
+traffic$traffics %>% fct_count()
+```
+
+<br>
+
+## Collapse Referrer Categories
+
+```{r cat7}
+traffic2 <- fct_collapse(traffic$traffics,
+  social = c("facebook", "twitter", "instagram"),
+  search = c("google", "bing", "yahoo")
+)
+
+traffic2 %>% fct_count() 
+```
+
+<br>
+
+## Lump Infrequent Referrer Types
+
+```{r cat8}
+traffic$traffics %>% fct_count()
+
+traffic$traffics %>% fct_lump() %>% table()
+```
+
+<br>
+
+## Retain top 3 referrers
+
+```{r cat9, echo=FALSE}
+traffic$traffics %>% fct_count() %>% arrange(desc(n))
+```
+
+<br>
+
+```{r cat17}
+traffic$traffics %>% fct_lump(n = 3) %>% table()
+```
+
+<br>
+
+## Lump Referrer Types with less than 10% traffic
+
+```{r cat12, echo=FALSE}
+traffic$traffics %>% 
+  fct_count() %>%
+  mutate(
+    percent = round((n / sum(n)) * 100, 2)
+  )
+```
+
+<br>
+
+```{r cat16}
+traffic$traffics %>% fct_lump(prop = 0.1) %>% table()
+```
+
+<br>
+
+## Lump Referrer Types with less than 15% traffic
+
+```{r cat13, echo=FALSE}
+traffic$traffics %>% 
+  fct_count() %>%
+  mutate(
+    percent = round((n / sum(n)) * 100, 2)
+  )
+```
+
+<br>
+
+```{r cat18}
+traffic$traffics %>% fct_lump(prop = 0.15) %>% table()
+```
+
+<br>
+
+## Retain 3 Referrer Types with lowest traffic
+
+```{r cat14, echo=FALSE}
+traffic$traffics %>% fct_count() %>% arrange(n)
+```
+
+<br>
+
+```{r cat19}
+traffic$traffics %>% fct_lump(n = -3) %>% table()
+```
+
+<br>
+
+## Retain 3 Referrer Types with less than 10% traffic
+
+```{r cat15, echo=FALSE}
+traffic$traffics %>% 
+  fct_count() %>%
+  mutate(
+    percent = round((n / sum(n)) * 100, 2)
+  )
+```
+
+<br>
+
+```{r cat20}
+traffic$traffics %>% fct_lump(prop = -0.1) %>% table()
+```
