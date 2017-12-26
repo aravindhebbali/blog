@@ -6,10 +6,20 @@
     <description>Recent content in R on Aravind&#39;s Blog | R | Economics | Finance</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 20 Dec 2017 21:13:14 -0500</lastBuildDate>
+    <lastBuildDate>Sun, 24 Dec 2017 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/categories/r/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Importing Data into R - Part 1</title>
+      <link>/2017/12/24/a-complete-guide-to-importing-data-into-r-part-1/</link>
+      <pubDate>Sun, 24 Dec 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/2017/12/24/a-complete-guide-to-importing-data-into-r-part-1/</guid>
+      <description>IntroductionThis is the first post in the series Importing Data into R. Before we get started, let me talk a bit about what we will learn in this series. I am planning to write 3 posts in which we will explore how to read data from:
+flat/delimited files (.csv, .txt, .tsv)excel spreadsheets (.xls, .xlsx)statistical softwaresJSON/XMLThere are other ways to get data into R such as databases, APIs etc.</description>
+    </item>
     
     <item>
       <title>Welcome</title>

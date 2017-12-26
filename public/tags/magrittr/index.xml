@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Magrittr on Aravind&#39;s Blog | R | Economics | Finance</title>
+    <link>/tags/magrittr/</link>
+    <description>Recent content in Magrittr on Aravind&#39;s Blog | R | Economics | Finance</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 25 Dec 2017 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="/tags/magrittr/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Readable Code with Pipes</title>
+      <link>/2017/12/25/readable-code-with-pipes/</link>
+      <pubDate>Mon, 25 Dec 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/2017/12/25/readable-code-with-pipes/</guid>
+      <description>IntroductionWhen you are dealing with a sequence of multiple operations, R code can get a bit cramped and not so easy on the eyes. The magrittr package by Stefan Milton Bache provides pipes enabling us to write R code that is readable.
+especially useful when you have nested functionssimilar in spirit to javascript’s method chainingfunctions taking multiple arguments can be confusing and messy to readwith magrittr, you program from left to right</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Hugo 0.26" />
+
+
+<title>Importing Data into R - Part 2 - Aravind&#39;s Blog | R | Economics | Finance</title>
+<meta property="og:title" content="Importing Data into R - Part 2 - Aravind&#39;s Blog | R | Economics | Finance">
+
+
+
+  
+
+
+
+
+<link rel="stylesheet" href="/css/github-gist.css" rel="stylesheet" id="theme-stylesheet">
+<script src="/js/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+
+
+
+
+<link href='//cdn.bootcss.com/highlight.js/9.11.0/styles/github.min.css' rel='stylesheet' type='text/css' />
+
+
+
+<link rel="stylesheet" href="/css/fonts.css" media="all">
+<link rel="stylesheet" href="/css/main.css" media="all">
+
+
+
+  </head>
+  <body>
+    <div class="wrapper">
+      <header class="header">
+        <nav class="nav">
+  <a href="/" class="nav-logo">
+    <img src="/images/logo.jpg"
+         width="50"
+         height="50"
+         alt="Aravind Hebbali">
+  </a>
+
+  <ul class="nav-links">
+    
+    <li><a href="/">Home</a></li>
+    
+    <li><a href="https://github.com/aravindhebbali">Projects</a></li>
+    
+    <li><a href="https://www.aravindhebbali.com/">About</a></li>
+    
+  </ul>
+</nav>
+
+      </header>
+
+
+<main class="content" role="main">
+
+  <article class="article">
+    
+    <span class="article-duration">6 min read</span>
+    
+
+    <h1 class="article-title">Importing Data into R - Part 2</h1>
+
+    
+    <span class="article-date">2017/12/25</span>
+    
+
+    <div class="article-content">
+      <div id="introduction" class="section level2">
+<h2>Introduction</h2>
+<p>This is the second post in the series <strong>Importing Data into R</strong>. In the previous <a href="">post</a>, we explored reading data from flat/delimited files. In this post, we will:</p>
+<ul>
+<li>list sheets in an excel file</li>
+<li>read data from an excel sheet</li>
+<li>read specific cells from an excel sheet</li>
+<li>read specific rows</li>
+<li>read specific columns</li>
+<li>read data from - SAS - SPSS - STATA</li>
+</ul>
+</div>
+<div id="libraries-data-code" class="section level2">
+<h2>Libraries, Data &amp; Code</h2>
+<p>We will use the <a href="http://readr.tidyverse.org/index.html">readxl</a> package. It has no external dependencies as compared to other packages available for reading data from Excel. The data sets can be downloaded from <a href="https://github.com/rsquaredacademy/datasets">here</a> and the codes from <a href="https://gist.github.com/aravindhebbali/65dc2af57b8eda098f2b878095c5aaa4">here</a>.</p>
+<pre class="r"><code>library(readxl)</code></pre>
+</div>
+<div id="list-sheets" class="section level2">
+<h2>List Sheets</h2>
+<hr>
+<p>Before we read data from an excel file, let us see how many sheets are present using <code>excel_sheets()</code>.</p>
+<pre class="r"><code>excel_sheets(&#39;sample.xls&#39;)</code></pre>
+<pre><code>## [1] &quot;ecom&quot;</code></pre>
+</div>
+<div id="read-sheet" class="section level2">
+<h2>Read Sheet</h2>
+<hr>
+<p>To read data from a particular sheet, use <code>read_excel()</code> and specify the file name and the sheet number. Below is a simple example:</p>
+<pre class="r"><code>read_excel(&#39;sample.xls&#39;, sheet = 1)</code></pre>
+<pre><code>## # A tibble: 7 x 5
+##          channel users new_users sessions bounce_rate
+##            &lt;chr&gt; &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;       &lt;chr&gt;
+## 1 Organic Search 43296     40238    50810      48.72%
+## 2         Direct 12916     12311    16419      49.27%
+## 3       Referral 10983      7636    18105      22.26%
+## 4         Social 10346     10029    11101      61.92%
+## 5        Display  5564      4790     7220      83.30%
+## 6    Paid Search  2687      2205     3438      38.02%
+## 7     Affiliates  1773      1585     2167      55.75%</code></pre>
+</div>
+<div id="read-specific-cells" class="section level2">
+<h2>Read Specific Cells</h2>
+<hr>
+<p>To read data from specific cells or a range of cells, use the <code>range</code> arguments and specify the range of cells from which we want to read data. For example, to read data from first 4 rows of columns <strong>B</strong> and <strong>C</strong>, we will specify the range as <code>&quot;B1:C4&quot;</code>.</p>
+<pre class="r"><code>read_excel(&#39;sample.xls&#39;, sheet = 1, range = &quot;B1:C4&quot;)</code></pre>
+<pre><code>## # A tibble: 3 x 2
+##   users new_users
+##   &lt;dbl&gt;     &lt;dbl&gt;
+## 1 43296     40238
+## 2 12916     12311
+## 3 10983      7636</code></pre>
+<p>To read data from first 5 rows of columns <strong>A</strong>, <strong>B</strong> and <strong>C</strong>, we will specify the range as <code>&quot;A1:C5&quot;</code>.</p>
+<pre class="r"><code>readxl::read_excel(&#39;sample.xls&#39;, sheet = 1, range = &quot;A1:C5&quot;)</code></pre>
+<pre><code>## # A tibble: 4 x 3
+##          channel users new_users
+##            &lt;chr&gt; &lt;dbl&gt;     &lt;dbl&gt;
+## 1 Organic Search 43296     40238
+## 2         Direct 12916     12311
+## 3       Referral 10983      7636
+## 4         Social 10346     10029</code></pre>
+<p>Another way to read specific cells is by providing a particular cell and then specifying the number of rows and columns keeping that cell as anchorage. In the below example, we want to read 3 rows and 2 columns starting from the cell <code>A4</code>.</p>
+<pre class="r"><code>readxl::read_excel(&#39;sample.xls&#39;, sheet = 1, col_names = FALSE,
+  range = anchored(&quot;A4&quot;, dim = c(3, 2)))</code></pre>
+<pre><code>## # A tibble: 3 x 2
+##       X__1  X__2
+##      &lt;chr&gt; &lt;dbl&gt;
+## 1 Referral 10983
+## 2   Social 10346
+## 3  Display  5564</code></pre>
+<p>Use cell_limits to specify one end of the rectangle such as top left or top right.</p>
+<pre class="r"><code>readxl::read_excel(&#39;sample.xls&#39;, sheet = 1,
+  range = cell_limits(c(1, 2), c(NA, NA)))</code></pre>
+<pre><code>## # A tibble: 7 x 4
+##   users new_users sessions bounce_rate
+##   &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;       &lt;chr&gt;
+## 1 43296     40238    50810      48.72%
+## 2 12916     12311    16419      49.27%
+## 3 10983      7636    18105      22.26%
+## 4 10346     10029    11101      61.92%
+## 5  5564      4790     7220      83.30%
+## 6  2687      2205     3438      38.02%
+## 7  1773      1585     2167      55.75%</code></pre>
+<pre class="r"><code>readxl::read_excel(&#39;sample.xls&#39;, sheet = 1,
+  range = cell_limits(c(1, NA), c(NA, 2)))</code></pre>
+<pre><code>## # A tibble: 7 x 2
+##          channel users
+##            &lt;chr&gt; &lt;dbl&gt;
+## 1 Organic Search 43296
+## 2         Direct 12916
+## 3       Referral 10983
+## 4         Social 10346
+## 5        Display  5564
+## 6    Paid Search  2687
+## 7     Affiliates  1773</code></pre>
+</div>
+<div id="specify-rows" class="section level2">
+<h2>Specify Rows</h2>
+<hr>
+<p>Use <code>cell_rows()</code> to specify the rows from which data must be read. In the below example, we want to read the first 4 rows of data from the file.</p>
+<pre class="r"><code>readxl::read_excel(&#39;sample.xls&#39;, sheet = 1, range = cell_rows(1:4))</code></pre>
+<pre><code>## # A tibble: 3 x 5
+##          channel users new_users sessions bounce_rate
+##            &lt;chr&gt; &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;       &lt;chr&gt;
+## 1 Organic Search 43296     40238    50810      48.72%
+## 2         Direct 12916     12311    16419      49.27%
+## 3       Referral 10983      7636    18105      22.26%</code></pre>
+</div>
+<div id="specify-columns" class="section level2">
+<h2>Specify Columns</h2>
+<hr>
+<p>Use <code>cell_cols()</code> to specify the columns from which data must be read. In the below example, we want to read the 2nd and 3rd column from the file.</p>
+<pre class="r"><code>readxl::read_excel(&#39;sample.xls&#39;, sheet = 1, range = cell_cols(2:3))</code></pre>
+<pre><code>## # A tibble: 7 x 2
+##   users new_users
+##   &lt;dbl&gt;     &lt;dbl&gt;
+## 1 43296     40238
+## 2 12916     12311
+## 3 10983      7636
+## 4 10346     10029
+## 5  5564      4790
+## 6  2687      2205
+## 7  1773      1585</code></pre>
+</div>
+<div id="statistical-softwares" class="section level2">
+<h2>Statistical Softwares</h2>
+<hr>
+<p>We will use the <a href="">haven</a> package to read data from files of other statistical softwares such as:</p>
+<ul>
+<li>SAS</li>
+<li>SPSS</li>
+<li>STATA</li>
+</ul>
+<div id="library" class="section level3">
+<h3>Library</h3>
+<pre class="r"><code>library(haven)</code></pre>
+</div>
+<div id="stata" class="section level3">
+<h3>STATA</h3>
+<hr>
+<pre class="r"><code>read_stata(&#39;airline.dta&#39;)  </code></pre>
+<pre><code>## # A tibble: 32 x 6
+##     year     y     w      r     l     k
+##    &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+##  1  1948 1.214 0.243 0.1454 1.415 0.612
+##  2  1949 1.354 0.260 0.2181 1.384 0.559
+##  3  1950 1.569 0.278 0.3157 1.388 0.573
+##  4  1951 1.948 0.297 0.3940 1.550 0.564
+##  5  1952 2.265 0.310 0.3559 1.802 0.574
+##  6  1953 2.731 0.322 0.3593 1.926 0.711
+##  7  1954 3.025 0.335 0.4025 1.964 0.776
+##  8  1955 3.562 0.350 0.3961 2.116 0.827
+##  9  1956 3.979 0.361 0.3822 2.435 0.800
+## 10  1957 4.420 0.379 0.3045 2.707 0.921
+## # ... with 22 more rows</code></pre>
+</div>
+<div id="spss" class="section level3">
+<h3>SPSS</h3>
+<hr>
+<pre class="r"><code>read_spss(&#39;employee.sav&#39;)  </code></pre>
+<pre><code>## # A tibble: 474 x 9
+##       id    gender      educ    jobcat    salary  salbegin   jobtime
+##    &lt;dbl&gt; &lt;chr+lbl&gt; &lt;dbl+lbl&gt; &lt;dbl+lbl&gt; &lt;dbl+lbl&gt; &lt;dbl+lbl&gt; &lt;dbl+lbl&gt;
+##  1     1         m        15         3     57000     27000        98
+##  2     2         m        16         1     40200     18750        98
+##  3     3         f        12         1     21450     12000        98
+##  4     4         f         8         1     21900     13200        98
+##  5     5         m        15         1     45000     21000        98
+##  6     6         m        15         1     32100     13500        98
+##  7     7         m        15         1     36000     18750        98
+##  8     8         f        12         1     21900      9750        98
+##  9     9         f        15         1     27900     12750        98
+## 10    10         f        12         1     24000     13500        98
+## # ... with 464 more rows, and 2 more variables: prevexp &lt;dbl+lbl&gt;,
+## #   minority &lt;dbl+lbl&gt;</code></pre>
+</div>
+<div id="sas" class="section level3">
+<h3>SAS</h3>
+<hr>
+<pre class="r"><code>read_sas(&#39;airline.sas7bdat&#39;)</code></pre>
+<pre><code>## # A tibble: 32 x 6
+##     YEAR     Y     W      R     L     K
+##    &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+##  1  1948 1.214 0.243 0.1454 1.415 0.612
+##  2  1949 1.354 0.260 0.2181 1.384 0.559
+##  3  1950 1.569 0.278 0.3157 1.388 0.573
+##  4  1951 1.948 0.297 0.3940 1.550 0.564
+##  5  1952 2.265 0.310 0.3559 1.802 0.574
+##  6  1953 2.731 0.322 0.3593 1.926 0.711
+##  7  1954 3.025 0.335 0.4025 1.964 0.776
+##  8  1955 3.562 0.350 0.3961 2.116 0.827
+##  9  1956 3.979 0.361 0.3822 2.435 0.800
+## 10  1957 4.420 0.379 0.3045 2.707 0.921
+## # ... with 22 more rows</code></pre>
+</div>
+</div>
+
+    </div>
+  </article>
+
+  
+
+
+</main>
+
+      <footer class="footer">
+        <ul class="footer-links">
+          <li>
+            <a href="/index.xml" type="application/rss+xml" target="_blank">RSS feed</a>
+          </li>
+          <li>
+            <a href="https://gohugo.io/" class="footer-links-kudos">Made with <img src="/images/hugo-logo.png" width="22" height="22"></a> and <a href="https://github.com/rstudio/blogdown">blogdown</a>
+          </li>
+          <li><a href="https://twitter.com/aravindhebbali">@aravindhebbali</a></li>
+        </ul>
+        <ul>
+          <li>&copy 2017 Aravind Hebbali</li>
+        </ul>
+      </footer>
+
+    </div>
+    
+
+
+
+<script src="//cdn.bootcss.com/highlight.js/9.11.0/highlight.min.js"></script>
+
+
+
+<script src="//cdn.bootcss.com/highlight.js/9.11.0/languages/r.min.js"></script>
+<script src="//cdn.bootcss.com/highlight.js/9.11.0/languages/yaml.min.js"></script>
+<script>hljs.configure({languages: []}); hljs.initHighlightingOnLoad();</script>
+
+
+
+    
+
+    
+<script>
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-57270671-5', 'auto');
+ga('send', 'pageview');
+</script>
+
+  </body>
+</html>
+

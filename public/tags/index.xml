@@ -6,10 +6,109 @@
     <description>Recent content in Tags on Aravind&#39;s Blog | R | Economics | Finance</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 20 Dec 2017 21:13:14 -0500</lastBuildDate>
+    <lastBuildDate>Mon, 25 Dec 2017 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/tags/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Categorical</title>
+      <link>/tags/categorical/</link>
+      <pubDate>Mon, 25 Dec 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/categorical/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Date</title>
+      <link>/tags/date/</link>
+      <pubDate>Mon, 25 Dec 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/date/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Dplyr</title>
+      <link>/tags/dplyr/</link>
+      <pubDate>Mon, 25 Dec 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/dplyr/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Factor</title>
+      <link>/tags/factor/</link>
+      <pubDate>Mon, 25 Dec 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/factor/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Forcats</title>
+      <link>/tags/forcats/</link>
+      <pubDate>Mon, 25 Dec 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/forcats/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Import</title>
+      <link>/tags/import/</link>
+      <pubDate>Mon, 25 Dec 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/import/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Joins</title>
+      <link>/tags/joins/</link>
+      <pubDate>Mon, 25 Dec 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/joins/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Json</title>
+      <link>/tags/json/</link>
+      <pubDate>Mon, 25 Dec 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/json/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Lubridate</title>
+      <link>/tags/lubridate/</link>
+      <pubDate>Mon, 25 Dec 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/lubridate/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Magrittr</title>
+      <link>/tags/magrittr/</link>
+      <pubDate>Mon, 25 Dec 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/magrittr/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Pipes</title>
+      <link>/tags/pipes/</link>
+      <pubDate>Mon, 25 Dec 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/pipes/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>Plot</title>
@@ -30,11 +129,65 @@
     </item>
     
     <item>
+      <title>Readr</title>
+      <link>/tags/readr/</link>
+      <pubDate>Sun, 24 Dec 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/readr/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Readxl</title>
+      <link>/tags/readxl/</link>
+      <pubDate>Mon, 25 Dec 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/readxl/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>Regression</title>
       <link>/tags/regression/</link>
       <pubDate>Wed, 20 Dec 2017 21:13:14 -0500</pubDate>
       
       <guid>/tags/regression/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Strings</title>
+      <link>/tags/strings/</link>
+      <pubDate>Mon, 25 Dec 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/strings/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Tibble</title>
+      <link>/tags/tibble/</link>
+      <pubDate>Mon, 25 Dec 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/tibble/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Time</title>
+      <link>/tags/time/</link>
+      <pubDate>Mon, 25 Dec 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/time/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Xml</title>
+      <link>/tags/xml/</link>
+      <pubDate>Mon, 25 Dec 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/xml/</guid>
       <description></description>
     </item>
     

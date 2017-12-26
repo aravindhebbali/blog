@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Hugo 0.26" />
+
+
+<title>Readable Code with Pipes - Aravind&#39;s Blog | R | Economics | Finance</title>
+<meta property="og:title" content="Readable Code with Pipes - Aravind&#39;s Blog | R | Economics | Finance">
+
+
+
+  
+
+
+
+
+<link rel="stylesheet" href="/css/github-gist.css" rel="stylesheet" id="theme-stylesheet">
+<script src="/js/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+
+
+
+
+<link href='//cdn.bootcss.com/highlight.js/9.11.0/styles/github.min.css' rel='stylesheet' type='text/css' />
+
+
+
+<link rel="stylesheet" href="/css/fonts.css" media="all">
+<link rel="stylesheet" href="/css/main.css" media="all">
+
+
+
+  </head>
+  <body>
+    <div class="wrapper">
+      <header class="header">
+        <nav class="nav">
+  <a href="/" class="nav-logo">
+    <img src="/images/logo.jpg"
+         width="50"
+         height="50"
+         alt="Aravind Hebbali">
+  </a>
+
+  <ul class="nav-links">
+    
+    <li><a href="/">Home</a></li>
+    
+    <li><a href="https://github.com/aravindhebbali">Projects</a></li>
+    
+    <li><a href="https://www.aravindhebbali.com/">About</a></li>
+    
+  </ul>
+</nav>
+
+      </header>
+
+
+<main class="content" role="main">
+
+  <article class="article">
+    
+    <span class="article-duration">8 min read</span>
+    
+
+    <h1 class="article-title">Readable Code with Pipes</h1>
+
+    
+    <span class="article-date">2017/12/25</span>
+    
+
+    <div class="article-content">
+      <div id="introduction" class="section level2">
+<h2>Introduction</h2>
+<hr>
+<p>When you are dealing with a sequence of multiple operations, R code can get a bit cramped and not so easy on the eyes. The <a href="https://CRAN.R-project.org/package=magrittr">magrittr</a> package by <a href="http://stefanbache.dk/">Stefan Milton Bache</a> provides pipes enabling us to write R code that is readable.</p>
+<ul>
+<li>especially useful when you have nested functions</li>
+<li>similar in spirit to javascript’s method chaining</li>
+<li>functions taking multiple arguments can be confusing and messy to read</li>
+<li>with magrittr, you program from left to right</li>
+</ul>
+<p><br></p>
+</div>
+<div id="pipes" class="section level2">
+<h2>Pipes</h2>
+<hr>
+<p>R being a functional language, code contains a lot of parentheses. Complex code results in nested functions making them hard to read and maintain. If you are using <a href="https://www.tidyverse.org/">tidyverse</a>, magrittr will be automatically loaded. We will look at 3 different types of pipes:</p>
+<ul>
+<li><code>%&gt;%</code> : pipe a value forward into an expression or function call</li>
+<li><code>%&lt;&gt;%</code>: result assigned to left hand side object instead of returning it</li>
+<li><code>%$%</code> : expose names within left hand side objects to right hand side expressions</li>
+</ul>
+<p><br></p>
+</div>
+<div id="libraries-code-data" class="section level2">
+<h2>Libraries, Code &amp; Data</h2>
+<hr>
+<p>We will use the <a href="http://magrittr.tidyverse.org/">magrittr</a>, <a href="http://readr.tidyverse.org/">readr</a> and <a href="http://readr.tidyverse.org/">purrr</a> packages. You can find the data sets <a href="https://github.com/rsquaredacademy/datasets">here</a> and the codes <a href="https://gist.github.com/aravindhebbali/26d85ab4a4dadd2fe7c1f58d854cc950">here</a>.</p>
+<pre class="r"><code>library(magrittr)
+library(readr)
+library(purrr)</code></pre>
+<p><br></p>
+</div>
+<div id="data" class="section level2">
+<h2>Data</h2>
+<hr>
+<pre class="r"><code>ecom &lt;- read_csv(&#39;https://raw.githubusercontent.com/rsquaredacademy/datasets/master/web.csv&#39;)
+ecom</code></pre>
+<pre><code>## # A tibble: 1,000 x 11
+##       id referrer device bouncers n_visit n_pages duration        country
+##    &lt;int&gt;    &lt;chr&gt;  &lt;chr&gt;    &lt;chr&gt;   &lt;int&gt;   &lt;dbl&gt;    &lt;dbl&gt;          &lt;chr&gt;
+##  1     1   google laptop     true      10       1      693 Czech Republic
+##  2     2    yahoo tablet     true       9       1      459          Yemen
+##  3     3   direct laptop     true       0       1      996         Brazil
+##  4     4     bing tablet    false       3      18      468          China
+##  5     5    yahoo mobile     true       9       1      955         Poland
+##  6     6    yahoo laptop    false       5       5      135   South Africa
+##  7     7    yahoo mobile     true      10       1       75     Bangladesh
+##  8     8   direct mobile     true      10       1      908      Indonesia
+##  9     9     bing mobile    false       3      19      209    Netherlands
+## 10    10   google mobile     true       6       1      208 Czech Republic
+## # ... with 990 more rows, and 3 more variables: purchase &lt;chr&gt;,
+## #   order_items &lt;dbl&gt;, order_value &lt;dbl&gt;</code></pre>
+<p><br></p>
+<div id="data-dictionary" class="section level4">
+<h4>Data Dictionary</h4>
+<hr>
+<ul>
+<li>id: row id</li>
+<li>referrer: referrer website/search engine</li>
+<li>os: operating system</li>
+<li>browser: browser</li>
+<li>device: device used to visit the website</li>
+<li>n_pages: number of pages visited</li>
+<li>duration: time spent on the website (in seconds)</li>
+<li>repeat: frequency of visits</li>
+<li>country: country of origin</li>
+<li>purchase: whether visitor purchased</li>
+<li>order_value: order value of visitor (in dollars)</li>
+</ul>
+<p><br></p>
+</div>
+</div>
+<div id="first-example" class="section level2">
+<h2>First Example</h2>
+<hr>
+<pre class="r"><code>head(ecom, 10)</code></pre>
+<pre><code>## # A tibble: 10 x 11
+##       id referrer device bouncers n_visit n_pages duration        country
+##    &lt;int&gt;    &lt;chr&gt;  &lt;chr&gt;    &lt;chr&gt;   &lt;int&gt;   &lt;dbl&gt;    &lt;dbl&gt;          &lt;chr&gt;
+##  1     1   google laptop     true      10       1      693 Czech Republic
+##  2     2    yahoo tablet     true       9       1      459          Yemen
+##  3     3   direct laptop     true       0       1      996         Brazil
+##  4     4     bing tablet    false       3      18      468          China
+##  5     5    yahoo mobile     true       9       1      955         Poland
+##  6     6    yahoo laptop    false       5       5      135   South Africa
+##  7     7    yahoo mobile     true      10       1       75     Bangladesh
+##  8     8   direct mobile     true      10       1      908      Indonesia
+##  9     9     bing mobile    false       3      19      209    Netherlands
+## 10    10   google mobile     true       6       1      208 Czech Republic
+## # ... with 3 more variables: purchase &lt;chr&gt;, order_items &lt;dbl&gt;,
+## #   order_value &lt;dbl&gt;</code></pre>
+<p><br></p>
+<div id="using-pipe" class="section level4">
+<h4>Using pipe</h4>
+<hr>
+<pre class="r"><code>ecom %&gt;% head(10)</code></pre>
+<pre><code>## # A tibble: 10 x 11
+##       id referrer device bouncers n_visit n_pages duration        country
+##    &lt;int&gt;    &lt;chr&gt;  &lt;chr&gt;    &lt;chr&gt;   &lt;int&gt;   &lt;dbl&gt;    &lt;dbl&gt;          &lt;chr&gt;
+##  1     1   google laptop     true      10       1      693 Czech Republic
+##  2     2    yahoo tablet     true       9       1      459          Yemen
+##  3     3   direct laptop     true       0       1      996         Brazil
+##  4     4     bing tablet    false       3      18      468          China
+##  5     5    yahoo mobile     true       9       1      955         Poland
+##  6     6    yahoo laptop    false       5       5      135   South Africa
+##  7     7    yahoo mobile     true      10       1       75     Bangladesh
+##  8     8   direct mobile     true      10       1      908      Indonesia
+##  9     9     bing mobile    false       3      19      209    Netherlands
+## 10    10   google mobile     true       6       1      208 Czech Republic
+## # ... with 3 more variables: purchase &lt;chr&gt;, order_items &lt;dbl&gt;,
+## #   order_value &lt;dbl&gt;</code></pre>
+<p><br></p>
+</div>
+</div>
+<div id="square-root" class="section level2">
+<h2>Square Root</h2>
+<hr>
+<pre class="r"><code>y &lt;- ecom$n_pages
+y &lt;- sqrt(y)
+head(y)</code></pre>
+<pre><code>## [1] 1.000000 1.000000 1.000000 4.242641 1.000000 2.236068</code></pre>
+<p><br></p>
+<div id="square-root---using-pipe" class="section level4">
+<h4>Square Root - Using pipe</h4>
+<hr>
+<pre class="r"><code># select n_pages variable and assign it to y
+y &lt;- ecom %$% n_pages
+head(y)</code></pre>
+<pre><code>## [1]  1  1  1 18  1  5</code></pre>
+<pre class="r"><code># compute square root of y and assign it to y 
+y %&lt;&gt;% sqrt
+head(y)</code></pre>
+<pre><code>## [1] 1.000000 1.000000 1.000000 4.242641 1.000000 2.236068</code></pre>
+<p><br></p>
+</div>
+<div id="square-root---using-pipe-1" class="section level4">
+<h4>Square Root - Using pipe</h4>
+<hr>
+<pre class="r"><code>y &lt;- ecom %$% 
+  n_pages %&gt;% 
+  sqrt %&gt;%
+  head
+y</code></pre>
+<pre><code>## [1] 1.000000 1.000000 1.000000 4.242641 1.000000 2.236068</code></pre>
+<p><br></p>
+</div>
+</div>
+<div id="correlation" class="section level2">
+<h2>Correlation</h2>
+<hr>
+<pre class="r"><code># without pipe
+ecom1 &lt;- subset(ecom, purchase == &#39;true&#39;)
+cor(ecom1$n_pages, ecom1$duration)</code></pre>
+<pre><code>## [1] 0.4290905</code></pre>
+<pre class="r"><code># with pipe
+ecom %&gt;%
+  subset(purchase == &#39;true&#39;) %$% 
+  cor(n_pages, duration)</code></pre>
+<pre><code>## [1] 0.4290905</code></pre>
+<p><br></p>
+</div>
+<div id="visualization" class="section level2">
+<h2>Visualization</h2>
+<hr>
+<pre class="r"><code>barplot(table(subset(ecom, purchase == &#39;true&#39;)$referrer))</code></pre>
+<p><img src="/post/2017-12-25-readable-code-with-pipes_files/figure-html/mag21-1.png" width="576" style="display: block; margin: auto;" /></p>
+<p><br></p>
+</div>
+<div id="visualization---using-pipe" class="section level2">
+<h2>Visualization - Using pipe</h2>
+<hr>
+<center>
+<img src="pipes_viz.png" style="width:60.0%" />
+</center>
+<p><br></p>
+<pre class="r"><code>ecom %&gt;%
+  subset(purchase == &#39;true&#39;) %&gt;%
+  extract(&#39;referrer&#39;) %&gt;%
+  table %&gt;%
+  barplot</code></pre>
+<p><img src="/post/2017-12-25-readable-code-with-pipes_files/figure-html/mag7-1.png" width="576" style="display: block; margin: auto;" /></p>
+<p><br></p>
+</div>
+<div id="regression" class="section level2">
+<h2>Regression</h2>
+<hr>
+<pre class="r"><code>summary(lm(duration ~ n_pages, data = ecom))</code></pre>
+<pre><code>## 
+## Call:
+## lm(formula = duration ~ n_pages, data = ecom)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -386.45 -213.03  -38.93  179.31  602.55 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)  404.803     11.323  35.750  &lt; 2e-16 ***
+## n_pages       -8.355      1.296  -6.449 1.76e-10 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 263.3 on 998 degrees of freedom
+## Multiple R-squared:   0.04,  Adjusted R-squared:  0.03904 
+## F-statistic: 41.58 on 1 and 998 DF,  p-value: 1.756e-10</code></pre>
+<p><br></p>
+</div>
+<div id="regression---using-pipe" class="section level2">
+<h2>Regression - Using pipe</h2>
+<hr>
+<pre class="r"><code>ecom %$%
+  lm(duration ~ n_pages) %&gt;%
+  summary</code></pre>
+<pre><code>## 
+## Call:
+## lm(formula = duration ~ n_pages)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -386.45 -213.03  -38.93  179.31  602.55 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)  404.803     11.323  35.750  &lt; 2e-16 ***
+## n_pages       -8.355      1.296  -6.449 1.76e-10 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 263.3 on 998 degrees of freedom
+## Multiple R-squared:   0.04,  Adjusted R-squared:  0.03904 
+## F-statistic: 41.58 on 1 and 998 DF,  p-value: 1.756e-10</code></pre>
+<p><br></p>
+</div>
+<div id="string-manipulation" class="section level2">
+<h2>String Manipulation</h2>
+<hr>
+<pre class="r"><code>email &lt;- &#39;jovialcann@anymail.com&#39;
+
+# without pipe
+toupper(strtrim(strsplit(email, &#39;@&#39;)[[1]][1], 6))</code></pre>
+<pre><code>## [1] &quot;JOVIAL&quot;</code></pre>
+<pre class="r"><code># with pipe
+email %&gt;%
+  strsplit(split = &#39;@&#39;) %&gt;%
+  extract2(1) %&gt;%
+  extract(1) %&gt;%
+  strtrim(width = 6) %&gt;%
+  toupper</code></pre>
+<pre><code>## [1] &quot;JOVIAL&quot;</code></pre>
+<p><br></p>
+<center>
+<img src="pipes_canva.png" />
+</center>
+<p><br></p>
+<div id="string-manipulation-1" class="section level4">
+<h4>String Manipulation</h4>
+<hr>
+<pre class="r"><code>email %&gt;%
+  strsplit(split = &#39;@&#39;) %&gt;%
+  map_chr(1) %&gt;%
+  strtrim(width = 6) %&gt;%
+  toupper</code></pre>
+<pre><code>## [1] &quot;JOVIAL&quot;</code></pre>
+<p><br></p>
+</div>
+</div>
+<div id="data-extraction" class="section level2">
+<h2>Data Extraction</h2>
+<hr>
+<ul>
+<li><code>extract()</code></li>
+<li><code>extract2()</code></li>
+<li><code>use_series()</code></li>
+</ul>
+<p><br></p>
+<div id="extract-column-by-name" class="section level4">
+<h4>Extract Column By Name</h4>
+<hr>
+<pre class="r"><code>head(ecom[&#39;n_pages&#39;], 3)</code></pre>
+<pre><code>## # A tibble: 3 x 1
+##   n_pages
+##     &lt;dbl&gt;
+## 1       1
+## 2       1
+## 3       1</code></pre>
+<pre class="r"><code>ecom %&gt;%
+  extract(&#39;n_pages&#39;) %&gt;%
+  head(3)</code></pre>
+<pre><code>## # A tibble: 3 x 1
+##   n_pages
+##     &lt;dbl&gt;
+## 1       1
+## 2       1
+## 3       1</code></pre>
+<p><br></p>
+</div>
+<div id="extract-column-by-position" class="section level4">
+<h4>Extract Column By Position</h4>
+<hr>
+<pre class="r"><code>head(ecom[6], 3)</code></pre>
+<pre><code>## # A tibble: 3 x 1
+##   n_pages
+##     &lt;dbl&gt;
+## 1       1
+## 2       1
+## 3       1</code></pre>
+<pre class="r"><code>ecom %&gt;%
+  extract(6) %&gt;%
+  head(3)</code></pre>
+<pre><code>## # A tibble: 3 x 1
+##   n_pages
+##     &lt;dbl&gt;
+## 1       1
+## 2       1
+## 3       1</code></pre>
+<p><br></p>
+</div>
+<div id="extract-column-as-vector" class="section level4">
+<h4>Extract Column (as vector)</h4>
+<hr>
+<pre class="r"><code>head(ecom$n_pages)</code></pre>
+<pre><code>## [1]  1  1  1 18  1  5</code></pre>
+<pre class="r"><code>ecom %&gt;%
+  use_series(&#39;n_pages&#39;) %&gt;%
+  head()</code></pre>
+<pre><code>## [1]  1  1  1 18  1  5</code></pre>
+<p><br></p>
+</div>
+<div id="extract-list-element-by-name" class="section level4">
+<h4>Extract List Element By Name</h4>
+<hr>
+<pre class="r"><code>mt &lt;- as.list(mtcars)
+
+mt[[&#39;mpg&#39;]]</code></pre>
+<pre><code>##  [1] 21.0 21.0 22.8 21.4 18.7 18.1 14.3 24.4 22.8 19.2 17.8 16.4 17.3 15.2
+## [15] 10.4 10.4 14.7 32.4 30.4 33.9 21.5 15.5 15.2 13.3 19.2 27.3 26.0 30.4
+## [29] 15.8 19.7 15.0 21.4</code></pre>
+<pre class="r"><code>mt %&gt;%
+  extract2(&#39;mpg&#39;)</code></pre>
+<pre><code>##  [1] 21.0 21.0 22.8 21.4 18.7 18.1 14.3 24.4 22.8 19.2 17.8 16.4 17.3 15.2
+## [15] 10.4 10.4 14.7 32.4 30.4 33.9 21.5 15.5 15.2 13.3 19.2 27.3 26.0 30.4
+## [29] 15.8 19.7 15.0 21.4</code></pre>
+<p><br></p>
+</div>
+<div id="extract-list-element-by-position" class="section level4">
+<h4>Extract List Element By Position</h4>
+<hr>
+<pre class="r"><code>mt &lt;- as.list(mtcars)
+
+mt[[1]]</code></pre>
+<pre><code>##  [1] 21.0 21.0 22.8 21.4 18.7 18.1 14.3 24.4 22.8 19.2 17.8 16.4 17.3 15.2
+## [15] 10.4 10.4 14.7 32.4 30.4 33.9 21.5 15.5 15.2 13.3 19.2 27.3 26.0 30.4
+## [29] 15.8 19.7 15.0 21.4</code></pre>
+<pre class="r"><code>mt %&gt;%
+  extract2(1)</code></pre>
+<pre><code>##  [1] 21.0 21.0 22.8 21.4 18.7 18.1 14.3 24.4 22.8 19.2 17.8 16.4 17.3 15.2
+## [15] 10.4 10.4 14.7 32.4 30.4 33.9 21.5 15.5 15.2 13.3 19.2 27.3 26.0 30.4
+## [29] 15.8 19.7 15.0 21.4</code></pre>
+<p><br></p>
+</div>
+<div id="extract-list-element-as-vector" class="section level4">
+<h4>Extract List Element (as vector)</h4>
+<hr>
+<pre class="r"><code>mt &lt;- as.list(mtcars)
+
+mt$mpg</code></pre>
+<pre><code>##  [1] 21.0 21.0 22.8 21.4 18.7 18.1 14.3 24.4 22.8 19.2 17.8 16.4 17.3 15.2
+## [15] 10.4 10.4 14.7 32.4 30.4 33.9 21.5 15.5 15.2 13.3 19.2 27.3 26.0 30.4
+## [29] 15.8 19.7 15.0 21.4</code></pre>
+<pre class="r"><code>mt %&gt;%
+  use_series(mpg)</code></pre>
+<pre><code>##  [1] 21.0 21.0 22.8 21.4 18.7 18.1 14.3 24.4 22.8 19.2 17.8 16.4 17.3 15.2
+## [15] 10.4 10.4 14.7 32.4 30.4 33.9 21.5 15.5 15.2 13.3 19.2 27.3 26.0 30.4
+## [29] 15.8 19.7 15.0 21.4</code></pre>
+<p><br></p>
+</div>
+</div>
+<div id="arithmetic-operations" class="section level2">
+<h2>Arithmetic Operations</h2>
+<hr>
+<ul>
+<li><code>add()</code></li>
+<li><code>subtract()</code></li>
+<li><code>multiply_by()</code></li>
+<li><code>multiply_by_matrix()</code></li>
+<li><code>divide_by()</code></li>
+<li><code>divide_by_int()</code></li>
+<li><code>mod()</code></li>
+<li><code>raise_to_power()</code></li>
+</ul>
+<p><br></p>
+<div id="addition" class="section level4">
+<h4>Addition</h4>
+<hr>
+<pre class="r"><code>1:10 %&gt;%
+  `+`(1)</code></pre>
+<pre><code>##  [1]  2  3  4  5  6  7  8  9 10 11</code></pre>
+<pre class="r"><code>1:10 %&gt;%
+  add(1)</code></pre>
+<pre><code>##  [1]  2  3  4  5  6  7  8  9 10 11</code></pre>
+<p><br></p>
+</div>
+<div id="multiplication" class="section level4">
+<h4>Multiplication</h4>
+<hr>
+<pre class="r"><code>1:10 %&gt;%
+  `*`(3)</code></pre>
+<pre><code>##  [1]  3  6  9 12 15 18 21 24 27 30</code></pre>
+<pre class="r"><code>1:10 %&gt;%
+  multiply_by(3)</code></pre>
+<pre><code>##  [1]  3  6  9 12 15 18 21 24 27 30</code></pre>
+<p><br></p>
+</div>
+<div id="division" class="section level4">
+<h4>Division</h4>
+<hr>
+<pre class="r"><code>1:10 %&gt;%
+  `/`(2)</code></pre>
+<pre><code>##  [1] 0.5 1.0 1.5 2.0 2.5 3.0 3.5 4.0 4.5 5.0</code></pre>
+<pre class="r"><code>1:10 %&gt;%
+  divide_by(2)</code></pre>
+<pre><code>##  [1] 0.5 1.0 1.5 2.0 2.5 3.0 3.5 4.0 4.5 5.0</code></pre>
+<p><br></p>
+</div>
+<div id="power" class="section level4">
+<h4>Power</h4>
+<hr>
+<pre class="r"><code>1:10 %&gt;%
+  `^`(2)</code></pre>
+<pre><code>##  [1]   1   4   9  16  25  36  49  64  81 100</code></pre>
+<pre class="r"><code>1:10 %&gt;%
+  raise_to_power(2)</code></pre>
+<pre><code>##  [1]   1   4   9  16  25  36  49  64  81 100</code></pre>
+<p><br></p>
+</div>
+</div>
+<div id="logical-operators" class="section level2">
+<h2>Logical Operators</h2>
+<hr>
+<ul>
+<li><code>and()</code></li>
+<li><code>or()</code></li>
+<li><code>equals()</code></li>
+<li><code>not()</code></li>
+<li><code>is_greater_than()</code></li>
+<li><code>is_weakly_greater_than()</code></li>
+<li><code>is_less_than()</code></li>
+<li><code>is_weakly_less_than()</code></li>
+</ul>
+<p><br></p>
+<div id="greater-than" class="section level4">
+<h4>Greater Than</h4>
+<hr>
+<pre class="r"><code>1:10 %&gt;%
+  `&gt;`(5)</code></pre>
+<pre><code>##  [1] FALSE FALSE FALSE FALSE FALSE  TRUE  TRUE  TRUE  TRUE  TRUE</code></pre>
+<pre class="r"><code>1:10 %&gt;%
+  is_greater_than(5)</code></pre>
+<pre><code>##  [1] FALSE FALSE FALSE FALSE FALSE  TRUE  TRUE  TRUE  TRUE  TRUE</code></pre>
+<p><br></p>
+</div>
+<div id="weakly-greater-than" class="section level4">
+<h4>Weakly Greater Than</h4>
+<hr>
+<pre class="r"><code>1:10 %&gt;%
+  `&gt;=`(5)</code></pre>
+<pre><code>##  [1] FALSE FALSE FALSE FALSE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE</code></pre>
+<pre class="r"><code>1:10 %&gt;%
+  is_weakly_greater_than(5)</code></pre>
+<pre><code>##  [1] FALSE FALSE FALSE FALSE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE</code></pre>
+</div>
+</div>
+
+    </div>
+  </article>
+
+  
+
+
+</main>
+
+      <footer class="footer">
+        <ul class="footer-links">
+          <li>
+            <a href="/index.xml" type="application/rss+xml" target="_blank">RSS feed</a>
+          </li>
+          <li>
+            <a href="https://gohugo.io/" class="footer-links-kudos">Made with <img src="/images/hugo-logo.png" width="22" height="22"></a> and <a href="https://github.com/rstudio/blogdown">blogdown</a>
+          </li>
+          <li><a href="https://twitter.com/aravindhebbali">@aravindhebbali</a></li>
+        </ul>
+        <ul>
+          <li>&copy 2017 Aravind Hebbali</li>
+        </ul>
+      </footer>
+
+    </div>
+    
+
+
+
+<script src="//cdn.bootcss.com/highlight.js/9.11.0/highlight.min.js"></script>
+
+
+
+<script src="//cdn.bootcss.com/highlight.js/9.11.0/languages/r.min.js"></script>
+<script src="//cdn.bootcss.com/highlight.js/9.11.0/languages/yaml.min.js"></script>
+<script>hljs.configure({languages: []}); hljs.initHighlightingOnLoad();</script>
+
+
+
+    
+<script src="/js/math-code.js"></script>
+<script async src="//cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+
+    
+<script>
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-57270671-5', 'auto');
+ga('send', 'pageview');
+</script>
+
+  </body>
+</html>
+

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Xml on Aravind&#39;s Blog | R | Economics | Finance</title>
+    <link>/tags/xml/</link>
+    <description>Recent content in Xml on Aravind&#39;s Blog | R | Economics | Finance</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 25 Dec 2017 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="/tags/xml/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Importing Data into R - Part 3</title>
+      <link>/2017/12/25/importing-data-into-r-part-3/</link>
+      <pubDate>Mon, 25 Dec 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/2017/12/25/importing-data-into-r-part-3/</guid>
+      <description>IntroductionThis is the third post in the series Importing Data into R. You can find the link to the previous posts below:
+Importing Data into R - Part 1Importing Data into R - Part 2In the previous post, we explored reading data from excel spreadsheets and files from other statistical softwares such as SAS, SPSS and STATA. In this post, we will learn to read data from:</description>
+    </item>
+    
+  </channel>
+</rss>

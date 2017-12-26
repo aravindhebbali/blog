@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Dplyr on Aravind&#39;s Blog | R | Economics | Finance</title>
+    <link>/tags/dplyr/</link>
+    <description>Recent content in Dplyr on Aravind&#39;s Blog | R | Economics | Finance</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 25 Dec 2017 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="/tags/dplyr/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Data Wrangling with dplyr - Part 1</title>
+      <link>/2017/12/25/data-wrangling-with-dplyr-part-1/</link>
+      <pubDate>Mon, 25 Dec 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/2017/12/25/data-wrangling-with-dplyr-part-1/</guid>
+      <description>IntroductionAccording to a survey by CrowdFlower, data scientists spend most of their time cleaning and manipulating data rather than mining or modeling them for insights. As such, it becomes important to have tools that make data manipulation faster and easier. In today’s post, we introduce you to dplyr, a grammar of data manipulation.
+
+Libraries, Code &amp;amp; DataWe will use the dplyr and readr packages. The data sets can be downloaded from here and the codes from here.</description>
+    </item>
+    
+    <item>
+      <title>Data Wrangling with dplyr - Part 2</title>
+      <link>/2017/12/25/data-wrangling-with-dplyr-part-2/</link>
+      <pubDate>Mon, 25 Dec 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/2017/12/25/data-wrangling-with-dplyr-part-2/</guid>
+      <description>IntroductionIn the previous post, we learnt about dplyr verbs and used them to compute average order value for an e-commerce website data. In this module, we will learn to combine tables using different *_join functions provided in dplyr. Let us assume we have 2 tables x and y.
+We will explore the following type of joins
+inner joinleft joinright joinsemi joinanti joinfull join</description>
+    </item>
+    
+    <item>
+      <title>Data Wrangling with dplyr - Part 3</title>
+      <link>/2017/12/25/data-wrangling-with-dplyr-part-3/</link>
+      <pubDate>Mon, 25 Dec 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/2017/12/25/data-wrangling-with-dplyr-part-3/</guid>
+      <description>IntroductionIn the previous post, we learnt to combine tables using different *_join functions provided in dplyr. In this module, we will explore a set of helper functions in order to:
+extract unique rowsrename columnssample dataextract columnsslice rowsarrange rowscompare tablesextract/mutate data using predicate functionscount observations for different levels of a variable
+Libraries, Code &amp;amp; DataWe will use the dplyr and readr packages.</description>
+    </item>
+    
+  </channel>
+</rss>

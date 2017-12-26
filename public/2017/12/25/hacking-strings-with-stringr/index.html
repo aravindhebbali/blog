@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Hugo 0.26" />
+
+
+<title>Hacking strings with stringr - Aravind&#39;s Blog | R | Economics | Finance</title>
+<meta property="og:title" content="Hacking strings with stringr - Aravind&#39;s Blog | R | Economics | Finance">
+
+
+
+  
+
+
+
+
+<link rel="stylesheet" href="/css/github-gist.css" rel="stylesheet" id="theme-stylesheet">
+<script src="/js/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+
+
+
+
+<link href='//cdn.bootcss.com/highlight.js/9.11.0/styles/github.min.css' rel='stylesheet' type='text/css' />
+
+
+
+<link rel="stylesheet" href="/css/fonts.css" media="all">
+<link rel="stylesheet" href="/css/main.css" media="all">
+
+
+
+  </head>
+  <body>
+    <div class="wrapper">
+      <header class="header">
+        <nav class="nav">
+  <a href="/" class="nav-logo">
+    <img src="/images/logo.jpg"
+         width="50"
+         height="50"
+         alt="Aravind Hebbali">
+  </a>
+
+  <ul class="nav-links">
+    
+    <li><a href="/">Home</a></li>
+    
+    <li><a href="https://github.com/aravindhebbali">Projects</a></li>
+    
+    <li><a href="https://www.aravindhebbali.com/">About</a></li>
+    
+  </ul>
+</nav>
+
+      </header>
+
+
+<main class="content" role="main">
+
+  <article class="article">
+    
+    <span class="article-duration">7 min read</span>
+    
+
+    <h1 class="article-title">Hacking strings with stringr</h1>
+
+    
+    <span class="article-date">2017/12/25</span>
+    
+
+    <div class="article-content">
+      <div id="introduction" class="section level2">
+<h2>Introduction</h2>
+<p>In this post, we will learn to work with string data in R using <a href="http://stringr.tidyverse.org">stringr</a>. As we did in the other posts, we will use a case study to explore the various features of the stringr package. Let us begin by installing and loading stringr and a set of other pacakges we will be using.</p>
+<p><br></p>
+</div>
+<div id="libraries-code-data" class="section level2">
+<h2>Libraries, Code &amp; Data</h2>
+<p>We will use <a href="http://lubridate.tidyverse.org/index.html">stringr</a>, <a href="http://dplyr.tidyverse.org/index.html">dplyr</a>, <a href="http://magrittr.tidyverse.org/index.html">magrittr</a>, <a href="http://tibble.tidyverse.org/index.html">tibble</a>, <a href="http://purrr.tidyverse.org/index.html">purrr</a> and <a href="http://readr.tidyverse.org/index.html">readr</a> packages. The data sets can be downloaded from <a href="https://github.com/rsquaredacademy/datasets">here</a> and the codes from <a href="https://gist.github.com/aravindhebbali/5d1799744e55dc76cdf1af6b1cc03c82">here</a>.</p>
+<pre class="r"><code>library(stringr)
+library(tibble)
+library(magrittr)
+library(purrr)
+library(dplyr)
+library(readr)</code></pre>
+<p><br></p>
+</div>
+<div id="case-study" class="section level2">
+<h2>Case Study</h2>
+<ul>
+<li>extract domain name from random email ids</li>
+<li>extract image type from url</li>
+<li>extract image dimension from url</li>
+<li>extract extension from domain name</li>
+<li>extract http protocol from url</li>
+<li>extract domain name from url</li>
+<li>extract extension from url</li>
+<li>extract file type from url</li>
+</ul>
+<p><br></p>
+<div id="data" class="section level3">
+<h3>Data</h3>
+<pre class="r"><code>mockstring &lt;- readr::read_csv(&#39;https://raw.githubusercontent.com/rsquaredacademy/datasets/master/mock_strings.csv&#39;)
+mockstring</code></pre>
+<pre><code>## # A tibble: 1,000 x 16
+##       id                bundle_id    app_name
+##    &lt;int&gt;                    &lt;chr&gt;       &lt;chr&gt;
+##  1     1       com.netlog.Cardify   Ronstring
+##  2     2      com.devhub.Aerified     Fintone
+##  3     3           int.who.Zathin Ventosanzap
+##  4     4           jp.ne.goo.Rank     Redhold
+##  5     5  au.gov.oaic.Stringtough    Tres-Zap
+##  6     6           com.go.Pannier    Tampflex
+##  7     7            com.webs.Stim     Bitchip
+##  8     8        com.sogou.Bitchip      Namfix
+##  9     9          com.amazon.Viva    Wrapsafe
+## 10    10 com.theguardian.Domainer     Pannier
+## # ... with 990 more rows, and 13 more variables: image_url &lt;chr&gt;,
+## #   phrase &lt;chr&gt;, domain &lt;chr&gt;, imageurl &lt;chr&gt;, email &lt;chr&gt;,
+## #   filename &lt;chr&gt;, denominatio &lt;chr&gt;, strings &lt;chr&gt;, phone &lt;chr&gt;,
+## #   slogans &lt;chr&gt;, address &lt;chr&gt;, url &lt;chr&gt;, useragent &lt;chr&gt;</code></pre>
+<p><br></p>
+</div>
+<div id="data-dictionary" class="section level3">
+<h3>Data Dictionary</h3>
+<p><br></p>
+</div>
+</div>
+<div id="extract-domain-name-from-email-ids" class="section level2">
+<h2>Extract domain name from email ids</h2>
+<pre class="r"><code>emails &lt;- mockstring %&gt;%
+  pull(email) %&gt;%
+  head
+emails</code></pre>
+<pre><code>## [1] &quot;mnewburn0@fastcompany.com&quot;    &quot;mdankersley1@digg.com&quot;       
+## [3] &quot;hgirhard2@altervista.org&quot;     &quot;pmcmenamy3@sciencedirect.com&quot;
+## [5] &quot;drisbrough4@bandcamp.com&quot;     &quot;cphlippi5@surveymonkey.com&quot;</code></pre>
+<p><br></p>
+<pre class="r"><code>emails %&gt;%
+  str_split(pattern = &#39;@&#39;)</code></pre>
+<pre><code>## [[1]]
+## [1] &quot;mnewburn0&quot;       &quot;fastcompany.com&quot;
+## 
+## [[2]]
+## [1] &quot;mdankersley1&quot; &quot;digg.com&quot;    
+## 
+## [[3]]
+## [1] &quot;hgirhard2&quot;      &quot;altervista.org&quot;
+## 
+## [[4]]
+## [1] &quot;pmcmenamy3&quot;        &quot;sciencedirect.com&quot;
+## 
+## [[5]]
+## [1] &quot;drisbrough4&quot;  &quot;bandcamp.com&quot;
+## 
+## [[6]]
+## [1] &quot;cphlippi5&quot;        &quot;surveymonkey.com&quot;</code></pre>
+<p><br></p>
+<pre class="r"><code>emails %&gt;%
+  str_split(pattern = &#39;@&#39;) %&gt;%
+  map_chr(2)</code></pre>
+<pre><code>## [1] &quot;fastcompany.com&quot;   &quot;digg.com&quot;          &quot;altervista.org&quot;   
+## [4] &quot;sciencedirect.com&quot; &quot;bandcamp.com&quot;      &quot;surveymonkey.com&quot;</code></pre>
+<p><br></p>
+<pre class="r"><code>emails %&gt;%
+  str_split(pattern = &#39;@&#39;) %&gt;%
+  map_chr(2) %&gt;%
+  str_split(pattern = &#39;\\.&#39;) </code></pre>
+<pre><code>## [[1]]
+## [1] &quot;fastcompany&quot; &quot;com&quot;        
+## 
+## [[2]]
+## [1] &quot;digg&quot; &quot;com&quot; 
+## 
+## [[3]]
+## [1] &quot;altervista&quot; &quot;org&quot;       
+## 
+## [[4]]
+## [1] &quot;sciencedirect&quot; &quot;com&quot;          
+## 
+## [[5]]
+## [1] &quot;bandcamp&quot; &quot;com&quot;     
+## 
+## [[6]]
+## [1] &quot;surveymonkey&quot; &quot;com&quot;</code></pre>
+<p><br></p>
+<pre class="r"><code>emails %&gt;%
+  str_split(pattern = &#39;@&#39;) %&gt;%
+  map_chr(2) %&gt;%
+  str_split(pattern = &#39;\\.&#39;) %&gt;%
+  map_chr(extract(1))</code></pre>
+<pre><code>## [1] &quot;fastcompany&quot;   &quot;digg&quot;          &quot;altervista&quot;    &quot;sciencedirect&quot;
+## [5] &quot;bandcamp&quot;      &quot;surveymonkey&quot;</code></pre>
+<p><br></p>
+<pre class="r"><code>emails %&gt;%
+  str_split(pattern = &#39;@&#39;) %&gt;%
+  map_chr(2) %&gt;%
+  str_split(pattern = &#39;\\.&#39;, simplify = TRUE) %&gt;%
+  extract(, 2)</code></pre>
+<pre><code>## [1] &quot;com&quot; &quot;com&quot; &quot;org&quot; &quot;com&quot; &quot;com&quot; &quot;com&quot;</code></pre>
+<p><br></p>
+</div>
+<div id="extract-image-type-from-url" class="section level2">
+<h2>Extract image type from URL</h2>
+<pre class="r"><code>img &lt;- mockstring %&gt;%
+  pull(imageurl) %&gt;%
+  head
+img</code></pre>
+<pre><code>## [1] &quot;http://dummyimage.com/130x183.jpg/dddddd/000000&quot;
+## [2] &quot;http://dummyimage.com/106x217.bmp/dddddd/000000&quot;
+## [3] &quot;http://dummyimage.com/146x127.bmp/cc0000/ffffff&quot;
+## [4] &quot;http://dummyimage.com/181x194.png/5fa2dd/ffffff&quot;
+## [5] &quot;http://dummyimage.com/220x123.jpg/ff4444/ffffff&quot;
+## [6] &quot;http://dummyimage.com/118x176.bmp/dddddd/000000&quot;</code></pre>
+<p><br></p>
+<pre class="r"><code>img %&gt;%
+  str_split(pattern = &#39;\\.&#39;)</code></pre>
+<pre><code>## [[1]]
+## [1] &quot;http://dummyimage&quot; &quot;com/130x183&quot;       &quot;jpg/dddddd/000000&quot;
+## 
+## [[2]]
+## [1] &quot;http://dummyimage&quot; &quot;com/106x217&quot;       &quot;bmp/dddddd/000000&quot;
+## 
+## [[3]]
+## [1] &quot;http://dummyimage&quot; &quot;com/146x127&quot;       &quot;bmp/cc0000/ffffff&quot;
+## 
+## [[4]]
+## [1] &quot;http://dummyimage&quot; &quot;com/181x194&quot;       &quot;png/5fa2dd/ffffff&quot;
+## 
+## [[5]]
+## [1] &quot;http://dummyimage&quot; &quot;com/220x123&quot;       &quot;jpg/ff4444/ffffff&quot;
+## 
+## [[6]]
+## [1] &quot;http://dummyimage&quot; &quot;com/118x176&quot;       &quot;bmp/dddddd/000000&quot;</code></pre>
+<p><br></p>
+<pre class="r"><code>img %&gt;%
+  str_split(pattern = &#39;\\.&#39;) %&gt;%
+  map_chr(extract(3))</code></pre>
+<pre><code>## [1] &quot;jpg/dddddd/000000&quot; &quot;bmp/dddddd/000000&quot; &quot;bmp/cc0000/ffffff&quot;
+## [4] &quot;png/5fa2dd/ffffff&quot; &quot;jpg/ff4444/ffffff&quot; &quot;bmp/dddddd/000000&quot;</code></pre>
+<p><br></p>
+<pre class="r"><code>img %&gt;%
+  str_split(pattern = &#39;\\.&#39;) %&gt;%
+  map_chr(extract(3)) %&gt;%
+  str_sub(start = 1, end = 3)</code></pre>
+<pre><code>## [1] &quot;jpg&quot; &quot;bmp&quot; &quot;bmp&quot; &quot;png&quot; &quot;jpg&quot; &quot;bmp&quot;</code></pre>
+<p><br></p>
+<pre class="r"><code>img %&gt;%
+  str_split(pattern = &#39;\\.&#39;) %&gt;%
+  map_chr(extract(3)) %&gt;%
+  str_split(pattern = &#39;/&#39;) %&gt;%
+  map_chr(extract(1))</code></pre>
+<pre><code>## [1] &quot;jpg&quot; &quot;bmp&quot; &quot;bmp&quot; &quot;png&quot; &quot;jpg&quot; &quot;bmp&quot;</code></pre>
+<p><br></p>
+</div>
+<div id="extract-image-dimesion-from-url" class="section level2">
+<h2>Extract Image Dimesion from URL</h2>
+<pre class="r"><code>img %&gt;%
+  str_locate(pattern = &quot;[0-9]&quot;) </code></pre>
+<pre><code>##      start end
+## [1,]    23  23
+## [2,]    23  23
+## [3,]    23  23
+## [4,]    23  23
+## [5,]    23  23
+## [6,]    23  23</code></pre>
+<p><br></p>
+<pre class="r"><code>img %&gt;%
+  str_sub(start = 23) </code></pre>
+<pre><code>## [1] &quot;130x183.jpg/dddddd/000000&quot; &quot;106x217.bmp/dddddd/000000&quot;
+## [3] &quot;146x127.bmp/cc0000/ffffff&quot; &quot;181x194.png/5fa2dd/ffffff&quot;
+## [5] &quot;220x123.jpg/ff4444/ffffff&quot; &quot;118x176.bmp/dddddd/000000&quot;</code></pre>
+<p><br></p>
+<pre class="r"><code>img %&gt;%
+  str_sub(start = 23) %&gt;%
+  str_split(pattern = &#39;\\.&#39;) </code></pre>
+<pre><code>## [[1]]
+## [1] &quot;130x183&quot;           &quot;jpg/dddddd/000000&quot;
+## 
+## [[2]]
+## [1] &quot;106x217&quot;           &quot;bmp/dddddd/000000&quot;
+## 
+## [[3]]
+## [1] &quot;146x127&quot;           &quot;bmp/cc0000/ffffff&quot;
+## 
+## [[4]]
+## [1] &quot;181x194&quot;           &quot;png/5fa2dd/ffffff&quot;
+## 
+## [[5]]
+## [1] &quot;220x123&quot;           &quot;jpg/ff4444/ffffff&quot;
+## 
+## [[6]]
+## [1] &quot;118x176&quot;           &quot;bmp/dddddd/000000&quot;</code></pre>
+<p><br></p>
+<pre class="r"><code>img %&gt;%
+  str_sub(start = 23) %&gt;%
+  str_split(pattern = &#39;\\.&#39;) %&gt;%
+  map_chr(extract(1))</code></pre>
+<pre><code>## [1] &quot;130x183&quot; &quot;106x217&quot; &quot;146x127&quot; &quot;181x194&quot; &quot;220x123&quot; &quot;118x176&quot;</code></pre>
+<p><br></p>
+</div>
+<div id="extract-http-protocol-from-url" class="section level2">
+<h2>Extract HTTP Protocol from URL</h2>
+<pre class="r"><code>url1 &lt;- mockstring %&gt;%
+  pull(url) %&gt;%
+  first
+url1</code></pre>
+<pre><code>## [1] &quot;https://engadget.com/nascetur/ridiculus/mus/vivamus/vestibulum.jsp?eu=est&amp;tincidunt=risus&amp;in=auctor&amp;leo=sed&amp;maecenas=tristique&amp;pulvinar=in&amp;lobortis=tempus&amp;est=sit&amp;phasellus=amet&amp;sit=sem&amp;amet=fusce&amp;erat=consequat&amp;nulla=nulla&amp;tempus=nisl&amp;vivamus=nunc&amp;in=nisl&amp;felis=duis&amp;eu=bibendum&amp;sapien=felis&amp;cursus=sed&amp;vestibulum=interdum&amp;proin=venenatis&amp;eu=turpis&amp;mi=enim&amp;nulla=blandit&amp;ac=mi&amp;enim=in&amp;in=porttitor&amp;tempor=pede&amp;turpis=justo&amp;nec=eu&amp;euismod=massa&amp;scelerisque=donec&amp;quam=dapibus&amp;turpis=duis&amp;adipiscing=at&amp;lorem=velit&amp;vitae=eu&amp;mattis=est&amp;nibh=congue&amp;ligula=elementum&amp;nec=in&amp;sem=hac&amp;duis=habitasse&amp;aliquam=platea&amp;convallis=dictumst&amp;nunc=morbi&amp;proin=vestibulum&amp;at=velit&amp;turpis=id&amp;a=pretium&amp;pede=iaculis&amp;posuere=diam&amp;nonummy=erat&amp;integer=fermentum&amp;non=justo&amp;velit=nec&amp;donec=condimentum&amp;diam=neque&amp;neque=sapien&amp;vestibulum=placerat&amp;eget=ante&amp;vulputate=nulla&amp;ut=justo&amp;ultrices=aliquam&amp;vel=quis&amp;augue=turpis&amp;vestibulum=eget&amp;ante=elit&amp;ipsum=sodales&amp;primis=scelerisque&amp;in=mauris&amp;faucibus=sit&amp;orci=amet&amp;luctus=eros&amp;et=suspendisse&amp;ultrices=accumsan&amp;posuere=tortor&amp;cubilia=quis&amp;curae=turpis&amp;donec=sed&amp;pharetra=ante&amp;magna=vivamus&amp;vestibulum=tortor&amp;aliquet=duis&amp;ultrices=mattis&amp;erat=egestas&amp;tortor=metus&amp;sollicitudin=aenean&amp;mi=fermentum&amp;sit=donec&quot;</code></pre>
+<p><br></p>
+<pre class="r"><code>url1 %&gt;%
+  str_split(pattern = &#39;://&#39;) </code></pre>
+<pre><code>## [[1]]
+## [1] &quot;https&quot;                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               
+## [2] &quot;engadget.com/nascetur/ridiculus/mus/vivamus/vestibulum.jsp?eu=est&amp;tincidunt=risus&amp;in=auctor&amp;leo=sed&amp;maecenas=tristique&amp;pulvinar=in&amp;lobortis=tempus&amp;est=sit&amp;phasellus=amet&amp;sit=sem&amp;amet=fusce&amp;erat=consequat&amp;nulla=nulla&amp;tempus=nisl&amp;vivamus=nunc&amp;in=nisl&amp;felis=duis&amp;eu=bibendum&amp;sapien=felis&amp;cursus=sed&amp;vestibulum=interdum&amp;proin=venenatis&amp;eu=turpis&amp;mi=enim&amp;nulla=blandit&amp;ac=mi&amp;enim=in&amp;in=porttitor&amp;tempor=pede&amp;turpis=justo&amp;nec=eu&amp;euismod=massa&amp;scelerisque=donec&amp;quam=dapibus&amp;turpis=duis&amp;adipiscing=at&amp;lorem=velit&amp;vitae=eu&amp;mattis=est&amp;nibh=congue&amp;ligula=elementum&amp;nec=in&amp;sem=hac&amp;duis=habitasse&amp;aliquam=platea&amp;convallis=dictumst&amp;nunc=morbi&amp;proin=vestibulum&amp;at=velit&amp;turpis=id&amp;a=pretium&amp;pede=iaculis&amp;posuere=diam&amp;nonummy=erat&amp;integer=fermentum&amp;non=justo&amp;velit=nec&amp;donec=condimentum&amp;diam=neque&amp;neque=sapien&amp;vestibulum=placerat&amp;eget=ante&amp;vulputate=nulla&amp;ut=justo&amp;ultrices=aliquam&amp;vel=quis&amp;augue=turpis&amp;vestibulum=eget&amp;ante=elit&amp;ipsum=sodales&amp;primis=scelerisque&amp;in=mauris&amp;faucibus=sit&amp;orci=amet&amp;luctus=eros&amp;et=suspendisse&amp;ultrices=accumsan&amp;posuere=tortor&amp;cubilia=quis&amp;curae=turpis&amp;donec=sed&amp;pharetra=ante&amp;magna=vivamus&amp;vestibulum=tortor&amp;aliquet=duis&amp;ultrices=mattis&amp;erat=egestas&amp;tortor=metus&amp;sollicitudin=aenean&amp;mi=fermentum&amp;sit=donec&quot;</code></pre>
+<p><br></p>
+<pre class="r"><code>url1 %&gt;%
+  str_split(pattern = &#39;://&#39;) %&gt;%
+  map_chr(extract(1))</code></pre>
+<pre><code>## [1] &quot;https&quot;</code></pre>
+<p><br></p>
+<pre class="r"><code>url1 %&gt;%
+  str_locate(pattern = &#39;://&#39;) </code></pre>
+<pre><code>##      start end
+## [1,]     6   8</code></pre>
+<p><br></p>
+<pre class="r"><code>url1 %&gt;%
+  str_locate(pattern = &#39;://&#39;) %&gt;%
+  data.frame() </code></pre>
+<pre><code>##   start end
+## 1     6   8</code></pre>
+<p><br></p>
+<pre class="r"><code>url1 %&gt;%
+  str_locate(pattern = &#39;://&#39;) %&gt;%
+  data.frame() %&gt;%
+  extract2(&#39;start&#39;) </code></pre>
+<pre><code>## [1] 6</code></pre>
+<p><br></p>
+<pre class="r"><code>url1 %&gt;%
+  str_locate(pattern = &#39;://&#39;) %&gt;%
+  data.frame() %&gt;%
+  extract2(&#39;start&#39;) %&gt;%
+  subtract(1)</code></pre>
+<pre><code>## [1] 5</code></pre>
+<p><br></p>
+<pre class="r"><code>urls &lt;- mockstring %&gt;%
+  pull(url) %&gt;%
+  head</code></pre>
+<p><br></p>
+<pre class="r"><code>k &lt;- urls %&gt;%
+  str_locate(pattern = &#39;://&#39;) %&gt;%
+  data.frame() %&gt;%
+  extract2(&#39;start&#39;) %&gt;%
+  subtract(1)</code></pre>
+<p><br></p>
+<pre class="r"><code>urls %&gt;%
+  str_sub(start = 1, end = k)</code></pre>
+<pre><code>## [1] &quot;https&quot; &quot;http&quot;  &quot;https&quot; &quot;http&quot;  &quot;https&quot; &quot;https&quot;</code></pre>
+<p><br></p>
+</div>
+<div id="extract-domain-name" class="section level2">
+<h2>Extract Domain Name</h2>
+<pre class="r"><code>url1 %&gt;%
+  str_locate_all(pattern = &quot;/&quot;) </code></pre>
+<pre><code>## [[1]]
+##      start end
+## [1,]     7   7
+## [2,]     8   8
+## [3,]    21  21
+## [4,]    30  30
+## [5,]    40  40
+## [6,]    44  44
+## [7,]    52  52</code></pre>
+<p><br></p>
+<pre class="r"><code>url1 %&gt;%
+  str_locate_all(pattern = &quot;/&quot;) %&gt;%
+  map_int(extract(3))</code></pre>
+<pre><code>## [1] 21</code></pre>
+<p><br></p>
+<pre class="r"><code>n &lt;- url1 %&gt;%
+  str_locate_all(pattern = &quot;/&quot;) %&gt;%
+  map_int(extract(3))</code></pre>
+<p><br></p>
+<pre class="r"><code>urls %&gt;%
+  str_sub(end = n) </code></pre>
+<pre><code>## [1] &quot;https://engadget.com/&quot; &quot;http://delicious.com/&quot; &quot;https://w3.org/sed/au&quot;
+## [4] &quot;http://indiatimes.com&quot; &quot;https://tumblr.com/id&quot; &quot;https://unblog.fr/est&quot;</code></pre>
+<p><br></p>
+<pre class="r"><code>urls %&gt;%
+  str_sub(end = n) %&gt;%
+  str_split(pattern = &#39;\\.&#39;) </code></pre>
+<pre><code>## [[1]]
+## [1] &quot;https://engadget&quot; &quot;com/&quot;            
+## 
+## [[2]]
+## [1] &quot;http://delicious&quot; &quot;com/&quot;            
+## 
+## [[3]]
+## [1] &quot;https://w3&quot; &quot;org/sed/au&quot;
+## 
+## [[4]]
+## [1] &quot;http://indiatimes&quot; &quot;com&quot;              
+## 
+## [[5]]
+## [1] &quot;https://tumblr&quot; &quot;com/id&quot;        
+## 
+## [[6]]
+## [1] &quot;https://unblog&quot; &quot;fr/est&quot;</code></pre>
+<p><br></p>
+<pre class="r"><code>urls %&gt;%
+  str_sub(end = n) %&gt;%
+  str_split(pattern = &#39;\\.&#39;) %&gt;%
+  map_chr(extract(1)) </code></pre>
+<pre><code>## [1] &quot;https://engadget&quot;  &quot;http://delicious&quot;  &quot;https://w3&quot;       
+## [4] &quot;http://indiatimes&quot; &quot;https://tumblr&quot;    &quot;https://unblog&quot;</code></pre>
+<p><br></p>
+<pre class="r"><code>urls %&gt;%
+  str_sub(end = n) %&gt;%
+  str_split(pattern = &#39;\\.&#39;) %&gt;%
+  map_chr(extract(1)) %&gt;%
+  str_sub(start = k + 4)</code></pre>
+<pre><code>## [1] &quot;engadget&quot;   &quot;delicious&quot;  &quot;w3&quot;         &quot;indiatimes&quot; &quot;tumblr&quot;    
+## [6] &quot;unblog&quot;</code></pre>
+<p><br></p>
+</div>
+<div id="extract-domain-extension" class="section level2">
+<h2>Extract domain extension</h2>
+<pre class="r"><code>url1 %&gt;%
+  str_sub(end = n) </code></pre>
+<pre><code>## [1] &quot;https://engadget.com/&quot;</code></pre>
+<p><br></p>
+<pre class="r"><code>url1 %&gt;%
+  str_sub(end = n) %&gt;%
+  str_split(pattern = &#39;\\.&#39;) </code></pre>
+<pre><code>## [[1]]
+## [1] &quot;https://engadget&quot; &quot;com/&quot;</code></pre>
+<p><br></p>
+<pre class="r"><code>url1 %&gt;%
+  str_sub(end = n) %&gt;%
+  str_split(pattern = &#39;\\.&#39;) %&gt;%
+  map_chr(extract(2)) </code></pre>
+<pre><code>## [1] &quot;com/&quot;</code></pre>
+<p><br></p>
+<pre class="r"><code>url1 %&gt;%
+  str_sub(end = n) %&gt;%
+  str_split(pattern = &#39;\\.&#39;) %&gt;%
+  map_chr(extract(2)) %&gt;%
+  str_split(pattern = &#39;/&#39;) </code></pre>
+<pre><code>## [[1]]
+## [1] &quot;com&quot; &quot;&quot;</code></pre>
+<p><br></p>
+<pre class="r"><code>url1 %&gt;%
+  str_sub(end = n) %&gt;%
+  str_split(pattern = &#39;\\.&#39;) %&gt;%
+  map_chr(extract(2)) %&gt;%
+  str_split(pattern = &#39;/&#39;) %&gt;%
+  map_chr(extract(1))</code></pre>
+<pre><code>## [1] &quot;com&quot;</code></pre>
+<p><br></p>
+<pre class="r"><code>urls %&gt;%
+  str_sub(end = n) %&gt;%
+  str_split(pattern = &#39;\\.&#39;) %&gt;%
+  map_chr(extract(2)) %&gt;%
+  str_split(pattern = &#39;/&#39;) %&gt;%
+  map_chr(extract(1))</code></pre>
+<pre><code>## [1] &quot;com&quot; &quot;com&quot; &quot;org&quot; &quot;com&quot; &quot;com&quot; &quot;fr&quot;</code></pre>
+<p><br></p>
+</div>
+<div id="extract-file-type" class="section level2">
+<h2>Extract file type</h2>
+<pre class="r"><code>mockstring$url[1:3]</code></pre>
+<pre><code>## [1] &quot;https://engadget.com/nascetur/ridiculus/mus/vivamus/vestibulum.jsp?eu=est&amp;tincidunt=risus&amp;in=auctor&amp;leo=sed&amp;maecenas=tristique&amp;pulvinar=in&amp;lobortis=tempus&amp;est=sit&amp;phasellus=amet&amp;sit=sem&amp;amet=fusce&amp;erat=consequat&amp;nulla=nulla&amp;tempus=nisl&amp;vivamus=nunc&amp;in=nisl&amp;felis=duis&amp;eu=bibendum&amp;sapien=felis&amp;cursus=sed&amp;vestibulum=interdum&amp;proin=venenatis&amp;eu=turpis&amp;mi=enim&amp;nulla=blandit&amp;ac=mi&amp;enim=in&amp;in=porttitor&amp;tempor=pede&amp;turpis=justo&amp;nec=eu&amp;euismod=massa&amp;scelerisque=donec&amp;quam=dapibus&amp;turpis=duis&amp;adipiscing=at&amp;lorem=velit&amp;vitae=eu&amp;mattis=est&amp;nibh=congue&amp;ligula=elementum&amp;nec=in&amp;sem=hac&amp;duis=habitasse&amp;aliquam=platea&amp;convallis=dictumst&amp;nunc=morbi&amp;proin=vestibulum&amp;at=velit&amp;turpis=id&amp;a=pretium&amp;pede=iaculis&amp;posuere=diam&amp;nonummy=erat&amp;integer=fermentum&amp;non=justo&amp;velit=nec&amp;donec=condimentum&amp;diam=neque&amp;neque=sapien&amp;vestibulum=placerat&amp;eget=ante&amp;vulputate=nulla&amp;ut=justo&amp;ultrices=aliquam&amp;vel=quis&amp;augue=turpis&amp;vestibulum=eget&amp;ante=elit&amp;ipsum=sodales&amp;primis=scelerisque&amp;in=mauris&amp;faucibus=sit&amp;orci=amet&amp;luctus=eros&amp;et=suspendisse&amp;ultrices=accumsan&amp;posuere=tortor&amp;cubilia=quis&amp;curae=turpis&amp;donec=sed&amp;pharetra=ante&amp;magna=vivamus&amp;vestibulum=tortor&amp;aliquet=duis&amp;ultrices=mattis&amp;erat=egestas&amp;tortor=metus&amp;sollicitudin=aenean&amp;mi=fermentum&amp;sit=donec&quot;
+## [2] &quot;http://delicious.com/phasellus/in/felis/donec.json?interdum=risus&amp;mauris=dapibus&amp;non=augue&amp;ligula=vel&amp;pellentesque=accumsan&amp;ultrices=tellus&amp;phasellus=nisi&amp;id=eu&amp;sapien=orci&amp;in=mauris&amp;sapien=lacinia&amp;iaculis=sapien&amp;congue=quis&amp;vivamus=libero&amp;metus=nullam&amp;arcu=sit&amp;adipiscing=amet&amp;molestie=turpis&amp;hendrerit=elementum&amp;at=ligula&amp;vulputate=vehicula&amp;vitae=consequat&amp;nisl=morbi&amp;aenean=a&amp;lectus=ipsum&amp;pellentesque=integer&amp;eget=a&amp;nunc=nibh&amp;donec=in&amp;quis=quis&amp;orci=justo&amp;eget=maecenas&amp;orci=rhoncus&amp;vehicula=aliquam&amp;condimentum=lacus&amp;curabitur=morbi&amp;in=quis&amp;libero=tortor&amp;ut=id&amp;massa=nulla&amp;volutpat=ultrices&amp;convallis=aliquet&amp;morbi=maecenas&amp;odio=leo&quot;                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               
+## [3] &quot;https://w3.org/sed/augue/aliquam/erat/volutpat.json?dictumst=mi&amp;morbi=sit&amp;vestibulum=amet&amp;velit=lobortis&amp;id=sapien&amp;pretium=sapien&amp;iaculis=non&amp;diam=mi&amp;erat=integer&amp;fermentum=ac&amp;justo=neque&amp;nec=duis&amp;condimentum=bibendum&amp;neque=morbi&amp;sapien=non&amp;placerat=quam&amp;ante=nec&amp;nulla=dui&amp;justo=luctus&amp;aliquam=rutrum&amp;quis=nulla&amp;turpis=tellus&amp;eget=in&amp;elit=sagittis&amp;sodales=dui&amp;scelerisque=vel&amp;mauris=nisl&amp;sit=duis&amp;amet=ac&amp;eros=nibh&amp;suspendisse=fusce&amp;accumsan=lacus&amp;tortor=purus&amp;quis=aliquet&amp;turpis=at&amp;sed=feugiat&amp;ante=non&amp;vivamus=pretium&amp;tortor=quis&amp;duis=lectus&amp;mattis=suspendisse&amp;egestas=potenti&amp;metus=in&amp;aenean=eleifend&amp;fermentum=quam&amp;donec=a&amp;ut=odio&amp;mauris=in&amp;eget=hac&amp;massa=habitasse&amp;tempor=platea&quot;</code></pre>
+<p><br></p>
+</div>
+<div id="steps" class="section level2">
+<h2>Steps</h2>
+<ul>
+<li>check if there are only 2 dots in the URL</li>
+<li>check if there is only 1 question mark in the URL</li>
+<li>detect the location of the second dot</li>
+<li>detect the location of the first question mark</li>
+<li>use the locations to specify the index position for extracting file type</li>
+</ul>
+<p><br></p>
+<div id="step-1-check-if-there-are-only-2-dots-in-the-url" class="section level4">
+<h4>Step 1: Check if there are only 2 dots in the URL</h4>
+<pre class="r"><code>mockstring$url[1:3] %&gt;%
+  str_locate_all(pattern = &#39;\\.&#39;) %&gt;%
+  map_int(nrow) %&gt;%
+  is_greater_than(2) %&gt;%
+  sum()</code></pre>
+<pre><code>## [1] 0</code></pre>
+<p><br></p>
+</div>
+<div id="step-2-check-if-there-is-only-1-question-mark-in-the-url" class="section level4">
+<h4>Step 2: Check if there is only 1 question mark in the URL</h4>
+<pre class="r"><code>mockstring$url[1:3] %&gt;%
+  str_locate_all(pattern = &quot;[?]&quot;) %&gt;%
+  map_int(nrow) %&gt;%
+  is_greater_than(1) %&gt;%
+  sum()</code></pre>
+<pre><code>## [1] 0</code></pre>
+<p><br></p>
+</div>
+<div id="step-3-detect-the-location-of-the-second-dot" class="section level4">
+<h4>Step 3: Detect the location of the second dot</h4>
+<pre class="r"><code>d &lt;- mockstring$url[1:3] %&gt;%
+  str_locate_all(pattern = &#39;\\.&#39;) %&gt;%
+  map_int(extract(2)) %&gt;%
+  add(1)
+
+d  </code></pre>
+<pre><code>## [1] 64 47 48</code></pre>
+<p><br></p>
+</div>
+<div id="step-4-detect-the-location-of-the-first-question-mark" class="section level4">
+<h4>Step 4: Detect the location of the first question mark</h4>
+<pre class="r"><code>q &lt;- mockstring$url[1:3] %&gt;%
+  str_locate_all(pattern = &quot;[?]&quot;) %&gt;%
+  map_int(extract(1)) %&gt;%
+  subtract(1)
+
+q</code></pre>
+<pre><code>## [1] 66 50 51</code></pre>
+<p><br></p>
+</div>
+<div id="step-5-specify-the-index-position-for-extracting-file-type" class="section level4">
+<h4>Step 5: Specify the index position for extracting file type</h4>
+<pre class="r"><code>mockstring$url[1:3] %&gt;% 
+  str_sub(start = d, end = q)</code></pre>
+<pre><code>## [1] &quot;jsp&quot;  &quot;json&quot; &quot;json&quot;</code></pre>
+</div>
+</div>
+
+    </div>
+  </article>
+
+  
+
+
+</main>
+
+      <footer class="footer">
+        <ul class="footer-links">
+          <li>
+            <a href="/index.xml" type="application/rss+xml" target="_blank">RSS feed</a>
+          </li>
+          <li>
+            <a href="https://gohugo.io/" class="footer-links-kudos">Made with <img src="/images/hugo-logo.png" width="22" height="22"></a> and <a href="https://github.com/rstudio/blogdown">blogdown</a>
+          </li>
+          <li><a href="https://twitter.com/aravindhebbali">@aravindhebbali</a></li>
+        </ul>
+        <ul>
+          <li>&copy 2017 Aravind Hebbali</li>
+        </ul>
+      </footer>
+
+    </div>
+    
+
+
+
+<script src="//cdn.bootcss.com/highlight.js/9.11.0/highlight.min.js"></script>
+
+
+
+<script src="//cdn.bootcss.com/highlight.js/9.11.0/languages/r.min.js"></script>
+<script src="//cdn.bootcss.com/highlight.js/9.11.0/languages/yaml.min.js"></script>
+<script>hljs.configure({languages: []}); hljs.initHighlightingOnLoad();</script>
+
+
+
+    
+<script src="/js/math-code.js"></script>
+<script async src="//cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+
+    
+<script>
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-57270671-5', 'auto');
+ga('send', 'pageview');
+</script>
+
+  </body>
+</html>
+
