@@ -1,0 +1,156 @@
+---
+title: Data Wrangling with dplyr - Part 2
+author: Aravind Hebali
+date: '2017-12-25'
+slug: data-wrangling-with-dplyr-part-2
+categories:
+  - data wrangling
+tags:
+  - dplyr
+  - joins
+---
+
+## Introduction
+
+In the previous [post](), we learnt about dplyr verbs and used them to compute average order value for an e-commerce website data. In this module, we will learn to combine tables using different `*_join` functions provided in dplyr. Let us assume we have 2 tables **x** and **y**. 
+
+We will explore the following type of `joins` 
+
+- inner join
+- left join
+- right join
+- semi join
+- anti join
+- full join
+
+<br>
+
+## Libraries, Code & Data
+
+We will use the [dplyr](http://dplyr.tidyverse.org/index.html) and [readr](http://readr.tidyverse.org/index.html) packages. The data sets can be downloaded from [here](https://github.com/rsquaredacademy/datasets) and the codes from [here](https://gist.github.com/aravindhebbali/3e31f13a4194a8f1003034aa7d70d5ee).
+
+```{r dplyr1, message=FALSE}
+library(dplyr)
+library(readr)
+options(tibble.width = Inf)
+```
+
+<br>
+
+## Case Study
+
+<br>
+
+![](join_data.png)
+
+<br>
+
+### Data: Orders
+
+```{r dplyr2, message=FALSE}
+order <- readr::read_csv('https://raw.githubusercontent.com/rsquaredacademy/datasets/master/order.csv')
+order
+```
+
+<br>
+
+### Data: Customers
+
+```{r dplyr, message=FALSE}
+customer <- readr::read_csv('https://raw.githubusercontent.com/rsquaredacademy/datasets/master/customer.csv')
+customer
+```
+
+<br>
+
+![](join.png)
+
+<br>
+
+## inner join
+
+<br>
+
+![](draw_inner.png)
+
+<br>
+
+```{r dplyr3}
+customer %>%
+  inner_join(order)
+```
+
+<br>
+
+## left join
+
+<br>
+
+![](draw_left.png)
+
+<br>
+
+```{r dplyr4}
+customer %>%
+  left_join(order)
+```
+
+<br>
+
+## right join
+
+<br>
+
+![](draw_right.png)
+
+<br>
+
+```{r dplyr5}
+customer %>%
+  right_join(order)
+```
+
+<br>
+
+## semi join
+
+<br>
+
+![](draw_semi.png)
+
+<br>
+
+```{r dplyr6}
+customer %>%
+  semi_join(order)
+```
+
+<br>
+
+## anti join
+
+<br>
+
+![](draw_anti.png)
+
+<br>
+
+```{r dplyr7}
+customer %>%
+  anti_join(order)
+```
+
+<br>
+
+## full join
+
+<br>
+
+![](draw_full.png)
+
+<br>
+
+```{r dplyr8}
+customer %>%
+  full_join(order)
+```
