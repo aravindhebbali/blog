@@ -8,73 +8,12 @@
   </url>
   
   <url>
-    <loc>/2017/12/25/data-wrangling-with-dplyr-part-2/</loc>
-    <lastmod>2017-12-25T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/2017/12/25/data-wrangling-with-dplyr-part-3/</loc>
-    <lastmod>2017-12-25T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/2017/12/25/hacking-strings-with-stringr/</loc>
-    <lastmod>2017-12-25T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/2017/12/25/importing-data-into-r-part-2/</loc>
-    <lastmod>2017-12-25T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/2017/12/25/importing-data-into-r-part-3/</loc>
-    <lastmod>2017-12-25T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/2017/12/25/introduction-to-tibbles/</loc>
-    <lastmod>2017-12-25T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/2017/12/25/readable-code-with-pipes/</loc>
-    <lastmod>2017-12-25T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/2017/12/25/working-with-categorical-data-using-forcats/</loc>
-    <lastmod>2017-12-25T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/2017/12/25/working-with-dates-in-r/</loc>
-    <lastmod>2017-12-25T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/2017/12/24/a-complete-guide-to-importing-data-into-r-part-1/</loc>
-    <lastmod>2017-12-24T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/2017/12/20/welcome/</loc>
-    <lastmod>2017-12-20T21:13:14-05:00</lastmod>
-  </url>
-  
-  <url>
     <loc>/about/</loc>
     <lastmod>2016-05-05T21:48:51-07:00</lastmod>
   </url>
   
   <url>
     <loc>/</loc>
-    <lastmod>2017-12-25T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>/tags/categorical/</loc>
     <lastmod>2017-12-25T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
@@ -91,68 +30,8 @@
   </url>
   
   <url>
-    <loc>/tags/date/</loc>
-    <lastmod>2017-12-25T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
     <loc>/tags/dplyr/</loc>
     <lastmod>2017-12-25T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>/tags/factor/</loc>
-    <lastmod>2017-12-25T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>/tags/forcats/</loc>
-    <lastmod>2017-12-25T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>/tags/import/</loc>
-    <lastmod>2017-12-25T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>/tags/joins/</loc>
-    <lastmod>2017-12-25T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>/tags/json/</loc>
-    <lastmod>2017-12-25T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>/tags/lubridate/</loc>
-    <lastmod>2017-12-25T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>/tags/magrittr/</loc>
-    <lastmod>2017-12-25T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>/tags/pipes/</loc>
-    <lastmod>2017-12-25T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>/tags/plot/</loc>
-    <lastmod>2017-12-20T21:13:14-05:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -163,61 +42,7 @@
   </url>
   
   <url>
-    <loc>/categories/r/</loc>
-    <lastmod>2017-12-24T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>/tags/r-markdown/</loc>
-    <lastmod>2017-12-20T21:13:14-05:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>/tags/readr/</loc>
-    <lastmod>2017-12-24T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>/tags/readxl/</loc>
-    <lastmod>2017-12-25T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>/tags/regression/</loc>
-    <lastmod>2017-12-20T21:13:14-05:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>/tags/strings/</loc>
-    <lastmod>2017-12-25T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
     <loc>/tags/</loc>
-    <lastmod>2017-12-25T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>/tags/tibble/</loc>
-    <lastmod>2017-12-25T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>/tags/time/</loc>
-    <lastmod>2017-12-25T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>/tags/xml/</loc>
     <lastmod>2017-12-25T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>

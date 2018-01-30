@@ -182,7 +182,7 @@
 ## 10    48     0     3     2     1     2    57    55    52    50    51
 ## # ... with 190 more rows</code></pre>
 <p><code>col_names</code> can be used to specify column names while reading data. We need to store the names as a character vector and supply it to <code>col_names</code>. Let us reread <code>hsb3</code> and specify column names.</p>
-<pre class="r"><code>cnames &lt;- c(&quot;id&quot;, &quot;female&quot;, &quot;race&quot;, &quot;ses&quot;, &quot;schtyp&quot;, &quot;prog&quot;, &quot;read&quot;,    &quot;write&quot;, &quot;math&quot;, &quot;science&quot;, &quot;socst&quot;)
+<pre class="r"><code>cnames &lt;- c(&quot;id&quot;, &quot;female&quot;, &quot;race&quot;, &quot;ses&quot;, &quot;schtyp&quot;, &quot;prog&quot;, &quot;read&quot;, &quot;write&quot;, &quot;math&quot;, &quot;science&quot;, &quot;socst&quot;)
 read_csv(&#39;hsb3.csv&#39;, col_names = cnames)</code></pre>
 <pre><code>## # A tibble: 200 x 11
 ##       id female  race   ses schtyp  prog  read write  math science socst
@@ -257,19 +257,19 @@ read_csv(&#39;hsb3.csv&#39;, col_names = cnames)</code></pre>
   col_integer())            
 )</code></pre>
 <pre><code>## # A tibble: 200 x 11
-##       id female   race    ses schtyp   prog  read write  math science
-##    &lt;int&gt; &lt;fctr&gt; &lt;fctr&gt; &lt;fctr&gt; &lt;fctr&gt; &lt;fctr&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt;   &lt;int&gt;
-##  1    70      0      4      1      1      1    57    52    41      47
-##  2   121      1      4      2      1      3    68    59    53      63
-##  3    86      0      4      3      1      1    44    33    54      58
-##  4   141      0      4      3      1      3    63    44    47      53
-##  5   172      0      4      2      1      2    47    52    57      53
-##  6   113      0      4      2      1      2    44    52    51      63
-##  7    50      0      3      2      1      1    50    59    42      53
-##  8    11      0      1      2      1      2    34    46    45      39
-##  9    84      0      4      2      1      1    63    57    54      58
-## 10    48      0      3      2      1      2    57    55    52      50
-## # ... with 190 more rows, and 1 more variables: socst &lt;int&gt;</code></pre>
+##       id female race   ses    schtyp prog    read write  math scien~ socst
+##    &lt;int&gt; &lt;fctr&gt; &lt;fctr&gt; &lt;fctr&gt; &lt;fctr&gt; &lt;fctr&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt;  &lt;int&gt; &lt;int&gt;
+##  1    70 0      4      1      1      1         57    52    41     47    57
+##  2   121 1      4      2      1      3         68    59    53     63    61
+##  3    86 0      4      3      1      1         44    33    54     58    31
+##  4   141 0      4      3      1      3         63    44    47     53    56
+##  5   172 0      4      2      1      2         47    52    57     53    61
+##  6   113 0      4      2      1      2         44    52    51     63    61
+##  7    50 0      3      2      1      1         50    59    42     53    61
+##  8    11 0      1      2      1      2         34    46    45     39    36
+##  9    84 0      4      2      1      1         63    57    54     58    51
+## 10    48 0      3      2      1      2         57    55    52     50    51
+## # ... with 190 more rows</code></pre>
 </div>
 <div id="specific-columns" class="section level3">
 <h3>Specific Columns</h3>
@@ -278,18 +278,18 @@ read_csv(&#39;hsb3.csv&#39;, col_names = cnames)</code></pre>
   prog = col_factor(levels = c(1, 2, 3)), read = col_integer())
 )</code></pre>
 <pre><code>## # A tibble: 200 x 3
-##       id   prog  read
+##       id prog    read
 ##    &lt;int&gt; &lt;fctr&gt; &lt;int&gt;
-##  1    70      1    57
-##  2   121      3    68
-##  3    86      1    44
-##  4   141      3    63
-##  5   172      2    47
-##  6   113      2    44
-##  7    50      1    50
-##  8    11      2    34
-##  9    84      1    63
-## 10    48      2    57
+##  1    70 1         57
+##  2   121 3         68
+##  3    86 1         44
+##  4   141 3         63
+##  5   172 2         47
+##  6   113 2         44
+##  7    50 1         50
+##  8    11 2         34
+##  9    84 1         63
+## 10    48 2         57
 ## # ... with 190 more rows</code></pre>
 </div>
 <div id="practice" class="section level3">
