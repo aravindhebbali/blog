@@ -34,5 +34,16 @@
 library(dplyr)library(readr)options(tibble.</description>
     </item>
     
+    <item>
+      <title>Data Wrangling with dplyr - Part 3</title>
+      <link>/2017/12/25/data-wrangling-with-dplyr-part-3/</link>
+      <pubDate>Mon, 25 Dec 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/2017/12/25/data-wrangling-with-dplyr-part-3/</guid>
+      <description>IntroductionIn the previous post, we learnt to combine tables using dplyr. In this post, we will explore a set of helper functions in order to:
+extract unique rowsrename columnssample dataextract columnsslice rowsarrange rowscompare tablesextract/mutate data using predicate functionscount observations for different levels of a variableLibraries, Code &amp;amp; DataWe will use the following packages:
+dplyrreadrThe data sets can be downloaded from here and the codes from here.</description>
+    </item>
+    
   </channel>
 </rss>
