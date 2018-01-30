@@ -8,6 +8,11 @@
   </url>
   
   <url>
+    <loc>/2017/12/25/data-wrangling-with-dplyr-part-2/</loc>
+    <lastmod>2017-12-25T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>/about/</loc>
     <lastmod>2016-05-05T21:48:51-07:00</lastmod>
   </url>
@@ -31,6 +36,12 @@
   
   <url>
     <loc>/tags/dplyr/</loc>
+    <lastmod>2017-12-25T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/tags/joins/</loc>
     <lastmod>2017-12-25T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>

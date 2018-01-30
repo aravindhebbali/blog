@@ -23,6 +23,18 @@
     </item>
     
     <item>
+      <title>Data Wrangling with dplyr - Part 2</title>
+      <link>/2017/12/25/data-wrangling-with-dplyr-part-2/</link>
+      <pubDate>Mon, 25 Dec 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/2017/12/25/data-wrangling-with-dplyr-part-2/</guid>
+      <description>IntroductionIn the previous post, we learnt about dplyr verbs and used them to compute average order value for an online retail company data. In this post, we will learn to combine tables using different *_join functions provided in dplyr.
+Libraries, Code &amp;amp; DataWe will use the following packages:
+dplyrreadrThe data sets can be downloaded from here and the codes from here.
+library(dplyr)library(readr)options(tibble.</description>
+    </item>
+    
+    <item>
       <title>About</title>
       <link>/about/</link>
       <pubDate>Thu, 05 May 2016 21:48:51 -0700</pubDate>

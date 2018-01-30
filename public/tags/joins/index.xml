@@ -17,9 +17,10 @@
       <pubDate>Mon, 25 Dec 2017 00:00:00 +0000</pubDate>
       
       <guid>/2017/12/25/data-wrangling-with-dplyr-part-2/</guid>
-      <description>IntroductionIn the previous post, we learnt about dplyr verbs and used them to compute average order value for an e-commerce website data. In this module, we will learn to combine tables using different *_join functions provided in dplyr. Let us assume we have 2 tables x and y.
-We will explore the following type of joins
-inner joinleft joinright joinsemi joinanti joinfull join</description>
+      <description>IntroductionIn the previous post, we learnt about dplyr verbs and used them to compute average order value for an online retail company data. In this post, we will learn to combine tables using different *_join functions provided in dplyr.
+Libraries, Code &amp;amp; DataWe will use the following packages:
+dplyrreadrThe data sets can be downloaded from here and the codes from here.
+library(dplyr)library(readr)options(tibble.</description>
     </item>
     
   </channel>
