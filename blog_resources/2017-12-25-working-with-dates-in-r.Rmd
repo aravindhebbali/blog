@@ -1,0 +1,286 @@
+---
+title: 'Working with Dates in R '
+author: Aravind Hebbali
+date: '2017-12-25'
+slug: working-with-dates-in-r
+categories:
+  - data wrangling
+tags:
+  - lubridate
+  - date
+  - time
+---
+
+## Introduction
+
+
+
+ In this post, we will learn to work with date/time data in R using [lubridate]( http://lubridate.tidyverse.org/), an R package that makes it easy to work with dates and time. Let us begin by installing and loading the pacakge.
+ 
+## Libraries, Code & Data
+
+We will use [lubridate](http://lubridate.tidyverse.org/index.html), [dplyr](http://dplyr.tidyverse.org/index.html), [magrittr](http://magrittr.tidyverse.org/index.html) and [readr](http://readr.tidyverse.org/index.html) packages. The data sets can be downloaded from [here](https://github.com/rsquaredacademy/datasets) and the codes from [here](https://gist.github.com/aravindhebbali/7758b86c2bc13ff1e5d88d9d1c204f8c).
+
+```{r lub1, message=FALSE}
+library(lubridate)
+library(dplyr)
+library(magrittr)
+library(readr)
+```
+
+## Quic Intro
+
+#### Origin
+
+```{r origin}
+lubridate::origin
+```
+
+#### Current Date/Time
+
+```{r today}
+now()
+today()
+am(now())  
+pm(now())
+```
+
+## Case Study
+
+We will use the functions in the lubridate package to answer a few 
+questions we have about the transact data.
+
+- extract date, month and year from Due
+- compute the number of days to settle invoice
+- compute days over due
+- check if due year is a leap year
+- check when due day in february is 29, whether it is a leap year
+- how many invoices were settled within due date
+- how many invoices are due in each quarter
+- what is the average duration between invoice date and payment date
+
+
+### Data
+
+```{r import, eval=FALSE}
+transact <- read_csv('https://raw.githubusercontent.com/rsquaredacademy/datasets/master/transact.csv')
+```
+
+```{r show, echo=FALSE, eval=TRUE, message=FALSE}
+transact <- readr::read_csv('https://raw.githubusercontent.com/rsquaredacademy/datasets/master/transact.csv')
+transact
+```
+
+### Data Dictionary
+
+The data set has 3 columns. All the dates are in the format (yyyy-mm-dd).
+
+- Invoice: invoice date 
+- Due: due date
+- Payment: payment date
+
+## Extract Date, Month & Year from Due Date
+
+```{r lub18}
+this_day <- as_date('2017-03-23')
+day(this_day)
+month(this_day)
+year(this_day)
+```
+
+```{r lub2}
+transact %>%
+  mutate(
+    due_day = day(Due),
+    due_month = month(Due),
+    due_year = year(Due)
+  )
+```
+
+## Compute days to settle invoice
+
+```{r lub19}
+course_start <- as_date('2017-04-12')
+course_end <- as_date('2017-04-21')
+course_duration <- course_end - course_start
+course_duration
+```
+
+```{r lub3}
+transact %>%
+  mutate(
+    days_to_pay = Payment - Invoice
+  )
+```
+
+## compute days over due
+
+```{r lub4}
+transact %>%
+  mutate(
+    delay = Payment - Due
+  )
+```
+
+## Is due year a leap year?
+
+```{r lub5}
+transact %>%
+  mutate(
+    due_year = year(Due),
+    is_leap = leap_year(due_year)
+  )
+```
+
+## If due day is February 29, is it a leap year?
+
+```{r lub6}
+transact %>%
+  mutate(
+    due_day = day(Due),
+    due_month = month(Due),
+    due_year = year(Due),
+    is_leap = leap_year(due_year)
+  ) %>%
+  select(-(Invoice), -(Payment)) %>%
+  filter(due_month == 2 & due_day == 29)
+```
+
+## Shift Date
+
+```{r lab40}
+course_start + days(2)
+course_start + weeks(1)
+course_start + years(1)
+```
+
+## Interval
+
+```{r lub10}
+interval(course_start, course_end)
+```
+
+## Shift Interval
+
+```{r lab50}
+course_interval <- interval(course_start, course_end)
+course_interval %>%
+  int_shift(by = days(1))
+course_interval %>%
+  int_shift(by = weeks(1))
+course_interval %>%
+  int_shift(by = years(1))
+```
+
+## Intervals Overlap
+
+```{r lub60}
+vacation_start <- as_date('2017-04-19')
+vacation_end <- as_date('2017-04-25')
+vacation_interval <- interval(vacation_start, vacation_end)
+int_overlaps(course_interval, vacation_interval)
+```
+
+## how many invoices were settled within due date?
+
+```{r lub7}
+transact %>%
+  mutate(
+    inv_due_interval = interval(Invoice, Due),
+    due_next = Due + days(1),
+    due_pay_interval = interval(due_next, Payment),
+    overlaps = int_overlaps(inv_due_interval, due_pay_interval)
+  ) %>%
+  select(Invoice, Due, Payment, overlaps)
+```
+
+````{r lub12}
+# using int_shift
+transact %>%
+  mutate(
+    inv_due_interval = interval(Invoice, Due),
+    due_pay_interval = interval(Due, Payment),  
+    due_pay_next = int_shift(due_pay_interval, by = days(1)),
+    overlaps = int_overlaps(inv_due_interval, due_pay_next)
+  ) %>%
+  select(Invoice, Due, Payment, overlaps)
+```
+
+## Within
+
+```{r lub30}
+conference <- as_date('2017-04-15')
+conference %within% interval(course_start, course_end)
+```
+
+#### how many invoices were settled within due date?
+
+```{r lub13}
+transact %>%
+  mutate(
+    inv_due_interval = interval(Invoice, Due),
+    overlaps = Payment %within% inv_due_interval
+  ) %>%
+  select(Due, Payment, overlaps)
+```
+
+## Quarter
+
+```{r lub20}
+course_start
+course_start %>%
+  quarter()
+course_start %>%
+  quarter(with_year = TRUE)
+```
+
+```{r lub8}
+transact %>%
+  mutate(
+    Quarter = quarter(Due)
+  )
+```
+
+```{r lub14}
+transact %>%
+  mutate(
+    Quarter = quarter(Due, with_year = TRUE)
+  )
+```
+
+## Duration
+
+```{r lub15}
+course_duration %>%
+  as.numeric() %>%
+  duration(units = 'days')
+```
+
+#### Case Study
+
+```{r lub11}
+interval(course_start, course_end) / dseconds()
+interval(course_start, course_end) / dminutes()
+interval(course_start, course_end) / dhours()
+interval(course_start, course_end) / dweeks()
+interval(course_start, course_end) / dyears()
+```
+
+
+```{r lub16}
+interval(course_start, course_end) %>%
+  time_length(unit = "seconds")
+interval(course_start, course_end) %>%
+  time_length(unit = "minutes")
+interval(course_start, course_end) %>%
+  time_length(unit = "hours")
+```
+
+```{r lub17}
+interval(course_start, course_end) %>%
+  as.period(unit = "seconds")
+interval(course_start, course_end) %>%
+  as.period(unit = "minutes")
+interval(course_start, course_end) %>%
+  as.period(unit = "hours")
+```

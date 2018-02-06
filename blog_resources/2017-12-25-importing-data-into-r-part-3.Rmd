@@ -1,0 +1,200 @@
+---
+title: Importing Data into R - Part 3
+author: Aravind Hebbali
+date: '2017-12-25'
+slug: importing-data-into-r-part-3
+categories:
+  - data wrangling
+tags:
+  - import
+  - xml
+  - json
+---
+
+## Introduction
+
+This is the third post in the series **Importing Data into R**. You can find the link to the previous posts below:
+
+- [Importing Data into R - Part 1]()
+- [Importing Data into R - Part 2]()
+
+In the previous post, we explored reading data from excel spreadsheets and files from other statistical softwares such as SAS, SPSS and STATA. In this post, we will learn to read data from:
+
+- JSON
+- and XML
+
+## Libraries, Data & Code
+
+We will use the [xml2](https://cran.r-project.org/package=xml2) and [XML](https://cran.r-project.org/package=XML) package for reading data from XML files and [jsonlite](https://cran.r-project.org/package=jsonlite) package to read data from JSON files. The data sets can be downloaded from [here](https://github.com/rsquaredacademy/datasets) and the codes from [here](https://gist.github.com/aravindhebbali/65dc2af57b8eda098f2b878095c5aaa4).
+
+```{r lib, message=FALSE}
+library(jsonlite)
+library(xml2)
+library(XML)
+library(tibble)
+library(purrr)
+```
+
+## Read Data
+
+<hr>
+
+```{r imp15}
+books <- read_xml('books.xml')
+```
+
+## Name
+
+<hr>
+
+```{r imp16}
+xml_name(books)
+```
+
+## Child Node
+
+<hr>
+
+```{r imp17}
+xml_children(books)
+```
+
+## Child Node
+
+<hr>
+
+```{r imp18}
+xml_child(books)
+```
+
+## Contents
+
+<hr>
+
+```{r imp19}
+xml2::xml_contents(books)
+```
+
+## Structure
+
+<hr>
+
+```{r imp21}
+xml2::xml_structure(books)
+```
+
+## Length
+
+<hr>
+
+```{r imp22}
+xml2::xml_length(books)
+```
+
+## Root Node
+
+<hr>
+
+```{r imp23}
+xml2::xml_root(books)
+```
+
+## Attributes
+
+<hr>
+
+```{r imp24}
+xml_find_all(books, './/book') %>% 
+  map_chr(xml_attrs)
+```
+
+## Book Author
+
+<hr>
+
+```{r imp25}
+xml_find_all(books, './/author') %>%
+  xml_text()
+```
+
+## Book Title
+
+<hr>
+
+```{r imp26}
+xml_find_all(books, './/title') %>%
+  xml_text()
+```
+
+## Book Genre
+
+<hr>
+
+```{r imp27}
+xml_find_all(books, './/genre') %>%
+  xml_text()
+```
+
+## Book Price
+
+<hr>
+
+```{r imp28}
+xml_find_all(books, './/price') %>%
+  xml_double()
+```
+
+## Publishing Date
+
+<hr>
+
+```{r imp29}
+xml_find_all(books, './/publish_date') %>%
+  xml_text()
+```
+
+## Description
+
+<hr>
+
+```{r imp30}
+xml_find_all(books, './/description') %>%
+  xml_text() %>%
+  stringr::str_replace_all("[\n]", "") %>%
+  stringr::str_replace_all(pattern = "      ", " ") %>%
+  stringr::str_replace_all(pattern = "  ", " ")
+```
+
+## tibble
+
+<hr>
+
+```{r imp31}
+book <- tibble::tibble(
+  author = xml_find_all(books, './/author') %>%
+    xml_text(),
+  title = xml_find_all(books, './/title') %>%
+    xml_text(),
+  genre = xml_find_all(books, './/genre') %>%
+    xml_text(),
+  price = xml_find_all(books, './/price') %>%
+    xml_double(),
+  published = xml_find_all(books, './/publish_date') %>%
+    xml_text(),
+  description = xml_find_all(books, './/description') %>%
+    xml_text() %>%
+    stringr::str_replace_all("[\r\n]", "") %>%
+    stringr::str_replace_all(pattern = "      ", " ") %>%
+    stringr::str_replace_all(pattern = "  ", " ")
+)
+```
+
+## tibble
+
+<hr>
+
+```{r imp32}
+book
+```
+
+

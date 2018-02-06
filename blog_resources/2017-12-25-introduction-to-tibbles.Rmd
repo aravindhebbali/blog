@@ -1,0 +1,305 @@
+---
+title: Introduction to tibbles
+author: Aravind Hebbali
+date: '2017-12-25'
+slug: introduction-to-tibbles
+categories:
+  - data wrangling
+tags:
+  - tibble
+---
+
+## Introduction
+
+<hr>
+
+> A **tibble**, or `tbl_df`, is a modern reimagining of the data.frame, keeping what time has proven to be effective, and throwing out what is not. Tibbles are data.frames that are lazy and surly: they do less (i.e. they don’t change variable names or types, and don’t do partial matching) and complain more (e.g. when a variable does not exist). This forces you to confront problems earlier, typically leading to cleaner, more expressive code. Tibbles also have an enhanced `print method()` which makes them easier to use with large datasets containing complex objects.
+
+> Source: http://tibble.tidyverse.org/
+
+In this post, we will explore tibbles. To be more precise, we will learn:
+
+- how are tibbles different from data frames?
+- how to create tibbles?
+- how to manipulate tibbles?
+
+## Libraries, Code & Data
+
+We will use the [tibble](http://tibble.tidyverse.org/) and [dplyr](http://dplyr.tidyverse.org/) packages. The code can be found [here](https://gist.github.com/aravindhebbali/9a3814b9b4bb5c271d030b15ce4ecdf1).
+
+```{r tibble1, message=FALSE}
+library(tibble)
+library(dplyr)
+```
+
+## Creating tibbles
+
+<hr>
+
+tibble can be created using any of the following:
+
+- `tibble()`
+- `as_tibble()`
+- `tribble()`
+
+```{r tibble2}
+tibble(x = letters,
+       y = 1:26,
+       z = sample(100, 26))
+```
+
+<br>
+
+## tibble features
+
+<hr>
+
+- never changes input's types
+- never adjusts variable names
+- never prints all rows
+- never recycles vector of length greater than 1
+
+<br>
+
+#### never changes input's types
+
+<hr>
+
+```{r tibble3}
+tibble(x = letters,
+       y = 1:26,
+       z = sample(100, 26))
+```
+
+<br>
+
+#### never adjusts variable names
+
+<hr>
+
+```{r tibble4}
+names(data.frame(`order value` = 10))
+names(tibble(`order value` = 10))
+```
+
+<br>
+
+#### never prints all rows
+
+<hr>
+
+```{r tibble5}
+x <- 1:100
+y <- letters[1]
+z <- sample(c(TRUE, FALSE), 100, replace = TRUE)
+tibble(x, y, z)
+```
+
+<br>
+
+#### never recycle vector of length greater than 1
+
+<hr>
+
+```{r tibble6, eval=FALSE}
+x <- 1:100
+y <- letters
+z <- sample(c(TRUE, FALSE), 100, replace = TRUE)
+tibble(x, y, z)
+Error in overscope_eval_next(overscope, expr) : object 'y' not found
+```
+
+<br>
+
+## Membership Testing
+
+<hr>
+
+We can test if an object is a tibble using `is_tibble()`.
+
+```{r tibble14}
+is_tibble(mtcars)
+is_tibble(as_tibble(mtcars))
+```
+
+<br>
+
+## Tribble
+
+<hr>
+
+Another way to create tibbles is using `tribble()`: 
+
+- it is short for transposed tibbles
+- it is customized for data entry in code 
+- column names start with `~` 
+- and values are separated by commas
+
+```{r tibble15}
+tribble(
+  ~x, ~y, ~z,
+  #--|--|----
+  1, TRUE, 'a',
+  2, FALSE, 'b'
+)
+```
+
+<br>
+
+## Column Names
+
+<hr>
+
+Names of the columns in tibbles need not be valid R variable names. They can contain unusual characters like a space or a smiley but must be enclosed in ticks. 
+
+```{r tibble16}
+tibble(
+  ` ` = 'space',
+  `2` = 'integer',
+  `:)` = 'smiley'
+)
+```
+
+<br>
+
+## Add Rows
+
+<hr>
+
+Let us add data related to **Safari** browser to the web traffic data using `add_row()`.
+
+```{r tibble21}
+browsers <- enframe(c(chrome = 40, firefox = 20, edge = 30))
+browsers
+```
+
+```{r tibble22}
+add_row(browsers, name = 'safari', value = 10)
+```
+
+<br>
+
+## Add Rows
+
+<hr>
+
+If we want to add the data at a particular row, we can specify the row number using the `.before` argument. Let us add the data related to **Safari** browser in the second row instead of the last row.
+
+```{r tibble23}
+add_row(browsers, name = 'safari', value = 10, .before = 2)
+```
+
+<br>
+
+## Add Column
+
+<hr>
+
+`add_column()` adds a new column to tibbles.
+
+```{r tibble24}
+browsers <- enframe(c(chrome = 40, firefox = 20, edge = 30, safari = 10))
+add_column(browsers, visits = c(4000, 2000, 3000, 1000))
+```
+
+<br>
+
+## Rownames
+
+<hr>
+
+The [tibble](tibble.tidyverse.org) package provides a set of functions to deal with rownames. Remember, `tibble` does not have `rownames` unlike `data.frame`. To check whether a data set has rownames, use `has_rownames()`.
+
+```{r tibble25}
+has_rownames(mtcars)
+```
+
+<br>
+
+## Remove Rownames
+
+<hr>
+
+```{r tibble26}
+remove_rownames(mtcars)
+```
+
+<br>
+
+## Rownames to Column
+
+<hr>
+
+```{r tibble27}
+head(rownames_to_column(mtcars))
+```
+
+<br>
+
+## Column to Rownames
+
+<hr>
+
+To convert the first column in the data set to rownames, use `column_to_rownames()`:
+
+```{r tibble28}
+mtcars_tbl <- rownames_to_column(mtcars)
+column_to_rownames(mtcars_tbl)
+```
+
+<br>
+
+## Glimpse
+
+<hr>
+
+Use `glimpse()` to get an overview of the data.
+
+```{r tibble 29}
+glimpse(mtcars)
+```
+
+<br>
+
+## Check Column 
+
+<hr>
+
+`has_name()` can be used to check if a tibble has a specific column.
+
+```{r tibble30}
+has_name(mtcars, 'cyl')
+has_name(mtcars, 'gears')
+```
+
+<br>
+
+## Summary
+
+### Creating tibbles
+
+<hr>
+
+- use `tibble()` to create tibbles
+- use `as_tibble()` to coerce other objects to tibble
+- use `enframe()` to coerce vector to tibble
+- use `tribble()` to create tibble using data entry
+
+### Modifying tibbles
+
+<hr>
+
+- use `add_row()` to add a new row
+- use `add_column()` to add a new column
+- use `remove_rownames()` to remove rownames from data
+- use `rownames_to_colum()` to coerce rowname to first column
+- use `column_to_rownames()` to coerce first column to rownames
+
+### Testing tibbles
+
+<hr>
+
+- use `is_tibble()` to test if an object is a tibble
+- use `has_rownames()` to check whether a data set has rownames
+- use `has_name()` to check if tibble has a specific column 
+- use `glimpse()` to get an overview of data
