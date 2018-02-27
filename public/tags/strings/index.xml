@@ -18,7 +18,6 @@
       
       <guid>/2017/12/25/hacking-strings-with-stringr/</guid>
       <description>IntroductionIn this post, we will learn to work with string data in R using stringr. As we did in the other posts, we will use a case study to explore the various features of the stringr package. Let us begin by installing and loading stringr and a set of other pacakges we will be using.
-
 Libraries, Code &amp;amp; DataWe will use stringr, dplyr, magrittr, tibble, purrr and readr packages.</description>
     </item>
     

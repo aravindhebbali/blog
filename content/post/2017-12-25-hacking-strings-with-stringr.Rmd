@@ -1,0 +1,463 @@
+---
+title: Hacking strings with stringr
+author: Aravind Hebbali
+date: '2017-12-25'
+slug: hacking-strings-with-stringr
+categories:
+  - data wrangling
+tags:
+  - strings
+---
+
+## Introduction
+
+In this post, we will learn to work with string data in R using [stringr](http://stringr.tidyverse.org). As we did in the other posts, we will use a case study to explore the various features of the stringr package. Let us begin by installing and loading stringr and a set of other pacakges we will be using.
+ 
+## Libraries, Code & Data
+
+We will use [stringr](http://lubridate.tidyverse.org/index.html), [dplyr](http://dplyr.tidyverse.org/index.html), [magrittr](http://magrittr.tidyverse.org/index.html), [tibble](http://tibble.tidyverse.org/index.html), [purrr](http://purrr.tidyverse.org/index.html) and [readr](http://readr.tidyverse.org/index.html) packages. The data sets can be downloaded from [here](https://github.com/rsquaredacademy/datasets) and the codes from [here](https://gist.github.com/aravindhebbali/5d1799744e55dc76cdf1af6b1cc03c82).
+
+
+```{r str1, message=FALSE}
+library(stringr)
+library(tibble)
+library(magrittr)
+library(purrr)
+library(dplyr)
+library(readr)
+```
+
+## Case Study
+
+- extract domain name from random email ids
+- extract image type from url
+- extract image dimension from url
+- extract extension from domain name
+- extract http protocol from url
+- extract domain name from url
+- extract extension from url
+- extract file type from url
+
+### Data
+
+```{r show, message=FALSE}
+mockstring <- readr::read_csv('https://raw.githubusercontent.com/rsquaredacademy/datasets/master/mock_strings.csv')
+mockstring
+```
+
+### Data Dictionary
+
+## Extract domain name from email ids
+
+### Steps
+
+- split email using pattern `@`
+- extract the second element from the resulting list
+- split the above using pattern `\\.`
+- extract the first element from the resulting list
+
+Let us take a look at the emails before we extract the domain names.
+
+```{r str15}
+emails <- 
+  mockstring %>%
+  pull(email) %>%
+  head
+
+emails
+```
+
+#### Step 1
+
+We will split the email using `str_split`. It will split a string 
+using the pattern supplied. In our case the pattern is `@`.
+
+```{r str16}
+emails %>%
+  str_split(pattern = '@')
+```
+
+#### Step 2
+
+Step 1 returned a list. Each element of the list has two values. The first 
+one is the username and the second is the domain name. Since we are 
+extracting the domain name, we want the second value from each element of 
+the list.
+
+We will use `map_chr()` from purrr to extract the domain names. It will
+return the second value from each element in the list. Since the domain 
+name is a string, `map_chr()` will return a character vector.
+
+```{r str17}
+emails %>%
+  str_split(pattern = '@') %>%
+  map_chr(2)
+```
+
+#### Step 3
+
+We want the domain name and not the extension. Step 2 returned a 
+character vector and we need to split the domain name and the domain
+extension. They are separated by `.`. Since `.` is a special character,
+we will use `\\` before `.` to escape it. Let us split the domain
+name and domain extension using `str_split` and `\\.` as the pattern.
+
+```{r str18}
+emails %>%
+  str_split(pattern = '@') %>%
+  map_chr(2) %>%
+  str_split(pattern = '\\.') 
+```
+
+#### Step 4
+
+Now that we have separated the domain name from its extension, let us extract
+the first value from each element in the list returned in step 3. We will again 
+use `map_chr` to achieve this.
+
+```{r str19}
+emails %>%
+  str_split(pattern = '@') %>%
+  map_chr(2) %>%
+  str_split(pattern = '\\.') %>%
+  map_chr(extract(1))
+```
+
+## Extract Domain Extension
+
+The below code extracts the domain extension instead of the domain name. 
+
+```{r str20}
+emails %>%
+  str_split(pattern = '@') %>%
+  map_chr(2) %>%
+  str_split(pattern = '\\.', simplify = TRUE) %>%
+  extract(, 2)
+```
+
+## Extract image type from URL
+
+### Steps
+
+- split imageurl using pattern `\\.`
+- extract the third value from each element of the resulting list
+- subset the string using the index position 
+
+Let us take a look at the URL of the image.
+
+```{r str21}
+img <- 
+  mockstring %>%
+  pull(imageurl) %>%
+  head
+
+img
+```
+
+#### Step 1 
+
+Let us split imageurl using `str_split` and the pattern `\\.`.
+
+```{r str22}
+img %>%
+  str_split(pattern = '\\.')
+```
+
+#### Step 2
+
+Step 1 returned a list the elements of which have 3 values each. If you
+observe the list, the image type is in the 3rd value. We will now 
+extract the third value from each element of the list using `map_chr`.
+
+```{r str23}
+img %>%
+  str_split(pattern = '\\.') %>%
+  map_chr(extract(3))
+```
+
+#### Step 3
+
+We can now extract the image type in two ways:
+
+- subset the first 3 characters of the string
+- split the string using pattern `/` and extract the first value from the 
+elements of the resulting list
+
+Below is the first method. We know that the image type is 3 characters. So 
+we use `str_sub` to subset the first 3 characters. The index positions 
+are mentioned using `start` and `stop`.
+
+```{r str24}  
+img %>%
+  str_split(pattern = '\\.') %>%
+  map_chr(extract(3)) %>%
+  str_sub(start = 1, end = 3)
+``` 
+
+In case you are not sure about the length of the image type. In such cases,
+we will split the string using pattern `/` and then use `map_chr` to
+extract the first value of each element of the resulting list.
+
+```{r str25}
+img %>%
+  str_split(pattern = '\\.') %>%
+  map_chr(extract(3)) %>%
+  str_split(pattern = '/') %>%
+  map_chr(extract(1))
+```
+
+## Extract Image Dimesion from URL
+
+### Steps
+
+- locate numbers between 0 and 9
+- find the location of the first number present in the imageurl
+
+```{r str26}
+img %>%
+  str_locate(pattern = "[0-9]") 
+```
+
+```{r str27}
+img %>%
+  str_sub(start = 23) 
+```
+
+```{r str28}
+img %>%
+  str_sub(start = 23) %>%
+  str_split(pattern = '\\.') 
+```
+
+```{r str29}
+img %>%
+  str_sub(start = 23) %>%
+  str_split(pattern = '\\.') %>%
+  map_chr(extract(1))
+```
+
+## Extract HTTP Protocol from URL
+
+```{r str30}
+url1 <- 
+  mockstring %>%
+  pull(url) %>%
+  first
+
+url1
+```
+
+```{r str31}
+url1 %>%
+  str_split(pattern = '://') 
+```
+
+```{r str32}
+url1 %>%
+  str_split(pattern = '://') %>%
+  map_chr(extract(1))
+```
+
+```{r str33}
+url1 %>%
+  str_locate(pattern = '://') 
+```
+
+```{r str34}
+url1 %>%
+  str_locate(pattern = '://') %>%
+  data.frame
+```
+
+```{r str35}
+url1 %>%
+  str_locate(pattern = '://') %>%
+  data.frame %>%
+  extract2('start') 
+```
+
+```{r str36}
+url1 %>%
+  str_locate(pattern = '://') %>%
+  data.frame %>%
+  extract2('start') %>%
+  subtract(1)
+```
+
+```{r str37}
+urls <- 
+  mockstring %>%
+  pull(url) %>%
+  head
+```
+
+```{r str38}
+k <-  
+  urls %>%
+  str_locate(pattern = '://') %>%
+  data.frame %>%
+  extract2('start') %>%
+  subtract(1)
+```
+
+```{r str39}
+urls %>%
+  str_sub(start = 1, end = k)
+```
+
+## Extract Domain Name
+
+```{r str40}
+url1 %>%
+  str_locate_all(pattern = "/") 
+```
+
+```{r str41}
+url1 %>%
+  str_locate_all(pattern = "/") %>%
+  map_int(extract(3))
+```
+
+```{r str42}
+n <- 
+  url1 %>%
+  str_locate_all(pattern = "/") %>%
+  map_int(extract(3))
+```
+
+```{r str43}
+urls %>%
+  str_sub(end = n) 
+```
+
+```{r str44}
+urls %>%
+  str_sub(end = n) %>%
+  str_split(pattern = '\\.') 
+```
+
+```{r str45}
+urls %>%
+  str_sub(end = n) %>%
+  str_split(pattern = '\\.') %>%
+  map_chr(extract(1)) 
+```
+
+```{r str46}
+urls %>%
+  str_sub(end = n) %>%
+  str_split(pattern = '\\.') %>%
+  map_chr(extract(1)) %>%
+  str_sub(start = k + 4)
+```
+
+## Extract domain extension
+
+```{r str47}
+url1 %>%
+  str_sub(end = n) 
+```
+
+```{r str48}
+url1 %>%
+  str_sub(end = n) %>%
+  str_split(pattern = '\\.') 
+```
+
+```{r str49}
+url1 %>%
+  str_sub(end = n) %>%
+  str_split(pattern = '\\.') %>%
+  map_chr(extract(2)) 
+```
+
+```{r str50}
+url1 %>%
+  str_sub(end = n) %>%
+  str_split(pattern = '\\.') %>%
+  map_chr(extract(2)) %>%
+  str_split(pattern = '/') 
+```
+
+```{r str51}
+url1 %>%
+  str_sub(end = n) %>%
+  str_split(pattern = '\\.') %>%
+  map_chr(extract(2)) %>%
+  str_split(pattern = '/') %>%
+  map_chr(extract(1))
+```
+
+```{r str52}
+urls %>%
+  str_sub(end = n) %>%
+  str_split(pattern = '\\.') %>%
+  map_chr(extract(2)) %>%
+  str_split(pattern = '/') %>%
+  map_chr(extract(1))
+```
+
+## Extract file type
+
+```{r str14}
+mockstring$url[1:3]
+```
+
+### Steps
+
+- check if there are only 2 dots in the URL
+- check if there is only 1 question mark in the URL
+- detect the location of the second dot 
+- detect the location of the first question mark
+- use the locations to specify the index position for extracting file type
+
+#### Step 1: Check if there are only 2 dots in the URL
+
+```{r str9}
+mockstring$url[1:3] %>%
+  str_locate_all(pattern = '\\.') %>%
+  map_int(nrow) %>%
+  is_greater_than(2) %>%
+  sum
+```
+
+#### Step 2: Check if there is only 1 question mark in the URL
+
+```{r str10}  
+mockstring$url[1:3] %>%
+  str_locate_all(pattern = "[?]") %>%
+  map_int(nrow) %>%
+  is_greater_than(1) %>%
+  sum
+```
+
+#### Step 3: Detect the location of the second dot
+
+```{r str11}
+d <- 
+  mockstring$url[1:3] %>%
+  str_locate_all(pattern = '\\.') %>%
+  map_int(extract(2)) %>%
+  add(1)
+
+d  
+```
+
+#### Step 4: Detect the location of the first question mark
+
+```{r str12}
+q <-  
+  mockstring$url[1:3] %>%
+  str_locate_all(pattern = "[?]") %>%
+  map_int(extract(1)) %>%
+  subtract(1)
+
+q
+```
+
+#### Step 5: Specify the index position for extracting file type
+
+```{r str13}
+mockstring$url[1:3] %>% 
+  str_sub(start = d, end = q)
+```
