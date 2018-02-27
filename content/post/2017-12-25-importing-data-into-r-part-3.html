@@ -39,13 +39,15 @@ library(stringr)</code></pre>
 </div>
 <div id="read-data" class="section level2">
 <h2>Read Data</h2>
-<p>The first step is to read XML data into R using <code>read_xml</code>. Let us read the data from the <strong>books.xml</strong> file.</p>
+<p>The first step is to read XML data into R using <code>read_xml</code>. Let us
+read the data from the <strong>books.xml</strong> file.</p>
 <pre class="r"><code>books &lt;- read_xml(&#39;books.xml&#39;)</code></pre>
 </div>
 <div id="name" class="section level2">
 <h2>Name</h2>
-<p>Returns the name of an element. Here it returns the name of the root node. It can also be used to modify the name of an element.</p>
-<pre class="r"><code>books %&gt;% xml_name</code></pre>
+<p>Returns the name of an element. Here it returns the name of the
+root node. It can also be used to modify the name of an element.</p>
+<pre class="r"><code>xml_name(books)</code></pre>
 <pre><code>## [1] &quot;catalog&quot;</code></pre>
 </div>
 <div id="child-node" class="section level2">
@@ -93,7 +95,8 @@ library(stringr)</code></pre>
 </div>
 <div id="child-node-1" class="section level2">
 <h2>Child Node</h2>
-<p>View the contents of a particular child node. Specify the node using <code>search</code>.</p>
+<p>View the contents of a particular child node. Specify the node
+using <code>search</code>.</p>
 <pre class="r"><code>xml_child(books)</code></pre>
 <pre><code>## {xml_node}
 ## &lt;book id=&quot;bk101&quot;&gt;

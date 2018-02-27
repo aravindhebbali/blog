@@ -17,8 +17,9 @@
       <pubDate>Mon, 25 Dec 2017 00:00:00 +0000</pubDate>
       
       <guid>/2017/12/25/readable-code-with-pipes/</guid>
-      <description>IntroductionWhen you are dealing with a sequence of multiple operations, R code can get a bit cramped and not so easy on the eyes. The magrittr package by Stefan Milton Bache provides pipes enabling us to write R code that is readable.
-especially useful when you have nested functionssimilar in spirit to javascript’s method chainingfunctions taking multiple arguments can be confusing and messy to readwith magrittr, you program from left to rightPipesR being a functional language, code contains a lot of parentheses.</description>
+      <description>IntroductionR code contain a lot of parentheses in case of a sequence of multiple operations. When you are dealing withcomplex code, it results in nested function calls which are hard to read and maintain. The magrittr package by Stefan Milton Bache provides pipes enabling us to write R code that is readable.
+Pipes allow us to clearly express a sequence of multiple operations by:
+structuring operations from left to rightavoidingnested function callsintermediate stepsoverwriting of original dataminimizing creation of local variablesPipesIf you are using tidyverse, magrittr will be automatically loaded.</description>
     </item>
     
   </channel>

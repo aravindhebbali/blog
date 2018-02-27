@@ -14,17 +14,23 @@ tags:
 
 <div id="introduction" class="section level2">
 <h2>Introduction</h2>
-<p>When you are dealing with a sequence of multiple operations, R code can get a bit cramped and not so easy on the eyes. The <a href="https://CRAN.R-project.org/package=magrittr">magrittr</a> package by <a href="http://stefanbache.dk/">Stefan Milton Bache</a> provides pipes enabling us to write R code that is readable.</p>
+<p>R code contain a lot of parentheses in case of a sequence of multiple operations. When you are dealing with
+complex code, it results in nested function calls which are hard to read and maintain. The <a href="https://CRAN.R-project.org/package=magrittr">magrittr</a> package by <a href="http://stefanbache.dk/">Stefan Milton Bache</a> provides pipes enabling us to write R code that is readable.</p>
+<p>Pipes allow us to clearly express a sequence of multiple operations by:</p>
 <ul>
-<li>especially useful when you have nested functions</li>
-<li>similar in spirit to javascript’s method chaining</li>
-<li>functions taking multiple arguments can be confusing and messy to read</li>
-<li>with magrittr, you program from left to right</li>
+<li>structuring operations from left to right</li>
+<li>avoiding
+<ul>
+<li>nested function calls</li>
+<li>intermediate steps</li>
+<li>overwriting of original data</li>
+</ul></li>
+<li>minimizing creation of local variables</li>
 </ul>
 </div>
 <div id="pipes" class="section level2">
 <h2>Pipes</h2>
-<p>R being a functional language, code contains a lot of parentheses. Complex code results in nested functions making them hard to read and maintain. If you are using <a href="https://www.tidyverse.org/">tidyverse</a>, magrittr will be automatically loaded. We will look at 3 different types of pipes:</p>
+<p>If you are using <a href="https://www.tidyverse.org/">tidyverse</a>, magrittr will be automatically loaded. We will look at 3 different types of pipes:</p>
 <ul>
 <li><code>%&gt;%</code> : pipe a value forward into an expression or function call</li>
 <li><code>%&lt;&gt;%</code>: result assigned to left hand side object instead of returning it</li>
@@ -39,7 +45,8 @@ tags:
 <li><a href="http://readr.tidyverse.org/">readr</a></li>
 <li>and <a href="http://readr.tidyverse.org/">purrr</a></li>
 </ul>
-<p>You can find the data sets <a href="https://github.com/rsquaredacademy/datasets">here</a> and the codes <a href="https://gist.github.com/aravindhebbali/26d85ab4a4dadd2fe7c1f58d854cc950">here</a>.</p>
+<p>You can find the data sets <a href="https://github.com/rsquaredacademy/datasets">here</a> and the codes
+<a href="https://gist.github.com/aravindhebbali/26d85ab4a4dadd2fe7c1f58d854cc950">here</a>.</p>
 <pre class="r"><code>library(magrittr)
 library(readr)
 library(purrr)</code></pre>
@@ -82,7 +89,10 @@ ecom</code></pre>
 </div>
 <div id="first-example" class="section level2">
 <h2>First Example</h2>
-<p>Let us start with a simple example. You must be aware of <code>head()</code>. If not, do not worry. It returns the first few observations/rows of data. We can specify the number of observations it should return as well. Let us use it to view the first 10 rows of our data set.</p>
+<p>Let us start with a simple example. You must be aware of <code>head()</code>. If not,
+do not worry. It returns the first few observations/rows of data. We can
+specify the number of observations it should return as well. Let us use
+it to view the first 10 rows of our data set.</p>
 <pre class="r"><code>head(ecom, 10)</code></pre>
 <pre><code>## # A tibble: 10 x 11
 ##       id referrer device bouncers n_visit n_pages duration country       
@@ -122,7 +132,9 @@ ecom</code></pre>
 </div>
 <div id="square-root" class="section level2">
 <h2>Square Root</h2>
-<p>Time to try a slightly more challenging example. We want the square root of <code>n_pages</code> column from the data set. To ensure the output does not clutter the page, we will view the first few observations using <code>head()</code>.</p>
+<p>Time to try a slightly more challenging example. We want the square root of
+<code>n_pages</code> column from the data set. To ensure the output does not clutter
+the page, we will view the first few observations using <code>head()</code>.</p>
 <pre class="r"><code>y &lt;- head(sqrt(ecom$n_pages))</code></pre>
 <p>Let us break down the above computation into small steps:</p>
 <ul>
@@ -259,7 +271,8 @@ email %&gt;%
 </div>
 <div id="data-extraction" class="section level2">
 <h2>Data Extraction</h2>
-<p>Let us turn our attention towards data extraction. magrittr provides alternatives to <code>$</code>, <code>[</code> and <code>[[</code>.</p>
+<p>Let us turn our attention towards data extraction. magrittr provides
+alternatives to <code>$</code>, <code>[</code> and <code>[[</code>.</p>
 <ul>
 <li><code>extract()</code></li>
 <li><code>extract2()</code></li>
@@ -267,7 +280,9 @@ email %&gt;%
 </ul>
 <div id="extract-column-by-name" class="section level4">
 <h4>Extract Column By Name</h4>
-<p>To extract a specific column using the column name, we mention the name of the column in single/double quotes within <code>[</code> or <code>[[</code>. In case of <code>$</code>, we do not use quotes.</p>
+<p>To extract a specific column using the column name, we mention the name
+of the column in single/double quotes within <code>[</code> or <code>[[</code>. In case of <code>$</code>,
+we do not use quotes.</p>
 <p>Let us extract the first 3 observations of <code>n_pages</code> column.</p>
 <pre class="r"><code>head(ecom[&#39;n_pages&#39;], 3)</code></pre>
 <pre><code>## # A tibble: 3 x 1
@@ -288,7 +303,10 @@ email %&gt;%
 </div>
 <div id="extract-column-by-position" class="section level4">
 <h4>Extract Column By Position</h4>
-<p>We can extract columns using their index position. Keep in mind that index position starts from <strong>1</strong> in R. In the below example, we show how to extract the first 3 observations of <code>n_pages</code> column but instead of using the column name, we use the column position.</p>
+<p>We can extract columns using their index position. Keep in mind that index
+position starts from <strong>1</strong> in R. In the below example, we show how to
+extract the first 3 observations of <code>n_pages</code> column but instead of using
+the column name, we use the column position.</p>
 <pre class="r"><code>head(ecom[6], 3)</code></pre>
 <pre><code>## # A tibble: 3 x 1
 ##   n_pages
@@ -308,7 +326,10 @@ email %&gt;%
 </div>
 <div id="extract-column-as-vector" class="section level4">
 <h4>Extract Column (as vector)</h4>
-<p>One important differentiator between <code>[</code> and <code>[[</code> is that <code>[[</code> will return a atomic vector and not a <code>data.frame</code>. <code>$</code> will also return a atomic vector. In magrittr, we can use <code>use_series()</code> in place of <code>$</code>.</p>
+<p>One important differentiator between <code>[</code> and <code>[[</code> is that <code>[[</code> will
+return a atomic vector and not a <code>data.frame</code>. <code>$</code> will also return
+a atomic vector. In magrittr, we can use <code>use_series()</code> in place of
+<code>$</code>.</p>
 <pre class="r"><code>head(ecom$n_pages)</code></pre>
 <pre><code>## [1]  1  1  1 18  1  5</code></pre>
 <pre class="r"><code>ecom %&gt;%
@@ -318,7 +339,8 @@ email %&gt;%
 </div>
 <div id="extract-list-element-by-name" class="section level4">
 <h4>Extract List Element By Name</h4>
-<p>To extract elements of a list, we can use <code>extract2()</code>. If is an alternative for <code>[[</code>.</p>
+<p>To extract elements of a list, we can use <code>extract2()</code>. If is an
+alternative for <code>[[</code>.</p>
 <pre class="r"><code>mt &lt;- as.list(mtcars)
 
 mt[[&#39;mpg&#39;]]</code></pre>
@@ -363,7 +385,8 @@ mt$mpg</code></pre>
 </div>
 <div id="arithmetic-operations" class="section level2">
 <h2>Arithmetic Operations</h2>
-<p>magrittr offer alternatives for arithemtic operations as well. We will look at a few examples below.</p>
+<p>magrittr offer alternatives for arithemtic operations as well. We will look at
+a few examples below.</p>
 <ul>
 <li><code>add()</code></li>
 <li><code>subtract()</code></li>
@@ -413,7 +436,8 @@ mt$mpg</code></pre>
 </div>
 <div id="logical-operators" class="section level2">
 <h2>Logical Operators</h2>
-<p>There are alternatives for logical operators as well. We will look at a few examples below.</p>
+<p>There are alternatives for logical operators as well. We will look at
+a few examples below.</p>
 <ul>
 <li><code>and()</code></li>
 <li><code>or()</code></li>
