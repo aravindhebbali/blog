@@ -46,12 +46,86 @@ library(dplyr)library(readr)options(tibble.</description>
     </item>
     
     <item>
+      <title>Hacking strings with stringr</title>
+      <link>/2017/12/25/hacking-strings-with-stringr/</link>
+      <pubDate>Mon, 25 Dec 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/2017/12/25/hacking-strings-with-stringr/</guid>
+      <description>IntroductionIn this post, we will learn to work with string data in R using stringr. As we did in the other posts, we will use a case study to explore the various features of the stringr package. Let us begin by installing and loading stringr and a set of other pacakges we will be using.
+Libraries, Code &amp;amp; DataWe will use stringr, dplyr, magrittr, tibble, purrr and readr packages.</description>
+    </item>
+    
+    <item>
+      <title>Importing Data into R - Part 2</title>
+      <link>/2017/12/25/importing-data-into-r-part-2/</link>
+      <pubDate>Mon, 25 Dec 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/2017/12/25/importing-data-into-r-part-2/</guid>
+      <description>IntroductionThis is the second post in the series Importing Data into R. In the previous post, we explored reading data from flat/delimited files. In this post, we will:
+list sheets in an excel fileread data from an excel sheetread specific cells from an excel sheetread specific rowsread specific columnsread data from - SAS - SPSS - STATALibraries, Data &amp;amp; CodeWe will use the readxl package.</description>
+    </item>
+    
+    <item>
+      <title>Importing Data into R - Part 3</title>
+      <link>/2017/12/25/importing-data-into-r-part-3/</link>
+      <pubDate>Mon, 25 Dec 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/2017/12/25/importing-data-into-r-part-3/</guid>
+      <description>IntroductionThis is the third post in the series Importing Data into R. You can find the link to the previous posts below:
+Importing Data into R - Part 1Importing Data into R - Part 2In the previous post, we explored reading data from excel spreadsheets and files from other statistical softwares such as SAS, SPSS and STATA. In this post, we will learn to read data from:</description>
+    </item>
+    
+    <item>
       <title>Introduction to tibbles</title>
       <link>/2017/12/25/introduction-to-tibbles/</link>
       <pubDate>Mon, 25 Dec 2017 00:00:00 +0000</pubDate>
       
       <guid>/2017/12/25/introduction-to-tibbles/</guid>
       <description>IntroductionA tibble, or tbl_df, is a modern reimagining of the data.frame, keeping what time has proven to be effective, and throwing out what is not. Tibbles are data.frames that are lazy and surly: they do less (i.e. they don’t change variable names or types, and don’t do partial matching) and complain more (e.g. when a variable does not exist). This forces you to confront problems earlier, typically leading to cleaner, more expressive code.</description>
+    </item>
+    
+    <item>
+      <title>Readable Code with Pipes</title>
+      <link>/2017/12/25/readable-code-with-pipes/</link>
+      <pubDate>Mon, 25 Dec 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/2017/12/25/readable-code-with-pipes/</guid>
+      <description>IntroductionWhen you are dealing with a sequence of multiple operations, R code can get a bit cramped and not so easy on the eyes. The magrittr package by Stefan Milton Bache provides pipes enabling us to write R code that is readable.
+especially useful when you have nested functionssimilar in spirit to javascript’s method chainingfunctions taking multiple arguments can be confusing and messy to readwith magrittr, you program from left to rightPipesR being a functional language, code contains a lot of parentheses.</description>
+    </item>
+    
+    <item>
+      <title>Working with Categorical Data using forcats</title>
+      <link>/2017/12/25/working-with-categorical-data-using-forcats/</link>
+      <pubDate>Mon, 25 Dec 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/2017/12/25/working-with-categorical-data-using-forcats/</guid>
+      <description>IntroductionIn this post, we will learn to work with categorical/qualitative data in R using forcats. Let us begin by installing and loading forcats and a set of other pacakges we will be using.
+Libraries &amp;amp; CodeWe will use the following packages:
+forcatsdplyrmagrittrggplot2tibbepurrrand readrThe codes from here.
+library(forcats)library(tibble)library(magrittr)library(purrr)library(dplyr)library(ggplot2)library(readr)Case StudyWe will use a case study to explore the various features of the forcats package.</description>
+    </item>
+    
+    <item>
+      <title>Working with Dates in R </title>
+      <link>/2017/12/25/working-with-dates-in-r/</link>
+      <pubDate>Mon, 25 Dec 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/2017/12/25/working-with-dates-in-r/</guid>
+      <description>IntroductionIn this post, we will learn to work with date/time data in R using lubridate, an R package that makes it easy to work with dates and time. Let us begin by installing and loading the pacakge.
+Libraries, Code &amp;amp; DataWe will use the following packages:
+lubridatedplyrmagrittrreadrThe data sets can be downloaded from here and the codes from here.
+library(lubridate)library(dplyr)library(magrittr)library(readr)Quic IntroOriginLet us look at the origin for the numbering system used for date and time calculations in R.</description>
+    </item>
+    
+    <item>
+      <title>Importing Data into R - Part 1</title>
+      <link>/2017/12/24/a-complete-guide-to-importing-data-into-r-part-1/</link>
+      <pubDate>Sun, 24 Dec 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/2017/12/24/a-complete-guide-to-importing-data-into-r-part-1/</guid>
+      <description>IntroductionThis is the first post in the series Importing Data into R. Before we get started, let me talk a bit about what we will learn in this series. I am planning to write 3 posts in which we will explore how to read data from:
+flat/delimited files (.csv, .txt, .tsv)excel spreadsheets (.xls, .xlsx)statistical softwaresJSON/XMLThere are other ways to get data into R such as databases, APIs etc.</description>
     </item>
     
     <item>

@@ -21,14 +21,5 @@
 flat/delimited files (.csv, .txt, .tsv)excel spreadsheets (.xls, .xlsx)statistical softwaresJSON/XMLThere are other ways to get data into R such as databases, APIs etc.</description>
     </item>
     
-    <item>
-      <title>Welcome</title>
-      <link>/2017/12/20/welcome/</link>
-      <pubDate>Wed, 20 Dec 2017 21:13:14 -0500</pubDate>
-      
-      <guid>/2017/12/20/welcome/</guid>
-      <description>Welcome to my personal blog. Here, you can find posts related to R, Statistics &amp;amp; Economics. This blog is built using blogdown and published on Netlify. I am currently in porting all my old blog posts to this new site and it should be completed by the end of 2017. Thank you for visiting my blog.</description>
-    </item>
-    
   </channel>
 </rss>
