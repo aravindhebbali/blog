@@ -18,8 +18,9 @@
       
       <guid>/2017/12/25/working-with-dates-in-r/</guid>
       <description>IntroductionIn this post, we will learn to work with date/time data in R using lubridate, an R package that makes it easy to work with dates and time. Let us begin by installing and loading the pacakge.
-Libraries, Code &amp;amp; DataWe will use lubridate, dplyr, magrittr and readr packages. The data sets can be downloaded from here and the codes from here.
-library(lubridate)library(dplyr)library(magrittr)library(readr)Quic IntroOriginlubridate::origin## [1] &amp;quot;1970-01-01 UTC&amp;quot;Current Date/Timenow()## [1] &amp;quot;2017-12-25 22:24:44 IST&amp;quot;today()## [1] &amp;quot;2017-12-25&amp;quot;am(now()) ## [1] FALSEpm(now())## [1] TRUECase StudyWe will use the functions in the lubridate package to answer a few questions we have about the transact data.</description>
+Libraries, Code &amp;amp; DataWe will use the following packages:
+lubridatedplyrmagrittrreadrThe data sets can be downloaded from here and the codes from here.
+library(lubridate)library(dplyr)library(magrittr)library(readr)Quic IntroOriginLet us look at the origin for the numbering system used for date and time calculations in R.</description>
     </item>
     
   </channel>
