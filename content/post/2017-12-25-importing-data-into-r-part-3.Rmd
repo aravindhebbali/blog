@@ -1,0 +1,205 @@
+---
+title: Importing Data into R - Part 3
+author: Aravind Hebbali
+date: '2017-12-25'
+slug: importing-data-into-r-part-3
+categories:
+  - data wrangling
+tags:
+  - import
+  - xml
+  - json
+---
+
+## Introduction
+
+This is the third post in the series **Importing Data into R**. You can find the link to the previous posts below:
+
+- [Importing Data into R - Part 1]()
+- [Importing Data into R - Part 2]()
+
+In the previous post, we explored reading data from excel spreadsheets and files from other statistical softwares such as SAS, SPSS and STATA. In this post, we will learn to read data from:
+
+- JSON
+- and XML
+
+## Libraries, Data & Code
+
+We will use the [xml2](https://cran.r-project.org/package=xml2) and [XML](https://cran.r-project.org/package=XML) package for reading data from XML files and [jsonlite](https://cran.r-project.org/package=jsonlite) package to read data from JSON files. The data sets can be downloaded from [here](https://github.com/rsquaredacademy/datasets) and the codes from [here](https://gist.github.com/aravindhebbali/65dc2af57b8eda098f2b878095c5aaa4).
+
+```{r lib, message=FALSE}
+library(jsonlite)
+library(xml2)
+library(XML)
+library(tibble)
+library(purrr)
+library(magrittr)
+library(stringr)
+```
+
+## Read Data
+
+The first step is to read XML data into R using `read_xml`. Let us
+read the data from the **books.xml** file.
+
+```{r imp15}
+books <- read_xml('books.xml')
+```
+
+## Name
+
+Returns the name of an element. Here it returns the name of the 
+root node. It can also be used to modify the name of an element.
+
+```{r imp16}
+xml_name(books)
+```
+
+## Child Node
+
+Returns nodeset but only the elements and not their contents.
+
+```{r imp17}
+books %>% xml_children
+books %>% xml_children %>% xml_contents
+books %>% xml_children %>% xml_length
+```
+
+## Child Node
+
+View the contents of a particular child node. Specify the node
+using `search`.
+
+```{r imp18}
+xml_child(books)
+xml_child(books, search = 2)
+```
+
+## Contents
+
+```{r imp19}
+xml_contents(books)
+```
+
+## Structure
+
+```{r imp21}
+xml_structure(books)
+```
+
+## Length
+
+```{r imp22}
+xml_length(books)
+```
+
+## Root Node
+
+```{r imp23}
+xml_root(books)
+```
+
+## Parent Node
+
+```{r imp51}
+books %>%
+    xml_child(search = 2) %>%
+    xml_parent
+```
+
+## Attributes
+
+```{r imp24}
+xml_find_all(books, './/book') %>% 
+    map_chr(xml_attrs)
+
+xml_find_all(books, './/book') %>% 
+  xml_attr(attr = "id")
+```
+
+## Book Author
+
+```{r imp25}
+xml_find_all(books, './/author') %>%
+  xml_text()
+```
+
+## Book Title
+
+```{r imp26}
+xml_find_all(books, './/title') %>%
+  xml_text()
+```
+
+## Book Genre
+
+Let us find the genre of the books and return them as text.
+
+```{r imp27}
+xml_find_all(books, './/genre') %>%
+  xml_text()
+```
+
+## Book Price
+
+Let us find the price of the books and return them as numbers.
+
+```{r imp28}
+books %>%
+    xml_find_all(xpath = './/price')
+
+books %>%
+    xml_find_all(xpath = './/price') %>%
+    xml_double
+```
+
+## Publishing Date
+
+Let us find the publishing date of each book.
+
+```{r imp29}
+xml_find_all(books, './/publish_date') %>%
+  xml_text()
+```
+
+## Description
+
+Let us find the description of each book.
+
+```{r imp30}
+xml_find_all(books, './/description') %>%
+  xml_text() %>%
+  str_replace_all("[\n]", "") %>%
+  str_replace_all(pattern = "      ", " ") %>%
+  str_replace_all(pattern = "  ", " ")
+```
+
+## tibble
+
+```{r imp31}
+book <- tibble::tibble(
+  author = xml_find_all(books, './/author') %>%
+    xml_text(),
+  title = xml_find_all(books, './/title') %>%
+    xml_text(),
+  genre = xml_find_all(books, './/genre') %>%
+    xml_text(),
+  price = xml_find_all(books, './/price') %>%
+    xml_double(),
+  published = xml_find_all(books, './/publish_date') %>%
+    xml_text(),
+  description = xml_find_all(books, './/description') %>%
+    xml_text() %>%
+    str_replace_all("[\r\n]", "") %>%
+    str_replace_all(pattern = "      ", " ") %>%
+    str_replace_all(pattern = "  ", " ")
+)
+```
+
+## tibble
+
+```{r imp32}
+book
+```
+
+
