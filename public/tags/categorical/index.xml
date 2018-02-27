@@ -18,9 +18,9 @@
       
       <guid>/2017/12/25/working-with-categorical-data-using-forcats/</guid>
       <description>IntroductionIn this post, we will learn to work with categorical/qualitative data in R using forcats. Let us begin by installing and loading forcats and a set of other pacakges we will be using.
-
-Libraries, Code &amp;amp; DataWe will use forcats, dplyr, magrittr, ggplot2, tibbe, purrr and readr packages. The data sets can be downloaded from here and the codes from here.
-library(forcats)library(tibble)library(magrittr)library(purrr)library(dplyr)library(ggplot2)library(readr)</description>
+Libraries &amp;amp; CodeWe will use the following packages:
+forcatsdplyrmagrittrggplot2tibbepurrrand readrThe codes from here.
+library(forcats)library(tibble)library(magrittr)library(purrr)library(dplyr)library(ggplot2)library(readr)Case StudyWe will use a case study to explore the various features of the forcats package.</description>
     </item>
     
   </channel>
