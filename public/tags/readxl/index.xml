@@ -18,7 +18,7 @@
       
       <guid>/2017/12/25/importing-data-into-r-part-2/</guid>
       <description>IntroductionThis is the second post in the series Importing Data into R. In the previous post, we explored reading data from flat/delimited files. In this post, we will:
-list sheets in an excel fileread data from an excel sheetread specific cells from an excel sheetread specific rowsread specific columnsread data from - SAS - SPSS - STATALibraries, Data &amp;amp; CodeWe will use the readxl package.</description>
+list sheets in an excel fileread data from an excel sheetread specific cells from an excel sheetread specific rowsread specific columnsread data from- SAS- SPSS- STATALibraries, Data &amp;amp; CodeWe will use the readxl package.</description>
     </item>
     
   </channel>

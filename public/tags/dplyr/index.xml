@@ -17,9 +17,9 @@
       <pubDate>Mon, 25 Dec 2017 00:00:00 +0000</pubDate>
       
       <guid>/2017/12/25/data-wrangling-with-dplyr-part-1/</guid>
-      <description>IntroductionAccording to a survey by CrowdFlower, data scientists spend most of their time cleaning and manipulating data rather than mining or modeling them for insights. As such, it becomes important to have tools that make data manipulation faster and easier. In today’s post, we introduce you to dplyr, a grammar of data manipulation.
+      <description>IntroductionAccording to a survey by CrowdFlower, data scientists spend most of theirtime cleaning and manipulating data rather than mining or modeling them forinsights. As such, it becomes important to have tools that make datamanipulation faster and easier. In today’s post, we introduce you todplyr, a grammar of data manipulation.
 Libraries, Code &amp;amp; DataWe will use the following libraries:
-dplyrand readrThe data sets can be downloaded from here and the codes from here.</description>
+dplyrand readrThe data sets can be downloaded from hereand the codes from here.</description>
     </item>
     
     <item>
@@ -28,9 +28,9 @@
       <pubDate>Mon, 25 Dec 2017 00:00:00 +0000</pubDate>
       
       <guid>/2017/12/25/data-wrangling-with-dplyr-part-2/</guid>
-      <description>IntroductionIn the previous post, we learnt about dplyr verbs and used them to compute average order value for an online retail company data. In this post, we will learn to combine tables using different *_join functions provided in dplyr.
+      <description>IntroductionIn the previous post,we learnt about dplyr verbs and used them to compute average order value for anonline retail company data. In this post, we will learn to combine tables usingdifferent *_join functions provided in dplyr.
 Libraries, Code &amp;amp; DataWe will use the following packages:
-dplyrreadrThe data sets can be downloaded from here and the codes from here.
+dplyrreadrThe data sets can be downloaded from hereand the codes from here.
 library(dplyr)library(readr)options(tibble.</description>
     </item>
     
@@ -40,9 +40,9 @@ library(dplyr)library(readr)options(tibble.</description>
       <pubDate>Mon, 25 Dec 2017 00:00:00 +0000</pubDate>
       
       <guid>/2017/12/25/data-wrangling-with-dplyr-part-3/</guid>
-      <description>IntroductionIn the previous post, we learnt to combine tables using dplyr. In this post, we will explore a set of helper functions in order to:
+      <description>IntroductionIn the previous post,we learnt to combine tables using dplyr. In this post, we will explore a set ofhelper functions in order to:
 extract unique rowsrename columnssample dataextract columnsslice rowsarrange rowscompare tablesextract/mutate data using predicate functionscount observations for different levels of a variableLibraries, Code &amp;amp; DataWe will use the following packages:
-dplyrreadrThe data sets can be downloaded from here and the codes from here.</description>
+dplyrreadrThe data sets can be downloaded from hereand the codes from here.</description>
     </item>
     
   </channel>

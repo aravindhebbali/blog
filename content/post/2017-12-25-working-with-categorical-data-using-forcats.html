@@ -145,7 +145,8 @@ refer_summary</code></pre>
   ggplot() +
   geom_point(aes(page, referrer))</code></pre>
 <p><img src="/post/2017-12-25-working-with-categorical-data-using-forcats_files/figure-html/cat10-1.png" width="576" style="display: block; margin: auto;" /></p>
-<p>Use <code>fct_reorder</code> to reorder the referrer types by the average number of pages visited.</p>
+<p>Use <code>fct_reorder</code> to reorder the referrer types by the average number of pages
+visited.</p>
 <pre class="r"><code>refer_summary %&gt;%
   ggplot() +
   geom_point(aes(page, fct_reorder(referrer, page)))</code></pre>
@@ -171,7 +172,8 @@ refer_summary</code></pre>
   fct_unique</code></pre>
 <pre><code>## [1] bing   direct social yahoo  google
 ## Levels: bing direct social yahoo google</code></pre>
-<p>Since we want to plot the referrers in descending order of frequency, we will use <code>fct_infreq()</code> to reorder by frequency.</p>
+<p>Since we want to plot the referrers in descending order of frequency, we will
+use <code>fct_infreq()</code> to reorder by frequency.</p>
 <pre class="r"><code>ecom %&gt;%
   pull(referrer) %&gt;%
   fct_infreq %&gt;%
@@ -196,14 +198,16 @@ refer_summary</code></pre>
   fct_unique</code></pre>
 <pre><code>## [1] bing   direct social yahoo  google
 ## Levels: bing direct social yahoo google</code></pre>
-<p>Since we want to plot the referrers in ascending order of frequency, we will use <code>fct_rev()</code> to reverse the order.</p>
+<p>Since we want to plot the referrers in ascending order of frequency, we will
+use <code>fct_rev()</code> to reverse the order.</p>
 <pre class="r"><code>ecom %&gt;%
   pull(referrer) %&gt;%
   fct_rev %&gt;%
   fct_unique</code></pre>
 <pre><code>## [1] google yahoo  social direct bing  
 ## Levels: google yahoo social direct bing</code></pre>
-<p>Let us reorder the referrers by frequency first and then reverse the order before plotting their frequencies.</p>
+<p>Let us reorder the referrers by frequency first and then reverse the order
+before plotting their frequencies.</p>
 <pre class="r"><code>ecom %&gt;%
   mutate(
     ref = referrer %&gt;% 
@@ -284,7 +288,8 @@ traffic</code></pre>
 </div>
 <div id="lump-infrequent-referrer-types" class="section level2">
 <h2>Lump Infrequent Referrer Types</h2>
-<p>Let us group together referrer types that drive low traffic to the website. Use <code>fct_lump()</code> to lump together categories.</p>
+<p>Let us group together referrer types that drive low traffic to the website.
+Use <code>fct_lump()</code> to lump together categories.</p>
 <pre class="r"><code>traffic %&gt;%
   pull(traffics) %&gt;% 
   fct_count
@@ -313,7 +318,8 @@ traffic %&gt;%
 </div>
 <div id="retain-top-3-referrers" class="section level2">
 <h2>Retain top 3 referrers</h2>
-<p>We want to retain the top 3 referrers and combine the rest of them into a single category.</p>
+<p>We want to retain the top 3 referrers and combine the rest of them into a
+single category.</p>
 <pre><code>## # A tibble: 9 x 2
 ##   f              n
 ##   &lt;fct&gt;      &lt;int&gt;
@@ -326,7 +332,8 @@ traffic %&gt;%
 ## 7 instagram   3907
 ## 8 unknown     2657
 ## 9 direct      1350</code></pre>
-<p>Use <code>fct_lump()</code> and set the argument <code>n</code> to <code>3</code> indicating we want to retain top 3 categories and combine the rest.</p>
+<p>Use <code>fct_lump()</code> and set the argument <code>n</code> to <code>3</code> indicating we want to
+retain top 3 categories and combine the rest.</p>
 <pre class="r"><code>traffic %&gt;% 
   pull(traffics) %&gt;% 
   fct_lump(n = 3) %&gt;% 
@@ -350,7 +357,10 @@ traffic %&gt;%
 ## 7 instagram   3907    8.10
 ## 8 twitter     4521    9.37
 ## 9 unknown     2657    5.51</code></pre>
-<p>Since we are looking at proportion of traffic driven to the website and not the actual numbers, we use the <code>prop</code> argument and set it to <code>0.1</code>, indicating that we want to retain only those categories which have a proportion of more than 10% and combine the rest.</p>
+<p>Since we are looking at proportion of traffic driven to the website and
+not the actual numbers, we use the <code>prop</code> argument and set it to <code>0.1</code>,
+indicating that we want to retain only those categories which have a
+proportion of more than 10% and combine the rest.</p>
 <pre class="r"><code>traffic %&gt;%
   pull(traffics) %&gt;% 
   fct_lump(prop = 0.1) %&gt;% 
@@ -361,7 +371,8 @@ traffic %&gt;%
 </div>
 <div id="retain-3-referrer-types-with-lowest-traffic" class="section level2">
 <h2>Retain 3 Referrer Types with lowest traffic</h2>
-<p>What if we want to retain 3 referrers which drive the lowest traffic to the website and combine the rest?</p>
+<p>What if we want to retain 3 referrers which drive the lowest traffic
+to the website and combine the rest?</p>
 <pre><code>## # A tibble: 9 x 2
 ##   f              n
 ##   &lt;fct&gt;      &lt;int&gt;
@@ -385,7 +396,8 @@ traffic %&gt;%
 </div>
 <div id="retain-3-referrer-types-with-less-than-10-traffic" class="section level2">
 <h2>Retain 3 Referrer Types with less than 10% traffic</h2>
-<p>Let us see how to retain referrers that drive less than 10 % traffic to the website and combine the rest into a single group.</p>
+<p>Let us see how to retain referrers that drive less than 10 % traffic to
+the website and combine the rest into a single group.</p>
 <pre><code>## # A tibble: 9 x 3
 ##   f              n percent
 ##   &lt;fct&gt;      &lt;int&gt;   &lt;dbl&gt;
