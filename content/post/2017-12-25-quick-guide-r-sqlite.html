@@ -2,14 +2,13 @@
 title: 'Quick Guide: R & SQLite'
 date: '2017-12-25'
 slug: quick-guide-r-sqlite
-topics:
+categories:
   - data-wrangling
 tags:
   - sqlite
   - rsqlite
   - database
   - import
-draft: yes
 ---
 
 
@@ -278,11 +277,11 @@ DBI::dbWriteTable(con, &quot;trial&quot;, trial2, overwrite = TRUE)</code></pre>
 <hr>
 <pre class="r"><code>DBI::dbGetQuery(con, &quot;select * from trial limit 5&quot;)</code></pre>
 <pre><code>##    x y
-## 1 82 k
-## 2  5 l
-## 3 31 m
-## 4 99 n
-## 5 61 o</code></pre>
+## 1 92 k
+## 2 14 l
+## 3 39 m
+## 4  9 n
+## 5  3 o</code></pre>
 <p><br></p>
 </div>
 <div id="append-data-to-the-table-in-the-database" class="section level4">
@@ -299,26 +298,26 @@ DBI::dbWriteTable(con, &quot;trial&quot;, trial3, append = TRUE)</code></pre>
 <hr>
 <pre class="r"><code>DBI::dbReadTable(con, &quot;trial&quot;)</code></pre>
 <pre><code>##     x y
-## 1  82 k
-## 2   5 l
-## 3  31 m
-## 4  99 n
-## 5  61 o
-## 6  28 p
-## 7  73 q
-## 8  39 r
-## 9  23 s
-## 10  9 t
-## 11 63 e
-## 12 35 f
-## 13 92 g
-## 14 19 h
-## 15 98 i
-## 16 11 j
-## 17 39 k
-## 18 46 l
-## 19 43 m
-## 20 80 n</code></pre>
+## 1  92 k
+## 2  14 l
+## 3  39 m
+## 4   9 n
+## 5   3 o
+## 6  10 p
+## 7  56 q
+## 8  41 r
+## 9  80 s
+## 10  1 t
+## 11 38 e
+## 12 50 f
+## 13 68 g
+## 14 47 h
+## 15 10 i
+## 16 25 j
+## 17 51 k
+## 18 61 l
+## 19 66 m
+## 20 73 n</code></pre>
 <p><br></p>
 </div>
 </div>

@@ -3,7 +3,7 @@ title: SQL for Data Science - Part 2
 author: ''
 date: '2017-12-25'
 slug: sql-for-data-science-part-2
-topics:
+categories:
   - database
 tags:
   - sql

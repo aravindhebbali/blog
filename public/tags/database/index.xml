@@ -22,14 +22,5 @@
 connect to a SQLite database from Rdisplay database informationlist tables in the databasequery dataread entire tableread few rowsread data in batchescreate table in databaseoverwrite table in databaseappend data to table in databaseremove table from databasegenerate SQL queryclose database connection</description>
     </item>
     
-    <item>
-      <title>RMySQL for Beginners</title>
-      <link>/2017/12/25/rmysql-for-beginners/</link>
-      <pubDate>Mon, 25 Dec 2017 00:00:00 +0000</pubDate>
-      
-      <guid>/2017/12/25/rmysql-for-beginners/</guid>
-      <description>ObjectivesInstall and load RMySQL packageConnect to a MySQL database from RDisplay database informationList tables in the databaseCreate new tableImport data into R for analysisExport data from R into MySQLRemove tables and disconnectIntroductionIn real world, data is often stored in relational databases such as MySQL and an analyst is required to extract the data in order to perform any type of analysis.</description>
-    </item>
-    
   </channel>
 </rss>

@@ -2,13 +2,12 @@
 title: RMySQL for Beginners
 date: '2017-12-25'
 slug: rmysql-for-beginners
-tags:
+categories:
   - mysql
   - rmysql
   - database
 topics:
   - data-wrangling
-draft: yes
 ---
 
 ### Objectives

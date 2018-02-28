@@ -2,14 +2,13 @@
 title: 'Quick Guide: R & SQLite'
 date: '2017-12-25'
 slug: quick-guide-r-sqlite
-topics:
+categories:
   - data-wrangling
 tags:
   - sqlite
   - rsqlite
   - database
   - import
-draft: yes
 ---
 
 [![Twitter](http://i.imgur.com/tXSoThF.png)](https://twitter.com/login?redirect_after_login=%2Fhome%3Fstatus)
