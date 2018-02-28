@@ -63,7 +63,7 @@
 
   <article class="article">
     
-    <span class="article-duration">6 min read</span>
+    <span class="article-duration">8 min read</span>
     
 
     <h1 class="article-title">Quick Guide: R &amp; SQLite</h1>
@@ -77,7 +77,6 @@
 <a href="https://www.facebook.com/sharer/sharer.php?u="><img src="http://i.imgur.com/P3YfQoD.png" alt="Facebook" /></a></p>
 <div id="introduction" class="section level3">
 <h3>Introduction</h3>
-<hr>
 <p>This is the first post in the series <strong>R &amp; Databases</strong>. You can find the links to the other two posts of this series below:</p>
 <ul>
 <li><a href="https://rsquaredacademy.github.io/blog/post/data-wrangling-with-dbplyr">Data Wrangling with dbplyr</a></li>
@@ -102,60 +101,62 @@
 <li>generate SQL query</li>
 <li>close database connection</li>
 </ul>
-<p><br></p>
 </div>
 <div id="libraries-code-data" class="section level3">
 <h3>Libraries, Code &amp; Data</h3>
-<hr>
 <p>We will use the following libraries in this post:</p>
 <ul>
 <li><a href="http://rstats-db.github.io/DBI/">DBI</a></li>
 <li><a href="https://rstats-db.github.io/RSQLite/">RSQLite</a></li>
 </ul>
 <p>All the data sets used in this post can be found <a href="https://github.com/rsquaredacademy/datasets">here</a> and code can be downloaded from <a href="https://gist.github.com/rsquaredacademy/7d99eb52a0e44cd1f87c8689cf1a307d">here</a>.</p>
-<p><br></p>
 <div id="connection" class="section level4">
 <h4>Connection</h4>
-<hr>
-<pre class="r"><code>con &lt;- DBI::dbConnect(RSQLite::SQLite(), &quot;:memory:&quot;)</code></pre>
-<p><br></p>
+<p>The first step is to connect to a database. In this post, we will connect to an in memory
+SQLite databse using <code>dbConnect()</code>.</p>
+<pre class="r"><code>con &lt;- dbConnect(RSQLite::SQLite(), &quot;:memory:&quot;)</code></pre>
 </div>
 <div id="connection-summary" class="section level4">
 <h4>Connection Summary</h4>
-<hr>
+<p>We can get the more information about the connection using <code>summary()</code>.</p>
 <pre class="r"><code>summary(con)</code></pre>
 <pre><code>##           Length            Class             Mode 
 ##                1 SQLiteConnection               S4</code></pre>
-<p><br></p>
 </div>
 <div id="list-tables" class="section level4">
 <h4>List Tables</h4>
-<hr>
+<p>Now that we are connected to a database, let us list all the tables present in it using
+<code>dbListTables()</code>.</p>
 <pre class="r"><code>dbListTables(con)</code></pre>
 <pre><code>## [1] &quot;ecom&quot;         &quot;sqlite_stat1&quot; &quot;sqlite_stat4&quot;</code></pre>
-<p><br></p>
 </div>
 <div id="list-fields" class="section level4">
 <h4>List Fields</h4>
-<hr>
-<pre class="r"><code>DBI::dbListFields(con, &quot;ecom&quot;)</code></pre>
+<p>Time to explore the <code>ecom</code> table in the database. Use <code>dbListFields()</code> to list all
+the fields in the table.</p>
+<pre class="r"><code>dbListFields(con, &quot;ecom&quot;)</code></pre>
 <pre><code>## [1] &quot;referrer&quot; &quot;device&quot;   &quot;bouncers&quot; &quot;n_visit&quot;  &quot;n_pages&quot;  &quot;duration&quot;</code></pre>
-<p><br></p>
 </div>
 </div>
 <div id="querying-data" class="section level3">
 <h3>Querying Data</h3>
-<hr>
+<p>The main objectives of connecting to a database are to:</p>
 <ul>
-<li><code>dbReadTable()</code>: read entire table</li>
-<li><code>dbGetQuery()</code>: read few rows</li>
-<li><code>dbSendQuery()</code> &amp; <code>dbFetch()</code>: read data in batches</li>
+<li>query data from the tables already present</li>
+<li>create new tables</li>
+<li>overwrite existing tables</li>
+<li>delete existing tables</li>
 </ul>
-<p><br></p>
+<p>Let us begin with querying data. We can do this in the following ways:</p>
+<ul>
+<li>read an entire table at once</li>
+<li>read few rows from a table</li>
+<li>read data in batches</li>
+</ul>
 <div id="entire-table" class="section level4">
 <h4>Entire Table</h4>
-<hr>
-<pre class="r"><code>DBI::dbReadTable(con, &#39;ecom&#39;)</code></pre>
+<p>We can read an entire table from a database using <code>dbReadTable()</code>.</p>
+<pre class="r"><code>dbReadTable(con, &#39;ecom&#39;)</code></pre>
 <pre><code>##    referrer device bouncers n_visit n_pages duration
 ## 1    google laptop     true      10       1      693
 ## 2     yahoo tablet     true       9       1      459
@@ -177,12 +178,14 @@
 ## 18   google tablet     true       7       1      406
 ## 19   social tablet    false       7      10      290
 ## 20   social tablet    false       2       1       28</code></pre>
-<p><br></p>
+<p>In some cases, we may not need the entire table but only a specific number of rows.
+Use <code>dbGetQuery()</code> and supply a SQL statement specifying the number of rows of
+data to be read from the table. In the below example, we read ten rows of data from
+the <code>ecom</code> table.</p>
 </div>
 <div id="few-rows" class="section level4">
 <h4>Few Rows</h4>
-<hr>
-<pre class="r"><code>DBI::dbGetQuery(con, &quot;select * from ecom limit 10&quot;)</code></pre>
+<pre class="r"><code>dbGetQuery(con, &quot;select * from ecom limit 10&quot;)</code></pre>
 <pre><code>##    referrer device bouncers n_visit n_pages duration
 ## 1    google laptop     true      10       1      693
 ## 2     yahoo tablet     true       9       1      459
@@ -194,13 +197,14 @@
 ## 8    direct mobile     true      10       1      908
 ## 9      bing mobile    false       3      19      209
 ## 10   google mobile     true       6       1      208</code></pre>
-<p><br></p>
+<p>In case of very large table, we can read data in batches using <code>dbSendQuery()</code> and
+<code>dbFetch()</code>. We can mention the number of rows of data to be read while fetching the
+data using the query generated by <code>dbGetQuery()</code>.</p>
 </div>
 <div id="read-data-in-batches" class="section level4">
 <h4>Read Data in Batches</h4>
-<hr>
-<pre class="r"><code>query &lt;- DBI::dbSendQuery(con, &#39;select * from ecom&#39;)
-result &lt;- DBI::dbFetch(query, n = 15)
+<pre class="r"><code>query &lt;- dbSendQuery(con, &#39;select * from ecom&#39;)
+result &lt;- dbFetch(query, n = 15)
 result</code></pre>
 <pre><code>##    referrer device bouncers n_visit n_pages duration
 ## 1    google laptop     true      10       1      693
@@ -218,23 +222,27 @@ result</code></pre>
 ## 13   direct mobile    false       9      14      406
 ## 14    yahoo tablet    false       5       8       80
 ## 15    yahoo mobile    false       7       1       19</code></pre>
-<p><br></p>
 </div>
 </div>
 <div id="query" class="section level3">
 <h3>Query</h3>
-<p><br></p>
 <div id="query-status" class="section level4">
 <h4>Query Status</h4>
-<hr>
-<pre class="r"><code>DBI::dbHasCompleted(query)</code></pre>
+<p>To know the status of a query, use <code>dbHasCompleted()</code>. It is very useful in
+cases of queries that might take a long time to complete.</p>
+<pre class="r"><code>dbHasCompleted(query)</code></pre>
 <pre><code>## [1] FALSE</code></pre>
-<p><br></p>
 </div>
 <div id="query-info" class="section level4">
 <h4>Query Info</h4>
-<hr>
-<pre class="r"><code>DBI::dbGetInfo(query)</code></pre>
+<p><code>dbGetInfo()</code> will return the following:</p>
+<ul>
+<li>the sql staement</li>
+<li>number of rows fetched</li>
+<li>number of rows modified/affected</li>
+<li>status of the query</li>
+</ul>
+<pre class="r"><code>dbGetInfo(query)</code></pre>
 <pre><code>## $statement
 ## [1] &quot;select * from ecom&quot;
 ## 
@@ -246,33 +254,29 @@ result</code></pre>
 ## 
 ## $has.completed
 ## [1] FALSE</code></pre>
-<p><br></p>
 </div>
 <div id="latest-query" class="section level4">
 <h4>Latest Query</h4>
-<hr>
-<pre class="r"><code>DBI::dbGetStatement(query)</code></pre>
+<p>To get the latest query, use <code>dbGetStatement()</code>.</p>
+<pre class="r"><code>dbGetStatement(query)</code></pre>
 <pre><code>## [1] &quot;select * from ecom&quot;</code></pre>
-<p><br></p>
 </div>
 <div id="rows-fetched" class="section level4">
 <h4>Rows Fetched</h4>
-<hr>
-<pre class="r"><code>DBI::dbGetRowCount(query)</code></pre>
+<p>To check the number of rows of data returned by a query, use <code>dbGetRowCount()</code>.</p>
+<pre class="r"><code>dbGetRowCount(query)</code></pre>
 <pre><code>## [1] 15</code></pre>
-<p><br></p>
 </div>
 <div id="rows-affected" class="section level4">
 <h4>Rows Affected</h4>
-<hr>
-<pre class="r"><code>DBI::dbGetRowsAffected(query)</code></pre>
+<p>To know the number of rows modified or affected in the table, use <code>dbGetRowsAffected()</code>.</p>
+<pre class="r"><code>dbGetRowsAffected(query)</code></pre>
 <pre><code>## [1] 0</code></pre>
-<p><br></p>
 </div>
 <div id="column-info" class="section level4">
 <h4>Column Info</h4>
-<hr>
-<pre class="r"><code>DBI::dbColumnInfo(query)</code></pre>
+<p>To know the name of the columns and their data types, use <code>dbColumnInfo()</code>.</p>
+<pre class="r"><code>dbColumnInfo(query)</code></pre>
 <pre><code>##       name      type
 ## 1 referrer character
 ## 2   device character
@@ -280,175 +284,89 @@ result</code></pre>
 ## 4  n_visit   integer
 ## 5  n_pages    double
 ## 6 duration    double</code></pre>
-<p><br></p>
-</div>
-<div id="clear-results" class="section level4">
-<h4>Clear Results</h4>
-<hr>
-<pre class="r"><code>DBI::dbClearResult(query)</code></pre>
-<p><br></p>
 </div>
 </div>
 <div id="create-table" class="section level3">
 <h3>Create Table</h3>
-<hr>
-<p><br></p>
+<p>So far we have explored querying data from an existing table. Now, let us turn our
+attention to creating new tables in the database.</p>
 <div id="introduction-1" class="section level4">
 <h4>Introduction</h4>
-<hr>
+<p>To create a new table, use <code>dbWriteTable()</code>. It takes the following 3 arguments:</p>
+<ul>
+<li>connection name</li>
+<li>name of the new table</li>
+<li>data for the new table</li>
+</ul>
 <pre class="r"><code>x &lt;- 1:10
 y &lt;- letters[1:10]
 trial &lt;- tibble::tibble(x, y)
-DBI::dbWriteTable(con, &quot;trial&quot;, trial)</code></pre>
-<p><br></p>
-</div>
-<div id="check-if-table-is-created-in-database" class="section level4">
-<h4>check if table is created in database</h4>
-<hr>
-<pre class="r"><code>DBI::dbListTables(con)</code></pre>
+dbWriteTable(con, &quot;trial&quot;, trial)</code></pre>
+<pre><code>## Warning: Closing open result set, pending rows</code></pre>
+<p>Let us check if the new table has been created.</p>
+<pre class="r"><code>dbListTables(con)</code></pre>
 <pre><code>## [1] &quot;ecom&quot;         &quot;sqlite_stat1&quot; &quot;sqlite_stat4&quot; &quot;trial&quot;</code></pre>
-<pre class="r"><code>DBI::dbExistsTable(con, &quot;trial&quot;)</code></pre>
+<pre class="r"><code>dbExistsTable(con, &quot;trial&quot;)</code></pre>
 <pre><code>## [1] TRUE</code></pre>
-<p><br></p>
-</div>
-<div id="query-sample-data-from-table" class="section level4">
-<h4>query sample data from table</h4>
-<hr>
-<pre class="r"><code>DBI::dbGetQuery(con, &quot;select * from trial limit 5&quot;)</code></pre>
+<p>Let us query data from the new table.</p>
+<pre class="r"><code>dbGetQuery(con, &quot;select * from trial limit 5&quot;)</code></pre>
 <pre><code>##   x y
 ## 1 1 a
 ## 2 2 b
 ## 3 3 c
 ## 4 4 d
 ## 5 5 e</code></pre>
-<p><br></p>
 </div>
-<div id="overwrite-table-in-the-database" class="section level4">
-<h4>overwrite table in the database</h4>
-<hr>
+<div id="overwrite-table" class="section level4">
+<h4>Overwrite Table</h4>
+<p>In some cases, you may want to overwrite the data in an existing table. Use the
+<code>overwrite</code> argument in <code>dbWriteTable()</code> and set it to <code>TRUE</code>.</p>
 <pre class="r"><code>x &lt;- sample(100, 10)
 y &lt;- letters[11:20]
 trial2 &lt;- tibble::tibble(x, y)
-DBI::dbWriteTable(con, &quot;trial&quot;, trial2, overwrite = TRUE)</code></pre>
-<p><br></p>
-</div>
-<div id="query-sample-data-from-table-to-see-if-it-has-been-overwritten" class="section level4">
-<h4>query sample data from table to see if it has been overwritten</h4>
-<hr>
-<pre class="r"><code>DBI::dbGetQuery(con, &quot;select * from trial limit 5&quot;)</code></pre>
+dbWriteTable(con, &quot;trial&quot;, trial2, overwrite = TRUE)</code></pre>
+<p>Let us see if the <strong>trial</strong> table has been overwritten.</p>
+<pre class="r"><code>dbGetQuery(con, &quot;select * from trial limit 5&quot;)</code></pre>
 <pre><code>##    x y
-## 1 92 k
-## 2 14 l
-## 3 39 m
-## 4  9 n
-## 5  3 o</code></pre>
-<p><br></p>
+## 1  5 k
+## 2 19 l
+## 3 69 m
+## 4 13 n
+## 5 23 o</code></pre>
 </div>
-<div id="append-data-to-the-table-in-the-database" class="section level4">
-<h4>append data to the table in the database</h4>
-<hr>
+<div id="append-data" class="section level4">
+<h4>Append Data</h4>
+<p>You can append data to an existing table by setting the <code>append</code> argument in
+<code>dbWriteTable()</code> to <code>TRUE</code>.</p>
 <pre class="r"><code>x &lt;- sample(100, 10)
 y &lt;- letters[5:14]
 trial3 &lt;- tibble::tibble(x, y)
-DBI::dbWriteTable(con, &quot;trial&quot;, trial3, append = TRUE)</code></pre>
-<p><br></p>
-</div>
-<div id="query-sample-data-from-table-to-see-if-new-data-is-appended" class="section level4">
-<h4>query sample data from table to see if new data is appended</h4>
-<hr>
-<pre class="r"><code>DBI::dbReadTable(con, &quot;trial&quot;)</code></pre>
+dbWriteTable(con, &quot;trial&quot;, trial3, append = TRUE)</code></pre>
+<p>Let us quickly check if the new data has been appended to the <strong>trial</strong> table.</p>
+<pre class="r"><code>dbReadTable(con, &quot;trial&quot;)</code></pre>
 <pre><code>##     x y
-## 1  92 k
-## 2  14 l
-## 3  39 m
-## 4   9 n
-## 5   3 o
-## 6  10 p
-## 7  56 q
-## 8  41 r
-## 9  80 s
-## 10  1 t
-## 11 38 e
-## 12 50 f
-## 13 68 g
-## 14 47 h
-## 15 10 i
-## 16 25 j
-## 17 51 k
-## 18 61 l
-## 19 66 m
-## 20 73 n</code></pre>
-<p><br></p>
-</div>
-</div>
-<div id="insert-rows" class="section level3">
-<h3>Insert Rows</h3>
-<hr>
-<p><br></p>
-<div id="introduction-2" class="section level4">
-<h4>Introduction</h4>
-<hr>
-<pre class="r"><code>DBI::dbExecute(con,
-  &quot;INSERT into trial (x, y) VALUES (32, &#39;c&#39;), (45, &#39;k&#39;), (61, &#39;h&#39;)&quot;
-)</code></pre>
-<pre><code>## [1] 3</code></pre>
-<p><br></p>
-</div>
-<div id="insert-rows-1" class="section level4">
-<h4>Insert Rows</h4>
-<hr>
-<pre class="r"><code>DBI::dbSendStatement(con,
-  &quot;INSERT into trial (x, y) VALUES (25, &#39;m&#39;), (54, &#39;l&#39;), (16, &#39;y&#39;)&quot;
-)</code></pre>
-<pre><code>## &lt;SQLiteResult&gt;
-##   SQL  INSERT into trial (x, y) VALUES (25, &#39;m&#39;), (54, &#39;l&#39;), (16, &#39;y&#39;)
-##   ROWS Fetched: 0 [complete]
-##        Changed: 3</code></pre>
-<p><br></p>
-</div>
-</div>
-<div id="sqlite-data-type" class="section level3">
-<h3>SQLite Data Type</h3>
-<hr>
-<pre class="r"><code>DBI::dbDataType(RSQLite::SQLite(), &quot;a&quot;)</code></pre>
-<pre><code>## [1] &quot;TEXT&quot;</code></pre>
-<pre class="r"><code>DBI::dbDataType(RSQLite::SQLite(), 1:5)</code></pre>
-<pre><code>## [1] &quot;INTEGER&quot;</code></pre>
-<pre class="r"><code>DBI::dbDataType(RSQLite::SQLite(), 1.5)</code></pre>
-<pre><code>## [1] &quot;REAL&quot;</code></pre>
-<p><br></p>
-</div>
-<div id="others" class="section level3">
-<h3>Others</h3>
-<p><br></p>
-<div id="remove-table-from-database" class="section level4">
-<h4>remove table from database</h4>
-<hr>
-<pre class="r"><code>DBI::dbRemoveTable(con, &quot;trial&quot;)</code></pre>
-<pre><code>## Warning: Closing open result set, pending rows</code></pre>
-<p><br></p>
-</div>
-<div id="check-if-table-has-been-removed" class="section level4">
-<h4>check if table has been removed</h4>
-<hr>
-<pre class="r"><code>DBI::dbListTables(con)</code></pre>
-<pre><code>## [1] &quot;ecom&quot;         &quot;sqlite_stat1&quot; &quot;sqlite_stat4&quot;</code></pre>
-<p><br></p>
-</div>
-<div id="generate-sql-query" class="section level4">
-<h4>Generate SQL Query</h4>
-<hr>
-<pre class="r"><code>DBI::sqlCreateTable(con, &quot;new&quot;, c(x = &quot;integer&quot;, y = &quot;text&quot;))</code></pre>
-<pre><code>## &lt;SQL&gt; CREATE TABLE `new` (
-##   `x` integer,
-##   `y` text
-## )</code></pre>
-<p><br></p>
-</div>
-<div id="append-table" class="section level4">
-<h4>Append Table</h4>
-<hr>
-<pre class="r"><code>DBI::sqlAppendTable(con, &quot;ecom&quot;, head(ecom))</code></pre>
+## 1   5 k
+## 2  19 l
+## 3  69 m
+## 4  13 n
+## 5  23 o
+## 6  96 p
+## 7  68 q
+## 8  39 r
+## 9   7 s
+## 10 86 t
+## 11  2 e
+## 12 95 f
+## 13 18 g
+## 14 48 h
+## 15 83 i
+## 16 68 j
+## 17 74 k
+## 18 17 l
+## 19 82 m
+## 20 31 n</code></pre>
+<p>We can also use <code>sqlAppendTable()</code> to append data to an existing table.</p>
+<pre class="r"><code>sqlAppendTable(con, &quot;ecom&quot;, head(ecom))</code></pre>
 <pre><code>## &lt;SQL&gt; INSERT INTO `ecom`
 ##   (`referrer`, `device`, `bouncers`, `n_visit`, `n_pages`, `duration`)
 ## VALUES
@@ -458,25 +376,63 @@ DBI::dbWriteTable(con, &quot;trial&quot;, trial3, append = TRUE)</code></pre>
 ##   (&#39;bing&#39;, &#39;tablet&#39;, &#39;false&#39;, 3, 18, 468),
 ##   (&#39;yahoo&#39;, &#39;mobile&#39;, &#39;true&#39;, 9, 1, 955),
 ##   (&#39;yahoo&#39;, &#39;laptop&#39;, &#39;false&#39;, 5, 5, 135)</code></pre>
-<p><br></p>
 </div>
+</div>
+<div id="insert-rows" class="section level3">
+<h3>Insert Rows</h3>
+<div id="introduction-2" class="section level4">
+<h4>Introduction</h4>
+<p>We can insert new rows into existing tables using:</p>
+<ul>
+<li><code>dbExecute()</code></li>
+<li><code>dbSendStatement()</code></li>
+</ul>
+<p>Both the function take 2 arguments:</p>
+<ul>
+<li>connection name</li>
+<li>sql statement</li>
+</ul>
+<pre class="r"><code># use dbExecute
+dbExecute(con,
+  &quot;INSERT into trial (x, y) VALUES (32, &#39;c&#39;), (45, &#39;k&#39;), (61, &#39;h&#39;)&quot;
+)
+## [1] 3
+
+# use dbSendStatement
+dbSendStatement(con,
+  &quot;INSERT into trial (x, y) VALUES (25, &#39;m&#39;), (54, &#39;l&#39;), (16, &#39;y&#39;)&quot;
+)
+## &lt;SQLiteResult&gt;
+##   SQL  INSERT into trial (x, y) VALUES (25, &#39;m&#39;), (54, &#39;l&#39;), (16, &#39;y&#39;)
+##   ROWS Fetched: 0 [complete]
+##        Changed: 3</code></pre>
+</div>
+<div id="remove-table" class="section level4">
+<h4>Remove Table</h4>
+<p>If you want to delete/remove a table from the database, use <code>dbRemoveTable()</code>.</p>
+<pre class="r"><code>dbRemoveTable(con, &quot;trial&quot;)</code></pre>
+<pre><code>## Warning: Closing open result set, pending rows</code></pre>
+</div>
+</div>
+<div id="sqlite-data-type" class="section level3">
+<h3>SQLite Data Type</h3>
+<p>If you want to know the data type, use <code>dbDataType()</code>.</p>
+<pre class="r"><code>dbDataType(RSQLite::SQLite(), &quot;a&quot;)</code></pre>
+<pre><code>## [1] &quot;TEXT&quot;</code></pre>
+<pre class="r"><code>dbDataType(RSQLite::SQLite(), 1:5)</code></pre>
+<pre><code>## [1] &quot;INTEGER&quot;</code></pre>
+<pre class="r"><code>dbDataType(RSQLite::SQLite(), 1.5)</code></pre>
+<pre><code>## [1] &quot;REAL&quot;</code></pre>
 <div id="close-connection" class="section level4">
 <h4>Close Connection</h4>
-<hr>
-<pre class="r"><code>DBI::dbDisconnect(con)</code></pre>
-<p><br></p>
+<p>It is a good practice to close connection to a database when you no longer need to
+read/write data from/to it. Use <code>dbDisconnect()</code> to close the database connection.</p>
+<pre class="r"><code>dbDisconnect(con)</code></pre>
 </div>
-</div>
-<div id="summary" class="section level3">
-<h3>Summary</h3>
-<hr>
-<p><br></p>
 </div>
 <div id="up-next.." class="section level3">
 <h3>Up Next..</h3>
-<hr>
 <p>In the next <a href="https://rsquaredacademy.github.io/blog/post/data-wrangling-with-dbplyr">post</a>, we will learn about data wrangling using <a href="http://dbplyr.tidyverse.org/">dbplyr</a>.</p>
-<p><br></p>
 </div>
 
     </div>
