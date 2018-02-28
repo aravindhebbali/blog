@@ -38,6 +38,8 @@ We will use the following packages in this post:
 
 - [magrittr](http://magrittr.tidyverse.org/) 
 - [readr](http://readr.tidyverse.org/) 
+- [dplyr](http://dplyr.tidyverse.org/)
+- [stringr](http://stringr.tidyverse.org/)
 - and [purrr](http://readr.tidyverse.org/) 
 
 You can find the data sets [here](https://github.com/rsquaredacademy/datasets) and the codes 
@@ -47,6 +49,8 @@ You can find the data sets [here](https://github.com/rsquaredacademy/datasets) a
 ```{r importlib1, message=FALSE}
 library(magrittr)
 library(readr)
+library(dplyr)
+library(stringr)
 library(purrr)
 ```
 
@@ -108,7 +112,6 @@ Let us break down the above computation into small steps:
 
 Let us reproduce `y` using pipes.
 
-#### Square Root - Using pipe
 
 ```{r mag4}
 # select n_pages variable and assign it to y
@@ -118,10 +121,11 @@ y <-
 
 # compute square root of y and assign it to y 
 y %<>% sqrt
+
 head(y)
 ```
 
-#### Square Root - Using pipe
+Another way to compute the square root of y is shown below.
 
 ```{r mag5}
 y <-
@@ -132,26 +136,22 @@ y <-
 head(y)
 ```
 
-## Correlation
-
-```{r mag6}
-# without pipe
-ecom1 <- subset(ecom, purchase == 'true')
-cor(ecom1$n_pages, ecom1$duration)
-
-# with pipe
-ecom %>%
-  subset(purchase == 'true') %$% 
-  cor(n_pages, duration)
-```
-
 ## Visualization
+
+Let us look at a data visualization example. We will create a bar plot to
+visualize the frequency of different referrer types that drove purchasers
+to the website. Let us look at the steps involved in creating the bar plot:
+
+- extract rows where purchase == true
+- select/expose `referrer` column
+- tabulate referrer data using `table()`
+- use the tabulated data to create bar plot using `barplot()`
 
 ```{r mag21, fig.align='center', fig.height=4, fig.width=6}
 barplot(table(subset(ecom, purchase == 'true')$referrer))
 ```
 
-## Visualization - Using pipe
+#### Using pipe
 
 <center>
 <img src = "/post/pipes_viz.png" width = "800" height = "600">
@@ -166,13 +166,48 @@ ecom %>%
   barplot
 ```
 
+## Correlation
+
+Correlation is a statistical measure that indicates the extent to which two or more variables 
+fluctuate together. In R, correlation is computed using `cor()`. Let us look at the 
+correlation between the number of pages browsed and time spent on the site for
+visitors who purchased some product. Below are the steps for computing correlation:
+
+- extract rows where purchase == true
+- select/expose `n_pages` and `duration` columns
+- use `cor()` to compute the correlation
+
+```{r mag6, collpase = TRUE}
+# without pipe
+ecom1 <- subset(ecom, purchase == 'true')
+cor(ecom1$n_pages, ecom1$duration)
+
+# with pipe
+ecom %>%
+  subset(purchase == 'true') %$% 
+  cor(n_pages, duration)
+
+# with pipe
+ecom %>%
+  filter(purchase == 'true') %$% 
+  cor(n_pages, duration)
+```
+
+
 ## Regression
+
+Let us look at a regression example. We regress time spent on the site on 
+number of pages visited. Below are the steps involved in running the regression:
+
+- use `duration` and `n_pages` columns from econ data
+- pass the above data to `lm()`
+- pass the output from `lm()` to `summary()` 
 
 ```{r mag8}
 summary(lm(duration ~ n_pages, data = ecom))
 ```
 
-## Regression - Using pipe
+#### Using pipe
 
 ```{r mag22}
 ecom %$%
@@ -182,33 +217,42 @@ ecom %$%
 
 ## String Manipulation
 
+We want to extract the first name (jovial) from the below email id and
+convert it to upper case. Below are the steps to achieve this:
+
+- split the email id using the pattern `@` using `str_split()`
+- extract the first element from the resulting list using `extract2()`
+- extract the first element from the character vector using `extract()`
+- extract the first six characters using `str_sub()`
+- convert to upper case using `str_to_upper()`
+
 ```{r mag9}
 email <- 'jovialcann@anymail.com'
 
 # without pipe
-toupper(strtrim(strsplit(email, '@')[[1]][1], 6))
+str_to_upper(str_sub(str_split(email, '@')[[1]][1], start = 1, end = 6))
 
 # with pipe
 email %>%
-  strsplit(split = '@') %>%
+  str_split(pattern = '@') %>%
   extract2(1) %>%
   extract(1) %>%
-  strtrim(width = 6) %>%
-  toupper
+  str_sub(start = 1, end = 6) %>%
+  str_to_upper()
 ```
 
 <center>
 <img src = "/post/pipes_canva.png" width = "800" height = "600">
 </center>
 
-#### String Manipulation
+Another method that uses `map_chr()` from the [purrr](http://readr.tidyverse.org/) package.
 
 ```{r map39}
 email %>%
-  strsplit(split = '@') %>%
+  str_split(pattern = '@') %>%
   map_chr(1) %>%
-  strtrim(width = 6) %>%
-  toupper
+  str_sub(start = 1, end = 6) %>%
+  str_to_upper()
 ```
 
 ## Data Extraction

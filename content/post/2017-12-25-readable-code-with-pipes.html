@@ -43,12 +43,16 @@ complex code, it results in nested function calls which are hard to read and mai
 <ul>
 <li><a href="http://magrittr.tidyverse.org/">magrittr</a></li>
 <li><a href="http://readr.tidyverse.org/">readr</a></li>
+<li><a href="http://dplyr.tidyverse.org/">dplyr</a></li>
+<li><a href="http://stringr.tidyverse.org/">stringr</a></li>
 <li>and <a href="http://readr.tidyverse.org/">purrr</a></li>
 </ul>
 <p>You can find the data sets <a href="https://github.com/rsquaredacademy/datasets">here</a> and the codes
 <a href="https://gist.github.com/aravindhebbali/26d85ab4a4dadd2fe7c1f58d854cc950">here</a>.</p>
 <pre class="r"><code>library(magrittr)
 library(readr)
+library(dplyr)
+library(stringr)
 library(purrr)</code></pre>
 </div>
 <div id="data" class="section level2">
@@ -143,8 +147,6 @@ the page, we will view the first few observations using <code>head()</code>.</p>
 <li>assign the first few observations to <code>y</code></li>
 </ul>
 <p>Let us reproduce <code>y</code> using pipes.</p>
-<div id="square-root---using-pipe" class="section level4">
-<h4>Square Root - Using pipe</h4>
 <pre class="r"><code># select n_pages variable and assign it to y
 y &lt;-
     ecom %$%
@@ -152,11 +154,10 @@ y &lt;-
 
 # compute square root of y and assign it to y 
 y %&lt;&gt;% sqrt
+
 head(y)</code></pre>
 <pre><code>## [1] 1.000000 1.000000 1.000000 4.242641 1.000000 2.236068</code></pre>
-</div>
-<div id="square-root---using-pipe-1" class="section level4">
-<h4>Square Root - Using pipe</h4>
+<p>Another way to compute the square root of y is shown below.</p>
 <pre class="r"><code>y &lt;-
   ecom %$% 
   n_pages %&gt;% 
@@ -165,26 +166,21 @@ head(y)</code></pre>
 head(y)</code></pre>
 <pre><code>## [1] 1.000000 1.000000 1.000000 4.242641 1.000000 2.236068</code></pre>
 </div>
-</div>
-<div id="correlation" class="section level2">
-<h2>Correlation</h2>
-<pre class="r"><code># without pipe
-ecom1 &lt;- subset(ecom, purchase == &#39;true&#39;)
-cor(ecom1$n_pages, ecom1$duration)</code></pre>
-<pre><code>## [1] 0.4290905</code></pre>
-<pre class="r"><code># with pipe
-ecom %&gt;%
-  subset(purchase == &#39;true&#39;) %$% 
-  cor(n_pages, duration)</code></pre>
-<pre><code>## [1] 0.4290905</code></pre>
-</div>
 <div id="visualization" class="section level2">
 <h2>Visualization</h2>
+<p>Let us look at a data visualization example. We will create a bar plot to
+visualize the frequency of different referrer types that drove purchasers
+to the website. Let us look at the steps involved in creating the bar plot:</p>
+<ul>
+<li>extract rows where purchase == true</li>
+<li>select/expose <code>referrer</code> column</li>
+<li>tabulate referrer data using <code>table()</code></li>
+<li>use the tabulated data to create bar plot using <code>barplot()</code></li>
+</ul>
 <pre class="r"><code>barplot(table(subset(ecom, purchase == &#39;true&#39;)$referrer))</code></pre>
 <p><img src="/post/2017-12-25-readable-code-with-pipes_files/figure-html/mag21-1.png" width="576" style="display: block; margin: auto;" /></p>
-</div>
-<div id="visualization---using-pipe" class="section level2">
-<h2>Visualization - Using pipe</h2>
+<div id="using-pipe-1" class="section level4">
+<h4>Using pipe</h4>
 <center>
 <img src = "/post/pipes_viz.png" width = "800" height = "600">
 </center>
@@ -195,8 +191,42 @@ ecom %&gt;%
   barplot</code></pre>
 <p><img src="/post/2017-12-25-readable-code-with-pipes_files/figure-html/mag7-1.png" width="576" style="display: block; margin: auto;" /></p>
 </div>
+</div>
+<div id="correlation" class="section level2">
+<h2>Correlation</h2>
+<p>Correlation is a statistical measure that indicates the extent to which two or more variables
+fluctuate together. In R, correlation is computed using <code>cor()</code>. Let us look at the
+correlation between the number of pages browsed and time spent on the site for
+visitors who purchased some product. Below are the steps for computing correlation:</p>
+<ul>
+<li>extract rows where purchase == true</li>
+<li>select/expose <code>n_pages</code> and <code>duration</code> columns</li>
+<li>use <code>cor()</code> to compute the correlation</li>
+</ul>
+<pre class="r"><code># without pipe
+ecom1 &lt;- subset(ecom, purchase == &#39;true&#39;)
+cor(ecom1$n_pages, ecom1$duration)</code></pre>
+<pre><code>## [1] 0.4290905</code></pre>
+<pre class="r"><code># with pipe
+ecom %&gt;%
+  subset(purchase == &#39;true&#39;) %$% 
+  cor(n_pages, duration)</code></pre>
+<pre><code>## [1] 0.4290905</code></pre>
+<pre class="r"><code># with pipe
+ecom %&gt;%
+  filter(purchase == &#39;true&#39;) %$% 
+  cor(n_pages, duration)</code></pre>
+<pre><code>## [1] 0.4290905</code></pre>
+</div>
 <div id="regression" class="section level2">
 <h2>Regression</h2>
+<p>Let us look at a regression example. We regress time spent on the site on
+number of pages visited. Below are the steps involved in running the regression:</p>
+<ul>
+<li>use <code>duration</code> and <code>n_pages</code> columns from econ data</li>
+<li>pass the above data to <code>lm()</code></li>
+<li>pass the output from <code>lm()</code> to <code>summary()</code></li>
+</ul>
 <pre class="r"><code>summary(lm(duration ~ n_pages, data = ecom))</code></pre>
 <pre><code>## 
 ## Call:
@@ -216,9 +246,8 @@ ecom %&gt;%
 ## Residual standard error: 263.3 on 998 degrees of freedom
 ## Multiple R-squared:   0.04,  Adjusted R-squared:  0.03904 
 ## F-statistic: 41.58 on 1 and 998 DF,  p-value: 1.756e-10</code></pre>
-</div>
-<div id="regression---using-pipe" class="section level2">
-<h2>Regression - Using pipe</h2>
+<div id="using-pipe-2" class="section level4">
+<h4>Using pipe</h4>
 <pre class="r"><code>ecom %$%
   lm(duration ~ n_pages) %&gt;%
   summary</code></pre>
@@ -241,33 +270,41 @@ ecom %&gt;%
 ## Multiple R-squared:   0.04,  Adjusted R-squared:  0.03904 
 ## F-statistic: 41.58 on 1 and 998 DF,  p-value: 1.756e-10</code></pre>
 </div>
+</div>
 <div id="string-manipulation" class="section level2">
 <h2>String Manipulation</h2>
+<p>We want to extract the first name (jovial) from the below email id and
+convert it to upper case. Below are the steps to achieve this:</p>
+<ul>
+<li>split the email id using the pattern <code>@</code> using <code>str_split()</code></li>
+<li>extract the first element from the resulting list using <code>extract2()</code></li>
+<li>extract the first element from the character vector using <code>extract()</code></li>
+<li>extract the first six characters using <code>str_sub()</code></li>
+<li>convert to upper case using <code>str_to_upper()</code></li>
+</ul>
 <pre class="r"><code>email &lt;- &#39;jovialcann@anymail.com&#39;
 
 # without pipe
-toupper(strtrim(strsplit(email, &#39;@&#39;)[[1]][1], 6))</code></pre>
+str_to_upper(str_sub(str_split(email, &#39;@&#39;)[[1]][1], start = 1, end = 6))</code></pre>
 <pre><code>## [1] &quot;JOVIAL&quot;</code></pre>
 <pre class="r"><code># with pipe
 email %&gt;%
-  strsplit(split = &#39;@&#39;) %&gt;%
+  str_split(pattern = &#39;@&#39;) %&gt;%
   extract2(1) %&gt;%
   extract(1) %&gt;%
-  strtrim(width = 6) %&gt;%
-  toupper</code></pre>
+  str_sub(start = 1, end = 6) %&gt;%
+  str_to_upper()</code></pre>
 <pre><code>## [1] &quot;JOVIAL&quot;</code></pre>
 <center>
 <img src = "/post/pipes_canva.png" width = "800" height = "600">
 </center>
-<div id="string-manipulation-1" class="section level4">
-<h4>String Manipulation</h4>
+<p>Another method that uses <code>map_chr()</code> from the <a href="http://readr.tidyverse.org/">purrr</a> package.</p>
 <pre class="r"><code>email %&gt;%
-  strsplit(split = &#39;@&#39;) %&gt;%
+  str_split(pattern = &#39;@&#39;) %&gt;%
   map_chr(1) %&gt;%
-  strtrim(width = 6) %&gt;%
-  toupper</code></pre>
+  str_sub(start = 1, end = 6) %&gt;%
+  str_to_upper()</code></pre>
 <pre><code>## [1] &quot;JOVIAL&quot;</code></pre>
-</div>
 </div>
 <div id="data-extraction" class="section level2">
 <h2>Data Extraction</h2>
