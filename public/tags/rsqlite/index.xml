@@ -17,9 +17,9 @@
       <pubDate>Mon, 25 Dec 2017 00:00:00 +0000</pubDate>
       
       <guid>/2017/12/25/quick-guide-r-sqlite/</guid>
-      <description>IntroductionThis is the first post in the series R &amp;amp; Databases. You can find the links to the other two posts of this series below:
+      <description>IntroductionThis is the first post in the series R &amp;amp; Databases. You can find the links to the other two posts of this series below:
 Data Wrangling with dbplyrSQL for Data Science - Part 1SQL for Data Science - Part 2In this post, we will learn to:
-connect to a SQLite database from Rdisplay database informationlist tables in the databasequery dataread entire tableread few rowsread data in batchescreate table in databaseoverwrite table in databaseappend data to table in databaseremove table from databasegenerate SQL queryclose database connection</description>
+connect to a SQLite database from Rdisplay database informationlist tables in the databasequery dataread entire tableread few rowsread data in batchescreate table in databaseoverwrite table in databaseappend data to table in databaseremove table from databasegenerate SQL queryclose database connectionLibraries, Code &amp;amp; DataWe will use the following libraries in this post:</description>
     </item>
     
   </channel>
