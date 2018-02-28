@@ -1,0 +1,190 @@
+---
+title: RMySQL for Beginners
+date: '2017-12-25'
+slug: rmysql-for-beginners
+tags:
+  - mysql
+  - rmysql
+  - database
+topics:
+  - data-wrangling
+draft: yes
+---
+
+### Objectives
+
+- Install and load RMySQL package
+- Connect to a MySQL database from R
+- Display database information
+- List tables in the database
+- Create new table
+- Import data into R for analysis
+- Export data from R into MySQL
+- Remove tables and disconnect
+
+### Introduction
+
+In real world, data is often stored in relational databases such as MySQL and an analyst is required to extract the data in order to perform any type of analysis. If you are using R for statistical analysis and a relational database for storing the data, you need to interact with the database in order to access the data sets.
+
+One way to accomplish the above task is to export the data from the database in some file format and import the same into R. Similarly, if you have some data as a dataframe in R and want to store it in a database, you will need to export the data from R and import it into the database. This method can be very cumbersome and frustrating.
+
+The RMySQL package was created to help R users to easily access a MySQL database from R. In order to take advantage of the features available in the package, you need the following:
+
+- Access to a MySQL database
+- Knowledge of basic SQL commmands
+- Latest verison of R (verison 3.3.3)
+- Latest version of RStudio (version 1.0.136)
+- RMySQL package (version 0.10.11)
+
+
+### Installation
+
+[RMySQL](https://cran.r-project.org/web/packages/RMySQL/index.html) package allows you to access MySQL database form R. It was created by [Jeffrey Horner](http://biostat.mc.vanderbilt.edu/wiki/Main/JeffreyHorner) but is currently maintained by [Jeroen Ooms](https://github.com/jeroen). The latest version of the pacakge is 0.10.11. You can install and load the package using the following commands:
+
+```{r rmysql-install, eval=FALSE}
+# install the package
+install.packages('RMySQL')
+
+# load the package
+library(RMySQL)
+```
+
+### Connect to Database
+
+We can establish a connection to a MySQL database using the `dbConnect()` function. In order to connect to the database, we need to specify the following:
+
+- MySQL connection
+- database name
+- username
+- password
+- host details
+
+Below is an example:
+
+```{r rmysql-connect, eval=FALSE}
+con <- dbConnect(MySQL(), user = 'root', password = 'password',
+                 host = 'localhost', dbname = 'dbname')
+```
+
+### Connection Summary
+
+We can get a summary or metadata of the connection using `summary()` function. We need to specify the name of the MySQL connection object for which we are seeking metadata. Let us look at the metadata of the MySQL connection object we just created:
+
+```{r rmysql-consum, eval=FALSE}
+summary(con)
+# <MySQLConnection:0,0>
+#    User: root
+#    Host: localhost
+#    Dbname: world
+#    Connection type: localhost via TCP/IP
+```
+
+
+### Database Info
+
+The `dbGetInfo()` function can be used to access information about the database to which we have established a connection. Among other things, it will return the following information about host, server and connection:
+
+```{r rmysql-dbinfo, eval=FALSE}
+dbGetInfo(con)
+# $host
+# [1]"localhost"
+# 
+# $user
+# [1]"root"
+# 
+# $dbname
+# [1]"world"
+# 
+# $conType
+# [1]"localhost via TCP/IP"
+# 
+# $serveVersion
+# [1]"5.7.9-log"
+# 
+# $protocolVersion
+# [1]10
+# 
+# $threadId
+# [1]7
+# 
+# $rsld
+# list()
+```
+
+
+### List Tables
+
+Once we have successfully established a connection to a MySQL database, we can use the `dbListTables()` function to assess the list of tables that are present in that particular database. We need to specify the name of the MySQL connection object for which we are seeking the list of tables.
+
+Below is an example:
+
+```{r rmysql-listtable, eval=FALSE}
+# list of tables in the database
+dbListTables(con)
+# [1] "city"  "country" "countrylanguage" "mtcars"
+```
+
+As you can see, there are four tables in the database to which we established the connection through RMySQL package. In the `dbListTables()` function, we have not specified the name of the database but the name of the MySQL connection object we created when we connected to the database.
+
+
+### List Fields
+
+To get a list of fields or columns in a particular table in the database, we can use the `dbListFields()` function. We need to specify the name of the MySQL connection object as well as the table name. If the table exists in the database, the names of the fields will be returned. 
+
+```{r rmysql-tblfields, eval=FALSE}
+# list of fields in table city
+dbListFields(con, "city")
+# [1] "ID"          "Name"          "CountryCode"  "District" 
+# [5]"Population" 
+```
+
+The name of the table must be enclosed in single/double quotes and the name of the fields is returned as a character vector.
+
+### Testing Data Types
+
+To test the SQL data type of an object, we can use the `dbDataType()` function. We need to specify the driver details as well as the object to test the SQL data type.
+
+```{r rmysql-datatype, eval=FALSE}
+# data type
+dbDataType(RMySQL::MySQL(), "a")
+# [1] "text"
+
+dbDataType(RMySQL::MySQL(), 1:5)
+# [1] "bigint"
+
+dbDataType(RMySQL::MySQL(), 1.5)
+# [1] "double"
+```
+
+### Querying Data
+
+There are three different methods of querying data from a database:
+
+- import the complete table using `dbReadTable()`
+- send query and retrieve results usinf `dbGetQuery()`
+- submit query using `dbSendQuery()` and fetch results using `dbFetch()`
+
+Let us explore each of the above methods one by one.
+
+### Import Table
+
+The `dbReadTable()` can be used to extract an entire table from a MySQL database. We can use this method only if the table is not very big. We need to specify the name of the MySQL connection object and the table. The name of the table must be enclosed in single/double quotes.
+
+In the below example, we read the entire table named **trial** from the database:
+
+```{r, rmysql-readtbl,eval=FALSE}
+dbReadTable(con, "trial")
+#     x y
+# 1   1 a 
+# 2   2 b
+# 3   3 c
+# 4   4 d
+# 5   5 e
+# 6   6 f
+# 7   7 g
+# 8   8 h
+# 9   9 i
+# 10 10 j
+```
+
+
