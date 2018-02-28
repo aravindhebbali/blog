@@ -439,6 +439,8 @@ extract the first value of each element of the resulting list.</p>
 <li>split the string using the pattern <code>\\.</code></li>
 <li>extract the first element</li>
 </ul>
+<div id="step-1-locate-numbers-between-0-and-9." class="section level4">
+<h4>Step 1: Locate numbers between 0 and 9.</h4>
 <pre class="r"><code>img %&gt;%
   str_locate(pattern = &quot;[0-9]&quot;) </code></pre>
 <pre><code>##      start end
@@ -448,11 +450,17 @@ extract the first value of each element of the resulting list.</p>
 ## [4,]    23  23
 ## [5,]    23  23
 ## [6,]    23  23</code></pre>
+</div>
+<div id="step-2-find-the-location-of-the-first-number-present-in-the-image-url." class="section level4">
+<h4>Step 2: Find the location of the first number present in the image url.</h4>
 <pre class="r"><code>img %&gt;%
   str_sub(start = 23) </code></pre>
 <pre><code>## [1] &quot;130x183.jpg/dddddd/000000&quot; &quot;106x217.bmp/dddddd/000000&quot;
 ## [3] &quot;146x127.bmp/cc0000/ffffff&quot; &quot;181x194.png/5fa2dd/ffffff&quot;
 ## [5] &quot;220x123.jpg/ff4444/ffffff&quot; &quot;118x176.bmp/dddddd/000000&quot;</code></pre>
+</div>
+<div id="step-3-split-the-string-using-the-pattern-.." class="section level4">
+<h4>Step 3: Split the string using the pattern <code>\\.</code>.</h4>
 <pre class="r"><code>img %&gt;%
   str_sub(start = 23) %&gt;%
   str_split(pattern = &#39;\\.&#39;) </code></pre>
@@ -473,6 +481,9 @@ extract the first value of each element of the resulting list.</p>
 ## 
 ## [[6]]
 ## [1] &quot;118x176&quot;           &quot;bmp/dddddd/000000&quot;</code></pre>
+</div>
+<div id="step-4-extract-the-first-element." class="section level4">
+<h4>Step 4: Extract the first element.</h4>
 <pre class="r"><code>img %&gt;%
   str_sub(start = 23) %&gt;%
   str_split(pattern = &#39;\\.&#39;) %&gt;%
@@ -480,14 +491,9 @@ extract the first value of each element of the resulting list.</p>
 <pre><code>## [1] &quot;130x183&quot; &quot;106x217&quot; &quot;146x127&quot; &quot;181x194&quot; &quot;220x123&quot; &quot;118x176&quot;</code></pre>
 </div>
 </div>
+</div>
 <div id="extract-http-protocol-from-url" class="section level2">
 <h2>Extract HTTP Protocol from URL</h2>
-<div id="steps-3" class="section level3">
-<h3>Steps</h3>
-<ul>
-<li>split the url using the pattern <code>://</code></li>
-<li>extract the first element</li>
-</ul>
 <pre class="r"><code>url1 &lt;- 
   mockstring %&gt;%
   pull(url) %&gt;%
@@ -495,15 +501,27 @@ extract the first value of each element of the resulting list.</p>
 
 url1</code></pre>
 <pre><code>## [1] &quot;https://engadget.com/nascetur/ridiculus/mus/vivamus/vestibulum.jsp?eu=est&amp;tincidunt=risus&amp;in=auctor&amp;leo=sed&amp;maecenas=tristique&amp;pulvinar=in&amp;lobortis=tempus&amp;est=sit&amp;phasellus=amet&amp;sit=sem&amp;amet=fusce&amp;erat=consequat&amp;nulla=nulla&amp;tempus=nisl&amp;vivamus=nunc&amp;in=nisl&amp;felis=duis&amp;eu=bibendum&amp;sapien=felis&amp;cursus=sed&amp;vestibulum=interdum&amp;proin=venenatis&amp;eu=turpis&amp;mi=enim&amp;nulla=blandit&amp;ac=mi&amp;enim=in&amp;in=porttitor&amp;tempor=pede&amp;turpis=justo&amp;nec=eu&amp;euismod=massa&amp;scelerisque=donec&amp;quam=dapibus&amp;turpis=duis&amp;adipiscing=at&amp;lorem=velit&amp;vitae=eu&amp;mattis=est&amp;nibh=congue&amp;ligula=elementum&amp;nec=in&amp;sem=hac&amp;duis=habitasse&amp;aliquam=platea&amp;convallis=dictumst&amp;nunc=morbi&amp;proin=vestibulum&amp;at=velit&amp;turpis=id&amp;a=pretium&amp;pede=iaculis&amp;posuere=diam&amp;nonummy=erat&amp;integer=fermentum&amp;non=justo&amp;velit=nec&amp;donec=condimentum&amp;diam=neque&amp;neque=sapien&amp;vestibulum=placerat&amp;eget=ante&amp;vulputate=nulla&amp;ut=justo&amp;ultrices=aliquam&amp;vel=quis&amp;augue=turpis&amp;vestibulum=eget&amp;ante=elit&amp;ipsum=sodales&amp;primis=scelerisque&amp;in=mauris&amp;faucibus=sit&amp;orci=amet&amp;luctus=eros&amp;et=suspendisse&amp;ultrices=accumsan&amp;posuere=tortor&amp;cubilia=quis&amp;curae=turpis&amp;donec=sed&amp;pharetra=ante&amp;magna=vivamus&amp;vestibulum=tortor&amp;aliquet=duis&amp;ultrices=mattis&amp;erat=egestas&amp;tortor=metus&amp;sollicitudin=aenean&amp;mi=fermentum&amp;sit=donec&quot;</code></pre>
+<div id="steps-3" class="section level3">
+<h3>Steps</h3>
+<ul>
+<li>split the url using the pattern <code>://</code></li>
+<li>extract the first element</li>
+</ul>
+<div id="step-1-split-the-url-using-the-pattern-." class="section level4">
+<h4>Step 1: Split the url using the pattern <code>://</code>.</h4>
 <pre class="r"><code>url1 %&gt;%
   str_split(pattern = &#39;://&#39;) </code></pre>
 <pre><code>## [[1]]
 ## [1] &quot;https&quot;                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               
 ## [2] &quot;engadget.com/nascetur/ridiculus/mus/vivamus/vestibulum.jsp?eu=est&amp;tincidunt=risus&amp;in=auctor&amp;leo=sed&amp;maecenas=tristique&amp;pulvinar=in&amp;lobortis=tempus&amp;est=sit&amp;phasellus=amet&amp;sit=sem&amp;amet=fusce&amp;erat=consequat&amp;nulla=nulla&amp;tempus=nisl&amp;vivamus=nunc&amp;in=nisl&amp;felis=duis&amp;eu=bibendum&amp;sapien=felis&amp;cursus=sed&amp;vestibulum=interdum&amp;proin=venenatis&amp;eu=turpis&amp;mi=enim&amp;nulla=blandit&amp;ac=mi&amp;enim=in&amp;in=porttitor&amp;tempor=pede&amp;turpis=justo&amp;nec=eu&amp;euismod=massa&amp;scelerisque=donec&amp;quam=dapibus&amp;turpis=duis&amp;adipiscing=at&amp;lorem=velit&amp;vitae=eu&amp;mattis=est&amp;nibh=congue&amp;ligula=elementum&amp;nec=in&amp;sem=hac&amp;duis=habitasse&amp;aliquam=platea&amp;convallis=dictumst&amp;nunc=morbi&amp;proin=vestibulum&amp;at=velit&amp;turpis=id&amp;a=pretium&amp;pede=iaculis&amp;posuere=diam&amp;nonummy=erat&amp;integer=fermentum&amp;non=justo&amp;velit=nec&amp;donec=condimentum&amp;diam=neque&amp;neque=sapien&amp;vestibulum=placerat&amp;eget=ante&amp;vulputate=nulla&amp;ut=justo&amp;ultrices=aliquam&amp;vel=quis&amp;augue=turpis&amp;vestibulum=eget&amp;ante=elit&amp;ipsum=sodales&amp;primis=scelerisque&amp;in=mauris&amp;faucibus=sit&amp;orci=amet&amp;luctus=eros&amp;et=suspendisse&amp;ultrices=accumsan&amp;posuere=tortor&amp;cubilia=quis&amp;curae=turpis&amp;donec=sed&amp;pharetra=ante&amp;magna=vivamus&amp;vestibulum=tortor&amp;aliquet=duis&amp;ultrices=mattis&amp;erat=egestas&amp;tortor=metus&amp;sollicitudin=aenean&amp;mi=fermentum&amp;sit=donec&quot;</code></pre>
+</div>
+<div id="step-2-extract-the-first-element." class="section level4">
+<h4>Step 2: Extract the first element.</h4>
 <pre class="r"><code>url1 %&gt;%
   str_split(pattern = &#39;://&#39;) %&gt;%
   map_chr(extract(1))</code></pre>
 <pre><code>## [1] &quot;https&quot;</code></pre>
+</div>
 </div>
 </div>
 <div id="extract-domain-name" class="section level2">
@@ -519,6 +537,8 @@ url1</code></pre>
 <li>split using the pattern <code>//</code></li>
 <li>extract the second element</li>
 </ul>
+<div id="step-1-locate-all-occurences-of-the-pattern-." class="section level4">
+<h4>Step 1: Locate all occurences of the pattern <code>/</code>.</h4>
 <pre class="r"><code>url1 %&gt;%
   str_locate_all(pattern = &quot;/&quot;) </code></pre>
 <pre><code>## [[1]]
@@ -530,33 +550,43 @@ url1</code></pre>
 ## [5,]    40  40
 ## [6,]    44  44
 ## [7,]    52  52</code></pre>
+</div>
+<div id="step-2-extract-the-location-of-the-third-in-the-url." class="section level4">
+<h4>Step 2: Extract the location of the third <code>/</code> in the url.</h4>
 <pre class="r"><code>url1 %&gt;%
   str_locate_all(pattern = &quot;/&quot;) %&gt;%
   map_int(extract(3))</code></pre>
 <pre><code>## [1] 21</code></pre>
+</div>
+<div id="step-3-extract-the-part-of-the-string-upto-the-above-location." class="section level4">
+<h4>Step 3: Extract the part of the string upto the above location.</h4>
 <pre class="r"><code>n &lt;- 
   url1 %&gt;%
   str_locate_all(pattern = &quot;/&quot;) %&gt;%
-  map_int(extract(3))</code></pre>
-</div>
-</div>
-<div id="extract-domain-extension-1" class="section level2">
-<h2>Extract domain extension</h2>
-<div id="steps-5" class="section level3">
-<h3>Steps</h3>
-<pre class="r"><code>url1 %&gt;%
+  map_int(extract(3))
+
+url1 %&gt;%
   str_sub(end = n) </code></pre>
 <pre><code>## [1] &quot;https://engadget.com/&quot;</code></pre>
+</div>
+<div id="step-4-split-using-the-pattern-.." class="section level4">
+<h4>Step 4: Split using the pattern <code>\\.</code>.</h4>
 <pre class="r"><code>url1 %&gt;%
   str_sub(end = n) %&gt;%
   str_split(pattern = &#39;\\.&#39;) </code></pre>
 <pre><code>## [[1]]
 ## [1] &quot;https://engadget&quot; &quot;com/&quot;</code></pre>
+</div>
+<div id="step-5-extract-the-first-element." class="section level4">
+<h4>Step 5: Extract the first element.</h4>
 <pre class="r"><code>url1 %&gt;%
   str_sub(end = n) %&gt;%
   str_split(pattern = &#39;\\.&#39;) %&gt;%
   map_chr(extract(2)) </code></pre>
 <pre><code>## [1] &quot;com/&quot;</code></pre>
+</div>
+<div id="step-6-split-using-the-pattern-." class="section level4">
+<h4>Step 6: Split using the pattern <code>//</code>.</h4>
 <pre class="r"><code>url1 %&gt;%
   str_sub(end = n) %&gt;%
   str_split(pattern = &#39;\\.&#39;) %&gt;%
@@ -564,6 +594,9 @@ url1</code></pre>
   str_split(pattern = &#39;/&#39;) </code></pre>
 <pre><code>## [[1]]
 ## [1] &quot;com&quot; &quot;&quot;</code></pre>
+</div>
+<div id="step-7-extract-the-second-element." class="section level4">
+<h4>Step 7: Extract the second element.</h4>
 <pre class="r"><code>url1 %&gt;%
   str_sub(end = n) %&gt;%
   str_split(pattern = &#39;\\.&#39;) %&gt;%
@@ -571,21 +604,16 @@ url1</code></pre>
   str_split(pattern = &#39;/&#39;) %&gt;%
   map_chr(extract(1))</code></pre>
 <pre><code>## [1] &quot;com&quot;</code></pre>
-<pre class="r"><code># url %&gt;%
-#   str_sub(end = n) %&gt;%
-#   str_split(pattern = &#39;\\.&#39;) %&gt;%
-#   map_chr(extract(2)) %&gt;%
-#   str_split(pattern = &#39;/&#39;) %&gt;%
-#   map_chr(extract(1))</code></pre>
+</div>
 </div>
 </div>
 <div id="extract-file-type" class="section level2">
 <h2>Extract file type</h2>
-<pre class="r"><code>mockstring$url[1:3]</code></pre>
-<pre><code>## [1] &quot;https://engadget.com/nascetur/ridiculus/mus/vivamus/vestibulum.jsp?eu=est&amp;tincidunt=risus&amp;in=auctor&amp;leo=sed&amp;maecenas=tristique&amp;pulvinar=in&amp;lobortis=tempus&amp;est=sit&amp;phasellus=amet&amp;sit=sem&amp;amet=fusce&amp;erat=consequat&amp;nulla=nulla&amp;tempus=nisl&amp;vivamus=nunc&amp;in=nisl&amp;felis=duis&amp;eu=bibendum&amp;sapien=felis&amp;cursus=sed&amp;vestibulum=interdum&amp;proin=venenatis&amp;eu=turpis&amp;mi=enim&amp;nulla=blandit&amp;ac=mi&amp;enim=in&amp;in=porttitor&amp;tempor=pede&amp;turpis=justo&amp;nec=eu&amp;euismod=massa&amp;scelerisque=donec&amp;quam=dapibus&amp;turpis=duis&amp;adipiscing=at&amp;lorem=velit&amp;vitae=eu&amp;mattis=est&amp;nibh=congue&amp;ligula=elementum&amp;nec=in&amp;sem=hac&amp;duis=habitasse&amp;aliquam=platea&amp;convallis=dictumst&amp;nunc=morbi&amp;proin=vestibulum&amp;at=velit&amp;turpis=id&amp;a=pretium&amp;pede=iaculis&amp;posuere=diam&amp;nonummy=erat&amp;integer=fermentum&amp;non=justo&amp;velit=nec&amp;donec=condimentum&amp;diam=neque&amp;neque=sapien&amp;vestibulum=placerat&amp;eget=ante&amp;vulputate=nulla&amp;ut=justo&amp;ultrices=aliquam&amp;vel=quis&amp;augue=turpis&amp;vestibulum=eget&amp;ante=elit&amp;ipsum=sodales&amp;primis=scelerisque&amp;in=mauris&amp;faucibus=sit&amp;orci=amet&amp;luctus=eros&amp;et=suspendisse&amp;ultrices=accumsan&amp;posuere=tortor&amp;cubilia=quis&amp;curae=turpis&amp;donec=sed&amp;pharetra=ante&amp;magna=vivamus&amp;vestibulum=tortor&amp;aliquet=duis&amp;ultrices=mattis&amp;erat=egestas&amp;tortor=metus&amp;sollicitudin=aenean&amp;mi=fermentum&amp;sit=donec&quot;
-## [2] &quot;http://delicious.com/phasellus/in/felis/donec.json?interdum=risus&amp;mauris=dapibus&amp;non=augue&amp;ligula=vel&amp;pellentesque=accumsan&amp;ultrices=tellus&amp;phasellus=nisi&amp;id=eu&amp;sapien=orci&amp;in=mauris&amp;sapien=lacinia&amp;iaculis=sapien&amp;congue=quis&amp;vivamus=libero&amp;metus=nullam&amp;arcu=sit&amp;adipiscing=amet&amp;molestie=turpis&amp;hendrerit=elementum&amp;at=ligula&amp;vulputate=vehicula&amp;vitae=consequat&amp;nisl=morbi&amp;aenean=a&amp;lectus=ipsum&amp;pellentesque=integer&amp;eget=a&amp;nunc=nibh&amp;donec=in&amp;quis=quis&amp;orci=justo&amp;eget=maecenas&amp;orci=rhoncus&amp;vehicula=aliquam&amp;condimentum=lacus&amp;curabitur=morbi&amp;in=quis&amp;libero=tortor&amp;ut=id&amp;massa=nulla&amp;volutpat=ultrices&amp;convallis=aliquet&amp;morbi=maecenas&amp;odio=leo&quot;                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               
-## [3] &quot;https://w3.org/sed/augue/aliquam/erat/volutpat.json?dictumst=mi&amp;morbi=sit&amp;vestibulum=amet&amp;velit=lobortis&amp;id=sapien&amp;pretium=sapien&amp;iaculis=non&amp;diam=mi&amp;erat=integer&amp;fermentum=ac&amp;justo=neque&amp;nec=duis&amp;condimentum=bibendum&amp;neque=morbi&amp;sapien=non&amp;placerat=quam&amp;ante=nec&amp;nulla=dui&amp;justo=luctus&amp;aliquam=rutrum&amp;quis=nulla&amp;turpis=tellus&amp;eget=in&amp;elit=sagittis&amp;sodales=dui&amp;scelerisque=vel&amp;mauris=nisl&amp;sit=duis&amp;amet=ac&amp;eros=nibh&amp;suspendisse=fusce&amp;accumsan=lacus&amp;tortor=purus&amp;quis=aliquet&amp;turpis=at&amp;sed=feugiat&amp;ante=non&amp;vivamus=pretium&amp;tortor=quis&amp;duis=lectus&amp;mattis=suspendisse&amp;egestas=potenti&amp;metus=in&amp;aenean=eleifend&amp;fermentum=quam&amp;donec=a&amp;ut=odio&amp;mauris=in&amp;eget=hac&amp;massa=habitasse&amp;tempor=platea&quot;</code></pre>
-<div id="steps-6" class="section level3">
+<pre class="r"><code>urls &lt;-
+  mockstring %&gt;%
+  use_series(url) %&gt;%
+  extract(1:3)</code></pre>
+<div id="steps-5" class="section level3">
 <h3>Steps</h3>
 <ul>
 <li>check if there are only 2 dots in the URL</li>
@@ -596,7 +624,7 @@ url1</code></pre>
 </ul>
 <div id="step-1-check-if-there-are-only-2-dots-in-the-url" class="section level4">
 <h4>Step 1: Check if there are only 2 dots in the URL</h4>
-<pre class="r"><code>mockstring$url[1:3] %&gt;%
+<pre class="r"><code>urls %&gt;%
   str_locate_all(pattern = &#39;\\.&#39;) %&gt;%
   map_int(nrow) %&gt;%
   is_greater_than(2) %&gt;%
@@ -605,7 +633,7 @@ url1</code></pre>
 </div>
 <div id="step-2-check-if-there-is-only-1-question-mark-in-the-url" class="section level4">
 <h4>Step 2: Check if there is only 1 question mark in the URL</h4>
-<pre class="r"><code>mockstring$url[1:3] %&gt;%
+<pre class="r"><code>urls %&gt;%
   str_locate_all(pattern = &quot;[?]&quot;) %&gt;%
   map_int(nrow) %&gt;%
   is_greater_than(1) %&gt;%
@@ -615,7 +643,7 @@ url1</code></pre>
 <div id="step-3-detect-the-location-of-the-second-dot" class="section level4">
 <h4>Step 3: Detect the location of the second dot</h4>
 <pre class="r"><code>d &lt;- 
-  mockstring$url[1:3] %&gt;%
+  urls %&gt;%
   str_locate_all(pattern = &#39;\\.&#39;) %&gt;%
   map_int(extract(2)) %&gt;%
   add(1)
@@ -626,7 +654,7 @@ d  </code></pre>
 <div id="step-4-detect-the-location-of-the-first-question-mark" class="section level4">
 <h4>Step 4: Detect the location of the first question mark</h4>
 <pre class="r"><code>q &lt;-  
-  mockstring$url[1:3] %&gt;%
+  urls %&gt;%
   str_locate_all(pattern = &quot;[?]&quot;) %&gt;%
   map_int(extract(1)) %&gt;%
   subtract(1)
@@ -636,7 +664,7 @@ q</code></pre>
 </div>
 <div id="step-5-specify-the-index-position-for-extracting-file-type" class="section level4">
 <h4>Step 5: Specify the index position for extracting file type</h4>
-<pre class="r"><code>mockstring$url[1:3] %&gt;% 
+<pre class="r"><code>urls %&gt;% 
   str_sub(start = d, end = q)</code></pre>
 <pre><code>## [1] &quot;jsp&quot;  &quot;json&quot; &quot;json&quot;</code></pre>
 </div>
