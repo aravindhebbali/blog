@@ -10,12 +10,7 @@ tags:
   - dplyr
 ---
 
-[![Twitter](http://i.imgur.com/tXSoThF.png)](https://twitter.com/login?redirect_after_login=%2Fhome%3Fstatus)
-[![Facebook](http://i.imgur.com/P3YfQoD.png)](https://www.facebook.com/sharer/sharer.php?u=)
-
 ### Introduction
-
-<hr>
 
 This is the third post in the series **R & Databases**. You can find the links to the other two posts of this series below:
 
@@ -25,11 +20,7 @@ This is the third post in the series **R & Databases**. You can find the links t
 
 In this post, we will learn to query data from a database using dplyr.
 
-<br>
-
 ### Libraries, Code & Data
-
-<hr>
 
 We will use the following libraries in this post:
 
@@ -40,7 +31,6 @@ We will use the following libraries in this post:
 
 All the data sets used in this post can be found [here](https://github.com/rsquaredacademy/datasets) and code can be downloaded from [here](https://gist.github.com/rsquaredacademy/f5ee72cee9ab3256230cdedecd3ef25b).
 
-<br>
 
 ```{r lite1, echo=FALSE, eval=TRUE, results='hide', message=FALSE}
 library(dbplyr)
@@ -51,60 +41,44 @@ library(RSQLite)
 
 #### Connect to Database
 
-<hr>
+Let us connect to an in memory SQLite database using `dbConnect()`.
 
 ```{r dbply1}
-con <- DBI::dbConnect(RSQLite::SQLite(), ":memory:")
+con <- dbConnect(RSQLite::SQLite(), ":memory:")
 ```
 
-<br>
-
-#### Copy Data
-
-<hr>
+We will copy the `mtcars` data to the database so that we can use it for running
+dplyr statements.
 
 ```{r dbply2}
 copy_to(con, mtcars)
 ```
 
-<br>
-
 #### Reference Copied Data Frame
 
-<hr>
+In order to use dplyr functions, we need to reference the table in the database using
+`tbl()`.
 
 ```{r dbply3}
 mtcars2 <- tbl(con, "mtcars")
 mtcars2
 ```
 
-<br>
+#### Query Data 
 
-#### Query Data - I
-
-<hr>
+Let us start by selecting some columns from the referenced table.
 
 ```{r dbply4}
-mtcars2 %>%
-  select(mpg, cyl, drat)
+select(mtcars2, mpg, cyl, drat)
 ```
 
-<br>
-
-#### Query Data - II
-
-<hr>
+Try filtering data.
 
 ```{r dbply5}
-mtcars2 %>%
-  filter(mpg > 25)
+filter(mtcars2, mpg > 25)
 ```
 
-<br>
-
-#### Query Data - III
-
-<hr>
+Time to do some grouping and summarizing.
 
 ```{r dbply6}
 mtcars2 %>%
@@ -112,43 +86,29 @@ mtcars2 %>%
   summarise(mileage = mean(mpg))
 ```
 
-<br>
-
 #### Show Query
 
-<hr>
+If you want to view the SQL query generated from the dplyr statements, use `show_query()`.
 
 ```{r dbply7, collapse=TRUE}
-mileages <- mtcars2 %>%
+mileages <- 
+  mtcars2 %>%
   group_by(cyl) %>%
   summarise(mileage = mean(mpg))
 
-mileages %>% show_query()
+show_query(mileages)
 ```
-
-<br>
 
 #### Collect Data
 
-<hr>
+Now, some interesting facts. **dbplyr** does not read/import data until we ask it to do so.
+Use `collect()` to actually run the SQL statements.
 
 ```{r dbply9}
-data <- mileages %>% collect()
-data
+collect(mileages)
 ```
-
-<br>
-
-### Summary
-
-<hr>
-
-<br>
 
 ### Up Next..
 
-<hr>
-
 In the next [post](https://rsquaredacademy.github.io/blog/post/sql-for-data-science-part-1), we will learn basic SQL commands.
 
-<br>
