@@ -21,11 +21,29 @@
     </item>
     
     <item>
+      <title>Database</title>
+      <link>/tags/database/</link>
+      <pubDate>Mon, 25 Dec 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/database/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>Date</title>
       <link>/tags/date/</link>
       <pubDate>Mon, 25 Dec 2017 00:00:00 +0000</pubDate>
       
       <guid>/tags/date/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Dbplyr</title>
+      <link>/tags/dbplyr/</link>
+      <pubDate>Mon, 25 Dec 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/dbplyr/</guid>
       <description></description>
     </item>
     
@@ -102,6 +120,15 @@
     </item>
     
     <item>
+      <title>Mysql</title>
+      <link>/tags/mysql/</link>
+      <pubDate>Mon, 25 Dec 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/mysql/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>Pipes</title>
       <link>/tags/pipes/</link>
       <pubDate>Mon, 25 Dec 2017 00:00:00 +0000</pubDate>
@@ -125,6 +152,42 @@
       <pubDate>Mon, 25 Dec 2017 00:00:00 +0000</pubDate>
       
       <guid>/tags/readxl/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Rmysql</title>
+      <link>/tags/rmysql/</link>
+      <pubDate>Mon, 25 Dec 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/rmysql/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Rsqlite</title>
+      <link>/tags/rsqlite/</link>
+      <pubDate>Mon, 25 Dec 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/rsqlite/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Sql</title>
+      <link>/tags/sql/</link>
+      <pubDate>Mon, 25 Dec 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/sql/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Sqlite</title>
+      <link>/tags/sqlite/</link>
+      <pubDate>Mon, 25 Dec 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/sqlite/</guid>
       <description></description>
     </item>
     
