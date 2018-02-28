@@ -40,7 +40,7 @@ library(readr)
 
 ### Data
 
-```{r show, message=FALSE}
+```{r show, message=FALSE, collapse=FALSE}
 mockstring <- readr::read_csv('https://raw.githubusercontent.com/rsquaredacademy/datasets/master/mock_strings.csv')
 mockstring
 ```
@@ -61,7 +61,7 @@ that the email ids adher to a particular format .i.e
 Let us first detect if the email ids contain `@`. Since the data set has 1000 rows, we will 
 use a smaller sample in the examples.
 
-```{r str61}
+```{r str61, collapse=FALSE}
 mockdata <- slice(mockstring, 1:10)
 mockdata
 ```
@@ -69,7 +69,7 @@ mockdata
 Use `str_detect()` to detect `@` and `str_count()` to count the number of times
 `@` appears in the email ids.
 
-```{r str62}
+```{r str62, collapse=FALSE}
 # detect @
 str_detect(mockdata$emails, pattern = "@")
 
@@ -81,7 +81,7 @@ We can use `str_c()` to concatenate strings. Let us add the string `email id:` b
 email id in the data set.
 
 ```{r str63}
-str_c("email id:", mockdata$emails)
+str_c("email id:", mockdata$email)
 ```
 
 If we want to split a string into two parts using a particular pattern, we use `str_split()`. 
@@ -96,23 +96,23 @@ str_split(mockdata$domain, pattern = "\\.")
 We can truncate a string using `str_trunc()`. The default truncation happens at the beggining
 of the string but we can truncate the central part or the end of the string as well. 
 
-```{r str65}
-str_trunc(mockdata$emails, width = 10)
-str_trunc(mockdata$emails, width = 10, side = "left")
-str_trunc(mockdata$emails, width = 10, side = "center")
+```{r str65, collapse=FALSE}
+str_trunc(mockdata$email, width = 10)
+str_trunc(mockdata$email, width = 10, side = "left")
+str_trunc(mockdata$email, width = 10, side = "center")
 ```
 
 Strings can be sorted using `str_sort()`. Let us quickly sort the emails in both
 ascending and descending orders.
 
-```{r str66}
-str_sort(mockdata$emails)
-str_sort(mockdata$emails, decreasing = TRUE)
+```{r str66, collapse=FALSE}
+str_sort(mockdata$email)
+str_sort(mockdata$email, decreasing = TRUE)
 ```
 
 The case of a string can be changed to upper, lower or title case as shown below.
 
-```{r str67}
+```{r str67, collapse=FALSE}
 str_to_upper(mockdata$full_name)
 str_to_lower(mockdata$full_name)
 ```
@@ -123,7 +123,7 @@ let us replace:
 - Street with ST
 - Road with RD
 
-```{r str68}
+```{r str68, collapse=FALSE}
 str_replace(mockdata$address, "Street", "ST")
 str_replace(mockdata$address, "Road", "RD")
 ```
@@ -131,14 +131,14 @@ str_replace(mockdata$address, "Road", "RD")
 We can extract parts of the string that match a particular pattern using `str_extract()`.
 
 ```{r str69}
-str_extract(mockdata$emails, pattern = "org")
+str_extract(mockdata$email, pattern = "org")
 ```
 
 Before we extract, we need to know whether the string contains text that match our pattern.
 Use `str_match()` to see if the pattern is present in the string.
 
 ```{r str70}
-str_match(mockdata$emails, pattern = "org")
+str_match(mockdata$email, pattern = "org")
 ```
 
 If we are dealing with a character vector and know that the pattern we are looking at
@@ -146,7 +146,7 @@ is present in the vector, we might want to know the index of the strings in whic
 present. Use `str_which()` to identify the index of the strings that match our pattern.
 
 ```{r str71}
-str_which(mockdata$emails, pattern = "org")
+str_which(mockdata$email, pattern = "org")
 ```
 
 Another objective might be to locate the position of the pattern we are looking for in the 
@@ -154,7 +154,7 @@ string. For example, if we want to know the position of `@`  in the email ids, w
 `str_locate()`.
 
 ```{r str72}
-str_locate(mockdata$emails, pattern = "@")
+str_locate(mockdata$email, pattern = "@")
 ```
 
 The length of the string can be computed using `str_length()`. Let us ensure that the length 
@@ -175,7 +175,7 @@ One final function that we will look at before the case study is `word()`. It ex
 word(s) from sentences. We do not have any senetences in the data set, but let us use it
 to extract the first and last name from the `full_name` column.
 
-```{r 73}
+```{r 73, collapse=FALSE}
 word(mockdata$full_name, 1)
 word(mockdata$full_name, 2)
 ```

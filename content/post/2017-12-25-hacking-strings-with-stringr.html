@@ -102,9 +102,17 @@ str_count(mockdata$emails, pattern = &quot;@&quot;)</code></pre>
 <pre><code>## integer(0)</code></pre>
 <p>We can use <code>str_c()</code> to concatenate strings. Let us add the string <code>email id:</code> before each
 email id in the data set.</p>
-<pre class="r"><code>str_c(&quot;email id:&quot;, mockdata$emails)</code></pre>
-<pre><code>## Warning: Unknown or uninitialised column: &#39;emails&#39;.</code></pre>
-<pre><code>## [1] &quot;email id:&quot;</code></pre>
+<pre class="r"><code>str_c(&quot;email id:&quot;, mockdata$email)</code></pre>
+<pre><code>##  [1] &quot;email id:mnewburn0@fastcompany.com&quot;   
+##  [2] &quot;email id:mdankersley1@digg.com&quot;       
+##  [3] &quot;email id:hgirhard2@altervista.org&quot;    
+##  [4] &quot;email id:pmcmenamy3@sciencedirect.com&quot;
+##  [5] &quot;email id:drisbrough4@bandcamp.com&quot;    
+##  [6] &quot;email id:cphlippi5@surveymonkey.com&quot;  
+##  [7] &quot;email id:kdodswell6@un.org&quot;           
+##  [8] &quot;email id:vhourihane7@ovh.net&quot;         
+##  [9] &quot;email id:rdike8@timesonline.co.uk&quot;    
+## [10] &quot;email id:tdudbridge9@clickbank.net&quot;</code></pre>
 <p>If we want to split a string into two parts using a particular pattern, we use <code>str_split()</code>.
 Let us split the domain name and extension from the domain column in the data. The domain name
 and extension are separated by <code>.</code> and we will use it to split the domain column. Since <code>.</code> is
@@ -141,29 +149,29 @@ a special character, we will use two slashes to escape the special character.</p
 ## [1] &quot;jugem&quot; &quot;jp&quot;</code></pre>
 <p>We can truncate a string using <code>str_trunc()</code>. The default truncation happens at the beggining
 of the string but we can truncate the central part or the end of the string as well.</p>
-<pre class="r"><code>str_trunc(mockdata$emails, width = 10)</code></pre>
-<pre><code>## Warning: Unknown or uninitialised column: &#39;emails&#39;.</code></pre>
-<pre><code>## Warning in is.na(string): is.na() applied to non-(list or vector) of type
-## &#39;NULL&#39;</code></pre>
-<pre><code>## [1] NA</code></pre>
-<pre class="r"><code>str_trunc(mockdata$emails, width = 10, side = &quot;left&quot;)</code></pre>
-<pre><code>## Warning: Unknown or uninitialised column: &#39;emails&#39;.
-
-## Warning: is.na() applied to non-(list or vector) of type &#39;NULL&#39;</code></pre>
-<pre><code>## [1] NA</code></pre>
-<pre class="r"><code>str_trunc(mockdata$emails, width = 10, side = &quot;center&quot;)</code></pre>
-<pre><code>## Warning: Unknown or uninitialised column: &#39;emails&#39;.
-
-## Warning: is.na() applied to non-(list or vector) of type &#39;NULL&#39;</code></pre>
-<pre><code>## [1] NA</code></pre>
+<pre class="r"><code>str_trunc(mockdata$email, width = 10)</code></pre>
+<pre><code>##  [1] &quot;mnewbur...&quot; &quot;mdanker...&quot; &quot;hgirhar...&quot; &quot;pmcmena...&quot; &quot;drisbro...&quot;
+##  [6] &quot;cphlipp...&quot; &quot;kdodswe...&quot; &quot;vhourih...&quot; &quot;rdike8@...&quot; &quot;tdudbri...&quot;</code></pre>
+<pre class="r"><code>str_trunc(mockdata$email, width = 10, side = &quot;left&quot;)</code></pre>
+<pre><code>##  [1] &quot;...any.com&quot; &quot;...igg.com&quot; &quot;...sta.org&quot; &quot;...ect.com&quot; &quot;...amp.com&quot;
+##  [6] &quot;...key.com&quot; &quot;...@un.org&quot; &quot;...ovh.net&quot; &quot;...e.co.uk&quot; &quot;...ank.net&quot;</code></pre>
+<pre class="r"><code>str_trunc(mockdata$email, width = 10, side = &quot;center&quot;)</code></pre>
+<pre><code>##  [1] &quot;mnew...com&quot; &quot;mdan...com&quot; &quot;hgir...org&quot; &quot;pmcm...com&quot; &quot;dris...com&quot;
+##  [6] &quot;cphl...com&quot; &quot;kdod...org&quot; &quot;vhou...net&quot; &quot;rdik....uk&quot; &quot;tdud...net&quot;</code></pre>
 <p>Strings can be sorted using <code>str_sort()</code>. Let us quickly sort the emails in both
 ascending and descending orders.</p>
-<pre class="r"><code>str_sort(mockdata$emails)</code></pre>
-<pre><code>## Warning: Unknown or uninitialised column: &#39;emails&#39;.</code></pre>
-<pre><code>## character(0)</code></pre>
-<pre class="r"><code>str_sort(mockdata$emails, decreasing = TRUE)</code></pre>
-<pre><code>## Warning: Unknown or uninitialised column: &#39;emails&#39;.</code></pre>
-<pre><code>## character(0)</code></pre>
+<pre class="r"><code>str_sort(mockdata$email)</code></pre>
+<pre><code>##  [1] &quot;cphlippi5@surveymonkey.com&quot;   &quot;drisbrough4@bandcamp.com&quot;    
+##  [3] &quot;hgirhard2@altervista.org&quot;     &quot;kdodswell6@un.org&quot;           
+##  [5] &quot;mdankersley1@digg.com&quot;        &quot;mnewburn0@fastcompany.com&quot;   
+##  [7] &quot;pmcmenamy3@sciencedirect.com&quot; &quot;rdike8@timesonline.co.uk&quot;    
+##  [9] &quot;tdudbridge9@clickbank.net&quot;    &quot;vhourihane7@ovh.net&quot;</code></pre>
+<pre class="r"><code>str_sort(mockdata$email, decreasing = TRUE)</code></pre>
+<pre><code>##  [1] &quot;vhourihane7@ovh.net&quot;          &quot;tdudbridge9@clickbank.net&quot;   
+##  [3] &quot;rdike8@timesonline.co.uk&quot;     &quot;pmcmenamy3@sciencedirect.com&quot;
+##  [5] &quot;mnewburn0@fastcompany.com&quot;    &quot;mdankersley1@digg.com&quot;       
+##  [7] &quot;kdodswell6@un.org&quot;            &quot;hgirhard2@altervista.org&quot;    
+##  [9] &quot;drisbrough4@bandcamp.com&quot;     &quot;cphlippi5@surveymonkey.com&quot;</code></pre>
 <p>The case of a string can be changed to upper, lower or title case as shown below.</p>
 <pre class="r"><code>str_to_upper(mockdata$full_name)</code></pre>
 <pre><code>##  [1] &quot;MUFI RUIT&quot;          &quot;LEESE FURMAGIER&quot;    &quot;BLAKELEE WILSHIRE&quot; 
@@ -194,26 +202,42 @@ let us replace:</p>
 ##  [7] &quot;53541 Morrow Center&quot;        &quot;4819 Hermina Parkway&quot;      
 ##  [9] &quot;68096 Monument Park&quot;        &quot;9595 Spaight Avenue&quot;</code></pre>
 <p>We can extract parts of the string that match a particular pattern using <code>str_extract()</code>.</p>
-<pre class="r"><code>str_extract(mockdata$emails, pattern = &quot;org&quot;)</code></pre>
-<pre><code>## Warning: Unknown or uninitialised column: &#39;emails&#39;.</code></pre>
-<pre><code>## character(0)</code></pre>
+<pre class="r"><code>str_extract(mockdata$email, pattern = &quot;org&quot;)</code></pre>
+<pre><code>##  [1] NA    NA    &quot;org&quot; NA    NA    NA    &quot;org&quot; NA    NA    NA</code></pre>
 <p>Before we extract, we need to know whether the string contains text that match our pattern.
 Use <code>str_match()</code> to see if the pattern is present in the string.</p>
-<pre class="r"><code>str_match(mockdata$emails, pattern = &quot;org&quot;)</code></pre>
-<pre><code>## Warning: Unknown or uninitialised column: &#39;emails&#39;.</code></pre>
-<pre><code>##      [,1]</code></pre>
+<pre class="r"><code>str_match(mockdata$email, pattern = &quot;org&quot;)</code></pre>
+<pre><code>##       [,1] 
+##  [1,] NA   
+##  [2,] NA   
+##  [3,] &quot;org&quot;
+##  [4,] NA   
+##  [5,] NA   
+##  [6,] NA   
+##  [7,] &quot;org&quot;
+##  [8,] NA   
+##  [9,] NA   
+## [10,] NA</code></pre>
 <p>If we are dealing with a character vector and know that the pattern we are looking at
 is present in the vector, we might want to know the index of the strings in which it is
 present. Use <code>str_which()</code> to identify the index of the strings that match our pattern.</p>
-<pre class="r"><code>str_which(mockdata$emails, pattern = &quot;org&quot;)</code></pre>
-<pre><code>## Warning: Unknown or uninitialised column: &#39;emails&#39;.</code></pre>
-<pre><code>## integer(0)</code></pre>
+<pre class="r"><code>str_which(mockdata$email, pattern = &quot;org&quot;)</code></pre>
+<pre><code>## [1] 3 7</code></pre>
 <p>Another objective might be to locate the position of the pattern we are looking for in the
 string. For example, if we want to know the position of <code>@</code> in the email ids, we can use
 <code>str_locate()</code>.</p>
-<pre class="r"><code>str_locate(mockdata$emails, pattern = &quot;@&quot;)</code></pre>
-<pre><code>## Warning: Unknown or uninitialised column: &#39;emails&#39;.</code></pre>
-<pre><code>##      start end</code></pre>
+<pre class="r"><code>str_locate(mockdata$email, pattern = &quot;@&quot;)</code></pre>
+<pre><code>##       start end
+##  [1,]    10  10
+##  [2,]    13  13
+##  [3,]    10  10
+##  [4,]    11  11
+##  [5,]    12  12
+##  [6,]    10  10
+##  [7,]    11  11
+##  [8,]    12  12
+##  [9,]     7   7
+## [10,]    12  12</code></pre>
 <p>The length of the string can be computed using <code>str_length()</code>. Let us ensure that the length
 of the strings in the <code>password</code> column is 16.</p>
 <pre class="r"><code>str_length(mockdata$passwords)</code></pre>
