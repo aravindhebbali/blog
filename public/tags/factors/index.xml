@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Factors on Aravind&#39;s Blog | R | Economics | Finance</title>
+    <link>/tags/factors/</link>
+    <description>Recent content in Factors on Aravind&#39;s Blog | R | Economics | Finance</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 11 Apr 2016 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="/tags/factors/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Factors</title>
+      <link>/2016/04/11/introduction-to-factors/</link>
+      <pubDate>Mon, 11 Apr 2016 00:00:00 +0000</pubDate>
+      
+      <guid>/2016/04/11/introduction-to-factors/</guid>
+      <description>IntroductionThis is the eleventh post in the series Introduction to R. In the previous post, we learnt about dataframes. In this post, we will learn about factors.
+create factorsorder levelsspecify labelscheck levelsnumber of levelsCategorical or qualitative data in R is treated as data type factor.
+Create Factorsargs(factor)## function (x = character(), levels, labels = levels, exclude = NA, ## ordered = is.</description>
+    </item>
+    
+  </channel>
+</rss>

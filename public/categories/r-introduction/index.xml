@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>R Introduction on Aravind&#39;s Blog | R | Economics | Finance</title>
+    <link>/categories/r-introduction/</link>
+    <description>Recent content in R Introduction on Aravind&#39;s Blog | R | Economics | Finance</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 11 Sep 2016 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="/categories/r-introduction/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Dataframes</title>
+      <link>/2016/09/11/dataframes/</link>
+      <pubDate>Sun, 11 Sep 2016 00:00:00 +0000</pubDate>
+      
+      <guid>/2016/09/11/dataframes/</guid>
+      <description>IntroductionThis is the tenth post in the series Introduction to R. In the previous post. In the previous post, we learnt about lists. In this post, we will learn about dataframe.
+create dataframeselect columnsselect rowsutitlity functionsCreate dataframesUse data.frame to create dataframes. Below is the function syntax:
+args(data.frame)## function (..., row.names = NULL, check.rows = FALSE, check.names = TRUE, ## fix.empty.names = TRUE, stringsAsFactors = default.</description>
+    </item>
+    
+    <item>
+      <title>Matrix - Part 2</title>
+      <link>/2016/09/07/matrix-part-2/</link>
+      <pubDate>Wed, 07 Sep 2016 00:00:00 +0000</pubDate>
+      
+      <guid>/2016/09/07/matrix-part-2/</guid>
+      <description>IntroductionThis is the ninth post in the series Introduction to R. In the previous post, we learnt to create matrices. In this post, we will learn to:
+combining matricesindex/subset matricesdissolve matricesAppend DataIn this section, we will learn how to append data to a matrix. There are two functions that can be used for this purpose:
+rbind()cbind()cbind will append a new column to the matrix while rbind will append a new row.</description>
+    </item>
+    
+    <item>
+      <title>Vectors - Part 3</title>
+      <link>/2016/09/07/vectors-part-3/</link>
+      <pubDate>Wed, 07 Sep 2016 00:00:00 +0000</pubDate>
+      
+      <guid>/2016/09/07/vectors-part-3/</guid>
+      <description>IntroductionThis is the seventh post in the series Introduction to R. In the previous post, we learnt to perform simple operations on vector and handle missing values. In this post, we will learn to index/subset vectors.
+Index VectorsOne of the most important steps in data analysis is selecting a subset of data from a bigger data set. Indexing helps in retrieving values individually or a set of values that meet a specific criteria.</description>
+    </item>
+    
+    <item>
+      <title>Data Types in R</title>
+      <link>/2016/09/06/data-types-in-r/</link>
+      <pubDate>Tue, 06 Sep 2016 00:00:00 +0000</pubDate>
+      
+      <guid>/2016/09/06/data-types-in-r/</guid>
+      <description>IntroductionThis is the fourth post in the series Introduction to R. In the previous post, we learnt how to create variables in R. In this post, we will learn about the following data types:
+numeric/doubleintegercharacterlogicaldate/timeNumericIn R, numbers are represented by the data type numeric. We will first create a variable and assign it a value. Next we will learn a few methods of checking the type of the variable.</description>
+    </item>
+    
+    <item>
+      <title>Beginners Guide to R Package Ecosystem</title>
+      <link>/2016/05/26/beginners-guide-to-r-package-ecosystem/</link>
+      <pubDate>Thu, 26 May 2016 00:00:00 +0000</pubDate>
+      
+      <guid>/2016/05/26/beginners-guide-to-r-package-ecosystem/</guid>
+      <description>IntroductionThis is the thirteenth post in the series Introduction to R. In the previous post, we learnt about getting help in R. In this post, we will learn about R packages. Packages are fundamental to R. There are approximately 11000 packages available on CRAN or the Comprehensive R Archive Network.
+Packages are available for different topics. You should always look for a package before writing code from scratch. In case you have written your own codes for a new analysis or topic, do share it with the R community by converting the code into a package.</description>
+    </item>
+    
+    <item>
+      <title>Getting Help In R</title>
+      <link>/2016/05/13/getting-help-in-r/</link>
+      <pubDate>Fri, 13 May 2016 00:00:00 +0000</pubDate>
+      
+      <guid>/2016/05/13/getting-help-in-r/</guid>
+      <description>IntroductionThis is the twelfth post in the series Introduction to R. In the previous post, we learnt about factors. In this post, we will learn about the different methods of getting help in R. Often we get stuck while doing some analysis as either we do not know the correct function to use or its syntax. It is important for anyone who is new to R to know the right place to look for help.</description>
+    </item>
+    
+    <item>
+      <title>Factors</title>
+      <link>/2016/04/11/introduction-to-factors/</link>
+      <pubDate>Mon, 11 Apr 2016 00:00:00 +0000</pubDate>
+      
+      <guid>/2016/04/11/introduction-to-factors/</guid>
+      <description>IntroductionThis is the eleventh post in the series Introduction to R. In the previous post, we learnt about dataframes. In this post, we will learn about factors.
+create factorsorder levelsspecify labelscheck levelsnumber of levelsCategorical or qualitative data in R is treated as data type factor.
+Create Factorsargs(factor)## function (x = character(), levels, labels = levels, exclude = NA, ## ordered = is.</description>
+    </item>
+    
+    <item>
+      <title>Lists</title>
+      <link>/2016/03/22/introduction-to-lists/</link>
+      <pubDate>Tue, 22 Mar 2016 00:00:00 +0000</pubDate>
+      
+      <guid>/2016/03/22/introduction-to-lists/</guid>
+      <description>IntroductionThis is the ninth post in the series Introduction to R. In the previous post, we learnt about matrices. In this post, we will learn about lists. Lists are very useful as they are heterogeneous i.e. they can contain different data types. If you remember, vectors and matrices are homogeneous i.e. they can contain only one type of data. If you include different data types, they will all be coerced to the same type.</description>
+    </item>
+    
+    <item>
+      <title>Matrix</title>
+      <link>/2016/03/10/introduction-to-matrix/</link>
+      <pubDate>Thu, 10 Mar 2016 00:00:00 +0000</pubDate>
+      
+      <guid>/2016/03/10/introduction-to-matrix/</guid>
+      <description>IntroductionThis is the eighth post in the series Introduction to R. In the previous post, we learnt to index/subset vectors. In this post, we will learn to create matrices. A matrix is a regular array of data elements, arranged in rows and columns. Matrices in R are homogeneous i.e. they can hold a single type of data. Matrix elements are indexed by specifying the row and column index and the elements of a matrix can filled either by row or column.</description>
+    </item>
+    
+    <item>
+      <title>Vectors</title>
+      <link>/2016/02/20/introduction-to-vectors/</link>
+      <pubDate>Sat, 20 Feb 2016 00:00:00 +0000</pubDate>
+      
+      <guid>/2016/02/20/introduction-to-vectors/</guid>
+      <description>IntroductionThis is the fifth post in the series Introduction to R. In the previous post, we learnt about the basic data types in R. IN this post, we will:
+understand the concept of vectorslearn to create vectors of different data typesVectorsVector is the most basic data structure in R. It is a sequence of elements of the same data type. If the elements are of different data types, they will be coerced to a common type that can accommodate all the elements.</description>
+    </item>
+    
+  </channel>
+</rss>

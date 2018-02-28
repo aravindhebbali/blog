@@ -46,5 +46,23 @@
       <description></description>
     </item>
     
+    <item>
+      <title>R Introduction</title>
+      <link>/categories/r-introduction/</link>
+      <pubDate>Sun, 11 Sep 2016 00:00:00 +0000</pubDate>
+      
+      <guid>/categories/r-introduction/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>R Programming</title>
+      <link>/categories/r-programming/</link>
+      <pubDate>Sun, 07 Feb 2016 00:00:00 +0000</pubDate>
+      
+      <guid>/categories/r-programming/</guid>
+      <description></description>
+    </item>
+    
   </channel>
 </rss>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Matrix on Aravind&#39;s Blog | R | Economics | Finance</title>
+    <link>/tags/matrix/</link>
+    <description>Recent content in Matrix on Aravind&#39;s Blog | R | Economics | Finance</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 07 Sep 2016 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="/tags/matrix/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Matrix - Part 2</title>
+      <link>/2016/09/07/matrix-part-2/</link>
+      <pubDate>Wed, 07 Sep 2016 00:00:00 +0000</pubDate>
+      
+      <guid>/2016/09/07/matrix-part-2/</guid>
+      <description>IntroductionThis is the ninth post in the series Introduction to R. In the previous post, we learnt to create matrices. In this post, we will learn to:
+combining matricesindex/subset matricesdissolve matricesAppend DataIn this section, we will learn how to append data to a matrix. There are two functions that can be used for this purpose:
+rbind()cbind()cbind will append a new column to the matrix while rbind will append a new row.</description>
+    </item>
+    
+    <item>
+      <title>Matrix</title>
+      <link>/2016/03/10/introduction-to-matrix/</link>
+      <pubDate>Thu, 10 Mar 2016 00:00:00 +0000</pubDate>
+      
+      <guid>/2016/03/10/introduction-to-matrix/</guid>
+      <description>IntroductionThis is the eighth post in the series Introduction to R. In the previous post, we learnt to index/subset vectors. In this post, we will learn to create matrices. A matrix is a regular array of data elements, arranged in rows and columns. Matrices in R are homogeneous i.e. they can hold a single type of data. Matrix elements are indexed by specifying the row and column index and the elements of a matrix can filled either by row or column.</description>
+    </item>
+    
+  </channel>
+</rss>

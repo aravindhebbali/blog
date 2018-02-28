@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Packages on Aravind&#39;s Blog | R | Economics | Finance</title>
+    <link>/tags/packages/</link>
+    <description>Recent content in Packages on Aravind&#39;s Blog | R | Economics | Finance</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 26 May 2016 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="/tags/packages/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Beginners Guide to R Package Ecosystem</title>
+      <link>/2016/05/26/beginners-guide-to-r-package-ecosystem/</link>
+      <pubDate>Thu, 26 May 2016 00:00:00 +0000</pubDate>
+      
+      <guid>/2016/05/26/beginners-guide-to-r-package-ecosystem/</guid>
+      <description>IntroductionThis is the thirteenth post in the series Introduction to R. In the previous post, we learnt about getting help in R. In this post, we will learn about R packages. Packages are fundamental to R. There are approximately 11000 packages available on CRAN or the Comprehensive R Archive Network.
+Packages are available for different topics. You should always look for a package before writing code from scratch. In case you have written your own codes for a new analysis or topic, do share it with the R community by converting the code into a package.</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -57,11 +57,29 @@
     </item>
     
     <item>
+      <title>Data</title>
+      <link>/tags/data/</link>
+      <pubDate>Tue, 06 Sep 2016 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/data/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>Database</title>
       <link>/tags/database/</link>
       <pubDate>Mon, 25 Dec 2017 00:00:00 +0000</pubDate>
       
       <guid>/tags/database/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Dataframe</title>
+      <link>/tags/dataframe/</link>
+      <pubDate>Sun, 11 Sep 2016 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/dataframe/</guid>
       <description></description>
     </item>
     
@@ -111,11 +129,29 @@
     </item>
     
     <item>
+      <title>Factors</title>
+      <link>/tags/factors/</link>
+      <pubDate>Mon, 11 Apr 2016 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/factors/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>Forcats</title>
       <link>/tags/forcats/</link>
       <pubDate>Mon, 25 Dec 2017 00:00:00 +0000</pubDate>
       
       <guid>/tags/forcats/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Help</title>
+      <link>/tags/help/</link>
+      <pubDate>Thu, 26 May 2016 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/help/</guid>
       <description></description>
     </item>
     
@@ -165,6 +201,15 @@
     </item>
     
     <item>
+      <title>Lists</title>
+      <link>/tags/lists/</link>
+      <pubDate>Tue, 22 Mar 2016 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/lists/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>Lubridate</title>
       <link>/tags/lubridate/</link>
       <pubDate>Mon, 25 Dec 2017 00:00:00 +0000</pubDate>
@@ -179,6 +224,24 @@
       <pubDate>Mon, 25 Dec 2017 00:00:00 +0000</pubDate>
       
       <guid>/tags/magrittr/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Matrix</title>
+      <link>/tags/matrix/</link>
+      <pubDate>Wed, 07 Sep 2016 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/matrix/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Packages</title>
+      <link>/tags/packages/</link>
+      <pubDate>Thu, 26 May 2016 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/packages/</guid>
       <description></description>
     </item>
     
@@ -269,6 +332,15 @@
       <pubDate>Mon, 25 Dec 2017 00:00:00 +0000</pubDate>
       
       <guid>/tags/time/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Vectors</title>
+      <link>/tags/vectors/</link>
+      <pubDate>Thu, 07 Sep 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/vectors/</guid>
       <description></description>
     </item>
     

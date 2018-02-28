@@ -78,6 +78,11 @@
   </url>
   
   <url>
+    <loc>/2017/09/07/vectors-part-2/</loc>
+    <lastmod>2017-09-07T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>/2016/12/17/data-visualization-with-r-combining-plots/</loc>
     <lastmod>2016-12-17T00:00:00+00:00</lastmod>
   </url>
@@ -113,8 +118,28 @@
   </url>
   
   <url>
+    <loc>/2016/09/11/dataframes/</loc>
+    <lastmod>2016-09-11T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>/2016/09/07/data-visualization-with-r-scatter-plots/</loc>
     <lastmod>2016-09-07T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/2016/09/07/matrix-part-2/</loc>
+    <lastmod>2016-09-07T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/2016/09/07/vectors-part-3/</loc>
+    <lastmod>2016-09-07T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/2016/09/06/data-types-in-r/</loc>
+    <lastmod>2016-09-06T00:00:00+00:00</lastmod>
   </url>
   
   <url>
@@ -128,8 +153,43 @@
   </url>
   
   <url>
+    <loc>/2016/05/26/beginners-guide-to-r-package-ecosystem/</loc>
+    <lastmod>2016-05-26T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/2016/05/13/getting-help-in-r/</loc>
+    <lastmod>2016-05-13T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>/about/</loc>
     <lastmod>2016-05-05T21:48:51-07:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/2016/04/11/introduction-to-factors/</loc>
+    <lastmod>2016-04-11T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/2016/03/22/introduction-to-lists/</loc>
+    <lastmod>2016-03-22T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/2016/03/10/introduction-to-matrix/</loc>
+    <lastmod>2016-03-10T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/2016/02/20/introduction-to-vectors/</loc>
+    <lastmod>2016-02-20T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/2016/02/07/data-types-in-r/</loc>
+    <lastmod>2016-02-07T00:00:00+00:00</lastmod>
   </url>
   
   <url>
@@ -174,6 +234,12 @@
   </url>
   
   <url>
+    <loc>/tags/data/</loc>
+    <lastmod>2016-09-06T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>/categories/data-visualization/</loc>
     <lastmod>2016-12-17T00:00:00+00:00</lastmod>
     <priority>0</priority>
@@ -194,6 +260,12 @@
   <url>
     <loc>/categories/database/</loc>
     <lastmod>2017-12-25T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/tags/dataframe/</loc>
+    <lastmod>2016-09-11T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -228,8 +300,20 @@
   </url>
   
   <url>
+    <loc>/tags/factors/</loc>
+    <lastmod>2016-04-11T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>/tags/forcats/</loc>
     <lastmod>2017-12-25T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/tags/help/</loc>
+    <lastmod>2016-05-26T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -264,6 +348,12 @@
   </url>
   
   <url>
+    <loc>/tags/lists/</loc>
+    <lastmod>2016-03-22T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>/tags/lubridate/</loc>
     <lastmod>2017-12-25T00:00:00+00:00</lastmod>
     <priority>0</priority>
@@ -272,6 +362,18 @@
   <url>
     <loc>/tags/magrittr/</loc>
     <lastmod>2017-12-25T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/tags/matrix/</loc>
+    <lastmod>2016-09-07T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/tags/packages/</loc>
+    <lastmod>2016-05-26T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -290,6 +392,18 @@
   <url>
     <loc>/categories/r/</loc>
     <lastmod>2017-12-24T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/categories/r-introduction/</loc>
+    <lastmod>2016-09-11T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/categories/r-programming/</loc>
+    <lastmod>2016-02-07T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -350,6 +464,12 @@
   <url>
     <loc>/tags/time/</loc>
     <lastmod>2017-12-25T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/tags/vectors/</loc>
+    <lastmod>2017-09-07T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
