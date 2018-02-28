@@ -6,17 +6,17 @@
     <description>Recent content in Annotations on Aravind&#39;s Blog | R | Economics | Finance</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 08 Dec 2015 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 08 Dec 2016 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/tags/annotations/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Data Visualization with R - Text Annotations</title>
-      <link>/2015/12/08/data-visualization-with-r-text-annotations/</link>
-      <pubDate>Tue, 08 Dec 2015 00:00:00 +0000</pubDate>
+      <link>/2016/12/08/data-visualization-with-r-text-annotations/</link>
+      <pubDate>Thu, 08 Dec 2016 00:00:00 +0000</pubDate>
       
-      <guid>/2015/12/08/data-visualization-with-r-text-annotations/</guid>
+      <guid>/2016/12/08/data-visualization-with-r-text-annotations/</guid>
       <description>IntroductionThis is the ninth post in the series Data Visualization With R. In the previous post, we learnt how to add legend to a plot. In this post, we will learn to add text annotations. There are occassions when you want to display additional information in a plot. This is usually achieved by adding text either inside the plot or on the margins. For example, you might want to label a line/bar or add formulas to better communicate what is shown in the plot.</description>
     </item>
     

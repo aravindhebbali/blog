@@ -177,67 +177,49 @@ library(lubridate)library(dplyr)library(magrittr)library(readr)Quic IntroO
     </item>
     
     <item>
-      <title>About</title>
-      <link>/about/</link>
-      <pubDate>Thu, 05 May 2016 21:48:51 -0700</pubDate>
-      
-      <guid>/about/</guid>
-      <description>This is a &amp;ldquo;hello world&amp;rdquo; example website for the blogdown package. The theme was forked from @jrutheiser/hugo-lithium-theme and modified by Yihui Xie.</description>
-    </item>
-    
-    <item>
-      <title>Data Visualization with R - Font, Color &amp; Size</title>
-      <link>/2015/12/26/data-visualization-with-r-font-color-size/</link>
-      <pubDate>Sat, 26 Dec 2015 00:00:00 +0000</pubDate>
-      
-      <guid>/2015/12/26/data-visualization-with-r-font-color-size/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>Data Visualization with R - Combining Plots</title>
-      <link>/2015/12/17/data-visualization-with-r-combining-plots/</link>
-      <pubDate>Thu, 17 Dec 2015 00:00:00 +0000</pubDate>
+      <link>/2016/12/17/data-visualization-with-r-combining-plots/</link>
+      <pubDate>Sat, 17 Dec 2016 00:00:00 +0000</pubDate>
       
-      <guid>/2015/12/17/data-visualization-with-r-combining-plots/</guid>
+      <guid>/2016/12/17/data-visualization-with-r-combining-plots/</guid>
       <description>IntroductionThis is the tenth post in the series Data Visualization With R. In the previous post, we learnt how to add text annotations to plots. In this post, we will learn how to combine multiple plots. Often, it is useful to have multiple plots in the same frame as it allows us to get a comprehensive view of a particular variable or compare among different variables. The Graphics package offers two methods to combine multiple plots.</description>
     </item>
     
     <item>
       <title>Data Visualization with R - Text Annotations</title>
-      <link>/2015/12/08/data-visualization-with-r-text-annotations/</link>
-      <pubDate>Tue, 08 Dec 2015 00:00:00 +0000</pubDate>
+      <link>/2016/12/08/data-visualization-with-r-text-annotations/</link>
+      <pubDate>Thu, 08 Dec 2016 00:00:00 +0000</pubDate>
       
-      <guid>/2015/12/08/data-visualization-with-r-text-annotations/</guid>
+      <guid>/2016/12/08/data-visualization-with-r-text-annotations/</guid>
       <description>IntroductionThis is the ninth post in the series Data Visualization With R. In the previous post, we learnt how to add legend to a plot. In this post, we will learn to add text annotations. There are occassions when you want to display additional information in a plot. This is usually achieved by adding text either inside the plot or on the margins. For example, you might want to label a line/bar or add formulas to better communicate what is shown in the plot.</description>
     </item>
     
     <item>
       <title>Data Visualization with R - Legends</title>
-      <link>/2015/11/25/data-visualization-with-r-legends/</link>
-      <pubDate>Wed, 25 Nov 2015 00:00:00 +0000</pubDate>
+      <link>/2016/11/25/data-visualization-with-r-legends/</link>
+      <pubDate>Fri, 25 Nov 2016 00:00:00 +0000</pubDate>
       
-      <guid>/2015/11/25/data-visualization-with-r-legends/</guid>
+      <guid>/2016/11/25/data-visualization-with-r-legends/</guid>
       <description>IntroductionThis is the eighth post in the series Data Visualisation With R. In the previous post, we learnt to build histograms. In this post, we will learn how to:
 position the legend within the plotmodify the layout using ncol and horiz argumentsadd title using the title. set of argumentsmodify the appearance and position of the legend boxmodify the appearance of the text in the legend boxLegends are used to convey information about the data being represented by a plot.</description>
     </item>
     
     <item>
       <title>Data Visualization with R - Histogram</title>
-      <link>/2015/11/06/data-visualization-with-r-histogram/</link>
-      <pubDate>Fri, 06 Nov 2015 00:00:00 +0000</pubDate>
+      <link>/2016/11/06/data-visualization-with-r-histogram/</link>
+      <pubDate>Sun, 06 Nov 2016 00:00:00 +0000</pubDate>
       
-      <guid>/2015/11/06/data-visualization-with-r-histogram/</guid>
+      <guid>/2016/11/06/data-visualization-with-r-histogram/</guid>
       <description>IntroductionThis is the seventh post in the series Data Visualization With R. In the previous post, we learnt about box and whisker plots. In this post, we will learn to:
 create a bare bones histogramspecify the number of bins/intervalsrepresent frequency density on the Y axisadd colors to the bars and the borderadd labels to the barsA histogram is a plot that can be used to examine the shape and spread of continuous data.</description>
     </item>
     
     <item>
       <title>Data Visualization with R - Box Plots</title>
-      <link>/2015/10/21/data-visualization-with-r-box-plots/</link>
-      <pubDate>Wed, 21 Oct 2015 00:00:00 +0000</pubDate>
+      <link>/2016/10/21/data-visualization-with-r-box-plots/</link>
+      <pubDate>Fri, 21 Oct 2016 00:00:00 +0000</pubDate>
       
-      <guid>/2015/10/21/data-visualization-with-r-box-plots/</guid>
+      <guid>/2016/10/21/data-visualization-with-r-box-plots/</guid>
       <description>IntroductionThis is the sixth post in the series Data Visualization With R. In the previous post, we learnt how to build bar plots. In this post, we will learn to
 create univariate/multivariate box plotsinterpret box plotscreate horizontal box plotsdetect outliersmodify box coloruse formula to compare distributions of different variablesuse notches to compare medians
 Libraries, Code &amp;amp; DataAll the data sets used in this post can be found here and code can be downloaded from here.</description>
@@ -245,39 +227,39 @@ library(lubridate)library(dplyr)library(magrittr)library(readr)Quic IntroO
     
     <item>
       <title>Data Visualization With R - Bar Plots</title>
-      <link>/2015/10/05/data-visualization-with-r-bar-plots/</link>
-      <pubDate>Mon, 05 Oct 2015 00:00:00 +0000</pubDate>
+      <link>/2016/10/05/data-visualization-with-r-bar-plots/</link>
+      <pubDate>Wed, 05 Oct 2016 00:00:00 +0000</pubDate>
       
-      <guid>/2015/10/05/data-visualization-with-r-bar-plots/</guid>
+      <guid>/2016/10/05/data-visualization-with-r-bar-plots/</guid>
       <description>IntroductionThis is the fifth post in the series Data Visualization With R. In the previous post we learnt how to build line graphs. In this post, we will visualize categorical data using univariate and bivariate bar plots.
 createsimple bar plotstacked bar plotgrouped bar plotmodify bardirectioncolorline colorwidthlabelsmodify axis rangeremove axes from the plotspecify the line type of the X axesoffset the Y axesmodify legend</description>
     </item>
     
     <item>
       <title>Data Visualization With R - Line Graphs</title>
-      <link>/2015/09/23/data-visualization-with-r-line-graphs/</link>
-      <pubDate>Wed, 23 Sep 2015 00:00:00 +0000</pubDate>
+      <link>/2016/09/23/data-visualization-with-r-line-graphs/</link>
+      <pubDate>Fri, 23 Sep 2016 00:00:00 +0000</pubDate>
       
-      <guid>/2015/09/23/data-visualization-with-r-line-graphs/</guid>
+      <guid>/2016/09/23/data-visualization-with-r-line-graphs/</guid>
       <description>IntroductionThis is the fourth post in the series Data Visualization With R. In the previous post, we learnt how to build scatter plots. In this post, we will build line graphs. To be more specific we will learn to
 create line plotsadd color to linesmodify line type/stylemodify line widthadd points to the linesmodify axis rangeadd additional lines to the plot</description>
     </item>
     
     <item>
       <title>Data Visualization With R - Scatter Plots</title>
-      <link>/2015/09/07/data-visualization-with-r-scatter-plots/</link>
-      <pubDate>Mon, 07 Sep 2015 00:00:00 +0000</pubDate>
+      <link>/2016/09/07/data-visualization-with-r-scatter-plots/</link>
+      <pubDate>Wed, 07 Sep 2016 00:00:00 +0000</pubDate>
       
-      <guid>/2015/09/07/data-visualization-with-r-scatter-plots/</guid>
+      <guid>/2016/09/07/data-visualization-with-r-scatter-plots/</guid>
       <description>IntroductionThis is the third post in the series Data Visualization With R. In the previous post, we learned how to add title, subtitle and axis labels. We also learned how to modify the range of the axis. In this post, we will learn how to create scatter plots. If you remember, we had created a scatter plot in this post, using the plot() function. We will continue with the same plot and learn how to enhance a scatter plot by</description>
     </item>
     
     <item>
       <title>Data Visualization With R - Title and Axis Labels</title>
-      <link>/2015/08/22/data-visualization-with-r-title-and-axis-labels/</link>
-      <pubDate>Sat, 22 Aug 2015 00:00:00 +0000</pubDate>
+      <link>/2016/08/22/data-visualization-with-r-title-and-axis-labels/</link>
+      <pubDate>Mon, 22 Aug 2016 00:00:00 +0000</pubDate>
       
-      <guid>/2015/08/22/data-visualization-with-r-title-and-axis-labels/</guid>
+      <guid>/2016/08/22/data-visualization-with-r-title-and-axis-labels/</guid>
       <description>IntroductionThis is the second post of the series Data Visualization With R. In the previous post, we explored the plot() function and observed the different types of plots it generated. In this post, we will learn how to add:
 TitleSubtitleAxis Labelsto a plot and how to modify:
 Axis rangeIn the previous post, we created plots which did not have any title or labels.</description>
@@ -285,13 +267,22 @@ library(lubridate)library(dplyr)library(magrittr)library(readr)Quic IntroO
     
     <item>
       <title>Data Visualization With R - Introduction</title>
-      <link>/2015/08/05/data-visualization-with-r-introduction/</link>
-      <pubDate>Wed, 05 Aug 2015 00:00:00 +0000</pubDate>
+      <link>/2016/08/05/data-visualization-with-r-introduction/</link>
+      <pubDate>Fri, 05 Aug 2016 00:00:00 +0000</pubDate>
       
-      <guid>/2015/08/05/data-visualization-with-r-introduction/</guid>
+      <guid>/2016/08/05/data-visualization-with-r-introduction/</guid>
       <description>IntroductionThis is the first post of the series Data Visualization With R. The objective of the series is to provide a gentle introduction to working with base graphics in R. We will come up with a similar series using ggplot2 shortly.
 what is data visualizationwhy visualize dataunderstand R graphics systemgraphicsggplot2latticebuild some simple plots
 Libraries, Code &amp;amp; DataAll the data sets used in this post can be found here and code can be downloaded from here.</description>
+    </item>
+    
+    <item>
+      <title>About</title>
+      <link>/about/</link>
+      <pubDate>Thu, 05 May 2016 21:48:51 -0700</pubDate>
+      
+      <guid>/about/</guid>
+      <description>This is a &amp;ldquo;hello world&amp;rdquo; example website for the blogdown package. The theme was forked from @jrutheiser/hugo-lithium-theme and modified by Yihui Xie.</description>
     </item>
     
   </channel>

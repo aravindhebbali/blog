@@ -6,17 +6,17 @@
     <description>Recent content in Legend on Aravind&#39;s Blog | R | Economics | Finance</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 25 Nov 2015 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 25 Nov 2016 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/tags/legend/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Data Visualization with R - Legends</title>
-      <link>/2015/11/25/data-visualization-with-r-legends/</link>
-      <pubDate>Wed, 25 Nov 2015 00:00:00 +0000</pubDate>
+      <link>/2016/11/25/data-visualization-with-r-legends/</link>
+      <pubDate>Fri, 25 Nov 2016 00:00:00 +0000</pubDate>
       
-      <guid>/2015/11/25/data-visualization-with-r-legends/</guid>
+      <guid>/2016/11/25/data-visualization-with-r-legends/</guid>
       <description>IntroductionThis is the eighth post in the series Data Visualisation With R. In the previous post, we learnt to build histograms. In this post, we will learn how to:
 position the legend within the plotmodify the layout using ncol and horiz argumentsadd title using the title. set of argumentsmodify the appearance and position of the legend boxmodify the appearance of the text in the legend boxLegends are used to convey information about the data being represented by a plot.</description>
     </item>

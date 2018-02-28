@@ -6,17 +6,17 @@
     <description>Recent content in Bar Plot on Aravind&#39;s Blog | R | Economics | Finance</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 05 Oct 2015 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 05 Oct 2016 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/tags/bar-plot/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Data Visualization With R - Bar Plots</title>
-      <link>/2015/10/05/data-visualization-with-r-bar-plots/</link>
-      <pubDate>Mon, 05 Oct 2015 00:00:00 +0000</pubDate>
+      <link>/2016/10/05/data-visualization-with-r-bar-plots/</link>
+      <pubDate>Wed, 05 Oct 2016 00:00:00 +0000</pubDate>
       
-      <guid>/2015/10/05/data-visualization-with-r-bar-plots/</guid>
+      <guid>/2016/10/05/data-visualization-with-r-bar-plots/</guid>
       <description>IntroductionThis is the fifth post in the series Data Visualization With R. In the previous post we learnt how to build line graphs. In this post, we will visualize categorical data using univariate and bivariate bar plots.
 createsimple bar plotstacked bar plotgrouped bar plotmodify bardirectioncolorline colorwidthlabelsmodify axis rangeremove axes from the plotspecify the line type of the X axesoffset the Y axesmodify legend</description>
     </item>

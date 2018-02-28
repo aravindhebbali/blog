@@ -6,17 +6,17 @@
     <description>Recent content in Box Plot on Aravind&#39;s Blog | R | Economics | Finance</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 21 Oct 2015 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 21 Oct 2016 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/tags/box-plot/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Data Visualization with R - Box Plots</title>
-      <link>/2015/10/21/data-visualization-with-r-box-plots/</link>
-      <pubDate>Wed, 21 Oct 2015 00:00:00 +0000</pubDate>
+      <link>/2016/10/21/data-visualization-with-r-box-plots/</link>
+      <pubDate>Fri, 21 Oct 2016 00:00:00 +0000</pubDate>
       
-      <guid>/2015/10/21/data-visualization-with-r-box-plots/</guid>
+      <guid>/2016/10/21/data-visualization-with-r-box-plots/</guid>
       <description>IntroductionThis is the sixth post in the series Data Visualization With R. In the previous post, we learnt how to build bar plots. In this post, we will learn to
 create univariate/multivariate box plotsinterpret box plotscreate horizontal box plotsdetect outliersmodify box coloruse formula to compare distributions of different variablesuse notches to compare medians
 Libraries, Code &amp;amp; DataAll the data sets used in this post can be found here and code can be downloaded from here.</description>
