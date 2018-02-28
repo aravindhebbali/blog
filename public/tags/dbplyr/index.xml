@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Dbplyr on Aravind&#39;s Blog | R | Economics | Finance</title>
+    <link>/tags/dbplyr/</link>
+    <description>Recent content in Dbplyr on Aravind&#39;s Blog | R | Economics | Finance</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 25 Dec 2017 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="/tags/dbplyr/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Data Wrangling with dbplyr</title>
+      <link>/2017/12/25/data-wrangling-with-dbplyr/</link>
+      <pubDate>Mon, 25 Dec 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/2017/12/25/data-wrangling-with-dbplyr/</guid>
+      <description>IntroductionThis is the third post in the series R &amp;amp; Databases. You can find the links to the other two posts of this series below:
+Quick Guide: R &amp;amp; SQLiteSQL for Data Science - Part 1SQL for Data Science - Part 2In this post, we will learn to query data from a database using dplyr.
+
+Libraries, Code &amp;amp; DataWe will use the following libraries in this post:</description>
+    </item>
+    
+  </channel>
+</rss>
