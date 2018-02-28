@@ -6,17 +6,17 @@
     <description>Recent content in Time on Aravind&#39;s Blog | R | Economics | Finance</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 25 Dec 2017 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sun, 14 Jan 2018 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/tags/time/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Working with Dates in R </title>
-      <link>/2017/12/25/working-with-dates-in-r/</link>
-      <pubDate>Mon, 25 Dec 2017 00:00:00 +0000</pubDate>
+      <link>/2018/01/14/working-with-dates-in-r/</link>
+      <pubDate>Sun, 14 Jan 2018 00:00:00 +0000</pubDate>
       
-      <guid>/2017/12/25/working-with-dates-in-r/</guid>
+      <guid>/2018/01/14/working-with-dates-in-r/</guid>
       <description>IntroductionIn this post, we will learn to work with date/time data in R using lubridate, an R package that makes it easy to work with dates and time.Let us begin by installing and loading the pacakge.
 Libraries, Code &amp;amp; DataWe will use the following packages:
 lubridatedplyrmagrittrreadrThe data sets can be downloaded from here and the codes from here.

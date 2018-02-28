@@ -6,17 +6,17 @@
     <description>Recent content in Dplyr on Aravind&#39;s Blog | R | Economics | Finance</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 25 Dec 2017 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sun, 04 Feb 2018 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/tags/dplyr/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Data Wrangling with dbplyr</title>
-      <link>/2017/12/25/data-wrangling-with-dbplyr/</link>
-      <pubDate>Mon, 25 Dec 2017 00:00:00 +0000</pubDate>
+      <link>/2018/02/04/data-wrangling-with-dbplyr/</link>
+      <pubDate>Sun, 04 Feb 2018 00:00:00 +0000</pubDate>
       
-      <guid>/2017/12/25/data-wrangling-with-dbplyr/</guid>
+      <guid>/2018/02/04/data-wrangling-with-dbplyr/</guid>
       <description>IntroductionThis is the third post in the series R &amp;amp; Databases. You can find the links to the other two posts of this series below:
 Quick Guide: R &amp;amp; SQLiteIn this post, we will learn to query data from a database using dplyr.
 Libraries, Code &amp;amp; DataWe will use the following libraries in this post:
@@ -24,22 +24,22 @@
     </item>
     
     <item>
-      <title>Data Wrangling with dplyr - Part 1</title>
-      <link>/2017/12/25/data-wrangling-with-dplyr-part-1/</link>
-      <pubDate>Mon, 25 Dec 2017 00:00:00 +0000</pubDate>
+      <title>Data Wrangling with dplyr - Part 3</title>
+      <link>/2017/12/24/data-wrangling-with-dplyr-part-3/</link>
+      <pubDate>Sun, 24 Dec 2017 00:00:00 +0000</pubDate>
       
-      <guid>/2017/12/25/data-wrangling-with-dplyr-part-1/</guid>
-      <description>IntroductionAccording to a survey by CrowdFlower, data scientists spend most of theirtime cleaning and manipulating data rather than mining or modeling them forinsights. As such, it becomes important to have tools that make datamanipulation faster and easier. In today’s post, we introduce you todplyr, a grammar of data manipulation.
-Libraries, Code &amp;amp; DataWe will use the following libraries:
-dplyrand readrThe data sets can be downloaded from hereand the codes from here.</description>
+      <guid>/2017/12/24/data-wrangling-with-dplyr-part-3/</guid>
+      <description>IntroductionIn the previous post,we learnt to combine tables using dplyr. In this post, we will explore a set ofhelper functions in order to:
+extract unique rowsrename columnssample dataextract columnsslice rowsarrange rowscompare tablesextract/mutate data using predicate functionscount observations for different levels of a variableLibraries, Code &amp;amp; DataWe will use the following packages:
+dplyrreadrThe data sets can be downloaded from hereand the codes from here.</description>
     </item>
     
     <item>
       <title>Data Wrangling with dplyr - Part 2</title>
-      <link>/2017/12/25/data-wrangling-with-dplyr-part-2/</link>
-      <pubDate>Mon, 25 Dec 2017 00:00:00 +0000</pubDate>
+      <link>/2017/12/17/data-wrangling-with-dplyr-part-2/</link>
+      <pubDate>Sun, 17 Dec 2017 00:00:00 +0000</pubDate>
       
-      <guid>/2017/12/25/data-wrangling-with-dplyr-part-2/</guid>
+      <guid>/2017/12/17/data-wrangling-with-dplyr-part-2/</guid>
       <description>IntroductionIn the previous post,we learnt about dplyr verbs and used them to compute average order value for anonline retail company data. In this post, we will learn to combine tables usingdifferent *_join functions provided in dplyr.
 Libraries, Code &amp;amp; DataWe will use the following packages:
 dplyrreadrThe data sets can be downloaded from hereand the codes from here.
@@ -47,14 +47,14 @@ library(dplyr)library(readr)options(tibble.</description>
     </item>
     
     <item>
-      <title>Data Wrangling with dplyr - Part 3</title>
-      <link>/2017/12/25/data-wrangling-with-dplyr-part-3/</link>
-      <pubDate>Mon, 25 Dec 2017 00:00:00 +0000</pubDate>
+      <title>Data Wrangling with dplyr - Part 1</title>
+      <link>/2017/12/10/data-wrangling-with-dplyr-part-1/</link>
+      <pubDate>Sun, 10 Dec 2017 00:00:00 +0000</pubDate>
       
-      <guid>/2017/12/25/data-wrangling-with-dplyr-part-3/</guid>
-      <description>IntroductionIn the previous post,we learnt to combine tables using dplyr. In this post, we will explore a set ofhelper functions in order to:
-extract unique rowsrename columnssample dataextract columnsslice rowsarrange rowscompare tablesextract/mutate data using predicate functionscount observations for different levels of a variableLibraries, Code &amp;amp; DataWe will use the following packages:
-dplyrreadrThe data sets can be downloaded from hereand the codes from here.</description>
+      <guid>/2017/12/10/data-wrangling-with-dplyr-part-1/</guid>
+      <description>IntroductionAccording to a survey by CrowdFlower, data scientists spend most of theirtime cleaning and manipulating data rather than mining or modeling them forinsights. As such, it becomes important to have tools that make datamanipulation faster and easier. In today’s post, we introduce you todplyr, a grammar of data manipulation.
+Libraries, Code &amp;amp; DataWe will use the following libraries:
+dplyrand readrThe data sets can be downloaded from hereand the codes from here.</description>
     </item>
     
   </channel>

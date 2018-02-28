@@ -6,17 +6,17 @@
     <description>Recent content in Dataframe on Aravind&#39;s Blog | R | Economics | Finance</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 11 Sep 2016 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 23 Jun 2016 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/tags/dataframe/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Dataframes</title>
-      <link>/2016/09/11/dataframes/</link>
-      <pubDate>Sun, 11 Sep 2016 00:00:00 +0000</pubDate>
+      <link>/2016/06/23/dataframes/</link>
+      <pubDate>Thu, 23 Jun 2016 00:00:00 +0000</pubDate>
       
-      <guid>/2016/09/11/dataframes/</guid>
+      <guid>/2016/06/23/dataframes/</guid>
       <description>IntroductionThis is the tenth post in the series Introduction to R. In the previous post. In the previous post, we learnt about lists. In this post, we will learn about dataframe.
 create dataframeselect columnsselect rowsutitlity functionsCreate dataframesUse data.frame to create dataframes. Below is the function syntax:
 args(data.frame)## function (..., row.names = NULL, check.rows = FALSE, check.names = TRUE, ## fix.empty.names = TRUE, stringsAsFactors = default.</description>

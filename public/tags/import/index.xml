@@ -6,48 +6,48 @@
     <description>Recent content in Import on Aravind&#39;s Blog | R | Economics | Finance</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 25 Dec 2017 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sun, 28 Jan 2018 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/tags/import/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
-      <title>Importing Data into R - Part 2</title>
-      <link>/2017/12/25/importing-data-into-r-part-2/</link>
-      <pubDate>Mon, 25 Dec 2017 00:00:00 +0000</pubDate>
-      
-      <guid>/2017/12/25/importing-data-into-r-part-2/</guid>
-      <description>IntroductionThis is the second post in the series Importing Data into R. In the previous post, we explored reading data from flat/delimited files. In this post, we will:
-list sheets in an excel fileread data from an excel sheetread specific cells from an excel sheetread specific rowsread specific columnsread data from- SAS- SPSS- STATALibraries, Data &amp;amp; CodeWe will use the readxl package.</description>
-    </item>
-    
-    <item>
-      <title>Importing Data into R - Part 3</title>
-      <link>/2017/12/25/importing-data-into-r-part-3/</link>
-      <pubDate>Mon, 25 Dec 2017 00:00:00 +0000</pubDate>
-      
-      <guid>/2017/12/25/importing-data-into-r-part-3/</guid>
-      <description>IntroductionThis is the third post in the series Importing Data into R. You can find the link to the previous posts below:
-Importing Data into R - Part 1Importing Data into R - Part 2In the previous post, we explored reading data from excel spreadsheets and files from other statistical softwares such as SAS, SPSS and STATA. In this post, we will learn to read data from:</description>
-    </item>
-    
-    <item>
       <title>Quick Guide: R &amp; SQLite</title>
-      <link>/2017/12/25/quick-guide-r-sqlite/</link>
-      <pubDate>Mon, 25 Dec 2017 00:00:00 +0000</pubDate>
+      <link>/2018/01/28/quick-guide-r-sqlite/</link>
+      <pubDate>Sun, 28 Jan 2018 00:00:00 +0000</pubDate>
       
-      <guid>/2017/12/25/quick-guide-r-sqlite/</guid>
+      <guid>/2018/01/28/quick-guide-r-sqlite/</guid>
       <description>IntroductionThis is the first post in the series R &amp;amp; Databases. You can find the links to the other two posts of this series below:
 Data Wrangling with dbplyrSQL for Data Science - Part 1SQL for Data Science - Part 2In this post, we will learn to:
 connect to a SQLite database from Rdisplay database informationlist tables in the databasequery dataread entire tableread few rowsread data in batchescreate table in databaseoverwrite table in databaseappend data to table in databaseremove table from databasegenerate SQL queryclose database connectionLibraries, Code &amp;amp; DataWe will use the following libraries in this post:</description>
     </item>
     
     <item>
-      <title>Importing Data into R - Part 1</title>
-      <link>/2017/12/24/a-complete-guide-to-importing-data-into-r-part-1/</link>
-      <pubDate>Sun, 24 Dec 2017 00:00:00 +0000</pubDate>
+      <title>Importing Data into R - Part 3</title>
+      <link>/2017/11/19/importing-data-into-r-part-3/</link>
+      <pubDate>Sun, 19 Nov 2017 00:00:00 +0000</pubDate>
       
-      <guid>/2017/12/24/a-complete-guide-to-importing-data-into-r-part-1/</guid>
+      <guid>/2017/11/19/importing-data-into-r-part-3/</guid>
+      <description>IntroductionThis is the third post in the series Importing Data into R. You can find the link to the previous posts below:
+Importing Data into R - Part 1Importing Data into R - Part 2In the previous post, we explored reading data from excel spreadsheets and files from other statistical softwares such as SAS, SPSS and STATA. In this post, we will learn to read data from:</description>
+    </item>
+    
+    <item>
+      <title>Importing Data into R - Part 2</title>
+      <link>/2017/11/12/importing-data-into-r-part-2/</link>
+      <pubDate>Sun, 12 Nov 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/2017/11/12/importing-data-into-r-part-2/</guid>
+      <description>IntroductionThis is the second post in the series Importing Data into R. In the previous post, we explored reading data from flat/delimited files. In this post, we will:
+list sheets in an excel fileread data from an excel sheetread specific cells from an excel sheetread specific rowsread specific columnsread data from- SAS- SPSS- STATALibraries, Data &amp;amp; CodeWe will use the readxl package.</description>
+    </item>
+    
+    <item>
+      <title>Importing Data into R - Part 1</title>
+      <link>/2017/11/05/a-complete-guide-to-importing-data-into-r-part-1/</link>
+      <pubDate>Sun, 05 Nov 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/2017/11/05/a-complete-guide-to-importing-data-into-r-part-1/</guid>
       <description>IntroductionThis is the first post in the series Importing Data into R. Before we get started, let me talk a bit about what we will learn in this series. I am planning to write 3 posts in which we will explore how to read data from:
 flat/delimited files (.csv, .txt, .tsv)excel spreadsheets (.xls, .xlsx)statistical softwaresJSON/XMLThere are other ways to get data into R such as databases, APIs etc.</description>
     </item>

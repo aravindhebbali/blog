@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Hugo 0.26" />
+
+
+<title>Dataframes - Aravind&#39;s Blog | R | Economics | Finance</title>
+<meta property="og:title" content="Dataframes - Aravind&#39;s Blog | R | Economics | Finance">
+
+
+
+  
+
+
+
+
+<link rel="stylesheet" href="/css/github-gist.css" rel="stylesheet" id="theme-stylesheet">
+<script src="/js/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+
+
+
+
+<link href='//cdn.bootcss.com/highlight.js/9.11.0/styles/github.min.css' rel='stylesheet' type='text/css' />
+
+
+
+<link rel="stylesheet" href="/css/fonts.css" media="all">
+<link rel="stylesheet" href="/css/main.css" media="all">
+
+
+
+  </head>
+  <body>
+    <div class="wrapper">
+      <header class="header">
+        <nav class="nav">
+  <a href="/" class="nav-logo">
+    <img src="/images/logo.jpg"
+         width="50"
+         height="50"
+         alt="Aravind Hebbali">
+  </a>
+
+  <ul class="nav-links">
+    
+    <li><a href="/">Home</a></li>
+    
+    <li><a href="https://github.com/aravindhebbali">Projects</a></li>
+    
+    <li><a href="https://www.aravindhebbali.com/">About</a></li>
+    
+  </ul>
+</nav>
+
+      </header>
+
+
+<main class="content" role="main">
+
+  <article class="article">
+    
+    <span class="article-duration">2 min read</span>
+    
+
+    <h1 class="article-title">Dataframes</h1>
+
+    
+    <span class="article-date">2016/06/23</span>
+    
+
+    <div class="article-content">
+      <div id="introduction" class="section level2">
+<h2>Introduction</h2>
+<p>This is the tenth post in the series <strong>Introduction to R</strong>. In the previous <a href="">post</a>. In the previous <a href="">post</a>, we learnt about lists. In this post, we will learn about <code>dataframe</code>.</p>
+<ul>
+<li>create dataframe</li>
+<li>select columns</li>
+<li>select rows</li>
+<li>utitlity functions</li>
+</ul>
+</div>
+<div id="create-dataframes" class="section level2">
+<h2>Create dataframes</h2>
+<p>Use <code>data.frame</code> to create dataframes. Below is the function syntax:</p>
+<pre class="r"><code>args(data.frame)</code></pre>
+<pre><code>## function (..., row.names = NULL, check.rows = FALSE, check.names = TRUE, 
+##     fix.empty.names = TRUE, stringsAsFactors = default.stringsAsFactors()) 
+## NULL</code></pre>
+<p>Data frames are basically lists with elements of equal lenght and as such, they are heterogeneous. Let us create a dataframe:</p>
+<pre class="r"><code>name &lt;- c(&#39;John&#39;, &#39;Jack&#39;, &#39;Jill&#39;)
+age &lt;- c(29, 25, 27)
+graduate &lt;- c(TRUE, TRUE, FALSE)
+students &lt;- data.frame(name, age, graduate)
+students</code></pre>
+<pre><code>##   name age graduate
+## 1 John  29     TRUE
+## 2 Jack  25     TRUE
+## 3 Jill  27    FALSE</code></pre>
+</div>
+<div id="basic-information" class="section level2">
+<h2>Basic Information</h2>
+<pre class="r"><code>class(students)</code></pre>
+<pre><code>## [1] &quot;data.frame&quot;</code></pre>
+<pre class="r"><code>names(students)</code></pre>
+<pre><code>## [1] &quot;name&quot;     &quot;age&quot;      &quot;graduate&quot;</code></pre>
+<pre class="r"><code>colnames(students)</code></pre>
+<pre><code>## [1] &quot;name&quot;     &quot;age&quot;      &quot;graduate&quot;</code></pre>
+<pre class="r"><code>str(students)</code></pre>
+<pre><code>## &#39;data.frame&#39;:    3 obs. of  3 variables:
+##  $ name    : Factor w/ 3 levels &quot;Jack&quot;,&quot;Jill&quot;,..: 3 1 2
+##  $ age     : num  29 25 27
+##  $ graduate: logi  TRUE TRUE FALSE</code></pre>
+<pre class="r"><code>dim(students)</code></pre>
+<pre><code>## [1] 3 3</code></pre>
+<pre class="r"><code>nrow(students)</code></pre>
+<pre><code>## [1] 3</code></pre>
+<pre class="r"><code>ncol(students)</code></pre>
+<pre><code>## [1] 3</code></pre>
+</div>
+<div id="select-columns" class="section level2">
+<h2>Select Columns</h2>
+<ul>
+<li><code>[]</code></li>
+<li><code>[[]]</code></li>
+<li><code>$</code></li>
+</ul>
+<pre class="r"><code># using [
+students[1]</code></pre>
+<pre><code>##   name
+## 1 John
+## 2 Jack
+## 3 Jill</code></pre>
+<pre class="r"><code># using [[
+students[[1]]</code></pre>
+<pre><code>## [1] John Jack Jill
+## Levels: Jack Jill John</code></pre>
+<pre class="r"><code># using $
+students$name</code></pre>
+<pre><code>## [1] John Jack Jill
+## Levels: Jack Jill John</code></pre>
+<div id="multiple-columns" class="section level3">
+<h3>Multiple Columns</h3>
+<pre class="r"><code>students[, 1]</code></pre>
+<pre><code>## [1] John Jack Jill
+## Levels: Jack Jill John</code></pre>
+<pre class="r"><code>students[, c(1, 3)]</code></pre>
+<pre><code>##   name graduate
+## 1 John     TRUE
+## 2 Jack     TRUE
+## 3 Jill    FALSE</code></pre>
+</div>
+</div>
+<div id="select-rows" class="section level2">
+<h2>Select Rows</h2>
+<pre class="r"><code># single row
+students[1, ]</code></pre>
+<pre><code>##   name age graduate
+## 1 John  29     TRUE</code></pre>
+<pre class="r"><code># multiple row
+students[c(1, 3), ]</code></pre>
+<pre><code>##   name age graduate
+## 1 John  29     TRUE
+## 3 Jill  27    FALSE</code></pre>
+<p>If you have observed carefully, the column <code>names</code> has been coerced to type factor. This happens because of a default argument in
+<code>data.frame</code> which is <code>stringsAsFactors</code> which is set to <code>TRUE</code>. If you do not want to treat it as <code>factors</code>, set the argument to <code>FALSE</code>.</p>
+<pre class="r"><code>students &lt;- data.frame(name, age, graduate, stringsAsFactors = FALSE)</code></pre>
+<p>We will learn about wrangling dataframes in a different post.</p>
+</div>
+
+    </div>
+  </article>
+
+  
+
+
+</main>
+
+      <footer class="footer">
+        <ul class="footer-links">
+          <li>
+            <a href="/index.xml" type="application/rss+xml" target="_blank">RSS feed</a>
+          </li>
+          <li>
+            <a href="https://gohugo.io/" class="footer-links-kudos">Made with <img src="/images/hugo-logo.png" width="22" height="22"></a> and <a href="https://github.com/rstudio/blogdown">blogdown</a>
+          </li>
+          <li><a href="https://twitter.com/aravindhebbali">@aravindhebbali</a></li>
+        </ul>
+        <ul>
+          <li>&copy 2017 Aravind Hebbali</li>
+        </ul>
+      </footer>
+
+    </div>
+    
+
+
+
+<script src="//cdn.bootcss.com/highlight.js/9.11.0/highlight.min.js"></script>
+
+
+
+<script src="//cdn.bootcss.com/highlight.js/9.11.0/languages/r.min.js"></script>
+<script src="//cdn.bootcss.com/highlight.js/9.11.0/languages/yaml.min.js"></script>
+<script>hljs.configure({languages: []}); hljs.initHighlightingOnLoad();</script>
+
+
+
+    
+<script src="/js/math-code.js"></script>
+<script async src="//cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+
+    
+<script>
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-57270671-5', 'auto');
+ga('send', 'pageview');
+</script>
+
+  </body>
+</html>
+
