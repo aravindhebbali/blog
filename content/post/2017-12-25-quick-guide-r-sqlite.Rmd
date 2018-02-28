@@ -1,0 +1,424 @@
+---
+title: 'Quick Guide: R & SQLite'
+date: '2017-12-25'
+slug: quick-guide-r-sqlite
+topics:
+  - data-wrangling
+tags:
+  - sqlite
+  - rsqlite
+  - database
+  - import
+draft: yes
+---
+
+[![Twitter](http://i.imgur.com/tXSoThF.png)](https://twitter.com/login?redirect_after_login=%2Fhome%3Fstatus)
+[![Facebook](http://i.imgur.com/P3YfQoD.png)](https://www.facebook.com/sharer/sharer.php?u=)
+
+```{r libs, echo=FALSE, message=FALSE}
+library(dbplyr)
+library(dplyr)
+library(DBI)
+library(RSQLite)
+```
+
+### Introduction
+
+<hr>
+
+This is the first post in the series **R & Databases**. You can find the links to the other two posts of this series below:
+
+- [Data Wrangling with dbplyr](https://rsquaredacademy.github.io/blog/post/data-wrangling-with-dbplyr)
+- [SQL for Data Science - Part 1](https://rsquaredacademy.github.io/blog/post/sql-for-data-science-part-1)
+- [SQL for Data Science - Part 2](https://rsquaredacademy.github.io/blog/post/sql-for-data-science-part-2)
+
+In this post, we will learn to:
+
+- connect to a SQLite database from R
+- display database information
+- list tables in the database
+- query data 
+    - read entire table
+    - read few rows
+    - read data in batches
+- create table in database
+- overwrite table in database
+- append data to table in database
+- remove table from database
+- generate SQL query
+- close database connection
+
+<br>
+
+### Libraries, Code & Data
+
+<hr>
+
+We will use the following libraries in this post:
+
+- [DBI](http://rstats-db.github.io/DBI/)
+- [RSQLite](https://rstats-db.github.io/RSQLite/)
+
+All the data sets used in this post can be found [here](https://github.com/rsquaredacademy/datasets) and code can be downloaded from [here](https://gist.github.com/rsquaredacademy/7d99eb52a0e44cd1f87c8689cf1a307d).
+
+<br>
+
+#### Connection
+
+<hr>
+
+```{r lite1}
+con <- DBI::dbConnect(RSQLite::SQLite(), ":memory:")
+```
+
+```{r data, echo=FALSE, message=FALSE}
+ecom1 <- readr::read_csv('https://raw.githubusercontent.com/rsquaredacademy/datasets/master/web.csv')
+ecom <- ecom1 %>% 
+  slice(1:20) %>% 
+  select(referrer, device, bouncers, n_visit, n_pages, duration)
+copy_to(con, ecom)
+```
+
+<br>
+
+#### Connection Summary
+
+<hr>
+
+```{r lite2}
+summary(con)
+```
+
+<br>
+
+#### List Tables
+
+<hr>
+
+```{r lite3}
+dbListTables(con)
+```
+
+<br>
+
+#### List Fields
+
+<hr>
+
+```{r lite4}
+DBI::dbListFields(con, "ecom")
+```
+
+<br>
+
+### Querying Data
+
+<hr>
+
+- `dbReadTable()`: read entire table
+- `dbGetQuery()`: read few rows
+- `dbSendQuery()` & `dbFetch()`: read data in batches
+
+<br>
+
+#### Entire Table
+
+<hr>
+
+```{r lite5}
+DBI::dbReadTable(con, 'ecom')
+```
+
+<br>
+
+#### Few Rows
+
+<hr>
+
+```{r lite6}
+DBI::dbGetQuery(con, "select * from ecom limit 10")
+```
+
+<br>
+
+#### Read Data in Batches
+
+<hr>
+
+```{r lite7}
+query <- DBI::dbSendQuery(con, 'select * from ecom')
+result <- DBI::dbFetch(query, n = 15)
+result
+```
+
+<br>
+
+### Query
+
+<br>
+
+#### Query Status
+
+<hr>
+
+```{r lite8}
+DBI::dbHasCompleted(query)
+```
+
+<br>
+
+#### Query Info
+
+<hr>
+
+```{r lite9}
+DBI::dbGetInfo(query)
+```
+
+<br>
+
+#### Latest Query
+
+<hr>
+
+```{r lite10}
+DBI::dbGetStatement(query)
+```
+
+<br>
+
+#### Rows Fetched
+
+<hr>
+
+```{r lite11}
+DBI::dbGetRowCount(query)
+```
+
+<br>
+
+#### Rows Affected
+
+<hr>
+
+```{r lite12}
+DBI::dbGetRowsAffected(query)
+```
+
+<br>
+
+#### Column Info
+
+<hr>
+
+```{r lite13}
+DBI::dbColumnInfo(query)
+```
+
+<br>
+
+#### Clear Results
+
+<hr>
+
+```{r lite14}
+DBI::dbClearResult(query)
+```
+
+<br>
+
+### Create Table
+
+<hr>
+
+<br>
+
+#### Introduction
+
+<hr>
+
+```{r lite15} 
+x <- 1:10
+y <- letters[1:10]
+trial <- tibble::tibble(x, y)
+DBI::dbWriteTable(con, "trial", trial)
+```
+
+<br>
+
+#### check if table is created in database
+
+<hr>
+
+```{r lite16}
+DBI::dbListTables(con)
+DBI::dbExistsTable(con, "trial")
+```
+
+<br>
+
+#### query sample data from table
+
+<hr>
+
+```{r lite17}
+DBI::dbGetQuery(con, "select * from trial limit 5")
+```
+
+<br>
+
+#### overwrite table in the database
+
+<hr>
+
+```{r lite18}
+x <- sample(100, 10)
+y <- letters[11:20]
+trial2 <- tibble::tibble(x, y)
+DBI::dbWriteTable(con, "trial", trial2, overwrite = TRUE)
+```
+
+<br>
+
+#### query sample data from table to see if it has been overwritten
+
+<hr>
+
+```{r lite19}
+DBI::dbGetQuery(con, "select * from trial limit 5")
+```
+
+<br>
+
+#### append data to the table in the database
+
+<hr>
+
+```{r lite20}
+x <- sample(100, 10)
+y <- letters[5:14]
+trial3 <- tibble::tibble(x, y)
+DBI::dbWriteTable(con, "trial", trial3, append = TRUE)
+```
+
+<br>
+
+#### query sample data from table to see if new data is appended
+
+<hr>
+
+```{r lite21}
+DBI::dbReadTable(con, "trial")
+```
+
+<br>
+
+### Insert Rows
+
+<hr>
+
+<br>
+
+#### Introduction
+
+<hr>
+
+```{r lite22}
+DBI::dbExecute(con,
+  "INSERT into trial (x, y) VALUES (32, 'c'), (45, 'k'), (61, 'h')"
+)
+```
+
+<br>
+
+#### Insert Rows
+
+<hr>
+
+```{r lite23}
+DBI::dbSendStatement(con,
+  "INSERT into trial (x, y) VALUES (25, 'm'), (54, 'l'), (16, 'y')"
+)
+```
+
+<br>
+
+### SQLite Data Type
+
+<hr>
+
+```{r lite24}
+DBI::dbDataType(RSQLite::SQLite(), "a")
+DBI::dbDataType(RSQLite::SQLite(), 1:5)
+DBI::dbDataType(RSQLite::SQLite(), 1.5)
+```
+
+<br>
+
+### Others
+
+<br>
+
+#### remove table from database
+
+<hr>
+
+```{r lite25}
+DBI::dbRemoveTable(con, "trial")
+```
+
+<br>
+
+#### check if table has been removed 
+
+<hr>
+
+```{r lite26}
+DBI::dbListTables(con)
+```
+
+<br>
+
+#### Generate SQL Query
+
+<hr>
+
+```{r lite27}
+DBI::sqlCreateTable(con, "new", c(x = "integer", y = "text"))
+```
+
+<br>
+
+#### Append Table
+
+<hr>
+
+```{r lite28}
+DBI::sqlAppendTable(con, "ecom", head(ecom))
+```
+
+<br>
+
+#### Close Connection
+
+<hr>
+
+```{r lite29}
+DBI::dbDisconnect(con)
+```
+
+<br>
+
+### Summary
+
+<hr>
+
+<br>
+
+### Up Next..
+
+<hr>
+
+In the next [post](https://rsquaredacademy.github.io/blog/post/data-wrangling-with-dbplyr), we will learn about data wrangling using [dbplyr](http://dbplyr.tidyverse.org/).
+
+<br>

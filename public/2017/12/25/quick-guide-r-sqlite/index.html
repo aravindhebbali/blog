@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Hugo 0.26" />
+
+
+<title>Quick Guide: R &amp; SQLite - Aravind&#39;s Blog | R | Economics | Finance</title>
+<meta property="og:title" content="Quick Guide: R &amp; SQLite - Aravind&#39;s Blog | R | Economics | Finance">
+
+
+
+  
+
+
+
+
+<link rel="stylesheet" href="/css/github-gist.css" rel="stylesheet" id="theme-stylesheet">
+<script src="/js/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+
+
+
+
+<link href='//cdn.bootcss.com/highlight.js/9.11.0/styles/github.min.css' rel='stylesheet' type='text/css' />
+
+
+
+<link rel="stylesheet" href="/css/fonts.css" media="all">
+<link rel="stylesheet" href="/css/main.css" media="all">
+
+
+
+  </head>
+  <body>
+    <div class="wrapper">
+      <header class="header">
+        <nav class="nav">
+  <a href="/" class="nav-logo">
+    <img src="/images/logo.jpg"
+         width="50"
+         height="50"
+         alt="Aravind Hebbali">
+  </a>
+
+  <ul class="nav-links">
+    
+    <li><a href="/">Home</a></li>
+    
+    <li><a href="https://github.com/aravindhebbali">Projects</a></li>
+    
+    <li><a href="https://www.aravindhebbali.com/">About</a></li>
+    
+  </ul>
+</nav>
+
+      </header>
+
+
+<main class="content" role="main">
+
+  <article class="article">
+    
+    <span class="article-duration">6 min read</span>
+    
+
+    <h1 class="article-title">Quick Guide: R &amp; SQLite</h1>
+
+    
+    <span class="article-date">2017/12/25</span>
+    
+
+    <div class="article-content">
+      <p><a href="https://twitter.com/login?redirect_after_login=%2Fhome%3Fstatus"><img src="http://i.imgur.com/tXSoThF.png" alt="Twitter" /></a>
+<a href="https://www.facebook.com/sharer/sharer.php?u="><img src="http://i.imgur.com/P3YfQoD.png" alt="Facebook" /></a></p>
+<div id="introduction" class="section level3">
+<h3>Introduction</h3>
+<hr>
+<p>This is the first post in the series <strong>R &amp; Databases</strong>. You can find the links to the other two posts of this series below:</p>
+<ul>
+<li><a href="https://rsquaredacademy.github.io/blog/post/data-wrangling-with-dbplyr">Data Wrangling with dbplyr</a></li>
+<li><a href="https://rsquaredacademy.github.io/blog/post/sql-for-data-science-part-1">SQL for Data Science - Part 1</a></li>
+<li><a href="https://rsquaredacademy.github.io/blog/post/sql-for-data-science-part-2">SQL for Data Science - Part 2</a></li>
+</ul>
+<p>In this post, we will learn to:</p>
+<ul>
+<li>connect to a SQLite database from R</li>
+<li>display database information</li>
+<li>list tables in the database</li>
+<li>query data
+<ul>
+<li>read entire table</li>
+<li>read few rows</li>
+<li>read data in batches</li>
+</ul></li>
+<li>create table in database</li>
+<li>overwrite table in database</li>
+<li>append data to table in database</li>
+<li>remove table from database</li>
+<li>generate SQL query</li>
+<li>close database connection</li>
+</ul>
+<p><br></p>
+</div>
+<div id="libraries-code-data" class="section level3">
+<h3>Libraries, Code &amp; Data</h3>
+<hr>
+<p>We will use the following libraries in this post:</p>
+<ul>
+<li><a href="http://rstats-db.github.io/DBI/">DBI</a></li>
+<li><a href="https://rstats-db.github.io/RSQLite/">RSQLite</a></li>
+</ul>
+<p>All the data sets used in this post can be found <a href="https://github.com/rsquaredacademy/datasets">here</a> and code can be downloaded from <a href="https://gist.github.com/rsquaredacademy/7d99eb52a0e44cd1f87c8689cf1a307d">here</a>.</p>
+<p><br></p>
+<div id="connection" class="section level4">
+<h4>Connection</h4>
+<hr>
+<pre class="r"><code>con &lt;- DBI::dbConnect(RSQLite::SQLite(), &quot;:memory:&quot;)</code></pre>
+<p><br></p>
+</div>
+<div id="connection-summary" class="section level4">
+<h4>Connection Summary</h4>
+<hr>
+<pre class="r"><code>summary(con)</code></pre>
+<pre><code>##           Length            Class             Mode 
+##                1 SQLiteConnection               S4</code></pre>
+<p><br></p>
+</div>
+<div id="list-tables" class="section level4">
+<h4>List Tables</h4>
+<hr>
+<pre class="r"><code>dbListTables(con)</code></pre>
+<pre><code>## [1] &quot;ecom&quot;         &quot;sqlite_stat1&quot; &quot;sqlite_stat4&quot;</code></pre>
+<p><br></p>
+</div>
+<div id="list-fields" class="section level4">
+<h4>List Fields</h4>
+<hr>
+<pre class="r"><code>DBI::dbListFields(con, &quot;ecom&quot;)</code></pre>
+<pre><code>## [1] &quot;referrer&quot; &quot;device&quot;   &quot;bouncers&quot; &quot;n_visit&quot;  &quot;n_pages&quot;  &quot;duration&quot;</code></pre>
+<p><br></p>
+</div>
+</div>
+<div id="querying-data" class="section level3">
+<h3>Querying Data</h3>
+<hr>
+<ul>
+<li><code>dbReadTable()</code>: read entire table</li>
+<li><code>dbGetQuery()</code>: read few rows</li>
+<li><code>dbSendQuery()</code> &amp; <code>dbFetch()</code>: read data in batches</li>
+</ul>
+<p><br></p>
+<div id="entire-table" class="section level4">
+<h4>Entire Table</h4>
+<hr>
+<pre class="r"><code>DBI::dbReadTable(con, &#39;ecom&#39;)</code></pre>
+<pre><code>##    referrer device bouncers n_visit n_pages duration
+## 1    google laptop     true      10       1      693
+## 2     yahoo tablet     true       9       1      459
+## 3    direct laptop     true       0       1      996
+## 4      bing tablet    false       3      18      468
+## 5     yahoo mobile     true       9       1      955
+## 6     yahoo laptop    false       5       5      135
+## 7     yahoo mobile     true      10       1       75
+## 8    direct mobile     true      10       1      908
+## 9      bing mobile    false       3      19      209
+## 10   google mobile     true       6       1      208
+## 11   direct laptop     true       9       1      738
+## 12   direct tablet    false       6      12      132
+## 13   direct mobile    false       9      14      406
+## 14    yahoo tablet    false       5       8       80
+## 15    yahoo mobile    false       7       1       19
+## 16     bing laptop     true       1       1      995
+## 17     bing tablet    false       5      16      368
+## 18   google tablet     true       7       1      406
+## 19   social tablet    false       7      10      290
+## 20   social tablet    false       2       1       28</code></pre>
+<p><br></p>
+</div>
+<div id="few-rows" class="section level4">
+<h4>Few Rows</h4>
+<hr>
+<pre class="r"><code>DBI::dbGetQuery(con, &quot;select * from ecom limit 10&quot;)</code></pre>
+<pre><code>##    referrer device bouncers n_visit n_pages duration
+## 1    google laptop     true      10       1      693
+## 2     yahoo tablet     true       9       1      459
+## 3    direct laptop     true       0       1      996
+## 4      bing tablet    false       3      18      468
+## 5     yahoo mobile     true       9       1      955
+## 6     yahoo laptop    false       5       5      135
+## 7     yahoo mobile     true      10       1       75
+## 8    direct mobile     true      10       1      908
+## 9      bing mobile    false       3      19      209
+## 10   google mobile     true       6       1      208</code></pre>
+<p><br></p>
+</div>
+<div id="read-data-in-batches" class="section level4">
+<h4>Read Data in Batches</h4>
+<hr>
+<pre class="r"><code>query &lt;- DBI::dbSendQuery(con, &#39;select * from ecom&#39;)
+result &lt;- DBI::dbFetch(query, n = 15)
+result</code></pre>
+<pre><code>##    referrer device bouncers n_visit n_pages duration
+## 1    google laptop     true      10       1      693
+## 2     yahoo tablet     true       9       1      459
+## 3    direct laptop     true       0       1      996
+## 4      bing tablet    false       3      18      468
+## 5     yahoo mobile     true       9       1      955
+## 6     yahoo laptop    false       5       5      135
+## 7     yahoo mobile     true      10       1       75
+## 8    direct mobile     true      10       1      908
+## 9      bing mobile    false       3      19      209
+## 10   google mobile     true       6       1      208
+## 11   direct laptop     true       9       1      738
+## 12   direct tablet    false       6      12      132
+## 13   direct mobile    false       9      14      406
+## 14    yahoo tablet    false       5       8       80
+## 15    yahoo mobile    false       7       1       19</code></pre>
+<p><br></p>
+</div>
+</div>
+<div id="query" class="section level3">
+<h3>Query</h3>
+<p><br></p>
+<div id="query-status" class="section level4">
+<h4>Query Status</h4>
+<hr>
+<pre class="r"><code>DBI::dbHasCompleted(query)</code></pre>
+<pre><code>## [1] FALSE</code></pre>
+<p><br></p>
+</div>
+<div id="query-info" class="section level4">
+<h4>Query Info</h4>
+<hr>
+<pre class="r"><code>DBI::dbGetInfo(query)</code></pre>
+<pre><code>## $statement
+## [1] &quot;select * from ecom&quot;
+## 
+## $row.count
+## [1] 15
+## 
+## $rows.affected
+## [1] 0
+## 
+## $has.completed
+## [1] FALSE</code></pre>
+<p><br></p>
+</div>
+<div id="latest-query" class="section level4">
+<h4>Latest Query</h4>
+<hr>
+<pre class="r"><code>DBI::dbGetStatement(query)</code></pre>
+<pre><code>## [1] &quot;select * from ecom&quot;</code></pre>
+<p><br></p>
+</div>
+<div id="rows-fetched" class="section level4">
+<h4>Rows Fetched</h4>
+<hr>
+<pre class="r"><code>DBI::dbGetRowCount(query)</code></pre>
+<pre><code>## [1] 15</code></pre>
+<p><br></p>
+</div>
+<div id="rows-affected" class="section level4">
+<h4>Rows Affected</h4>
+<hr>
+<pre class="r"><code>DBI::dbGetRowsAffected(query)</code></pre>
+<pre><code>## [1] 0</code></pre>
+<p><br></p>
+</div>
+<div id="column-info" class="section level4">
+<h4>Column Info</h4>
+<hr>
+<pre class="r"><code>DBI::dbColumnInfo(query)</code></pre>
+<pre><code>##       name      type
+## 1 referrer character
+## 2   device character
+## 3 bouncers character
+## 4  n_visit   integer
+## 5  n_pages    double
+## 6 duration    double</code></pre>
+<p><br></p>
+</div>
+<div id="clear-results" class="section level4">
+<h4>Clear Results</h4>
+<hr>
+<pre class="r"><code>DBI::dbClearResult(query)</code></pre>
+<p><br></p>
+</div>
+</div>
+<div id="create-table" class="section level3">
+<h3>Create Table</h3>
+<hr>
+<p><br></p>
+<div id="introduction-1" class="section level4">
+<h4>Introduction</h4>
+<hr>
+<pre class="r"><code>x &lt;- 1:10
+y &lt;- letters[1:10]
+trial &lt;- tibble::tibble(x, y)
+DBI::dbWriteTable(con, &quot;trial&quot;, trial)</code></pre>
+<p><br></p>
+</div>
+<div id="check-if-table-is-created-in-database" class="section level4">
+<h4>check if table is created in database</h4>
+<hr>
+<pre class="r"><code>DBI::dbListTables(con)</code></pre>
+<pre><code>## [1] &quot;ecom&quot;         &quot;sqlite_stat1&quot; &quot;sqlite_stat4&quot; &quot;trial&quot;</code></pre>
+<pre class="r"><code>DBI::dbExistsTable(con, &quot;trial&quot;)</code></pre>
+<pre><code>## [1] TRUE</code></pre>
+<p><br></p>
+</div>
+<div id="query-sample-data-from-table" class="section level4">
+<h4>query sample data from table</h4>
+<hr>
+<pre class="r"><code>DBI::dbGetQuery(con, &quot;select * from trial limit 5&quot;)</code></pre>
+<pre><code>##   x y
+## 1 1 a
+## 2 2 b
+## 3 3 c
+## 4 4 d
+## 5 5 e</code></pre>
+<p><br></p>
+</div>
+<div id="overwrite-table-in-the-database" class="section level4">
+<h4>overwrite table in the database</h4>
+<hr>
+<pre class="r"><code>x &lt;- sample(100, 10)
+y &lt;- letters[11:20]
+trial2 &lt;- tibble::tibble(x, y)
+DBI::dbWriteTable(con, &quot;trial&quot;, trial2, overwrite = TRUE)</code></pre>
+<p><br></p>
+</div>
+<div id="query-sample-data-from-table-to-see-if-it-has-been-overwritten" class="section level4">
+<h4>query sample data from table to see if it has been overwritten</h4>
+<hr>
+<pre class="r"><code>DBI::dbGetQuery(con, &quot;select * from trial limit 5&quot;)</code></pre>
+<pre><code>##    x y
+## 1 82 k
+## 2  5 l
+## 3 31 m
+## 4 99 n
+## 5 61 o</code></pre>
+<p><br></p>
+</div>
+<div id="append-data-to-the-table-in-the-database" class="section level4">
+<h4>append data to the table in the database</h4>
+<hr>
+<pre class="r"><code>x &lt;- sample(100, 10)
+y &lt;- letters[5:14]
+trial3 &lt;- tibble::tibble(x, y)
+DBI::dbWriteTable(con, &quot;trial&quot;, trial3, append = TRUE)</code></pre>
+<p><br></p>
+</div>
+<div id="query-sample-data-from-table-to-see-if-new-data-is-appended" class="section level4">
+<h4>query sample data from table to see if new data is appended</h4>
+<hr>
+<pre class="r"><code>DBI::dbReadTable(con, &quot;trial&quot;)</code></pre>
+<pre><code>##     x y
+## 1  82 k
+## 2   5 l
+## 3  31 m
+## 4  99 n
+## 5  61 o
+## 6  28 p
+## 7  73 q
+## 8  39 r
+## 9  23 s
+## 10  9 t
+## 11 63 e
+## 12 35 f
+## 13 92 g
+## 14 19 h
+## 15 98 i
+## 16 11 j
+## 17 39 k
+## 18 46 l
+## 19 43 m
+## 20 80 n</code></pre>
+<p><br></p>
+</div>
+</div>
+<div id="insert-rows" class="section level3">
+<h3>Insert Rows</h3>
+<hr>
+<p><br></p>
+<div id="introduction-2" class="section level4">
+<h4>Introduction</h4>
+<hr>
+<pre class="r"><code>DBI::dbExecute(con,
+  &quot;INSERT into trial (x, y) VALUES (32, &#39;c&#39;), (45, &#39;k&#39;), (61, &#39;h&#39;)&quot;
+)</code></pre>
+<pre><code>## [1] 3</code></pre>
+<p><br></p>
+</div>
+<div id="insert-rows-1" class="section level4">
+<h4>Insert Rows</h4>
+<hr>
+<pre class="r"><code>DBI::dbSendStatement(con,
+  &quot;INSERT into trial (x, y) VALUES (25, &#39;m&#39;), (54, &#39;l&#39;), (16, &#39;y&#39;)&quot;
+)</code></pre>
+<pre><code>## &lt;SQLiteResult&gt;
+##   SQL  INSERT into trial (x, y) VALUES (25, &#39;m&#39;), (54, &#39;l&#39;), (16, &#39;y&#39;)
+##   ROWS Fetched: 0 [complete]
+##        Changed: 3</code></pre>
+<p><br></p>
+</div>
+</div>
+<div id="sqlite-data-type" class="section level3">
+<h3>SQLite Data Type</h3>
+<hr>
+<pre class="r"><code>DBI::dbDataType(RSQLite::SQLite(), &quot;a&quot;)</code></pre>
+<pre><code>## [1] &quot;TEXT&quot;</code></pre>
+<pre class="r"><code>DBI::dbDataType(RSQLite::SQLite(), 1:5)</code></pre>
+<pre><code>## [1] &quot;INTEGER&quot;</code></pre>
+<pre class="r"><code>DBI::dbDataType(RSQLite::SQLite(), 1.5)</code></pre>
+<pre><code>## [1] &quot;REAL&quot;</code></pre>
+<p><br></p>
+</div>
+<div id="others" class="section level3">
+<h3>Others</h3>
+<p><br></p>
+<div id="remove-table-from-database" class="section level4">
+<h4>remove table from database</h4>
+<hr>
+<pre class="r"><code>DBI::dbRemoveTable(con, &quot;trial&quot;)</code></pre>
+<pre><code>## Warning: Closing open result set, pending rows</code></pre>
+<p><br></p>
+</div>
+<div id="check-if-table-has-been-removed" class="section level4">
+<h4>check if table has been removed</h4>
+<hr>
+<pre class="r"><code>DBI::dbListTables(con)</code></pre>
+<pre><code>## [1] &quot;ecom&quot;         &quot;sqlite_stat1&quot; &quot;sqlite_stat4&quot;</code></pre>
+<p><br></p>
+</div>
+<div id="generate-sql-query" class="section level4">
+<h4>Generate SQL Query</h4>
+<hr>
+<pre class="r"><code>DBI::sqlCreateTable(con, &quot;new&quot;, c(x = &quot;integer&quot;, y = &quot;text&quot;))</code></pre>
+<pre><code>## &lt;SQL&gt; CREATE TABLE `new` (
+##   `x` integer,
+##   `y` text
+## )</code></pre>
+<p><br></p>
+</div>
+<div id="append-table" class="section level4">
+<h4>Append Table</h4>
+<hr>
+<pre class="r"><code>DBI::sqlAppendTable(con, &quot;ecom&quot;, head(ecom))</code></pre>
+<pre><code>## &lt;SQL&gt; INSERT INTO `ecom`
+##   (`referrer`, `device`, `bouncers`, `n_visit`, `n_pages`, `duration`)
+## VALUES
+##   (&#39;google&#39;, &#39;laptop&#39;, &#39;true&#39;, 10, 1, 693),
+##   (&#39;yahoo&#39;, &#39;tablet&#39;, &#39;true&#39;, 9, 1, 459),
+##   (&#39;direct&#39;, &#39;laptop&#39;, &#39;true&#39;, 0, 1, 996),
+##   (&#39;bing&#39;, &#39;tablet&#39;, &#39;false&#39;, 3, 18, 468),
+##   (&#39;yahoo&#39;, &#39;mobile&#39;, &#39;true&#39;, 9, 1, 955),
+##   (&#39;yahoo&#39;, &#39;laptop&#39;, &#39;false&#39;, 5, 5, 135)</code></pre>
+<p><br></p>
+</div>
+<div id="close-connection" class="section level4">
+<h4>Close Connection</h4>
+<hr>
+<pre class="r"><code>DBI::dbDisconnect(con)</code></pre>
+<p><br></p>
+</div>
+</div>
+<div id="summary" class="section level3">
+<h3>Summary</h3>
+<hr>
+<p><br></p>
+</div>
+<div id="up-next.." class="section level3">
+<h3>Up Next..</h3>
+<hr>
+<p>In the next <a href="https://rsquaredacademy.github.io/blog/post/data-wrangling-with-dbplyr">post</a>, we will learn about data wrangling using <a href="http://dbplyr.tidyverse.org/">dbplyr</a>.</p>
+<p><br></p>
+</div>
+
+    </div>
+  </article>
+
+  
+
+
+</main>
+
+      <footer class="footer">
+        <ul class="footer-links">
+          <li>
+            <a href="/index.xml" type="application/rss+xml" target="_blank">RSS feed</a>
+          </li>
+          <li>
+            <a href="https://gohugo.io/" class="footer-links-kudos">Made with <img src="/images/hugo-logo.png" width="22" height="22"></a> and <a href="https://github.com/rstudio/blogdown">blogdown</a>
+          </li>
+          <li><a href="https://twitter.com/aravindhebbali">@aravindhebbali</a></li>
+        </ul>
+        <ul>
+          <li>&copy 2017 Aravind Hebbali</li>
+        </ul>
+      </footer>
+
+    </div>
+    
+
+
+
+<script src="//cdn.bootcss.com/highlight.js/9.11.0/highlight.min.js"></script>
+
+
+
+<script src="//cdn.bootcss.com/highlight.js/9.11.0/languages/r.min.js"></script>
+<script src="//cdn.bootcss.com/highlight.js/9.11.0/languages/yaml.min.js"></script>
+<script>hljs.configure({languages: []}); hljs.initHighlightingOnLoad();</script>
+
+
+
+    
+<script src="/js/math-code.js"></script>
+<script async src="//cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+
+    
+<script>
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-57270671-5', 'auto');
+ga('send', 'pageview');
+</script>
+
+  </body>
+</html>
+
