@@ -1,5 +1,5 @@
 ---
-title: Vectors
+title: Vectors - Part 1
 date: '2016-03-03'
 slug: introduction-to-vectors
 categories:

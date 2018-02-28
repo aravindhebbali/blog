@@ -1,5 +1,5 @@
 ---
-title: Matrix - Part 2
+title: Matrices - Part 2
 author: ''
 date: '2016-05-05'
 slug: matrix-part-2

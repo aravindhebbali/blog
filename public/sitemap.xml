@@ -78,11 +78,6 @@
   </url>
   
   <url>
-    <loc>/2017/03/20/vectors-part-2/</loc>
-    <lastmod>2017-03-20T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
     <loc>/2016/12/17/data-visualization-with-r-combining-plots/</loc>
     <lastmod>2016-12-17T00:00:00+00:00</lastmod>
   </url>
@@ -175,6 +170,11 @@
   <url>
     <loc>/2016/04/04/vectors-part-3/</loc>
     <lastmod>2016-04-04T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/2016/03/20/vectors-part-2/</loc>
+    <lastmod>2016-03-20T00:00:00+00:00</lastmod>
   </url>
   
   <url>
@@ -469,7 +469,7 @@
   
   <url>
     <loc>/tags/vectors/</loc>
-    <lastmod>2017-03-20T00:00:00+00:00</lastmod>
+    <lastmod>2016-04-04T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   

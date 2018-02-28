@@ -177,16 +177,6 @@ Pipes allow us to clearly express a sequence of multiple operations by:
     </item>
     
     <item>
-      <title>Vectors - Part 2</title>
-      <link>/2017/03/20/vectors-part-2/</link>
-      <pubDate>Mon, 20 Mar 2017 00:00:00 +0000</pubDate>
-      
-      <guid>/2017/03/20/vectors-part-2/</guid>
-      <description>IntroductionThis is the sixth post in the series Introduction to R. In the previous post, we learnt to create vectors of different data types. In this post, we will learn to
-coerce different data typesperform simple operations on vectorshandle missing dataindex/subset vectorsNaming Vector ElementsIt is possible to name the different elements of a vector. The advantage of naming vector elements is that we can later on use these names to access the elements.</description>
-    </item>
-    
-    <item>
       <title>Data Visualization with R - Combining Plots</title>
       <link>/2016/12/17/data-visualization-with-r-combining-plots/</link>
       <pubDate>Sat, 17 Dec 2016 00:00:00 +0000</pubDate>
@@ -337,7 +327,7 @@ args(data.frame)## function (..., row.names = NULL, check.rows = FALSE, check.n
     </item>
     
     <item>
-      <title>Matrix - Part 2</title>
+      <title>Matrices - Part 2</title>
       <link>/2016/05/05/matrix-part-2/</link>
       <pubDate>Thu, 05 May 2016 00:00:00 +0000</pubDate>
       
@@ -348,7 +338,7 @@ args(data.frame)## function (..., row.names = NULL, check.rows = FALSE, check.n
     </item>
     
     <item>
-      <title>Matrix</title>
+      <title>Matrices - Part 1</title>
       <link>/2016/04/19/introduction-to-matrix/</link>
       <pubDate>Tue, 19 Apr 2016 00:00:00 +0000</pubDate>
       
@@ -367,7 +357,17 @@ args(data.frame)## function (..., row.names = NULL, check.rows = FALSE, check.n
     </item>
     
     <item>
-      <title>Vectors</title>
+      <title>Vectors - Part 2</title>
+      <link>/2016/03/20/vectors-part-2/</link>
+      <pubDate>Sun, 20 Mar 2016 00:00:00 +0000</pubDate>
+      
+      <guid>/2016/03/20/vectors-part-2/</guid>
+      <description>IntroductionThis is the sixth post in the series Introduction to R. In the previous post, we learnt to create vectors of different data types. In this post, we will learn to
+coerce different data typesperform simple operations on vectorshandle missing dataindex/subset vectorsNaming Vector ElementsIt is possible to name the different elements of a vector. The advantage of naming vector elements is that we can later on use these names to access the elements.</description>
+    </item>
+    
+    <item>
+      <title>Vectors - Part 1</title>
       <link>/2016/03/03/introduction-to-vectors/</link>
       <pubDate>Thu, 03 Mar 2016 00:00:00 +0000</pubDate>
       
@@ -387,7 +387,7 @@ args(data.frame)## function (..., row.names = NULL, check.rows = FALSE, check.n
     </item>
     
     <item>
-      <title>Data Types in R</title>
+      <title>Getting Started With R</title>
       <link>/2016/02/07/data-types-in-r/</link>
       <pubDate>Sun, 07 Feb 2016 00:00:00 +0000</pubDate>
       

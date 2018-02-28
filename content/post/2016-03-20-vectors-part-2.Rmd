@@ -1,7 +1,7 @@
 ---
 title: Vectors - Part 2
 author: ''
-date: '2017-03-20'
+date: '2016-03-20'
 slug: vectors-part-2
 topics:
   - r-introduction

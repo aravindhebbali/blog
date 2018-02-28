@@ -62,7 +62,7 @@ args(data.frame)## function (..., row.names = NULL, check.rows = FALSE, check.n
     </item>
     
     <item>
-      <title>Matrix - Part 2</title>
+      <title>Matrices - Part 2</title>
       <link>/2016/05/05/matrix-part-2/</link>
       <pubDate>Thu, 05 May 2016 00:00:00 +0000</pubDate>
       
@@ -73,7 +73,7 @@ args(data.frame)## function (..., row.names = NULL, check.rows = FALSE, check.n
     </item>
     
     <item>
-      <title>Matrix</title>
+      <title>Matrices - Part 1</title>
       <link>/2016/04/19/introduction-to-matrix/</link>
       <pubDate>Tue, 19 Apr 2016 00:00:00 +0000</pubDate>
       
@@ -92,7 +92,7 @@ args(data.frame)## function (..., row.names = NULL, check.rows = FALSE, check.n
     </item>
     
     <item>
-      <title>Vectors</title>
+      <title>Vectors - Part 1</title>
       <link>/2016/03/03/introduction-to-vectors/</link>
       <pubDate>Thu, 03 Mar 2016 00:00:00 +0000</pubDate>
       
