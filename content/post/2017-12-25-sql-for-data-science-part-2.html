@@ -23,28 +23,9 @@ tags:
 <li><a href="https://rsquaredacademy.github.io/blog/post/sql-for-data-science-part-1">SQL for Data Science - Part 1</a></li>
 </ul>
 <p>In this post, we will learn to:</p>
-<ul>
-<li>connect to a SQLite database from R</li>
-<li>display database information</li>
-<li>list tables in the database</li>
-<li>query data
-<ul>
-<li>read entire table</li>
-<li>read few rows</li>
-<li>read data in batches</li>
-</ul></li>
-<li>create table in database</li>
-<li>overwrite table in database</li>
-<li>append data to table in database</li>
-<li>remove table from database</li>
-<li>generate SQL query</li>
-<li>close database connection</li>
-</ul>
-<p><br></p>
 </div>
 <div id="libraries-code-data" class="section level3">
 <h3>Libraries, Code &amp; Data</h3>
-<hr>
 <p>We will use the following libraries in this post:</p>
 <ul>
 <li><a href="http://readr.tidyverse.org/">DBI</a></li>
@@ -52,18 +33,14 @@ tags:
 <li><a href="http://dbplyr.tidyverse.org/">dbplyr</a></li>
 </ul>
 <p>All the data sets used in this post can be found <a href="https://github.com/rsquaredacademy/datasets">here</a> and code can be downloaded from <a href="https://gist.github.com/rsquaredacademy/691dba8e13873c648bfdb91aba65d4d7">here</a>.</p>
-<p><br></p>
 <div id="set-up" class="section level4">
 <h4>Set Up</h4>
-<hr>
 <pre class="r"><code>ecom &lt;- readr::read_csv(&#39;https://raw.githubusercontent.com/rsquaredacademy/datasets/master/web.csv&#39;)
 con &lt;- DBI::dbConnect(RSQLite::SQLite(), &quot;:memory:&quot;)
 copy_to(con, ecom)</code></pre>
-<p><br></p>
 </div>
 <div id="aggregate---1" class="section level4">
 <h4>Aggregate - 1</h4>
-<hr>
 <p>You can probably guess what the MIN function does! Now it’s your turn to try out some SQL functions.</p>
 <pre class="r"><code>dbGetQuery(con, &quot;SELECT SUM(n_visit) FROM ecom&quot;)</code></pre>
 <pre><code>##   SUM(n_visit)
@@ -77,11 +54,9 @@ copy_to(con, ecom)</code></pre>
 <pre class="r"><code>dbGetQuery(con, &quot;SELECT MIN(n_visit) FROM ecom&quot;)</code></pre>
 <pre><code>##   MIN(n_visit)
 ## 1            0</code></pre>
-<p><br></p>
 </div>
 <div id="aggregate---2" class="section level4">
 <h4>Aggregate - 2</h4>
-<hr>
 <pre class="r"><code>dbGetQuery(con, &quot;SELECT SUM(n_visit) FROM ecom WHERE n_visit &gt; 5&quot;)</code></pre>
 <pre><code>##   SUM(n_visit)
 ## 1         3574</code></pre>
@@ -94,11 +69,9 @@ copy_to(con, ecom)</code></pre>
 <pre class="r"><code>dbGetQuery(con, &quot;SELECT MIN(n_visit) FROM ecom WHERE duration BETWEEN 600 AND 900&quot;)</code></pre>
 <pre><code>##   MIN(n_visit)
 ## 1            0</code></pre>
-<p><br></p>
 </div>
 <div id="alias---part-2" class="section level4">
 <h4>Alias - Part 2</h4>
-<hr>
 <pre class="r"><code>dbGetQuery(con, &quot;SELECT AVG(n_visit) AS avg_mobile FROM ecom WHERE device == &#39;mobile&#39;&quot;)</code></pre>
 <pre><code>##   avg_mobile
 ## 1   5.479651</code></pre>
@@ -108,11 +81,9 @@ copy_to(con, ecom)</code></pre>
 <pre class="r"><code>dbGetQuery(con, &quot;SELECT MIN(duration) AS min_duration FROM ecom&quot;)</code></pre>
 <pre><code>##   min_duration
 ## 1           10</code></pre>
-<p><br></p>
 </div>
 <div id="order-by" class="section level4">
 <h4>Order By</h4>
-<hr>
 <pre class="r"><code>dbGetQuery(con, &quot;SELECT * FROM ecom ORDER BY country&quot;)</code></pre>
 <pre><code>##        id referrer device bouncers n_visit n_pages duration
 ## 1     232   social laptop    false       8       2       60
@@ -149,11 +120,9 @@ copy_to(con, ecom)</code></pre>
 ## 3                           Indonesia    false           0           0
 ## 4                              Russia    false           0           0
 ##  [ reached getOption(&quot;max.print&quot;) -- omitted 996 rows ]</code></pre>
-<p><br></p>
 </div>
 <div id="group-by---practice" class="section level4">
 <h4>Group By - Practice</h4>
-<hr>
 <pre class="r"><code>dbGetQuery(con, &quot;SELECT device, count(*) AS visits FROM ecom GROUP BY device ORDER by visits DESC &quot;)</code></pre>
 <pre><code>##   device visits
 ## 1 mobile    344
@@ -164,11 +133,9 @@ copy_to(con, ecom)</code></pre>
 ## 1 tablet          999
 ## 2 laptop          997
 ## 3 mobile          994</code></pre>
-<p><br></p>
 </div>
 <div id="having" class="section level4">
 <h4>Having</h4>
-<hr>
 <pre class="r"><code>dbGetQuery(con, &quot;SELECT country FROM ecom GROUP BY country HAVING COUNT(*) &gt; 10&quot;)</code></pre>
 <pre><code>##           country
 ## 1       Argentina
@@ -189,17 +156,12 @@ copy_to(con, ecom)</code></pre>
 ## 16       Thailand
 ## 17        Ukraine
 ## 18  United States</code></pre>
-<p><br></p>
 </div>
 <div id="putting-it-all-together" class="section level4">
 <h4>Putting It All Together</h4>
-<hr>
 <p>Compute AOV by devices</p>
-<p><br></p>
 </div>
 </div>
 <div id="summary" class="section level3">
 <h3>Summary</h3>
-<hr>
-<p><br></p>
 </div>
