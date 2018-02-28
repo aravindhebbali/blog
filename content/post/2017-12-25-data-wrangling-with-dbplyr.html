@@ -16,9 +16,7 @@ tags:
 <h3>Introduction</h3>
 <p>This is the third post in the series <strong>R &amp; Databases</strong>. You can find the links to the other two posts of this series below:</p>
 <ul>
-<li><a href="https://rsquaredacademy.github.io/blog/post/quick-guide-r-sqlite/">Quick Guide: R &amp; SQLite</a></li>
-<li><a href="https://rsquaredacademy.github.io/blog/post/sql-for-data-science-part-1">SQL for Data Science - Part 1</a></li>
-<li><a href="https://rsquaredacademy.github.io/blog/post/sql-for-data-science-part-2">SQL for Data Science - Part 2</a></li>
+<li><a href="https://blog.aravindhebbali.com/2017/12/25/quick-guide-r-sqlite/">Quick Guide: R &amp; SQLite</a></li>
 </ul>
 <p>In this post, we will learn to query data from a database using dplyr.</p>
 </div>
@@ -125,8 +123,7 @@ show_query(mileages)
 </div>
 <div id="collect-data" class="section level4">
 <h4>Collect Data</h4>
-<p>Now, some interesting facts. <strong>dbplyr</strong> does not read/import data until we ask it to do so.
-Use <code>collect()</code> to actually run the SQL statements.</p>
+<p>Now, some interesting facts. <strong>dplyr</strong> never pulls data into R unless you explicitly ask for it. In the previous example, dplyr will not do anything until you ask for the data. It generates the SQL and only pulls down a few rows when you try to print <code>mileages</code>. If you want to pull all the data and store it in a tibble, use <code>collect()</code>.</p>
 <pre class="r"><code>collect(mileages)</code></pre>
 <pre><code>## Warning: Missing values are always removed in SQL.
 ## Use `AVG(x, na.rm = TRUE)` to silence this warning</code></pre>
@@ -140,5 +137,5 @@ Use <code>collect()</code> to actually run the SQL statements.</p>
 </div>
 <div id="up-next.." class="section level3">
 <h3>Up Next..</h3>
-<p>In the next <a href="https://rsquaredacademy.github.io/blog/post/sql-for-data-science-part-1">post</a>, we will learn basic SQL commands.</p>
+<p>In the next <a href="">post</a>, we will learn basic SQL commands.</p>
 </div>
