@@ -277,8 +277,8 @@ emails</code></pre>
 <pre><code>## [1] &quot;mnewburn0@fastcompany.com&quot;    &quot;mdankersley1@digg.com&quot;       
 ## [3] &quot;hgirhard2@altervista.org&quot;     &quot;pmcmenamy3@sciencedirect.com&quot;
 ## [5] &quot;drisbrough4@bandcamp.com&quot;     &quot;cphlippi5@surveymonkey.com&quot;</code></pre>
-<div id="step-1" class="section level4">
-<h4>Step 1</h4>
+<div id="step-1-split-email-using-pattern-." class="section level4">
+<h4>Step 1: Split email using pattern <code>@</code>.</h4>
 <p>We will split the email using <code>str_split</code>. It will split a string
 using the pattern supplied. In our case the pattern is <code>@</code>.</p>
 <pre class="r"><code> str_split(emails, pattern = &#39;@&#39;)</code></pre>
@@ -300,8 +300,8 @@ using the pattern supplied. In our case the pattern is <code>@</code>.</p>
 ## [[6]]
 ## [1] &quot;cphlippi5&quot;        &quot;surveymonkey.com&quot;</code></pre>
 </div>
-<div id="step-2" class="section level4">
-<h4>Step 2</h4>
+<div id="step-2-extract-the-second-element-from-the-resulting-list." class="section level4">
+<h4>Step 2: Extract the second element from the resulting list.</h4>
 <p>Step 1 returned a list. Each element of the list has two values. The first
 one is the username and the second is the domain name. Since we are
 extracting the domain name, we want the second value from each element of
@@ -315,8 +315,8 @@ name is a string, <code>map_chr()</code> will return a character vector.</p>
 <pre><code>## [1] &quot;fastcompany.com&quot;   &quot;digg.com&quot;          &quot;altervista.org&quot;   
 ## [4] &quot;sciencedirect.com&quot; &quot;bandcamp.com&quot;      &quot;surveymonkey.com&quot;</code></pre>
 </div>
-<div id="step-3" class="section level4">
-<h4>Step 3</h4>
+<div id="step-3-split-the-above-using-pattern-.." class="section level4">
+<h4>Step 3: Split the above using pattern <code>\\.</code>.</h4>
 <p>We want the domain name and not the extension. Step 2 returned a
 character vector and we need to split the domain name and the domain
 extension. They are separated by <code>.</code>. Since <code>.</code> is a special character,
@@ -344,8 +344,8 @@ name and domain extension using <code>str_split</code> and <code>\\.</code> as t
 ## [[6]]
 ## [1] &quot;surveymonkey&quot; &quot;com&quot;</code></pre>
 </div>
-<div id="step-4" class="section level4">
-<h4>Step 4</h4>
+<div id="step-4-extract-the-first-element-from-the-resulting-list." class="section level4">
+<h4>Step 4: Extract the first element from the resulting list.</h4>
 <p>Now that we have separated the domain name from its extension, let us extract
 the first value from each element in the list returned in step 3. We will again
 use <code>map_chr</code> to achieve this.</p>
@@ -391,8 +391,8 @@ img</code></pre>
 ## [4] &quot;http://dummyimage.com/181x194.png/5fa2dd/ffffff&quot;
 ## [5] &quot;http://dummyimage.com/220x123.jpg/ff4444/ffffff&quot;
 ## [6] &quot;http://dummyimage.com/118x176.bmp/dddddd/000000&quot;</code></pre>
-<div id="step-1-1" class="section level4">
-<h4>Step 1</h4>
+<div id="step-1-split-imageurl-using-pattern-." class="section level4">
+<h4>Step 1: Split imageurl using pattern <code>\\.</code></h4>
 <p>Let us split imageurl using <code>str_split</code> and the pattern <code>\\.</code>.</p>
 <pre class="r"><code>img %&gt;%
   str_split(pattern = &#39;\\.&#39;)</code></pre>
@@ -414,8 +414,8 @@ img</code></pre>
 ## [[6]]
 ## [1] &quot;http://dummyimage&quot; &quot;com/118x176&quot;       &quot;bmp/dddddd/000000&quot;</code></pre>
 </div>
-<div id="step-2-1" class="section level4">
-<h4>Step 2</h4>
+<div id="step-2-extract-the-third-value-from-each-element-of-the-resulting-list" class="section level4">
+<h4>Step 2: Extract the third value from each element of the resulting list</h4>
 <p>Step 1 returned a list the elements of which have 3 values each. If you
 observe the list, the image type is in the 3rd value. We will now
 extract the third value from each element of the list using <code>map_chr</code>.</p>
@@ -425,8 +425,8 @@ extract the third value from each element of the list using <code>map_chr</code>
 <pre><code>## [1] &quot;jpg/dddddd/000000&quot; &quot;bmp/dddddd/000000&quot; &quot;bmp/cc0000/ffffff&quot;
 ## [4] &quot;png/5fa2dd/ffffff&quot; &quot;jpg/ff4444/ffffff&quot; &quot;bmp/dddddd/000000&quot;</code></pre>
 </div>
-<div id="step-3-1" class="section level4">
-<h4>Step 3</h4>
+<div id="step-3-subset-the-string-using-the-index-position" class="section level4">
+<h4>Step 3: Subset the string using the index position</h4>
 <p>We can now extract the image type in two ways:</p>
 <ul>
 <li>subset the first 3 characters of the string</li>

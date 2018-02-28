@@ -202,7 +202,7 @@ emails <-
 emails
 ```
 
-#### Step 1
+#### Step 1: Split email using pattern `@`.
 
 We will split the email using `str_split`. It will split a string 
 using the pattern supplied. In our case the pattern is `@`.
@@ -211,7 +211,7 @@ using the pattern supplied. In our case the pattern is `@`.
  str_split(emails, pattern = '@')
 ```
 
-#### Step 2
+#### Step 2: Extract the second element from the resulting list.
 
 Step 1 returned a list. Each element of the list has two values. The first 
 one is the username and the second is the domain name. Since we are 
@@ -228,7 +228,7 @@ emails %>%
   map_chr(2)
 ```
 
-#### Step 3
+#### Step 3: Split the above using pattern `\\.`.
 
 We want the domain name and not the extension. Step 2 returned a 
 character vector and we need to split the domain name and the domain
@@ -243,7 +243,7 @@ emails %>%
   str_split(pattern = '\\.') 
 ```
 
-#### Step 4
+#### Step 4: Extract the first element from the resulting list.
 
 Now that we have separated the domain name from its extension, let us extract
 the first value from each element in the list returned in step 3. We will again 
@@ -288,7 +288,7 @@ img <-
 img
 ```
 
-#### Step 1 
+#### Step 1: Split imageurl using pattern `\\.`
 
 Let us split imageurl using `str_split` and the pattern `\\.`.
 
@@ -297,7 +297,7 @@ img %>%
   str_split(pattern = '\\.')
 ```
 
-#### Step 2
+#### Step 2: Extract the third value from each element of the resulting list
 
 Step 1 returned a list the elements of which have 3 values each. If you
 observe the list, the image type is in the 3rd value. We will now 
@@ -309,7 +309,7 @@ img %>%
   map_chr(extract(3))
 ```
 
-#### Step 3
+#### Step 3: Subset the string using the index position 
 
 We can now extract the image type in two ways:
 
