@@ -18,8 +18,9 @@
       
       <guid>/2017/12/25/data-wrangling-with-dbplyr/</guid>
       <description>IntroductionThis is the third post in the series R &amp;amp; Databases. You can find the links to the other two posts of this series below:
-Quick Guide: R &amp;amp; SQLiteSQL for Data Science - Part 1SQL for Data Science - Part 2In this post, we will learn to query data from a database using dplyr.
-Libraries, Code &amp;amp; DataWe will use the following libraries in this post:</description>
+Quick Guide: R &amp;amp; SQLiteIn this post, we will learn to query data from a database using dplyr.
+Libraries, Code &amp;amp; DataWe will use the following libraries in this post:
+DBIRSQLitedbplyrdplyrAll the data sets used in this post can be found here and code can be downloaded from here.</description>
     </item>
     
     <item>
