@@ -9,12 +9,9 @@ tags:
   - base
 ---
 
-[![Twitter](http://i.imgur.com/tXSoThF.png)](https://twitter.com/login?redirect_after_login=%2Fhome%3Fstatus)
-[![Facebook](http://i.imgur.com/P3YfQoD.png)](https://www.facebook.com/sharer/sharer.php?u=)
-
 ### Introduction
 
-<hr>
+
 
 This is the first post of the series **Data Visualization With R**. The objective of the series is to provide a gentle introduction to working with base graphics in R. We will come up with a similar series using [ggplot2](http://ggplot2.tidyverse.org/index.html) shortly. 
 
@@ -26,29 +23,29 @@ This is the first post of the series **Data Visualization With R**. The objectiv
     - lattice
 - build some simple plots
 
-<br>
+
 
 ### Libraries, Code & Data
 
-<hr>
+
 
 All the data sets used in this post can be found [here](https://github.com/rsquaredacademy/datasets) and code can be downloaded from [here](https://gist.github.com/rsquaredacademy/3690e9217c72644a9e9bada0df709426).
 
-<br>
+
 
 ### What is data visualization?
 
-<hr>
+
 
 In simple words, data visualization is the representation of data in graphical format. 
 
 ![data-viz](data-viz.png)
 
-<br>
+
 
 ### Why visualize data?
 
-<hr>
+
 
 - Explore: Visualization helps in exploring and explaining patterns and trends
 - Detect: Patterns or anomalies in data can be detected by looking at graphs
@@ -56,47 +53,47 @@ In simple words, data visualization is the representation of data in graphical f
 - Communicate: Easy to communicate and share the insights from data
 
 
-<br>
+
 
 ### R Graphics System
 
-<hr>
+
 
 - graphics 
 - ggplot2
 - lattice
 
-<br>
+
 
 #### Graphics
 
-<hr>
+
 
 - It is part of base R and is the fundamental package for visualizing data.
 - It has a lot of good features and we can create all the basic plots using it.
 
-<br>
+
 
 #### ggplot2
 
-<hr>
+
 
 [ggplot2](http://ggplot2.tidyverse.org/index.html), created by [Hadley Wickham](http://hadley.nz/), is based on the Grammar of Graphics written by Leland Wilkinson. It has a structured approach to data visualization and builds upon the features available in the Graphics and Lattice packages.
 
-<br>
+
 
 #### Lattice
 
-<hr>
+
 
 The [lattice](https://CRAN.R-project.org/package=lattice) package is inspired by Trellis Graphics and created by [Deepayan Sarkar](http://www.isid.ac.in/~deepayan/). It is a very powerful data visualization system with an emphasis on multivariate data.
 
 
-<br>
+
 
 ### Getting Help
 
-<hr>
+
 
 Use the `help()` to learn more about `plot()` function and `mtcars` data set.
 
@@ -105,31 +102,31 @@ help(plot)
 help(mtcars)
 ```
 
-<br>
+
 
 ### mtcars 
 
-<hr>
+
 
 ```{r mtcars}
 head(mtcars)
 ```
 
-<br>
+
 
 ### variable info
 
-<hr>
+
 
 ```{r data2}
 str(mtcars)
 ```
 
-<br>
+
 
 ### plot()
 
-<hr>
+
 
 Now that we have some idea about the data set, let us explore the `plot()` function. We will use the following different data inputs and observe the kind of plots that are generated:
 
@@ -140,79 +137,79 @@ Now that we have some idea about the data set, let us explore the `plot()` funct
 - Case 5: 1 continuous and 1 categorical variable
 - Case 6: 1 categorical and 1 continuous variable
 
-<br>
+
 
 ### One continuous variable
 
-<hr>
+
 
 ```{r plot1,fig.align='center',fig.height=5,fig.width=5}
 plot(mtcars$mpg)
 ```
 
-<br>
+
 
 ### One categorical variable
 
-<hr>
+
 
 ```{r plot2,fig.align='center',fig.height=5,fig.width=5}
 plot(as.factor(mtcars$cyl))
 ```
 
-<br>
+
 
 ### Two continuous variables
 
-<hr>
+
 
 ```{r plot3,fig.align='center',fig.height=5,fig.width=5}
 plot(mtcars$disp, mtcars$mpg)
 ```
 
-<br>
+
 
 ### Two categorical variables
 
-<hr>
+
 
 ```{r plot4,fig.align='center',fig.height=5,fig.width=5}
 plot(as.factor(mtcars$am), as.factor(mtcars$cyl))
 ```
 
-<br>
+
 
 ### Continuous/Categorical variable
 
-<hr>
+
 
 ```{r plot5,fig.align='center',fig.height=5,fig.width=5}
 plot(mtcars$mpg, mtcars$cyl)
 ```
 
-<br>
+
 
 ### Categorical/Continuous variable
 
-<hr>
+
 
 ```{r plot6,fig.align='center',fig.height=5,fig.width=5}
 plot(as.factor(mtcars$cyl), mtcars$mpg)
 ```
 
-<br>
+
 
 ### Summary
 
-<hr>
+
 
 In this first post, we have explored the `plot()` function to understand the different types of plots it can create based on the input types. Before we begin to build different plots such as bar plots, box plots, scatter plots or line plots, we will quickly learn how to add title and labels to a plot. 
 
-<br>
+
 
 ### Up Next..
 
-<hr>
+
 
 In the next [post](https://rsquaredacademy.github.io/blog/post/data-visualization-with-r-title-and-axis-labels/), we will learn to modify:
 
@@ -220,4 +217,3 @@ In the next [post](https://rsquaredacademy.github.io/blog/post/data-visualizatio
 - Axis labels & range
 - Color, font style and size
 
-<br>

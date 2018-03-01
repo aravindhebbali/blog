@@ -9,12 +9,9 @@ tags:
   - visualization
 ---
 
-[![Twitter](http://i.imgur.com/tXSoThF.png)](https://twitter.com/login?redirect_after_login=%2Fhome%3Fstatus)
-[![Facebook](http://i.imgur.com/P3YfQoD.png)](https://www.facebook.com/sharer/sharer.php?u=)
-
 ### Introduction
 
-<hr>
+
 
 This is the second post of the series **Data Visualization With R**. In the previous [post](https://rsquaredacademy.github.io/post/data-visualization-with-r-introduction/), we explored the `plot()` function and observed the different types of plots it generated. In this post, we will learn how to add:
 
@@ -33,19 +30,19 @@ In the previous [post](https://rsquaredacademy.github.io/post/data-visualization
 
 We will explore both the above methods one by one, and you can choose the method most convenient to you. Let us begin with the `plot()` function:
 
-<br>
+
 
 ### Libraries, Code & Data
 
-<hr>
+
 
 All the data sets used in this post can be found [here](https://github.com/rsquaredacademy/datasets) and code can be downloaded from [here](https://gist.github.com/rsquaredacademy/7c0968878e8cf989b669ae80ac32d15a).
 
-<br>
+
 
 ### Syntax
 
-<hr>
+
 
 |Feature|Argument|Value|Example|
 |:-------|:--------|:-----|:-------|
@@ -54,11 +51,11 @@ All the data sets used in this post can be found [here](https://github.com/rsqua
 |X Axis Label  |xlab    |string|"Displacement"|
 |Y Axis Label  |ylab    |string|"Miles Per Gallon"|
 
-<br>
+
 
 ### Title
 
-<hr>
+
 
 You can add a title to the plot using the `main` argument in the `plot()` function. Ensure that the title is enclosed in single/double quotes as it is a string. Let us create a scatter plot of `disp` and `mpg` from `mtcars` data set, and add a title to it.
 
@@ -67,11 +64,11 @@ plot(mtcars$disp, mtcars$mpg,
      main = 'Displacement vs Miles Per Gallon')
 ```
 
-<br>
+
 
 ### Subtitle
 
-<hr>
+
 
 You can add a subtitle to the plot using the `sub` argument in the `plot()` function. The subtitle will appear below the X axis label. Ensure that the subtitle is enclosed in single/double quotes as it is a string. Let us add a subtitle to the plot we created in the previous example:
 
@@ -81,11 +78,11 @@ plot(mtcars$disp, mtcars$mpg,
      sub = 'Mileage is inversely related to Displacement')
 ```
 
-<br>
+
 
 ### Axis Labels
 
-<hr>
+
 
 In the plots created in the previous examples, the axis labels appear as `mtcars$mpg` and `mtcars$disp`. It is not the best way to name the axis and it will make more sense to use names that describe the data. Let us modify the axis labels using the `xlab` and `ylab` arguments in the `plot()` function:
 
@@ -96,11 +93,11 @@ plot(mtcars$disp, mtcars$mpg,
      xlab = 'Displacement', ylab = 'Miles Per Gallon')
 ```
 
-<br>
+
 
 ### title()
 
-<hr>
+
 
 We can add title, subtitle and axis labels using the `title()` function as well. Let us recreate the plots from the previous examples but this time we will use the `title()` instead of the `plot()` function. We will continue to use the `plot()` function to create the plot.
 
@@ -114,7 +111,7 @@ title(main = 'Displacement vs Miles Per Gallon',
       xlab = 'Displacement', ylab = 'Miles Per Gallon')
 ```
 
-<br>
+
 
 Do you notice that the axis labels are overwritten? This happens because the `plot()` function adds the default labels and we add a new set of labels without modifying the existing ones. The solution is to instruct the `plot()` function not to add any labels to the X and Y axis. This can be achieved using the `ann` (annotate) argument in the `plot()` function and set it to `FALSE`. Let us try it:
 
@@ -128,16 +125,16 @@ title(main = 'Displacement vs Miles Per Gallon',
       xlab = 'Displacement', ylab = 'Miles Per Gallon')
 ```
 
-<br>
+
 
 The axis labels are legible and not overwritten. You can use either the `plot()` function or the `title()` function to add title, subtitle and axis labels but ensure that in case you use the `title()` function, set `ann` argument to `FALSE` in the `plot()` function.
 
 
-<br>
+
 
 ### Axis Range
 
-<hr>
+
 
 In certain cases, you would want to modify the range of the axis of the plots. By default, the `plot()` function will take into account the `min` and `max` values of the variable(s) and set the range for the axis. We can modify the range by using the `xlim` and `ylim` arguments in the `plot()` function. Both the `xlim` and `ylim` arguments take 2 values as inputes. The first value is the minimum value for the axis and the second value is the maximum value for the axis. The `plot()` function will return an error if we do not specify two values for both `xlim` and `ylim` arguments. Let us recreate the plot from the previous examples but change the range of both the X and Y axis:
 
@@ -148,20 +145,19 @@ plot(mtcars$disp, mtcars$mpg,
 
 Keep in mind that the axis ranges cannot be modified using the `title()` function.
 
-<br>
+
 
 ### Summary
 
-<hr>
+
 
 In this post, we learned how to add title, subtitle and axis labels to a plot using the `plot()` and `title()` function. We also learned how to modify the range of the X and Y axis using the `xlim` and `ylim` arguments within the `plot()` function. 
 
-<br>
+
 
 ### Up Next..
 
-<hr>
+
 
 In the next [post](https://rsquaredacademy.github.io/blog/post/data-visualization-with-r-scatter-plots/), we will learn to create the **scatter plot**.
 
-<br>

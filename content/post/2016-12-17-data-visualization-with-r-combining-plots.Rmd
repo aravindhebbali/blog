@@ -10,12 +10,9 @@ tags:
   - facets
 ---
 
-[![Twitter](http://i.imgur.com/tXSoThF.png)](https://twitter.com/login?redirect_after_login=%2Fhome%3Fstatus)
-[![Facebook](http://i.imgur.com/P3YfQoD.png)](https://www.facebook.com/sharer/sharer.php?u=)
-
 ### Introduction
 
-<hr>
+
 
 This is the tenth post in the series **Data Visualization With R**. In the previous [post](https://rsquaredacademy.github.io/blog/post/data-visualization-with-r-text-annotations/), we learnt how to add text annotations to plots. In this post, we will learn how to combine multiple plots. Often, it is useful to have multiple plots in the same frame as it allows us to get a comprehensive view of a particular variable or compare among different variables. The Graphics package offers two methods to combine multiple plots. `par()` can be used to set graphical parameters regarding plot layout using the mfcol and mfrow arguments. `layout()` serves the same purpose but offers more flexibility by allowing us to modify the height and width of rows and columns.
 
@@ -36,19 +33,19 @@ mfrow(number of rows, number of columns)
 
 Let us begin by combining 4 plots in 2 rows and 2 columns:
 
-<br>
+
 
 ### Libraries, Code & Data
 
-<hr>
+
 
 All the data sets used in this post can be found [here](https://github.com/rsquaredacademy/datasets) and code can be downloaded from [here](https://gist.github.com/rsquaredacademy/8fc6a6d21c5ab8a0a68f11df51074a9d).
 
-<br>
+
 
 ### Case Study 1
 
-<hr>
+
 
 Let us begin by combining 4 plots in 2 rows and 2 columns. The plots will be filled by rows as we are using the mfrow function:
 
@@ -69,11 +66,11 @@ boxplot(mtcars$mpg)
 par(init)
 ```
 
-<br>
+
 
 ### Case Study 2
 
-<hr>
+
 
 Combine 2 plots in 1 row and 2 columns. 
 
@@ -92,11 +89,11 @@ boxplot(mtcars$mpg)
 par(init)
 ```
 
-<br>
+
 
 ### Case Study 3
 
-<hr>
+
 
 Combine 2 plots in 2 rows and 1 column. 
 
@@ -115,11 +112,11 @@ boxplot(mtcars$mpg)
 par(init)
 ```
 
-<br>
+
 
 ### Case Study 4
 
-<hr>
+
 
 Combine 3 plots in 1 row and 3 columns. 
 
@@ -139,11 +136,11 @@ boxplot(mtcars$mpg)
 par(init)
 ```
 
-<br>
+
 
 ### Case Study 5
 
-<hr>
+
 
 Combine 3 plots in 3 rows and 1 column. 
 
@@ -163,11 +160,11 @@ boxplot(mtcars$mpg)
 par(init)
 ```
 
-<br>
+
 
 ### mfcol
 
-<hr>
+
 
 mfcol combines plots filled by columns i.e it takes two arguments, the number of rows and number of columns and then starts filling the plots by columns. Below is the syntax for mfrow:
 
@@ -178,11 +175,11 @@ mfcol(number of rows, number of columns)
 
 Let us begin by combining 4 plots in 2 rows and 2 columns:
 
-<br>
+
 
 #### Case Study 6
 
-<hr>
+
 
 Combine 3 plots in 3 rows and 1 column. 
 
@@ -203,11 +200,11 @@ boxplot(mtcars$mpg)
 par(init)
 ```
 
-<br>
+
 
 ### Special Cases
 
-<hr>
+
 
 What happens if we specify lesser or more number of graphs? In the next two examples, we will specify lesser or more number of graphs than we ask the par() function to combine. Let us see what happens in such instances:
 
@@ -217,11 +214,11 @@ We will specify that 4 plots need to be combined in 2 rows and 2 columns but pro
 Case 2: Extra graph specified
 We will specify that 4 plots need to be combined in 2 rows and 2 columns but specify 6 graphs instead of 4.
 
-<br>
+
 
 ### Case Study 7
 
-<hr>
+
 
 ```{r facet7, fig.align='center', fig.height=7, fig.width=7, collapse=TRUE}
 # store the current parameter settings in init
@@ -239,11 +236,11 @@ boxplot(mtcars$mpg)
 par(init)
 ```
 
-<br>
+
 
 ### Case Study 8
 
-<hr>
+
 
 ```{r facet8, fig.align='center', fig.height=7, fig.width=7, collapse=TRUE}
 # store the current parameter settings in init
@@ -264,11 +261,11 @@ boxplot(mtcars$mpg)
 par(init)
 ```
 
-<br>
+
 
 ### Layout
 
-<hr>
+
 
 At the core of the layout() function is a matrix. We communicate the structure in which the plots must be combined using a matrix. As such, the layout function is more flexible compared to the par() function.
 
@@ -280,11 +277,11 @@ At the core of the layout() function is a matrix. We communicate the structure i
 
 Let us begin by combining 4 plots in a 2 row/2 column structure. We do this by creating a layout using the matrix function.
 
-<br>
+
 
 ### Case Study 1
 
-<hr>
+
 
 Combine 4 plots in 2 rows/2 columns filled by rows.
 
@@ -300,11 +297,11 @@ boxplot(mtcars$mpg)
 plot(mtcars$mpg)
 ```
 
-<br>
+
 
 ### Case Study 2
 
-<hr>
+
 
 Combine 4 plots in 2 rows/2 columns filled by columns
 
@@ -322,11 +319,11 @@ boxplot(mtcars$mpg)
 plot(mtcars$mpg)
 ```
 
-<br>
+
 
 ### Case Study 3
 
-<hr>
+
 
 Combine 3 plots in 2 rows/2 columns filled by rows
 
@@ -346,11 +343,11 @@ hist(mtcars$mpg)
 boxplot(mtcars$mpg)
 ```
 
-<br>
+
 
 ### Case Study 4
 
-<hr>
+
 
 Combine 3 plots in 2 rows/2 columns filled by rows
 
@@ -369,11 +366,11 @@ boxplot(mtcars$mpg)
 plot(mtcars$disp, mtcars$mpg)
 ```
 
-<br>
+
 
 ### Case Study 5
 
-<hr>
+
 
 Combine 3 plots in 2 rows/2 columns filled by columns
 
@@ -393,11 +390,11 @@ plot(mtcars$disp, mtcars$mpg)
 boxplot(mtcars$mpg)
 ```
 
-<br>
+
 
 ### Case Study 6
 
-<hr>
+
 
 Combine 3 plots in 2 rows/2 columns filled by columns
 
@@ -417,19 +414,19 @@ plot(mtcars$disp, mtcars$mpg)
 hist(mtcars$mpg)
 ```
 
-<br>
+
 
 ### Widths
 
-<hr>
+
 
 In all the layouts created so far, we have kept the size of the rows and columns equal. What if you want to modify the width and height of the columns and rows? The widths and heights arguments in the layout() function address the above mentioned issue. Let us check them out one by one: The widths argument is used for specifying the width of the columns. Based on the number of columns in the layout, you can specify the width of each column. Let us look at some examples.
 
-<br>
+
 
 ### Case Study 7
 
-<hr>
+
 
 Width of the 2nd column is twice the width of the 1st column
 
@@ -447,11 +444,11 @@ boxplot(mtcars$mpg)
 plot(mtcars$mpg)
 ```
 
-<br>
+
 
 ### Case Study 8
 
-<hr>
+
 
 Width of the 2nd column is twice that of the first and last column
 
@@ -471,19 +468,19 @@ hist(mtcars$mpg)
 boxplot(mtcars$mpg)
 ```
 
-<br>
+
 
 ### Heights
 
-<hr>
+
 
 The heights arguments is used to modify the height of the rows and based on the number of rows specified in the layout, we can specify the height of each row. 
 
-<br>
+
 
 ### Case Study 9
 
-<hr>
+
 
 Height of the 2nd row is twice that of the first row
 
@@ -498,11 +495,11 @@ boxplot(mtcars$mpg)
 plot(mtcars$mpg)
 ```
 
-<br>
+
 
 ### Putting it all together...
 
-<hr>
+
 
 Before we end this section, let us combine plots using both the widths and heights option
 
@@ -523,10 +520,9 @@ hist(mtcars$mpg)
 boxplot(mtcars$mpg)
 ```
 
-<br>
+
 
 ### Summary
 
-<hr>
 
-<br>
+

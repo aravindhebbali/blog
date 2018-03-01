@@ -197,5 +197,3 @@ vect1[(vect1 < 8 | (vect1 %% 3 == 0))]
 # return all elements less than 7 or divisible by 2
 vect1[(vect1 < 7 | (vect1 %% 2 == 0))]
 ```
-
-## Summary

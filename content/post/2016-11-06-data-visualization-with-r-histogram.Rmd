@@ -10,12 +10,9 @@ tags:
   - histogram
 ---
 
-[![Twitter](http://i.imgur.com/tXSoThF.png)](https://twitter.com/login?redirect_after_login=%2Fhome%3Fstatus)
-[![Facebook](http://i.imgur.com/P3YfQoD.png)](https://www.facebook.com/sharer/sharer.php?u=)
-
 ### Introduction
 
-<hr>
+
 
 This is the seventh post in the series **Data Visualization With R**. In the previous [post](https://rsquaredacademy.github.io/blog/post/data-visualization-with-r-box-plots/), we learnt about box and whisker plots. In this post, we will learn to:
 
@@ -36,15 +33,15 @@ A histogram is a plot that can be used to examine the shape and spread of  conti
 
 To construct a histogram, the data is split into intervals called bins. The intervals may or may not be equal sized. For each bin, the number of data points that fall into it are counted (frequency). The Y axis of the histogram represents the frequency and the X axis represents the variable. 
 
-<br>
+
 
 ### Libraries, Code & Data
 
-<hr>
+
 
 All the data sets used in this post can be found [here](https://github.com/rsquaredacademy/datasets) and code can be downloaded from [here](https://gist.github.com/rsquaredacademy/7dbcd02b37e80c5262133d0464b7e8c9).
 
-<br>
+
 
 ### Distributions
 
@@ -67,7 +64,7 @@ hist(rbeta(10000, 5, 2), ann = FALSE, col = 'blue')
 
 ### Basics
 
-<hr>
+
 
 Histograms are created using the `hist()` function in R. The minimum input required to create a bare bones histogram is a continuous variable. Below is an example:
 
@@ -75,7 +72,7 @@ Histograms are created using the `hist()` function in R. The minimum input requi
 hist(mtcars$mpg)
 ```
 
-<br>
+
 
 The `hist()` functions returns details of the histogram which can be accessed by assigning the histogram to a variable. Let us assign the above histogram to a variable `h` and use the `$` symbol to access the details stored in the variable.
 
@@ -102,11 +99,11 @@ h$xname
 h$equidist
 ```
 
-<br>
+
 
 ### Bins
 
-<hr>
+
 
 The `hist()` function creates equidistant intervals by default. We can specify the number of bins using the `breaks` argument.
 
@@ -114,7 +111,7 @@ The `hist()` function creates equidistant intervals by default. We can specify t
 hist(mtcars$mpg, breaks = 10)
 ```
 
-<br>
+
 
 The below plot displays histograms with different number of bins:
 
@@ -128,11 +125,11 @@ for (i in values) {
 }
 ```
 
-<br>
+
 
 ### Intervals
 
-<hr>
+
 
 If we want to create histograms with specific intervals, the `breaks` argument can be supplied with the intervals.
 
@@ -142,11 +139,11 @@ hist(mtcars$mpg, breaks = c(10, 18, 24, 30, 35))
 
 If you observe the Y axis, it does not represent frequency any more. Instead, it represents the frequency density. What is frequency density?
 
-<br>
+
 
 ### Frequency Density
 
-<hr>
+
 
 Frequency Density =  Relative Frequency / Class Width
 
@@ -162,7 +159,7 @@ d <- data.frame(frequency = frequency, class_width = class_width, relative_frequ
 d
 ```
 
-<br>
+
 
 When multiplied by the class width, the product will always sum upto 1.
 
@@ -170,7 +167,7 @@ When multiplied by the class width, the product will always sum upto 1.
 sum(d$frequency_density * d$class_width)
 ```
 
-<br>
+
 
 We will learn more about frequency density in a bit. Before we end this section, we need to learn about one more way to specify the intervals of the histogram, algorithms. The `hist()` function allows us to specify the following algorithms:
 
@@ -180,7 +177,7 @@ We will learn more about frequency density in a bit. Before we end this section,
 
 In the below plot, we examine how th algorithms work:
 
-<br>
+
 
 ```{r hist10, fig.align='center', fig.width=15, fig.height=5, echo=FALSE}
 init <- par(no.readonly = TRUE)
@@ -192,11 +189,11 @@ for (i in values) {
 }
 ```
 
-<br>
+
 
 ### Frequency Distribution II
 
-<hr>
+
 
 Let us come back to frequency density. If you want the Y axis of the histogram to represent frequency density instead of counts, set the `freq` argument to `FALSE`.
 
@@ -210,7 +207,7 @@ for (i in values) {
 }
 ```
 
-<br>
+
 
 The same result can be achieved by using the `probability` argument as well. It takes only logical values as inputs and the default is `FALSE`. If set to `TRUE`, the Y axis will represent the frequency density instead of counts.
 
@@ -218,49 +215,49 @@ The same result can be achieved by using the `probability` argument as well. It 
 hist(mtcars$mpg, probability = TRUE)
 ```
 
-<br>
+
 
 ### Color
 
-<hr>
+
 
 To add colors to the bars of the histogram, use the `col` argument. If the number of colors specified is less than the number of bars, the colors are recycled. Below are a few examples:
 
-<br>
+
 
 #### Single Color
 
-<hr>
+
 
 ```{r hist13, fig.align='center', fig.height=5, fig.width=5, echo=FALSE}
 hist(mtcars$mpg, col = 'blue')
 ```
 
-<br>
+
 
 #### Different Colors
 
-<hr>
+
 
 ```{r hist14, fig.align='center', fig.height=5, fig.width=5, echo=FALSE}
 hist(mtcars$mpg, col = c('red', 'blue', 'green', 'yellow', 'brown'))
 ```
 
-<br>
+
 
 #### Recycled Colors
 
-<hr>
+
 
 ```{r hist15, fig.align='center', fig.height=5, fig.width=5, echo=FALSE}
 hist(mtcars$mpg, col = c('red', 'blue'))
 ```
 
-<br>
+
 
 ### Border Color
 
-<hr>
+
 
 Colors can be specified for the borders of the histogrambars using the `border` argument. 
 
@@ -268,29 +265,29 @@ Colors can be specified for the borders of the histogrambars using the `border` 
 hist(mtcars$mpg, border = 'red')
 ```
 
-<br>
+
 
 #### Different Colors
 
-<hr>
+
 
 ```{r hist16, fig.align='center', fig.height=5, fig.width=5, echo=FALSE}
 hist(mtcars$mpg, border = c('red', 'blue', 'green', 'yellow', 'brown'))
 ```
 
-<br>
+
 
 ### Labels
 
-<hr>
+
 
 In certain cases, we might want to add the frequency counts on the histogram bars. It is easier for the user to know the frequencies of each bin when they are present on top of the bars. Let us add the frequency counts on top of the bars using the `labels` argument. We can either set it to `TRUE` or a character vector containing the label values. Let us look at both the methods.
 
-<br>
+
 
 #### Method 1
 
-<hr>
+
 
 Set `labels` to `TRUE`.
 
@@ -298,11 +295,11 @@ Set `labels` to `TRUE`.
 hist(mtcars$mpg, labels = TRUE)
 ```
 
-<br>
+
 
 #### Method 2
 
-<hr>
+
 
 Specify the label values in a character vector.
 
@@ -310,7 +307,7 @@ Specify the label values in a character vector.
 hist(mtcars$mpg, labels = c("6", "12", "8", "2", "4"))
 ```
 
-<br>
+
 
 ### Putting it all together..
 
@@ -323,11 +320,11 @@ hist(mtcars$mpg, labels = TRUE, prob = TRUE,
      col = rainbow(5))
 ```
 
-<br>
+
 
 ### Summary
 
-<hr>
+
 
 In this post, we learnt how to construct and use histograms to examine the underlying distribution of a continuous variable. Specifically, we learnt how to:
 
@@ -337,12 +334,11 @@ In this post, we learnt how to construct and use histograms to examine the under
 - add colors to the bars and the border
 - add labels to the bars
 
-<br>
+
 
 ### Up Next..
 
-<hr>
+
 
 In the next [post](https://rsquaredacademy.github.io/blog/post/data-visualization-with-r-legends/), we will learn to add legend to plots.
 
-<br>

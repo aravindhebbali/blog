@@ -38,7 +38,7 @@ students
 
 ## Basic Information
 
-```{r df3}
+```{r df3, collapse=TRUE}
 class(students)
 names(students)
 colnames(students)
@@ -54,7 +54,7 @@ ncol(students)
 - `[[]]`
 - `$`
 
-```{r df4}
+```{r df4, collapse=TRUE}
 # using [
 students[1]
 
@@ -67,15 +67,15 @@ students$name
 
 ### Multiple Columns
 
-```{r df5}
-students[, 1]
+```{r df5, collapse=TRUE}
+students[, 1:3]
 
 students[, c(1, 3)]
 ```
 
 ## Select Rows
 
-```{r df6}
+```{r df6, collapse=TRUE}
 # single row
 students[1, ]
 

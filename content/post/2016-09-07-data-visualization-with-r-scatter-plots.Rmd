@@ -9,12 +9,9 @@ tags:
   - visualization
 ---
 
-[![Twitter](http://i.imgur.com/tXSoThF.png)](https://twitter.com/login?redirect_after_login=%2Fhome%3Fstatus)
-[![Facebook](http://i.imgur.com/P3YfQoD.png)](https://www.facebook.com/sharer/sharer.php?u=)
-
 ### Introduction
 
-<hr>
+
 
 This is the third post in the series **Data Visualization With R**. In the previous [post](https://rsquaredacademy.github.io/post/data-visualization-with-r-title-and-axis-labels/), we learned how to add title, subtitle and axis labels. We also learned how to modify the range of the axis. In this post, we will learn how to create scatter plots. If you remember, we had created a scatter plot in this [post](https://rsquaredacademy.github.io/post/data-visualization-with-r-introduction/), using the `plot()` function. We will continue with the same plot and learn how to enhance a scatter plot by 
 
@@ -22,19 +19,19 @@ This is the third post in the series **Data Visualization With R**. In the previ
 - modify shape of the points
 - modify size of the points
 
-<br>
+
 
 ### Libraries, Code & Data
 
-<hr>
+
 
 All the data sets used in this post can be found [here](https://github.com/rsquaredacademy/datasets) and code can be downloaded from [here](https://gist.github.com/rsquaredacademy/f5cd1315826bd44466a15444456ea61d).
 
-<br>
+
 
 ### Basic Plot
 
-<hr>
+
 
 Let us recreate the plot that we had created in the first post by using the `mtcars` data set. We will use the `disp` (displacement) and `mpg` (miles per gallon) variables. `disp` will be on the X axis and `mpg` will be on the Y axis.
 
@@ -52,11 +49,11 @@ plot(mtcars$disp, mtcars$mpg,
 
 Now the plot clearly communicates that it represents the relationship between the displacement and mileage of cars. Now the color of the points in the plot is black by default. Some of us may agree that black is beautiful but not all of us will like it. As a first step in enhancing the way our plot looks, let us change the shape of the points. 
 
-<br>
+
 
 ### Shape
 
-<hr>
+
 
 The shape of the point can be specified using the `pch` argument. It will take values between **0** and **25**. Below is an example:
 
@@ -77,7 +74,7 @@ for (i in values) {
 }
 ```
 
-<br>
+
 
 We can specify the shape based on a third (categorical variable as well). In the below plot, the shape is based on the levels of the categorical variable `cyl` (number of cylinders) from the `mtcars` data set:
 
@@ -86,7 +83,7 @@ We can specify the shape based on a third (categorical variable as well). In the
 plot(mtcars$disp, mtcars$mpg, pch = nlevels(factor(mtcars$cyl)))
 ```
 
-<br>
+
 
 ```{r scatter-pch3, fig.align='center', fig.width=5, fig.height=5}
 # shape based on a third categorical variable
@@ -95,7 +92,7 @@ plot(mtcars$disp, mtcars$mpg, pch = unclass(mtcars$cyl))
 
 ### Size
 
-<hr>
+
 
 The size of the points in the scatter plot can be specified using the `cex` argument in the `plot()` function. The default value for `cex` is 1. 
 
@@ -104,7 +101,7 @@ The size of the points in the scatter plot can be specified using the `cex` argu
 plot(mtcars$disp, mtcars$mpg, cex = 1.5)
 ```
 
-<br>
+
 
 The below plots show the size of the points for values relative to 1.
 
@@ -119,11 +116,11 @@ for (i in values) {
 }
 ```
 
-<br>
+
 
 ### Color
 
-<hr>
+
 
 We can specify a border color for the points using the `col` argument and a background color using the `bg` argument. The background color can be specified only for points whose `pch` argument takes values between **21** and **25**. Let us look at some examples to understand this distinction between border and background color.
 
@@ -132,7 +129,7 @@ We can specify a border color for the points using the `col` argument and a back
 plot(mtcars$disp, mtcars$mpg, pch = 5, col = 'blue', bg = 'red')
 ```
 
-<br>
+
 
 You can observe that although we have specified a background color using the `bg` argument, we do not see the red background color as the value specified for the `pch` (shape) argument is not between 21 and 25. In the next example, we will use a value between 21 and 25 so that the `pch` argument is effective.
 
@@ -141,7 +138,7 @@ You can observe that although we have specified a background color using the `bg
 plot(mtcars$disp, mtcars$mpg, pch = 24, col = 'red', bg = 'blue')
 ```
 
-<br>
+
 
 The color of the points can be specified using (levels) of a categorical variable as well. In the next example, we will use the `cyl` variable to specify the color of the points.
 
@@ -152,11 +149,11 @@ plot(mtcars$disp, mtcars$mpg, pch = 5, col = factor(mtcars$cyl))
 
 Since `cyl` is a categorical variable with 3 levels, we can see that the points now have 3 different colors. The above method is useful when you want to segregate the points in a scatter plot based on a third variable.
 
-<br>
+
 
 ### Summary
 
-<hr>
+
 
 In this post, we learned how to 
 
@@ -165,12 +162,11 @@ In this post, we learned how to
 - modify shape of the points
 - modify size of the points
 
-<br>
+
 
 ### Up Next..
 
-<hr>
+
 
 In certain cases we might want to fit a regression line or add horizontal/vertical lines to the scatter plots. We will learn to do that in the next [post](https://rsquaredacademy.github.io/blog/post/data-visualization-with-r-line-graphs/), where we build line plots.
 
-<br>

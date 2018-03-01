@@ -11,31 +11,28 @@ tags:
   - annotations
 ---
 
-[![Twitter](http://i.imgur.com/tXSoThF.png)](https://twitter.com/login?redirect_after_login=%2Fhome%3Fstatus)
-[![Facebook](http://i.imgur.com/P3YfQoD.png)](https://www.facebook.com/sharer/sharer.php?u=)
-
 ### Introduction
 
-<hr>
+
 
 This is the ninth post in the series **Data Visualization With R**. In the previous [post](https://rsquaredacademy.github.io/blog/post/data-visualization-with-r-legends/), we learnt how to add legend to a plot. In this post, we will learn to add text annotations. There are occassions when you want to display additional information in a plot. This is usually achieved by adding text either inside the plot or on the margins. For example, you might want to label a line/bar or add formulas to better communicate what is shown in the plot. The idea is to use the available space within/outside the plot to provide additional information that can be useful to the end users. We will learn to add text inside as well as on the margins of the plot. This is accomplished using the following two functions:
 
 - `text()` : add text inside the plot
 - `mtext()` : add text on the margins of the plot
 
-<br>
+
 
 ### Libraries, Code & Data
 
-<hr>
+
 
 All the data sets used in this post can be found [here](https://github.com/rsquaredacademy/datasets) and code can be downloaded from [here](https://gist.github.com/rsquaredacademy/7a445b32ca3a6e1f75e7d4bbf66cb702).
 
-<br>
+
 
 ### Syntax
 
-<hr>
+
 
 Let us take a quick look at the syntax of both the functions:
 
@@ -48,11 +45,11 @@ mtext(text, side = 3, line = 0, outer = FALSE, at = NA,
       adj = NA, padj = NA, cex = NA, col = NA, font = NA, ...)
 ```
 
-<br>
+
 
 ### Text Inside the Plot
 
-<hr>
+
 
 To add text inside a plot, the following arguments must be supplied to the `text()` function:
 
@@ -69,11 +66,11 @@ text(x = 340, y = 30, labels = 'Sample Text')
 
 The text appears at the coordinates (340, 30). Ensure that the text is enclosed in single/double quotes and the coordinates provided are within the range of the **X** and **Y** axis variables.
 
-<br>
+
 
 ### Color
 
-<hr>
+
 
 The color of the text can be modified using the `col` argument in the `text()` function.
 
@@ -95,11 +92,11 @@ for (i in values) {
 }
 ```
 
-<br>
+
 
 ### Font
 
-<hr>
+
 
 The font of the text can be modified using the `font` argument in the `text()` function.
 
@@ -121,11 +118,11 @@ for (i in values) {
 }
 ```
 
-<br>
+
 
 ### Font Family
 
-<hr>
+
 
 The font family of the text can be modified using the `family` argument in the `text()` function.
 
@@ -147,11 +144,11 @@ for (i in values) {
 }
 ```
 
-<br>
+
 
 ### Font Size
 
-<hr>
+
 
 The font size of the text can be modified using the `cex` argument in the `text()` function.
 
@@ -173,11 +170,11 @@ for (i in values) {
 }
 ```
 
-<br>
+
 
 ### Text on the Margins
 
-<hr>
+
 
 The `mtext()` function allows the user to place the text on the margins of the plot. It allows the user to modify the location of the text in multiple ways and we will explore them one by one. To beign with, let us add text to the plot using the `mtext()` function. The minimum input you need to provide is the text itself. Below is a simple example:
 
@@ -188,11 +185,11 @@ mtext('Sample Text')
 
 As you can see, the text is placed on the margin of the plot and not inside the plot. Next, we will specify the margin on which to place the text.
 
-<br>
+
 
 ### Specify Margin
 
-<hr>
+
 
 Use the `side` argument to specify the margin on which you want to place the text. If takes values 1 to 4, each representing one side of the plot.
 
@@ -214,11 +211,11 @@ for (i in values) {
 }
 ```
 
-<br>
+
 
 ### Line
 
-<hr>
+
 
 The `line` argument places the text at a specified distance from the margin. The default value is `0`. As the value increases, the text is placed farther from the margin and outside the plot. As the value decreases, the text is placed inside the plot and farther from the margin. Below is a example where the text is placed outside the plot as the value is greater than 1.
 
@@ -247,11 +244,11 @@ for (i in values) {
 }
 ```
 
-<br>
+
 
 ### Alignment
 
-<hr>
+
 
 The `adj` argument is used for horizontal alignment of the text. It takes values between 0 and 1. If set to `0`, the text will be left aligned and at `1`, it will be right aligned. Below is a example where the text is left aligned as `adj` is set to `0`.
 
@@ -280,11 +277,11 @@ for (i in values) {
 }
 ```
 
-<br>
+
 
 ### Summary
 
-<hr>
+
 
 In this post, we learnt how to add text annotations to a plot. Specifically, we learnt to:
 
@@ -293,12 +290,11 @@ In this post, we learnt how to add text annotations to a plot. Specifically, we 
 - modify tehe color, font and size of the text
 - modify the position of the text
 
-<br>
+
 
 ### Up Next..
 
-<hr>
+
 
 In the next [post](https://rsquaredacademy.github.io/blog/post/data-visualization-with-r-combining-plots/), we will learn how to combine multiple plots into a single frame. 
 
-<br>

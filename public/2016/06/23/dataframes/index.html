@@ -103,23 +103,23 @@ students</code></pre>
 </div>
 <div id="basic-information" class="section level2">
 <h2>Basic Information</h2>
-<pre class="r"><code>class(students)</code></pre>
-<pre><code>## [1] &quot;data.frame&quot;</code></pre>
-<pre class="r"><code>names(students)</code></pre>
-<pre><code>## [1] &quot;name&quot;     &quot;age&quot;      &quot;graduate&quot;</code></pre>
-<pre class="r"><code>colnames(students)</code></pre>
-<pre><code>## [1] &quot;name&quot;     &quot;age&quot;      &quot;graduate&quot;</code></pre>
-<pre class="r"><code>str(students)</code></pre>
-<pre><code>## &#39;data.frame&#39;:    3 obs. of  3 variables:
+<pre class="r"><code>class(students)
+## [1] &quot;data.frame&quot;
+names(students)
+## [1] &quot;name&quot;     &quot;age&quot;      &quot;graduate&quot;
+colnames(students)
+## [1] &quot;name&quot;     &quot;age&quot;      &quot;graduate&quot;
+str(students)
+## &#39;data.frame&#39;:    3 obs. of  3 variables:
 ##  $ name    : Factor w/ 3 levels &quot;Jack&quot;,&quot;Jill&quot;,..: 3 1 2
 ##  $ age     : num  29 25 27
-##  $ graduate: logi  TRUE TRUE FALSE</code></pre>
-<pre class="r"><code>dim(students)</code></pre>
-<pre><code>## [1] 3 3</code></pre>
-<pre class="r"><code>nrow(students)</code></pre>
-<pre><code>## [1] 3</code></pre>
-<pre class="r"><code>ncol(students)</code></pre>
-<pre><code>## [1] 3</code></pre>
+##  $ graduate: logi  TRUE TRUE FALSE
+dim(students)
+## [1] 3 3
+nrow(students)
+## [1] 3
+ncol(students)
+## [1] 3</code></pre>
 </div>
 <div id="select-columns" class="section level2">
 <h2>Select Columns</h2>
@@ -129,26 +129,31 @@ students</code></pre>
 <li><code>$</code></li>
 </ul>
 <pre class="r"><code># using [
-students[1]</code></pre>
-<pre><code>##   name
+students[1]
+##   name
 ## 1 John
 ## 2 Jack
-## 3 Jill</code></pre>
-<pre class="r"><code># using [[
-students[[1]]</code></pre>
-<pre><code>## [1] John Jack Jill
-## Levels: Jack Jill John</code></pre>
-<pre class="r"><code># using $
-students$name</code></pre>
-<pre><code>## [1] John Jack Jill
+## 3 Jill
+
+# using [[
+students[[1]]
+## [1] John Jack Jill
+## Levels: Jack Jill John
+
+# using $
+students$name
+## [1] John Jack Jill
 ## Levels: Jack Jill John</code></pre>
 <div id="multiple-columns" class="section level3">
 <h3>Multiple Columns</h3>
-<pre class="r"><code>students[, 1]</code></pre>
-<pre><code>## [1] John Jack Jill
-## Levels: Jack Jill John</code></pre>
-<pre class="r"><code>students[, c(1, 3)]</code></pre>
-<pre><code>##   name graduate
+<pre class="r"><code>students[, 1:3]
+##   name age graduate
+## 1 John  29     TRUE
+## 2 Jack  25     TRUE
+## 3 Jill  27    FALSE
+
+students[, c(1, 3)]
+##   name graduate
 ## 1 John     TRUE
 ## 2 Jack     TRUE
 ## 3 Jill    FALSE</code></pre>
@@ -157,12 +162,13 @@ students$name</code></pre>
 <div id="select-rows" class="section level2">
 <h2>Select Rows</h2>
 <pre class="r"><code># single row
-students[1, ]</code></pre>
-<pre><code>##   name age graduate
-## 1 John  29     TRUE</code></pre>
-<pre class="r"><code># multiple row
-students[c(1, 3), ]</code></pre>
-<pre><code>##   name age graduate
+students[1, ]
+##   name age graduate
+## 1 John  29     TRUE
+
+# multiple row
+students[c(1, 3), ]
+##   name age graduate
 ## 1 John  29     TRUE
 ## 3 Jill  27    FALSE</code></pre>
 <p>If you have observed carefully, the column <code>names</code> has been coerced to type factor. This happens because of a default argument in

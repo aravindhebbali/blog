@@ -9,12 +9,9 @@ tags:
   - visualization
 ---
 
-[![Twitter](http://i.imgur.com/tXSoThF.png)](https://twitter.com/login?redirect_after_login=%2Fhome%3Fstatus)
-[![Facebook](http://i.imgur.com/P3YfQoD.png)](https://www.facebook.com/sharer/sharer.php?u=)
-
 ### Introduction
 
-<hr>
+
 
 This is the fourth post in the series **Data Visualization With R**. In the previous [post](https://rsquaredacademy.github.io/post/data-visualization-with-r-scatter-plots/), we learnt how to build scatter plots. In this post, we will build line graphs. To be more specific we will learn to 
 
@@ -26,19 +23,19 @@ This is the fourth post in the series **Data Visualization With R**. In the prev
 - modify axis range
 - add additional lines to the plot
 
-<br>
+
 
 ### Libraries, Code & Data
 
-<hr>
+
 
 All the data sets used in this post can be found [here](https://github.com/rsquaredacademy/datasets) and code can be downloaded from [here](https://gist.github.com/rsquaredacademy/ea80f20e798e25b3adfc9ff1e87ed311).
 
-<br>
+
 
 ### Line Graph
 
-<hr>
+
 
 To build a line graph, we will learn a new argument in the `plot()` function called `type`. It allows us to specify the symbol that must be used to represent the data. Let us begin by building a simple line graph. We will use the `AirPassengers` data set in this post. Before we begin to build the plot, let us take a quick look at the data in order to understand what we are plotting.
 
@@ -46,7 +43,7 @@ To build a line graph, we will learn a new argument in the `plot()` function cal
 head(AirPassengers)
 ```
 
-<br>
+
 
 In order to build a line plot, we will set the `type` argument in the `plot()` function to **l** (line). There are other values which `type` takes but we will explore them later.
 
@@ -55,7 +52,7 @@ data <- head(AirPassengers)
 plot(data, type = 'l')
 ```
 
-<br>
+
 
 If you do not like plain lines, you can represent the data using lines interspersed with points by setting the `type` argument to **b** (both lines and points).
 
@@ -63,7 +60,7 @@ If you do not like plain lines, you can represent the data using lines intersper
 plot(data, type = 'b')
 ```
 
-<br>
+
 
 Another option is to have the points and lines overplotted. It can be achieved by setting the `type` argument to **o** (overplotted).
 
@@ -71,7 +68,7 @@ Another option is to have the points and lines overplotted. It can be achieved b
 plot(data, type = 'o')
 ```
 
-<br>
+
 
 You can also create lines without points but with breaks instead  by setting the `type` argument to **c**.
 
@@ -79,11 +76,11 @@ You can also create lines without points but with breaks instead  by setting the
 plot(data, type = 'c')
 ```
 
-<br>
+
 
 ### Color
 
-<hr>
+
 
 So now we know how to build a simple line graph. Let us now make this plot more elegant by modifying its appearance. Let us begin by adding some color to the line using the `col` argument in the `plot()` function.
 
@@ -91,7 +88,7 @@ So now we know how to build a simple line graph. Let us now make this plot more 
 plot(data, type = 'l', col = 'blue')
 ```
 
-<br>
+
 
 If you have points along with the line, they will have the same color as well. 
 
@@ -99,11 +96,11 @@ If you have points along with the line, they will have the same color as well.
 plot(data, type = 'b', col = 'blue')
 ```
 
-<br>
+
 
 ### Line Type
 
-<hr>
+
 
 The line type can be modified using the `lty` argument. It takes values from 1 to 6 and the default value is 1. Below is an example:
 
@@ -114,13 +111,13 @@ The line type can be modified using the `lty` argument. It takes values from 1 t
 - 5:longdash
 - 6:twodash
 
-<br>
+
 
 ```{r line9, fig.align='center', fig.height=5, fig.width=5}
 plot(data, type = 'l', lty = 3)
 ```
 
-<br>
+
 
 Let us look at all the line types in the below example:
 
@@ -134,7 +131,7 @@ for (i in values) {
 }
 ```
 
-<br>
+
 
 Instead of specifying the numbers 1:6, you can use their description as well.
 
@@ -148,11 +145,11 @@ for (i in values) {
 }
 ```
 
-<br>
+
 
 ### Line Width
 
-<hr>
+
 
 The width of the lines can be modified using the `lwd` argument in the `plot()` function. The default value for width is 1. 
 
@@ -160,7 +157,7 @@ The width of the lines can be modified using the `lwd` argument in the `plot()` 
 plot(data, type = 'l', lwd = 2.5)
 ```
 
-<br>
+
 
 In the below example, we look at the width of the lines relative to the default value.
 
@@ -174,11 +171,11 @@ for (i in values) {
 }
 ```
 
-<br>
+
 
 ### Enhance Points
 
-<hr>
+
 
 We can enhance the points in the line plot in the same way as we enhanced the points in the scatter plot in this previous [post](https://rsquaredacademy.github.io/post/data-visualization-with-r-scatter-plots/). Let us look at an example:
 
@@ -186,7 +183,7 @@ We can enhance the points in the line plot in the same way as we enhanced the po
 plot(data, type = 'b', pch = 23, col = 'red', cex = 1.5)
 ```
 
-<br>
+
 
 We have used the `pch`, `col` and `cex` arguments to modify the shape, color and size of the points. One drawback of the above method is that the color of the line and the points will be the same. What if we want them to have different colors? The solution is as follows:
 
@@ -200,11 +197,11 @@ plot(data, type = 'l', col = 'red')
 points(data, pch = 23, col = 'blue', bg = 'green', cex = 1.5)
 ```
 
-<br>
+
 
 ### Additional Lines
 
-<hr>
+
 
 If you want to compare variables, you would want to add additional lines to the line graph. In R, this can be achieved using the `lines()` function. First we create the line plot using the base variable and then we can add as many lines as we want using the `lines()` function. 
 
@@ -219,7 +216,7 @@ plot(data1, type = "b", col = "blue")
 lines(data2, type = "b", col = "red")
 ```
 
-<br>
+
 
 As you can see the second line is outside the plot. Let us recreate the plot but this time we will modify the range of the axis to accommodate the second line (data2).
 
@@ -228,11 +225,11 @@ plot(data1, type = "b", col = "blue", ylim = c(5, 9))
 lines(data2, type = "b", col = "red")
 ```
 
-<br>
+
 
 ### Putting it all together...
 
-<hr>
+
 
 Finally let us enhance the plot by adding a title and modifying the axis labels which we learnt in this first [post](https://rsquaredacademy.github.io/post/data-visualization-with-r-title-and-axis-labels/) of the series.
 
@@ -243,11 +240,11 @@ plot(data1, type = "b", col = "blue",
 lines(data2, type = "b", col = "red")
 ```
 
-<br>
+
 
 ### Summary
 
-<hr>
+
 
 In this post, we learnt how to 
 
@@ -256,12 +253,11 @@ In this post, we learnt how to
 - add points to the line plot
 - add additional lines
 
-<br>
+
 
 ### Up Next..
 
-<hr>
+
 
 In the next [post](https://rsquaredacademy.github.io/blog/post/data-visualization-with-r-bar-plots/), we will learn how to build bar plots which are used to visualize a single categorical data or the relationship between two categorical variables.
 
-<br>

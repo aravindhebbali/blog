@@ -12,11 +12,8 @@ tags:
 
 
 
-<p><a href="https://twitter.com/login?redirect_after_login=%2Fhome%3Fstatus"><img src="http://i.imgur.com/tXSoThF.png" alt="Twitter" /></a>
-<a href="https://www.facebook.com/sharer/sharer.php?u="><img src="http://i.imgur.com/P3YfQoD.png" alt="Facebook" /></a></p>
 <div id="introduction" class="section level3">
 <h3>Introduction</h3>
-<hr>
 <p>This is the seventh post in the series <strong>Data Visualization With R</strong>. In the previous <a href="https://rsquaredacademy.github.io/blog/post/data-visualization-with-r-box-plots/">post</a>, we learnt about box and whisker plots. In this post, we will learn to:</p>
 <ul>
 <li>create a bare bones histogram</li>
@@ -34,13 +31,10 @@ tags:
 <li>presence of multiple modes</li>
 </ul>
 <p>To construct a histogram, the data is split into intervals called bins. The intervals may or may not be equal sized. For each bin, the number of data points that fall into it are counted (frequency). The Y axis of the histogram represents the frequency and the X axis represents the variable.</p>
-<p><br></p>
 </div>
 <div id="libraries-code-data" class="section level3">
 <h3>Libraries, Code &amp; Data</h3>
-<hr>
 <p>All the data sets used in this post can be found <a href="https://github.com/rsquaredacademy/datasets">here</a> and code can be downloaded from <a href="https://gist.github.com/rsquaredacademy/7dbcd02b37e80c5262133d0464b7e8c9">here</a>.</p>
-<p><br></p>
 </div>
 <div id="distributions" class="section level3">
 <h3>Distributions</h3>
@@ -56,10 +50,8 @@ tags:
 </div>
 <div id="basics" class="section level3">
 <h3>Basics</h3>
-<hr>
 <p>Histograms are created using the <code>hist()</code> function in R. The minimum input required to create a bare bones histogram is a continuous variable. Below is an example:</p>
 <p><img src="/post/2016-11-06-data-visualization-with-r-histogram_files/figure-html/hist3-1.png" width="480" style="display: block; margin: auto;" /></p>
-<p><br></p>
 <p>The <code>hist()</code> functions returns details of the histogram which can be accessed by assigning the histogram to a variable. Let us assign the above histogram to a variable <code>h</code> and use the <code>$</code> symbol to access the details stored in the variable.</p>
 <pre class="r"><code># store the results of hist function
 h &lt;- hist(mtcars$mpg)</code></pre>
@@ -88,29 +80,22 @@ h$xname
 # whether intervals are of equal size
 h$equidist
 ## [1] TRUE</code></pre>
-<p><br></p>
 </div>
 <div id="bins" class="section level3">
 <h3>Bins</h3>
-<hr>
 <p>The <code>hist()</code> function creates equidistant intervals by default. We can specify the number of bins using the <code>breaks</code> argument.</p>
 <p><img src="/post/2016-11-06-data-visualization-with-r-histogram_files/figure-html/hist5-1.png" width="480" style="display: block; margin: auto;" /></p>
-<p><br></p>
 <p>The below plot displays histograms with different number of bins:</p>
 <p><img src="/post/2016-11-06-data-visualization-with-r-histogram_files/figure-html/hist6-1.png" width="960" style="display: block; margin: auto;" /></p>
-<p><br></p>
 </div>
 <div id="intervals" class="section level3">
 <h3>Intervals</h3>
-<hr>
 <p>If we want to create histograms with specific intervals, the <code>breaks</code> argument can be supplied with the intervals.</p>
 <p><img src="/post/2016-11-06-data-visualization-with-r-histogram_files/figure-html/hist7-1.png" width="480" style="display: block; margin: auto;" /></p>
 <p>If you observe the Y axis, it does not represent frequency any more. Instead, it represents the frequency density. What is frequency density?</p>
-<p><br></p>
 </div>
 <div id="frequency-density" class="section level3">
 <h3>Frequency Density</h3>
-<hr>
 <p>Frequency Density = Relative Frequency / Class Width</p>
 <p>Relative Frequency = Frequency / Total Observations</p>
 <pre class="r"><code>h &lt;- hist(mtcars$mpg, breaks = c(10, 18, 24, 30, 35))</code></pre>
@@ -126,11 +111,9 @@ d</code></pre>
 ## 2        12           6            0.37500        0.06250000
 ## 3         3           6            0.09375        0.01562500
 ## 4         4           5            0.12500        0.02500000</code></pre>
-<p><br></p>
 <p>When multiplied by the class width, the product will always sum upto 1.</p>
 <pre class="r"><code>sum(d$frequency_density * d$class_width)</code></pre>
 <pre><code>## [1] 1</code></pre>
-<p><br></p>
 <p>We will learn more about frequency density in a bit. Before we end this section, we need to learn about one more way to specify the intervals of the histogram, algorithms. The <code>hist()</code> function allows us to specify the following algorithms:</p>
 <ul>
 <li>Sturges (default)</li>
@@ -138,76 +121,53 @@ d</code></pre>
 <li>Freedman-Diaconis (FD)</li>
 </ul>
 <p>In the below plot, we examine how th algorithms work:</p>
-<p><br></p>
 <p><img src="/post/2016-11-06-data-visualization-with-r-histogram_files/figure-html/hist10-1.png" width="1440" style="display: block; margin: auto;" /></p>
-<p><br></p>
 </div>
 <div id="frequency-distribution-ii" class="section level3">
 <h3>Frequency Distribution II</h3>
-<hr>
 <p>Let us come back to frequency density. If you want the Y axis of the histogram to represent frequency density instead of counts, set the <code>freq</code> argument to <code>FALSE</code>.</p>
 <p><img src="/post/2016-11-06-data-visualization-with-r-histogram_files/figure-html/hist11-1.png" width="960" style="display: block; margin: auto;" /></p>
-<p><br></p>
 <p>The same result can be achieved by using the <code>probability</code> argument as well. It takes only logical values as inputs and the default is <code>FALSE</code>. If set to <code>TRUE</code>, the Y axis will represent the frequency density instead of counts.</p>
 <pre class="r"><code>hist(mtcars$mpg, probability = TRUE)</code></pre>
 <p><img src="/post/2016-11-06-data-visualization-with-r-histogram_files/figure-html/hist12-1.png" width="480" style="display: block; margin: auto;" /></p>
-<p><br></p>
 </div>
 <div id="color" class="section level3">
 <h3>Color</h3>
-<hr>
 <p>To add colors to the bars of the histogram, use the <code>col</code> argument. If the number of colors specified is less than the number of bars, the colors are recycled. Below are a few examples:</p>
-<p><br></p>
 <div id="single-color" class="section level4">
 <h4>Single Color</h4>
-<hr>
 <p><img src="/post/2016-11-06-data-visualization-with-r-histogram_files/figure-html/hist13-1.png" width="480" style="display: block; margin: auto;" /></p>
-<p><br></p>
 </div>
 <div id="different-colors" class="section level4">
 <h4>Different Colors</h4>
-<hr>
 <p><img src="/post/2016-11-06-data-visualization-with-r-histogram_files/figure-html/hist14-1.png" width="480" style="display: block; margin: auto;" /></p>
-<p><br></p>
 </div>
 <div id="recycled-colors" class="section level4">
 <h4>Recycled Colors</h4>
-<hr>
 <p><img src="/post/2016-11-06-data-visualization-with-r-histogram_files/figure-html/hist15-1.png" width="480" style="display: block; margin: auto;" /></p>
-<p><br></p>
 </div>
 </div>
 <div id="border-color" class="section level3">
 <h3>Border Color</h3>
-<hr>
 <p>Colors can be specified for the borders of the histogrambars using the <code>border</code> argument.</p>
 <p><img src="/post/2016-11-06-data-visualization-with-r-histogram_files/figure-html/hist20-1.png" width="480" style="display: block; margin: auto;" /></p>
-<p><br></p>
 <div id="different-colors-1" class="section level4">
 <h4>Different Colors</h4>
-<hr>
 <p><img src="/post/2016-11-06-data-visualization-with-r-histogram_files/figure-html/hist16-1.png" width="480" style="display: block; margin: auto;" /></p>
-<p><br></p>
 </div>
 </div>
 <div id="labels" class="section level3">
 <h3>Labels</h3>
-<hr>
 <p>In certain cases, we might want to add the frequency counts on the histogram bars. It is easier for the user to know the frequencies of each bin when they are present on top of the bars. Let us add the frequency counts on top of the bars using the <code>labels</code> argument. We can either set it to <code>TRUE</code> or a character vector containing the label values. Let us look at both the methods.</p>
-<p><br></p>
 <div id="method-1" class="section level4">
 <h4>Method 1</h4>
-<hr>
 <p>Set <code>labels</code> to <code>TRUE</code>.</p>
 <p><img src="/post/2016-11-06-data-visualization-with-r-histogram_files/figure-html/hist17-1.png" width="480" style="display: block; margin: auto;" /></p>
-<p><br></p>
 </div>
 <div id="method-2" class="section level4">
 <h4>Method 2</h4>
-<hr>
 <p>Specify the label values in a character vector.</p>
 <p><img src="/post/2016-11-06-data-visualization-with-r-histogram_files/figure-html/hist18-1.png" width="480" style="display: block; margin: auto;" /></p>
-<p><br></p>
 </div>
 </div>
 <div id="putting-it-all-together.." class="section level3">
@@ -218,11 +178,9 @@ d</code></pre>
      main = &#39;Distribution of Miles Per Gallon&#39;,
      col = rainbow(5))</code></pre>
 <p><img src="/post/2016-11-06-data-visualization-with-r-histogram_files/figure-html/hist19-1.png" width="672" /></p>
-<p><br></p>
 </div>
 <div id="summary" class="section level3">
 <h3>Summary</h3>
-<hr>
 <p>In this post, we learnt how to construct and use histograms to examine the underlying distribution of a continuous variable. Specifically, we learnt how to:</p>
 <ul>
 <li>create a bare bones histogram</li>
@@ -231,11 +189,8 @@ d</code></pre>
 <li>add colors to the bars and the border</li>
 <li>add labels to the bars</li>
 </ul>
-<p><br></p>
 </div>
 <div id="up-next.." class="section level3">
 <h3>Up Next..</h3>
-<hr>
 <p>In the next <a href="https://rsquaredacademy.github.io/blog/post/data-visualization-with-r-legends/">post</a>, we will learn to add legend to plots.</p>
-<p><br></p>
 </div>

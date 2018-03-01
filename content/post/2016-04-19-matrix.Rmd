@@ -151,5 +151,4 @@ as.matrix(vect1)
 
 Regardless of the data type of the vector, all of them will be coerced to a matrix of dimension `n x 1` i.e. they will all have only one column.
 
-## Summary
 

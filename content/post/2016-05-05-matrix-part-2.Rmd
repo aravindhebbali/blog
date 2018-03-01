@@ -149,4 +149,3 @@ c(mat)
 as.vector(mat)
 ```
 
-## Summary

@@ -10,12 +10,9 @@ tags:
 slug: data-visualization-with-r-legends
 ---
 
-[![Twitter](http://i.imgur.com/tXSoThF.png)](https://twitter.com/login?redirect_after_login=%2Fhome%3Fstatus)
-[![Facebook](http://i.imgur.com/P3YfQoD.png)](https://www.facebook.com/sharer/sharer.php?u=)
-
 ### Introduction
 
-<hr>
+
 
 This is the eighth post in the series **Data Visualisation With R**. In the previous [post](https://rsquaredacademy.github.io/blog/post/data-visualization-with-r-histogram/), we learnt to build histograms. In this post, we will learn how to:
 
@@ -29,19 +26,19 @@ Legends are used to convey information about the data being represented by a plo
 
 Since we have looked at a line graph in the above example, we will learn how to add a legend to a line graph. After that, we will generalise the steps to different plots. If you do not know how to create line plots in R, please refer to this [post](https://rsquaredacademy.github.io/blog/post/data-visualization-with-r-line-graphs/).
 
-<br>
+
 
 ### Libraries, Code & Data
 
-<hr>
+
 
 All the data sets used in this post can be found [here](https://github.com/rsquaredacademy/datasets) and code can be downloaded from [here](https://gist.github.com/rsquaredacademy/0036a9cc1ca779965f45c38af260dcdc).
 
-<br>
+
 
 ### Data
 
-<hr>
+
 
 Let us build a line graph that represents annual economic growth (GDP) data of the BRICS nations for the years 2010-14.
 
@@ -56,11 +53,11 @@ gdp <- data.frame(year, india, china, russia, brazil, s_africa, stringsAsFactors
 gdp
 ```
 
-<br>
+
 
 ### Line Graph
 
-<hr>
+
 
 Below is the line graph that represents the above GDP data set:
 
@@ -77,11 +74,11 @@ lines(gdp$year, gdp$s_africa, col = 'violet')}
 
 Without a legend, it will be very difficult to map the lines to the BRICS nations. We will add a legend to the above plot using the `legend()` function and do so one step at a time.
 
-<br>
+
 
 ### Legend Location
 
-<hr>
+
 
 In order to add a legend to the plot, the first thing we must specify is the location of the legend in the plot. There are 2 ways to do this:
 
@@ -111,7 +108,7 @@ lines(gdp$year, gdp$china, col = 'red')
 legend(x = 2013, y = 14, legend = c('india', 'china'))}
 ```
 
-<br>
+
 
 You can see that a legend has been added bases on the X and Y axis coordinates we specified in the `legend()` function. But the legend is incomplete and a user still cannot map the lines to the countries using the legend. We will learn how to add lines inside the legend shortly but before that let us use keywords to position the legend inside the plot. 
 
@@ -133,11 +130,11 @@ for (i in values) {
 
 You can either use the keywords or the axis coordinates to position the legend inside the plot. Use the coordinates method if you want greater control over the position of the legend. Next step is to add lines inside the legend so that a user can map the lines in the plots to the countries.
 
-<br>
+
 
 ### Lines
 
-<hr>
+
 
 Adding a line in the legend is very simple. Use the `lty` argument to specify the line type and the `col` argument to add color to the line. 
 
@@ -153,11 +150,11 @@ legend(x = 2012, y = 14, legend = c('india', 'china'),
 
 Now we can map the lines to the respective countries using the legend. But our legend looks very simple right. Let us explore the options available to modify and enhance the appearance of the legend.
 
-<br>
+
 
 ### Points
 
-<hr>
+
 
 If the plot has both lines and points, we can use the `pch` argument in the `legend()` function to specify the shape of the point.
 
@@ -173,11 +170,11 @@ legend(x = 2012, y = 14, legend = c('india', 'china'),
        lty = 1, pch = 2, col = c('blue', 'red'))}
 ```
 
-<br>
+
 
 ### Text Placement
 
-<hr>
+
 
 The contents of the legend can be positioned horizontally using the `horiz` argument. It takes logical values as inputs and the default is `FALSE`. Set it to `TRUE` to position the contents horizontally:
 
@@ -192,7 +189,7 @@ legend(x = 2011, y = 14, legend = c('india', 'china'),
        horiz = TRUE)}
 ```
 
-<br>
+
 
 Another way to position the content inside the legend is to use columns. In the below example, we use the `ncol` argument to split the contents of the legend into two columns instead of the default one. 
 
@@ -210,7 +207,7 @@ legend(x = 2012, y = 0, legend = c('india', 'china', 'russia', 'brazil'),
        ncol = 2)}
 ```
 
-<br>
+
 
 The below plots show the difference in appearance:
 
@@ -233,11 +230,11 @@ for (i in values) {
 }
 ```
 
-<br>
+
 
 ### Title
 
-<hr>
+
 
 Let us add a title to the legend using the `title` argument:
 
@@ -252,11 +249,11 @@ legend(x = 2012, y = 14, legend = c('india', 'china'),
        title = 'Nations')}
 ```
 
-<br>
+
 
 #### Title Color
 
-<hr>
+
 
 The color of the title can be modified using the `title.col` argument:
 
@@ -271,11 +268,11 @@ legend(x = 2012, y = 14, legend = c('india', 'china'),
        title = 'Nations', title.col = 'red')}
 ```
 
-<br>
+
 
 #### Title Position
 
-<hr>
+
 
 The title can be positioned within the legend box using the `title.adj` argument. It will take values between 0 and 1. The default is 0.5 and the title is positioned in the middle of the box. As the value moves away from 0.5, the position of the title moves to the left or right respectively.
 
@@ -290,7 +287,7 @@ legend(x = 2012, y = 0, legend = c('india', 'china'),
        title = 'Nations', title.adj = 0.1)}
 ```
 
-<br>
+
 
 The below plots show the relative position of the title within the legend box for different values between 0 and 1.
 
@@ -311,11 +308,11 @@ for (i in values) {
 }
 ```
 
-<br>
+
 
 ### Box Appearance
 
-<hr>
+
 
 There are a lot of options to modify the appearance of the legend box. The below table displays the arguments and their descriptions. Let us look at them one by one:
 
@@ -333,11 +330,11 @@ legend <- data.frame(option, argument, values)
 knitr::kable(legend, format = "markdown", caption = "Legend Box Options")
 ```
 
-<br>
+
 
 #### Box Type
 
-<hr>
+
 
 The `bty` argument takes two values, `o` and `n`. If set to `n`, there will be no box around the legend.
 
@@ -358,11 +355,11 @@ for (i in values) {
 }
 ```
 
-<br>
+
 
 ### Background Color
 
-<hr>
+
 
 A background color can be added to the legend box using the `bg` argument. Below is an example:
 
@@ -370,11 +367,11 @@ A background color can be added to the legend box using the `bg` argument. Below
 {c}
 ```
 
-<br>
+
 
 ### Border
 
-<hr>
+
 
 The following arguments can be used to modify the border of the legend box:
 
@@ -394,11 +391,11 @@ legend(x = 2012, y = 0, legend = c('india', 'china'),
        box.lty = 3, box.lwd = 1.5, box.col = 'green')}
 ```
 
-<br>
+
 
 ### Justification
 
-<hr>
+
 
 The `xjust` and `yjust` arguments can be used to position the legend relative to the **X** and **Y** axis respectively. Listed below is the value and the respective justification:
 
@@ -408,11 +405,11 @@ The `xjust` and `yjust` arguments can be used to position the legend relative to
 
 Let us look at a few examples to understand how it works.
 
-<br>
+
 
 #### Horizontal Justification
 
-<hr>
+
  
 ```{r leg15, fig.align='center', fig.width=15, fig.height=5, echo=FALSE}
 init <- par(no.readonly = TRUE)
@@ -431,11 +428,11 @@ for (i in values) {
 }
 ```
 
-<br>
+
 
 #### Vertical Justification
 
-<hr>
+
 
 ```{r leg16, fig.align='center', fig.width=15, fig.height=5, echo=FALSE}
 init <- par(no.readonly = TRUE)
@@ -454,11 +451,11 @@ for (i in values) {
 }
 ```
 
-<br>
+
 
 ### Text Appearance
 
-<hr>
+
 
 The last topic we will explore is the appearance of the text inside the legend box. We will modify the color and font of text using the `text.col` and `text.font` arguments.
 
@@ -473,11 +470,11 @@ legend(x = 2012, y = 0, legend = c('india', 'china'),
        text.col = 'green', text.font = 3)}
 ```
 
-<br>
+
 
 ### Summary
 
-<hr>
+
 
 In this post, we learnt to add legend to a plot using the `legend()` function. Specifically, we learnt to
 
@@ -487,15 +484,15 @@ In this post, we learnt to add legend to a plot using the `legend()` function. S
 - modify the appearance and position of the legend box
 - modify the appearance of the text in the legend box
 
-<br>
+
 
 ### Up Next..
 
-<hr>
+
 
 In the next [post](https://rsquaredacademy.github.io/blog/post/data-visualization-with-r-text-annotations/), we will learn how to add text annotations to a plot using the `text()` and `mtext()` functions.
 
-<br>
+
 
 
 
