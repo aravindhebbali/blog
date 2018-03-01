@@ -6,7 +6,6 @@ categories:
   - database
 tags:
   - sql
-draft: true
 ---
 
 ```{r setup, eval=TRUE, message=FALSE, echo=FALSE}
