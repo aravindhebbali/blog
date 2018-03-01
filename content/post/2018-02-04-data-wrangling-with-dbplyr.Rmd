@@ -49,7 +49,7 @@ We will copy the `mtcars` data to the database so that we can use it for running
 dplyr statements.
 
 ```{r dbply2}
-copy_to(con, mtcars)
+dplyr::copy_to(con, mtcars)
 ```
 
 #### Reference Copied Data Frame
@@ -58,25 +58,28 @@ In order to use dplyr functions, we need to reference the table in the database 
 `tbl()`.
 
 ```{r dbply3}
-mtcars2 <- tbl(con, "mtcars")
+mtcars2 <- dplyr::tbl(con, "mtcars")
 mtcars2
 ```
 
 #### Query Data 
 
-Let us start by selecting some columns from the referenced table.
+We will look at some simple examples. Let us start by selecting `mpg`, `cyl` and `drat` 
+columns from `mtcars2`.
 
 ```{r dbply4}
 select(mtcars2, mpg, cyl, drat)
 ```
 
-Try filtering data.
+We can filter data as well. Filter all the rows from `mtcars2` where `mpg` is 
+greater than 25.
 
 ```{r dbply5}
 filter(mtcars2, mpg > 25)
 ```
 
-Time to do some grouping and summarizing.
+Time to do some grouping and summarizing. Let us compute the average mileage for
+different types of cylinders.
 
 ```{r dbply6}
 mtcars2 %>%
@@ -86,7 +89,7 @@ mtcars2 %>%
 
 #### Show Query
 
-If you want to view the SQL query generated from the dplyr statements, use `show_query()`.
+If you want to view the SQL query generated in the above step, use `show_query()` or `explain()`.
 
 ```{r dbply7, collapse=TRUE}
 mileages <- 
@@ -94,15 +97,19 @@ mileages <-
   group_by(cyl) %>%
   summarise(mileage = mean(mpg))
 
-show_query(mileages)
+dplyr::show_query(mileages)
+
+dplyr::explain(mileages)
 ```
 
 #### Collect Data
 
-Now, some interesting facts. **dplyr** never pulls data into R unless you explicitly ask for it. In the previous example, dplyr will not do anything until you ask for the data. It generates the SQL and only pulls down a few rows when you try to print `mileages`. If you want to pull all the data and store it in a tibble, use `collect()`.
+Now, some interesting facts. When working with databases, **dplyr** never pulls data into R unless you explicitly ask for it. In the previous example, dplyr will not do anything until you ask for the mileages data. It generates the SQL and only pulls down a few rows when you try to print `mileages`. 
+So how do we pull all the data and store it for further analysis? `collect()` will pull all 
+the data and store it in a tibble and you can use it for any further analysis.
 
 ```{r dbply9}
-collect(mileages)
+dplyr::collect(mileages)
 ```
 
 ### Up Next..
