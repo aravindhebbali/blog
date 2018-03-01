@@ -15,7 +15,16 @@ In this post, we will learn to work with string data in R using [stringr](http:/
  
 ## Libraries, Code & Data
 
-We will use [stringr](http://lubridate.tidyverse.org/index.html), [dplyr](http://dplyr.tidyverse.org/index.html), [magrittr](http://magrittr.tidyverse.org/index.html), [tibble](http://tibble.tidyverse.org/index.html), [purrr](http://purrr.tidyverse.org/index.html) and [readr](http://readr.tidyverse.org/index.html) packages. The data sets can be downloaded from [here](https://github.com/rsquaredacademy/datasets) and the codes from [here](https://gist.github.com/aravindhebbali/5d1799744e55dc76cdf1af6b1cc03c82).
+We will use the following libraries: 
+
+- [stringr](http://lubridate.tidyverse.org/index.html) 
+- [dplyr](http://dplyr.tidyverse.org/index.html) 
+- [magrittr](http://magrittr.tidyverse.org/index.html) 
+- [tibble](http://tibble.tidyverse.org/index.html) 
+- [purrr](http://purrr.tidyverse.org/index.html) 
+- and [readr](http://readr.tidyverse.org/index.html) 
+
+The data sets can be downloaded from [here](https://github.com/rsquaredacademy/datasets) and the codes from [here](https://gist.github.com/aravindhebbali/5d1799744e55dc76cdf1af6b1cc03c82).
 
 
 ```{r str1, message=FALSE}
@@ -34,8 +43,6 @@ library(readr)
 - extract image dimension from url
 - extract extension from domain name
 - extract http protocol from url
-- extract domain name from url
-- extract extension from url
 - extract file type from url
 
 ### Data
@@ -47,6 +54,16 @@ mockstring
 
 ### Data Dictionary
 
+- domain: dummy website domain
+- imageurl: url of an image
+- email: dummy email id
+- filename: dummy file name with different extensions
+- phone: dummy phone number
+- address: dummy address with door and street names
+- url: randomyly generated urls
+- full_name: dummy first and last names
+- currency: different currencies
+- passwords: dummy passwords
 
 ## Overview
 
@@ -71,10 +88,10 @@ Use `str_detect()` to detect `@` and `str_count()` to count the number of times
 
 ```{r str62, collapse=FALSE}
 # detect @
-str_detect(mockdata$emails, pattern = "@")
+str_detect(mockdata$email, pattern = "@")
 
 # count @
-str_count(mockdata$emails, pattern = "@")
+str_count(mockdata$email, pattern = "@")
 ```
 
 We can use `str_c()` to concatenate strings. Let us add the string `email id:` before each
@@ -345,18 +362,28 @@ img %>%
 ### Steps
 
 - locate numbers between 0 and 9
-- find the location of the first number present in the image url
+- extract part of url starting with image dimension
 - split the string using the pattern `\\.`
 - extract the first element
 
 #### Step 1: Locate numbers between 0 and 9.
+
+Let us inspect the image url. The dimension of the image appears
+after the domain extension and there are no numbers in the url
+before. We will locate the position or index of the first number 
+in the url using `str_locate()` and using the pattern `[0-9]` 
+which instructs to look for any number between and including 0 
+and 9.
 
 ```{r str26}
 img %>%
   str_locate(pattern = "[0-9]") 
 ```
 
-#### Step 2: Find the location of the first number present in the image url.
+#### Step 2: Extract url 
+
+We know where the dimension is located in the url. Let us extract the
+part of the url that contains the image dimension using `str_sub()`.
 
 ```{r str27}
 img %>%
@@ -365,6 +392,12 @@ img %>%
 
 #### Step 3: Split the string using the pattern `\\.`.
 
+From the previous step, we have the part of the url that
+contains the image dimension. To extract the dimension, we
+will split it from the rest of the url using `str_split()`
+and using the pattern `\\.` as it separates the dimension
+and the image extension.
+
 ```{r str28}
 img %>%
   str_sub(start = 23) %>%
@@ -372,6 +405,13 @@ img %>%
 ```
 
 #### Step 4: Extract the first element.
+
+The above step resulted in a list which contains the 
+image dimension and the rest of the url. Each element
+of the list is a character vector. We want to extract 
+the first value in the character vector. Let us use
+`map_chr()` to extract the first value from each
+element of the list.
 
 ```{r str29}
 img %>%
@@ -398,6 +438,12 @@ url1
 
 #### Step 1: Split the url using the pattern `://`.
 
+The HTTP protocol is the first part of the url and is
+separated from the rest of the url by `:`. Let us
+split the url using `str_split()` and using the
+pattern `:`. Since `:` is a special character, we
+will escape it using `\\`.
+
 ```{r str31}
 url1 %>%
   str_split(pattern = '://') 
@@ -405,90 +451,16 @@ url1 %>%
 
 #### Step 2: Extract the first element.
 
+The HTTP protocol is the first value in each element
+of the list. As we did in the previous example, we 
+will extact it using `map_chr()` and `extract()`.
+
 ```{r str32}
 url1 %>%
   str_split(pattern = '://') %>%
   map_chr(extract(1))
 ```
 
-
-## Extract Domain Name
-
-### Steps
-
-- locate all occurences of the pattern `/`
-- extract the location of the third `/` in the url
-- extract the part of the string upto the above location
-- split using the pattern `\\.`
-- extract the first element
-- split using the pattern `//`
-- extract the second element
-
-
-#### Step 1: Locate all occurences of the pattern `/`.
-
-```{r str40}
-url1 %>%
-  str_locate_all(pattern = "/") 
-```
-
-#### Step 2: Extract the location of the third `/` in the url.
-
-```{r str41}
-url1 %>%
-  str_locate_all(pattern = "/") %>%
-  map_int(extract(3))
-```
-
-#### Step 3: Extract the part of the string upto the above location.
-
-```{r str42}
-n <- 
-  url1 %>%
-  str_locate_all(pattern = "/") %>%
-  map_int(extract(3))
-
-url1 %>%
-  str_sub(end = n) 
-```
-
-#### Step 4: Split using the pattern `\\.`.
-
-```{r str48}
-url1 %>%
-  str_sub(end = n) %>%
-  str_split(pattern = '\\.') 
-```
-
-#### Step 5: Extract the first element.
-
-```{r str49}
-url1 %>%
-  str_sub(end = n) %>%
-  str_split(pattern = '\\.') %>%
-  map_chr(extract(2)) 
-```
-
-#### Step 6: Split using the pattern `//`.
-
-```{r str50}
-url1 %>%
-  str_sub(end = n) %>%
-  str_split(pattern = '\\.') %>%
-  map_chr(extract(2)) %>%
-  str_split(pattern = '/') 
-```
-
-#### Step 7: Extract the second element.
-
-```{r str51}
-url1 %>%
-  str_sub(end = n) %>%
-  str_split(pattern = '\\.') %>%
-  map_chr(extract(2)) %>%
-  str_split(pattern = '/') %>%
-  map_chr(extract(1))
-```
 
 ## Extract file type
 
@@ -503,11 +475,14 @@ urls <-
 
 - check if there are only 2 dots in the URL
 - check if there is only 1 question mark in the URL
-- detect the location of the second dot 
-- detect the location of the first question mark
+- detect the staritng position of file type
+- tetect the ending position of file type
 - use the locations to specify the index position for extracting file type
 
 #### Step 1: Check if there are only 2 dots in the URL
+
+Let us locate all the dots in the url using `str_locate_all()` and see 
+if any of them contain more than 2 dots.
 
 ```{r str9}
 urls %>%
@@ -519,6 +494,9 @@ urls %>%
 
 #### Step 2: Check if there is only 1 question mark in the URL
 
+The next step is to check if there is only one `?` (question mark)
+in the url. 
+
 ```{r str10}  
 urls %>%
   str_locate_all(pattern = "[?]") %>%
@@ -527,7 +505,12 @@ urls %>%
   sum
 ```
 
-#### Step 3: Detect the location of the second dot
+#### Step 3: Detect the staritng position of file type
+
+Since the file type is located between the second dot and 
+the first quesiton mark in the url, let us extract the
+location of the second dot and add 1 as the file type 
+starts after the dot.
 
 ```{r str11}
 d <- 
@@ -539,7 +522,14 @@ d <-
 d  
 ```
 
-#### Step 4: Detect the location of the first question mark
+#### Step 4: Detect the ending position of file type
+
+In step 2, we confirmed that the url has only one question mark. 
+Let us locate the question mark in the url and subtract 1 (as the 
+file type ends before the question mark) so that we get the 
+ending postion of the file type.
+.
+
 
 ```{r str12}
 q <-  
@@ -552,6 +542,10 @@ q
 ```
 
 #### Step 5: Specify the index position for extracting file type
+
+From steps 3 and 4, we have the location of the second dot and the 
+first question mark in the url. Let us use them with `str_sub()` 
+to extract the file type.
 
 ```{r str13}
 urls %>% 
