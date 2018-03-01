@@ -68,7 +68,18 @@ area
 
 ## Components of a Variable
 
+<center>
+<img src = "/post/components.png" width = "800" height = "600">
+</center>
+
 ## Naming Conventions
+
+- Name must begin with a letter. Do not use numbers, dollar sign (`$`) or underscore (`_`).
+- The name can contain numbers or underscore. Do not use dash (`-`) or period (`.`).
+- Do not use the names of keywords and avoid using the names of built in functions.
+- Variables are case sensitive; `average` and `Average` would be different variables.
+- Use names that are descriptive. Generally, variable names should be nouns.
+- If the name is made of more than one word, use underscore to separate the words.
 
 ## Recap..
 
