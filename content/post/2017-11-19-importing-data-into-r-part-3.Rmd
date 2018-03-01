@@ -54,14 +54,14 @@ Let us look at the root node of the xml file using `xml_root()`.
 xml_root(books)
 ```
 
-`xml_name()` returns the name of an node. Here it returns the name of the 
+`xml_name()` returns the name of a node. Here it returns the name of the 
 root node. It can also be used to modify the name of a node.
 
 ```{r imp17}
 xml_name(books)
 ```
 
-We can view the contents using `xml_contents()`.
+The contents of a node can be viewed using `xml_contents()`.
 
 ```{r imp18}
 xml_contents(books)
@@ -75,9 +75,11 @@ xml_length(books)
 
 ## Child Node
 
-Returns nodeset but only the elements and not their contents.
+`xml_children()` will return all the child nodes of the current node. If you
+want to see the detailed contents of each child node, use `xml_contents()`.
+To know the number of nodes in each child node, use `xml_length()`.
 
-```{r imp20, collapse = FALSE}
+```{r imp20, collapse = TRUE}
 xml_children(books) 
 
 books %>% 
@@ -89,10 +91,11 @@ books %>%
   xml_length()
 ```
 
-View the contents of a particular child node. Specify the node
-using `search`.
+We can view the contents of a specific child node using `xml_child()`. By default,
+it returns the first child node. Use the `search` argument to specify a 
+different child node.
 
-```{r imp21, collapse = FALSE}
+```{r imp21, collapse = TRUE}
 xml_child(books)
 
 xml_child(books, search = 2)
@@ -109,10 +112,10 @@ books %>%
 ## Attributes
 
 We can extract attributes using `xml_attrs()`. If we want to extract a specific
-attribute value, use `xml_attr()` and specify the attribute name. In the books data,
-`book id` is an attribute. 
+attribute value, use `xml_attr()` and specify the attribute name. In the **books** 
+data, `book id` is an attribute. 
 
-```{r imp23, collapse = FALSE}
+```{r imp23, collapse = TRUE}
 xml_find_all(books, './/book') %>% 
     map_chr(xml_attrs)
 
@@ -140,7 +143,7 @@ books %>%
 `xml_find_all()` will find all the matches. If you want to find a specific match use
 `xml_find_first()`.
 
-```{r imp26, collapse = FALSE}
+```{r imp26, collapse = TRUE}
 xml_find_first(books, './/author')
 
 books %>%
@@ -177,7 +180,7 @@ books %>%
 Since book price is numeric, we will use `xml_double()` to extract the
 data as number and not text.
 
-```{r imp30, collapse = FALSE}
+```{r imp30, collapse = TRUE}
 books %>%
     xml_find_all(xpath = './/price')
 
@@ -209,7 +212,7 @@ books %>%
 
 Let us create a tibble to store the xml data.
 
-```{r imp33, collapse = FALSE}
+```{r imp33, collapse = TRUE}
 book <- 
   tibble(
     author = books %>%
