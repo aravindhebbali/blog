@@ -3,6 +3,16 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>/2018/02/18/sql-for-data-science-part-2/</loc>
+    <lastmod>2018-02-18T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/2018/02/11/sql-for-data-science-part-1/</loc>
+    <lastmod>2018-02-11T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>/2018/02/04/data-wrangling-with-dbplyr/</loc>
     <lastmod>2018-02-04T00:00:00+00:00</lastmod>
   </url>
@@ -25,16 +35,6 @@
   <url>
     <loc>/2018/01/07/hacking-strings-with-stringr/</loc>
     <lastmod>2018-01-07T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/2017/12/25/sql-for-data-science-part-1/</loc>
-    <lastmod>2017-12-25T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/2017/12/25/sql-for-data-science-part-2/</loc>
-    <lastmod>2017-12-25T00:00:00+00:00</lastmod>
   </url>
   
   <url>
@@ -200,7 +200,7 @@
   
   <url>
     <loc>/</loc>
-    <lastmod>2018-02-04T00:00:00+00:00</lastmod>
+    <lastmod>2018-02-18T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -252,14 +252,14 @@
   </url>
   
   <url>
-    <loc>/tags/database/</loc>
-    <lastmod>2018-01-28T00:00:00+00:00</lastmod>
+    <loc>/categories/database/</loc>
+    <lastmod>2018-02-18T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>/categories/database/</loc>
-    <lastmod>2018-02-04T00:00:00+00:00</lastmod>
+    <loc>/tags/database/</loc>
+    <lastmod>2018-01-28T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -385,7 +385,7 @@
   
   <url>
     <loc>/post/</loc>
-    <lastmod>2018-02-04T00:00:00+00:00</lastmod>
+    <lastmod>2018-02-18T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -427,13 +427,13 @@
   
   <url>
     <loc>/tags/sql/</loc>
-    <lastmod>2017-12-25T00:00:00+00:00</lastmod>
+    <lastmod>2018-02-18T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>/tags/sqlite/</loc>
-    <lastmod>2018-01-28T00:00:00+00:00</lastmod>
+    <lastmod>2018-02-18T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   

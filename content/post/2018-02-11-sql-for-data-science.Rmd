@@ -1,6 +1,6 @@
 ---
 title: SQL for Data Science - Part 1
-date: '2017-12-25'
+date: '2018-02-11'
 slug: sql-for-data-science-part-1
 categories:
   - database
@@ -21,7 +21,7 @@ This is the third post in the series **R & Databases**. You can find the links t
 
 - [Quick Guide: R & SQLite](https://blog.aravindhebbali.com/2018/01/28/quick-guide-r-sqlite/)
 - [Data Wrangling with dbplyr](https://blog.aravindhebbali.com/2018/02/04/data-wrangling-with-dbplyr/)
-- [SQL for Data Science - Part 2]()
+- [SQL for Data Science - Part 2](https://blog.aravindhebbali.com/2018/02/18/sql-for-data-science-part-2/)
 
 In this post, we will learn to:
 
@@ -121,14 +121,18 @@ The following SQL statement filters all rows from the `ecom` table where the `du
 is greater than 300.
 
 ```{r sql15}
-dbGetQuery(con, "SELECT * FROM ecom WHERE duration > 300")
+dbGetQuery(con, "SELECT * 
+                 FROM ecom 
+                 WHERE duration > 300")
 ```
 
 Let us filter data based on a text value. In the following example, we filter all rows 
 from the `ecom` table where the `device` used is `mobile`.
 
 ```{r sql7}
-dbGetQuery(con, "SELECT * FROM ecom WHERE device == 'mobile'")
+dbGetQuery(con, "SELECT * 
+                 FROM ecom 
+                 WHERE device == 'mobile'")
 ```
 
 ##### And, Or & Not
@@ -146,7 +150,9 @@ In the following example, we filter all the rows from the `ecom` table where
 is greater than 100. We use AND to create multiple conditions.
 
 ```{r sql8}
-dbGetQuery(con, "SELECT * FROM ecom WHERE n_visit > 3 AND duration > 100")
+dbGetQuery(con, "SELECT * 
+                 FROM ecom 
+                 WHERE n_visit > 3 AND duration > 100")
 ```
 
 In the next example, we will use both AND & OR. Our goal is to filter all 
@@ -156,8 +162,9 @@ rows from the `ecom` table that follow the below conditions:
 - `device` used to visit the website is either `mobile` or `tablet`
 
 ```{r sql9}
-dbGetQuery(con, "SELECT * FROM ecom WHERE (n_visit == 5 OR n_visit == 3) 
-  AND (device = 'mobile' OR device = 'tablet')")
+dbGetQuery(con, "SELECT * 
+                 FROM ecom WHERE (n_visit == 5 OR n_visit == 3)  
+                 AND (device = 'mobile' OR device = 'tablet')")
 ```
 
 ##### BETWEEN
@@ -167,8 +174,9 @@ the `ecom` table where the visit count is between 1 and 3, and the `device` used
 `mobile`.
 
 ```{r sql10}
-dbGetQuery(con, "SELECT * FROM ecom WHERE n_visit BETWEEN 1 AND 3
-  AND device = 'mobile'")
+dbGetQuery(con, "SELECT * 
+                 FROM ecom
+                 WHERE n_visit BETWEEN 1 AND 3 AND device = 'mobile'")
 ```
 
 ##### IN
@@ -179,7 +187,9 @@ the visit count is either 2 or 4 or 6 or 8 or 10. Instead of using multiple OR c
 we use the IN operator.
 
 ```{r sql11}
-dbGetQuery(con, "SELECT * FROM ecom WHERE n_visit IN (2, 4, 6, 8, 10)")
+dbGetQuery(con, "SELECT * 
+                 FROM ecom 
+                 WHERE n_visit IN (2, 4, 6, 8, 10)")
 ```
 
 ##### IS NULL
@@ -188,7 +198,9 @@ A field with a NULL value is a field with no value. If a field in a table is opt
 has NULL values.
 
 ```{r sql12}
-dbGetQuery(con, "SELECT * FROM ecom WHERE device IS NULL")
+dbGetQuery(con, "SELECT * 
+                 FROM ecom 
+                 WHERE device IS NULL")
 ```
 
 ##### LIKE
@@ -201,7 +213,9 @@ The LIKE operator is used to search for a specific pattern in a column. There ar
 In the following example, we filter all rows from the `ecom` table where the name of the `country` starts with `P`. We use `%` after `P` to indicate that it can be followed by any number or type of characters.
 
 ```{r sql13}
-dbGetQuery(con, "SELECT * FROM ecom WHERE country LIKE 'P%'")
+dbGetQuery(con, "SELECT * 
+                 FROM ecom 
+                 WHERE country LIKE 'P%'")
 ```
 
 Let us look at another example where we filter all rows from the `ecom` table where the name of the
@@ -212,7 +226,9 @@ country should follow the below conditions:
 - it can have any type or number of characters after the second character
 
 ```{r sql14}
-dbGetQuery(con, "SELECT * FROM ecom WHERE country LIKE '_o%'")
+dbGetQuery(con, "SELECT * 
+                 FROM ecom 
+                 WHERE country LIKE '_o%'")
 ```
 
 ### Summary

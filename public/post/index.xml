@@ -6,10 +6,33 @@
     <description>Recent content in Posts on Aravind&#39;s Blog | R | Economics | Finance</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 04 Feb 2018 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sun, 18 Feb 2018 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/post/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>SQL for Data Science - Part 2</title>
+      <link>/2018/02/18/sql-for-data-science-part-2/</link>
+      <pubDate>Sun, 18 Feb 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/2018/02/18/sql-for-data-science-part-2/</guid>
+      <description>IntroductionThis is the fourth post in the series R &amp;amp; Databases. You can find the links to the other two posts of this series below:
+Quick Guide: R &amp;amp; SQLiteData Wrangling with dbplyrSQL for Data Science - Part 1In this post, we will learn to
+aggregate dataorder dataand group dataLibraries, Code &amp;amp; DataWe will use the following libraries in this post:</description>
+    </item>
+    
+    <item>
+      <title>SQL for Data Science - Part 1</title>
+      <link>/2018/02/11/sql-for-data-science-part-1/</link>
+      <pubDate>Sun, 11 Feb 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/2018/02/11/sql-for-data-science-part-1/</guid>
+      <description>IntroductionThis is the third post in the series R &amp;amp; Databases. You can find the links to the other two posts of this series below:
+Quick Guide: R &amp;amp; SQLiteData Wrangling with dbplyrSQL for Data Science - Part 2In this post, we will learn to:
+Libraries, Code &amp;amp; DataWe will use the following libraries in this post:
+DBIRSQLitedbplyrAll the data sets used in this post can be found here and code can be downloaded from here.</description>
+    </item>
     
     <item>
       <title>Data Wrangling with dbplyr</title>
@@ -67,30 +90,6 @@ library(lubridate)library(dplyr)library(magrittr)library(readr)Quic IntroO
       <description>IntroductionIn this post, we will learn to work with string data in R using stringr. As we did in the other posts, we will use a case study to explore the various features of the stringr package. Let us begin by installing and loading stringr and a set of other pacakges we will be using.
 Libraries, Code &amp;amp; DataWe will use the following libraries:
 stringrdplyrmagrittrtibblepurrrand readrThe data sets can be downloaded from here and the codes from here.</description>
-    </item>
-    
-    <item>
-      <title>SQL for Data Science - Part 1</title>
-      <link>/2017/12/25/sql-for-data-science-part-1/</link>
-      <pubDate>Mon, 25 Dec 2017 00:00:00 +0000</pubDate>
-      
-      <guid>/2017/12/25/sql-for-data-science-part-1/</guid>
-      <description>IntroductionThis is the third post in the series R &amp;amp; Databases. You can find the links to the other two posts of this series below:
-Quick Guide: R &amp;amp; SQLiteData Wrangling with dbplyrSQL for Data Science - Part 2In this post, we will learn to:
-Libraries, Code &amp;amp; DataWe will use the following libraries in this post:
-DBIRSQLitedbplyrAll the data sets used in this post can be found here and code can be downloaded from here.</description>
-    </item>
-    
-    <item>
-      <title>SQL for Data Science - Part 2</title>
-      <link>/2017/12/25/sql-for-data-science-part-2/</link>
-      <pubDate>Mon, 25 Dec 2017 00:00:00 +0000</pubDate>
-      
-      <guid>/2017/12/25/sql-for-data-science-part-2/</guid>
-      <description>IntroductionThis is the fourth post in the series R &amp;amp; Databases. You can find the links to the other two posts of this series below:
-Quick Guide: R &amp;amp; SQLiteData Wrangling with dbplyrSQL for Data Science - Part 1In this post, we will learn to:
-Libraries, Code &amp;amp; DataWe will use the following libraries in this post:
-DBIRSQLitedbplyrAll the data sets used in this post can be found here and code can be downloaded from here.</description>
     </item>
     
     <item>

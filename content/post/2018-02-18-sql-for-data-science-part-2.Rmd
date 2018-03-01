@@ -1,18 +1,13 @@
 ---
 title: SQL for Data Science - Part 2
-author: ''
-date: '2017-12-25'
+date: '2018-02-18'
 slug: sql-for-data-science-part-2
 categories:
   - database
 tags:
   - sql
   - sqlite
-draft: true
 ---
-
-[![Twitter](http://i.imgur.com/tXSoThF.png)](https://twitter.com/login?redirect_after_login=%2Fhome%3Fstatus)
-[![Facebook](http://i.imgur.com/P3YfQoD.png)](https://www.facebook.com/sharer/sharer.php?u=)
 
 ```{r setup, eval=TRUE, message=FALSE, echo=FALSE}
 library(dplyr)
@@ -25,11 +20,15 @@ knitr::opts_chunk$set(R.options=list(max.print=50))
 
 This is the fourth post in the series **R & Databases**. You can find the links to the other two posts of this series below:
 
-- [Quick Guide: R & SQLite](https://rsquaredacademy.github.io/blog/post/quick-guide-r-sqlite/)
-- [Data Wrangling with dbplyr](https://rsquaredacademy.github.io/blog/post/data-wrangling-with-dbplyr)
-- [SQL for Data Science - Part 1](https://rsquaredacademy.github.io/blog/post/sql-for-data-science-part-1)
+- [Quick Guide: R & SQLite](https://blog.aravindhebbali.com/2018/01/28/quick-guide-r-sqlite/)
+- [Data Wrangling with dbplyr](https://blog.aravindhebbali.com/2018/02/04/data-wrangling-with-dbplyr/)
+- [SQL for Data Science - Part 1](https://blog.aravindhebbali.com/2018/02/11/sql-for-data-science-part-1/)
 
-In this post, we will learn to:
+In this post, we will learn to
+
+- aggregate data
+- order data
+- and group data
 
 ### Libraries, Code & Data
 
@@ -49,95 +48,108 @@ con <- DBI::dbConnect(RSQLite::SQLite(), ":memory:")
 copy_to(con, ecom)
 ```
 
-#### Aggregate - 1
+#### Aggregate 
 
-You can probably guess what the MIN function does! Now it's your turn to try out some SQL functions.
+Let us combine the aggregate statements with WHERE statement to filter data.
+
+- SUM()  : returns the total sum of a numeric column
 
 ```{r sql1}
 dbGetQuery(con, "SELECT SUM(n_visit) FROM ecom")
+
+dbGetQuery(con, "SELECT SUM(n_visit) 
+	             FROM ecom 
+	             WHERE n_visit > 5")
 ```
+
+- AVG()  : returns the average value of a numeric column
 
 ```{r sql2}
 dbGetQuery(con, "SELECT AVG(n_visit) FROM ecom")
+
+dbGetQuery(con, "SELECT AVG(n_visit) 
+	             FROM ecom 
+	             WHERE country LIKE 'P%'")
 ```
+
+- MAX()  : returns the largest value of the selected column
 
 ```{r sql3}
 dbGetQuery(con, "SELECT MAX(n_visit) FROM ecom")
+
+dbGetQuery(con, "SELECT MAX(n_visit) 
+	             FROM ecom 
+	             WHERE device == 'tablet'")
 ```
+
+- MIN()  : returns the smallest value of the selected column
 
 ```{r sql4}
 dbGetQuery(con, "SELECT MIN(n_visit) FROM ecom")
+
+dbGetQuery(con, "SELECT MIN(n_visit) 
+	             FROM ecom 
+	             WHERE duration BETWEEN 600 AND 900")
 ```
 
-#### Aggregate - 2
+#### Alias 
 
-```{r sql5}
-dbGetQuery(con, "SELECT SUM(n_visit) FROM ecom WHERE n_visit > 5")
-```
-
-```{r sql6}
-dbGetQuery(con, "SELECT AVG(n_visit) FROM ecom WHERE country LIKE 'P%'")
-```
-
-```{r sql7}
-dbGetQuery(con, "SELECT MAX(n_visit) FROM ecom WHERE device == 'tablet'")
-```
-
-```{r sql8}
-dbGetQuery(con, "SELECT MIN(n_visit) FROM ecom WHERE duration BETWEEN 600 AND 900")
-```
-
-#### Alias - Part 2
+SQL aliases are used to give a table, or a column in a table, a temporary name. They are often used to make column names more readable. An alias only exists for the duration of the query. Below are a
+few examples:
 
 ```{r sql9}
-dbGetQuery(con, "SELECT AVG(n_visit) AS avg_mobile FROM ecom WHERE device == 'mobile'")
-```
+dbGetQuery(con, "SELECT AVG(n_visit) AS avg_mobile 
+	             FROM ecom 
+	             WHERE device == 'mobile'")
 
-```{r sql10}
-dbGetQuery(con, "SELECT MAX(n_visit) AS max_visit FROM ecom")
-```
+dbGetQuery(con, "SELECT MAX(n_visit) AS max_visit 
+	             FROM ecom")
 
-```{r sql11}
-dbGetQuery(con, "SELECT MIN(duration) AS min_duration FROM ecom")
+dbGetQuery(con, "SELECT MIN(duration) AS min_duration 
+	             FROM ecom")
 ```
 
 #### Order By
 
+The ORDER BY keyword is used to sort the records in ascending or descending order. By default, the records are sorted in ascending order. Use the DESC keyword if you want to sort the records in descending order, 
+
 ```{r sql12}
-dbGetQuery(con, "SELECT * FROM ecom ORDER BY country")
+dbGetQuery(con, "SELECT * 
+	             FROM ecom 
+	             ORDER BY country")
+
+dbGetQuery(con, "SELECT *  
+	             FROM ecom 
+	             ORDER BY duration")
+
+dbGetQuery(con, "SELECT * 
+	             FROM ecom 
+	             ORDER BY n_visit DESC")
 ```
 
-```{r sql13}
-dbGetQuery(con, "SELECT * FROM ecom ORDER BY duration")
-```
+#### Group By 
 
-```{r sql14}
-dbGetQuery(con, "SELECT * FROM ecom ORDER BY n_visit DESC")
-```
-
-#### Group By - Practice
+The GROUP BY statement is used with aggregate functions (COUNT, MAX, MIN, SUM, AVG) to group the result by one or more columns.
 
 ```{r sql15}
-dbGetQuery(con, "SELECT device, count(*) AS visits FROM ecom GROUP BY device ORDER by visits DESC ")
+dbGetQuery(con, "SELECT device, 
+	             count(*) AS visits 
+	             FROM ecom 
+	             GROUP BY device 
+	             ORDER by visits DESC")
+
+dbGetQuery(con, "SELECT device, MAX(duration) AS max_duration 
+	             FROM ecom 
+	             GROUP BY device 
+	             ORDER by max_duration DESC")
 ```
-
-```{r sql16}
-dbGetQuery(con, "SELECT device, MAX(duration) AS max_duration FROM ecom GROUP BY device ORDER by max_duration DESC ")
-```
-
-#### Having
-
-```{r sql17}
-dbGetQuery(con, "SELECT country FROM ecom GROUP BY country HAVING COUNT(*) > 10")
-```
-
-#### Putting It All Together
-
-Compute AOV by devices
 
 ### Summary
 
+In this post, we learnt to 
 
-
+- aggregate data 
+- order data
+- and group data
 
 
