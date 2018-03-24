@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Hugo 0.26" />
+
+
+<title>ggplot2: Introduction to geoms - Aravind&#39;s Blog | R | Economics | Finance</title>
+<meta property="og:title" content="ggplot2: Introduction to geoms - Aravind&#39;s Blog | R | Economics | Finance">
+
+
+
+  
+
+
+
+
+<link rel="stylesheet" href="/css/github-gist.css" rel="stylesheet" id="theme-stylesheet">
+<script src="/js/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+
+
+
+
+<link href='//cdn.bootcss.com/highlight.js/9.11.0/styles/github.min.css' rel='stylesheet' type='text/css' />
+
+
+
+<link rel="stylesheet" href="/css/fonts.css" media="all">
+<link rel="stylesheet" href="/css/main.css" media="all">
+
+
+
+  </head>
+  <body>
+    <div class="wrapper">
+      <header class="header">
+        <nav class="nav">
+  <a href="/" class="nav-logo">
+    <img src="/images/logo.jpg"
+         width="50"
+         height="50"
+         alt="Aravind Hebbali">
+  </a>
+
+  <ul class="nav-links">
+    
+    <li><a href="/">Home</a></li>
+    
+    <li><a href="https://github.com/aravindhebbali">Projects</a></li>
+    
+    <li><a href="https://www.aravindhebbali.com/">About</a></li>
+    
+  </ul>
+</nav>
+
+      </header>
+
+
+<main class="content" role="main">
+
+  <article class="article">
+    
+    <span class="article-duration">6 min read</span>
+    
+
+    <h1 class="article-title">ggplot2: Introduction to geoms</h1>
+
+    
+    <span class="article-date">2017/02/11</span>
+    
+
+    <div class="article-content">
+      <div id="introduction" class="section level3">
+<h3>Introduction</h3>
+<p>This is the third post in the series <strong>Elegant Data Visualization with ggplot2</strong>. In the previous <a href="https://blog.aravindhebbali.com/">post</a>, we learnt how to create plots using the <code>qplot()</code> function. In this post, we will create some of the most routinely used plots to explore data using the <code>geom_*</code> functions.</p>
+</div>
+<div id="libraries-code-data" class="section level3">
+<h3>Libraries, Code &amp; Data</h3>
+<p>We will use the following libraries in this post:</p>
+<ul>
+<li><a href="https://readr.tidyverse.org/">readr</a></li>
+<li><a href="https://ggplot2.tidyverse.org/">ggplot2</a></li>
+<li><a href="https://tibble.tidyverse.org/">tibble</a></li>
+<li><a href="https://dplyr.tidyverse.org/">dplyr</a></li>
+</ul>
+<p>All the data sets used in this post can be found <a href="https://github.com/rsquaredacademy/datasets">here</a> and code can be downloaded from <a href="https://gist.github.com/rsquaredacademy/2d0d5d5b60d0ef0f4d1b227c8fb0335d">here</a>.</p>
+</div>
+<div id="data" class="section level3">
+<h3>Data</h3>
+<pre class="r"><code>ecom &lt;- readr::read_csv(&#39;https://raw.githubusercontent.com/rsquaredacademy/datasets/master/web.csv&#39;)
+ecom</code></pre>
+<pre><code>## # A tibble: 1,000 x 11
+##       id referrer device bouncers n_visit n_pages duration country       
+##    &lt;int&gt; &lt;chr&gt;    &lt;chr&gt;  &lt;chr&gt;      &lt;int&gt;   &lt;dbl&gt;    &lt;dbl&gt; &lt;chr&gt;         
+##  1     1 google   laptop true          10    1.00    693   Czech Republic
+##  2     2 yahoo    tablet true           9    1.00    459   Yemen         
+##  3     3 direct   laptop true           0    1.00    996   Brazil        
+##  4     4 bing     tablet false          3   18.0     468   China         
+##  5     5 yahoo    mobile true           9    1.00    955   Poland        
+##  6     6 yahoo    laptop false          5    5.00    135   South Africa  
+##  7     7 yahoo    mobile true          10    1.00     75.0 Bangladesh    
+##  8     8 direct   mobile true          10    1.00    908   Indonesia     
+##  9     9 bing     mobile false          3   19.0     209   Netherlands   
+## 10    10 google   mobile true           6    1.00    208   Czech Republic
+## # ... with 990 more rows, and 3 more variables: purchase &lt;chr&gt;,
+## #   order_items &lt;dbl&gt;, order_value &lt;dbl&gt;</code></pre>
+<div id="data-dictionary" class="section level4">
+<h4>Data Dictionary</h4>
+<ul>
+<li>id: row id</li>
+<li>referrer: referrer website/search engine</li>
+<li>os: operating system</li>
+<li>browser: browser</li>
+<li>device: device used to visit the website</li>
+<li>n_pages: number of pages visited</li>
+<li>duration: time spent on the website (in seconds)</li>
+<li>repeat: frequency of visits</li>
+<li>country: country of origin</li>
+<li>purchase: whether visitor purchased</li>
+<li>order_value: order value of visitor (in dollars)</li>
+</ul>
+</div>
+</div>
+<div id="scatter-plot" class="section level3">
+<h3>Scatter Plot</h3>
+<p>A scatter plot displays the relationship between two continuous variables. In ggplot2, we can build a scatter plot using <code>geom_point()</code>. Scatterplots can show you visually:</p>
+<ul>
+<li>the strength of the relationship between the variables</li>
+<li>the direction of the relationship between the variables</li>
+<li>and whether outliers exist</li>
+</ul>
+<div id="point" class="section level4">
+<h4>Point</h4>
+<pre class="r"><code>ggplot(mtcars, aes(x = disp, y = mpg)) + 
+  geom_point()</code></pre>
+<p><img src="/post/2017-02-11-ggplot2-introduction-to-geoms_files/figure-html/geoms2-1.png" width="672" style="display: block; margin: auto;" /></p>
+</div>
+<div id="horizontalvertical-lines" class="section level4">
+<h4>Horizontal/Vertical Lines</h4>
+<p>Add horizontal or vertical lines using:</p>
+<ul>
+<li><code>geom_hline()</code></li>
+<li><code>geom_vline()</code></li>
+</ul>
+<p>To add a horizontal line, we need to specify the location on the Y axis where
+the line will be drawn. Use <code>yintercept</code> to specify the location of the line.</p>
+<pre class="r"><code>ggplot(mtcars, aes(x = wt, y = mpg)) +
+  geom_point() +
+  geom_hline(yintercept = 30) </code></pre>
+<p><img src="/post/2017-02-11-ggplot2-introduction-to-geoms_files/figure-html/geoms4-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>For the vertical line, we need to specify the location on the X axis using
+<code>xintercept</code>.</p>
+<pre class="r"><code>ggplot(mtcars, aes(x = wt, y = mpg)) +
+  geom_point() +
+  geom_vline(xintercept = 5) </code></pre>
+<p><img src="/post/2017-02-11-ggplot2-introduction-to-geoms_files/figure-html/geoms3-1.png" width="672" style="display: block; margin: auto;" /></p>
+</div>
+<div id="bar-plot" class="section level4">
+<h4>Bar Plot</h4>
+<p>Bar plots present grouped data with rectangular bars. The bars may represent the frequency of the groups or values. Bar plots can be:</p>
+<ul>
+<li>horizontal</li>
+<li>vertical</li>
+<li>grouped</li>
+<li>stacked</li>
+<li>proportional</li>
+</ul>
+<p>Let us build a simple bar plot to visualize the traffic driven by different device types.</p>
+<pre class="r"><code>ggplot(ecom, aes(x = factor(device))) +
+  geom_bar()</code></pre>
+<p><img src="/post/2017-02-11-ggplot2-introduction-to-geoms_files/figure-html/geoms8-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>Instead of the frequency of visits, we can visualize the order value driven by the
+different devices. Use the <code>weight</code> argument within <code>aes</code> to indicate that the bars
+should represent the variable specified and not the frequency.</p>
+<pre class="r"><code>ggplot(ecom, aes(x = factor(device))) +
+  geom_bar(aes(weight = order_value))</code></pre>
+<p><img src="/post/2017-02-11-ggplot2-introduction-to-geoms_files/figure-html/geoms9-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>To view the proportion of purchasers and non-purchasers for each device type, we will
+map <code>fill</code> to <code>purchase</code>. The color of the bar represents purchasers and non-purchasers.</p>
+<pre class="r"><code>ggplot(ecom, aes(x = factor(device))) +
+  geom_bar(aes(fill = purchase))</code></pre>
+<p><img src="/post/2017-02-11-ggplot2-introduction-to-geoms_files/figure-html/geoms10-1.png" width="672" style="display: block; margin: auto;" /></p>
+</div>
+<div id="columns" class="section level4">
+<h4>Columns</h4>
+<p>In some instances, we do not have access to the raw data and are provided summaries or
+transformed data. In the below example, we have data that summarizes the visits from
+each device type. Such data can be visualized using <code>geom_col()</code>.</p>
+<pre class="r"><code>device &lt;- c(&#39;laptop&#39;, &#39;mobile&#39;, &#39;tablet&#39;)
+visits &lt;- c(30000, 12000, 5000)
+traffic &lt;- tibble::tibble(device, visits)
+ggplot(traffic, aes(x = device, y = visits)) +
+  geom_col(fill = &#39;blue&#39;) </code></pre>
+<p><img src="/post/2017-02-11-ggplot2-introduction-to-geoms_files/figure-html/geoms12-1.png" width="672" style="display: block; margin: auto;" /></p>
+</div>
+<div id="boxplot" class="section level4">
+<h4>Boxplot</h4>
+<p>Box plots can be used to:</p>
+<ul>
+<li>examine the distribution of a variable<br />
+</li>
+<li>detect outliers, boxplots are very handy</li>
+</ul>
+<p><code>geom_boxplot()</code> is used to create box plots.</p>
+<pre class="r"><code>ggplot(ecom, aes(x = factor(device), y = n_pages)) +
+  geom_boxplot()</code></pre>
+<p><img src="/post/2017-02-11-ggplot2-introduction-to-geoms_files/figure-html/geoms13-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>We must specify both the <code>x</code> and <code>y</code> aesthetic. If you are not comparing the distribution
+across groups, use the below method to generate the box plot.</p>
+<pre class="r"><code>ggplot(ecom, aes(x = factor(1), y = n_pages)) +
+  geom_boxplot()</code></pre>
+<p><img src="/post/2017-02-11-ggplot2-introduction-to-geoms_files/figure-html/geoms13a-1.png" width="672" style="display: block; margin: auto;" /></p>
+</div>
+<div id="histogram" class="section level4">
+<h4>Histogram</h4>
+<p>Histograms are used to examine:</p>
+<ul>
+<li>distribution of a continuous variable</li>
+<li>skewness and kurtosis</li>
+</ul>
+<p>We can create a histogram using <code>geom_histogram()</code>. Only the <code>x</code> aesthetic needs to be supplied.</p>
+<pre class="r"><code>ggplot(ecom, aes(x = duration)) +
+  geom_histogram()</code></pre>
+<pre><code>## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
+<p><img src="/post/2017-02-11-ggplot2-introduction-to-geoms_files/figure-html/geoms15-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>The default number of bins used is 30 which may not be helpful always. Use <code>bins</code> argument
+to specify the appropriate number of bins for the histogram.</p>
+<pre class="r"><code>ggplot(ecom, aes(x = duration)) +
+  geom_histogram(bins = 5)</code></pre>
+<p><img src="/post/2017-02-11-ggplot2-introduction-to-geoms_files/figure-html/geoms16-1.png" width="672" style="display: block; margin: auto;" /></p>
+</div>
+<div id="line" class="section level4">
+<h4>Line</h4>
+<p>Line charts are used to examine trends over time.</p>
+</div>
+<div id="data-1" class="section level4">
+<h4>Data</h4>
+<pre class="r"><code>gdp &lt;- readr::read_csv(&#39;https://raw.githubusercontent.com/rsquaredacademy/datasets/master/gdp.csv&#39;)</code></pre>
+<pre><code>## Warning: Missing column names filled in: &#39;X1&#39; [1]</code></pre>
+<pre class="r"><code>gdp</code></pre>
+<pre><code>## # A tibble: 6 x 6
+##      X1     X year       growth india china
+##   &lt;int&gt; &lt;int&gt; &lt;date&gt;      &lt;int&gt; &lt;int&gt; &lt;int&gt;
+## 1     1     1 2000-01-01      6     5     8
+## 2     2     2 2001-01-01      9     9     5
+## 3     3     3 2002-01-01      8     8     6
+## 4     4     4 2003-01-01      9     8     8
+## 5     5     5 2004-01-01      9     5     9
+## 6     6     6 2005-01-01      8     7     8</code></pre>
+<p>Use <code>geom_line()</code> to create line plots.</p>
+<pre class="r"><code>ggplot(gdp, aes(year, india)) +
+  geom_line()</code></pre>
+<p><img src="/post/2017-02-11-ggplot2-introduction-to-geoms_files/figure-html/geomline1-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>The following can be modified to improve the appearance of the line:</p>
+<ul>
+<li><code>color</code></li>
+<li><code>size</code></li>
+<li><code>linetype</code></li>
+</ul>
+<p>In the below example, we modify the color and type of the line.</p>
+<pre class="r"><code>ggplot(gdp, aes(year, india)) +
+  geom_line(color = &#39;blue&#39;, linetype = &#39;dashed&#39;)</code></pre>
+<p><img src="/post/2017-02-11-ggplot2-introduction-to-geoms_files/figure-html/geomline2-1.png" width="672" style="display: block; margin: auto;" /></p>
+</div>
+<div id="label" class="section level4">
+<h4>Label</h4>
+<p>Labels can be added to identify data points using <code>geom_label()</code>.</p>
+<pre class="r"><code>ggplot(mtcars, aes(disp, mpg, label = rownames(mtcars))) +
+  geom_label()</code></pre>
+<p><img src="/post/2017-02-11-ggplot2-introduction-to-geoms_files/figure-html/geoms20-1.png" width="672" style="display: block; margin: auto;" /></p>
+</div>
+<div id="text" class="section level4">
+<h4>Text</h4>
+<p>Use <code>geom_text()</code> to add text to the plot. We can modify the size of the text
+and ensure that they do not overlap using <code>check_overlap</code> argument.</p>
+<pre class="r"><code>ggplot(mtcars, aes(disp, mpg, label = rownames(mtcars))) +
+  geom_text(check_overlap = TRUE, size = 2)</code></pre>
+<p><img src="/post/2017-02-11-ggplot2-introduction-to-geoms_files/figure-html/geoms19-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>In the below example, we:</p>
+<ul>
+<li>map the color of the text to <code>cyl</code> variable</li>
+<li>nudge the text to avoid overlapping with the points</li>
+<li>and change the horizontal justification, size and angle of text</li>
+</ul>
+<pre class="r"><code>ggplot(mtcars, aes(x = disp, y = mpg, label = rownames(mtcars))) +
+  geom_point() + 
+  geom_text(aes(color = cyl), hjust = 0, nudge_x = 0.05, 
+            size = 2, angle = 45)</code></pre>
+<p><img src="/post/2017-02-11-ggplot2-introduction-to-geoms_files/figure-html/geoms21-1.png" width="672" style="display: block; margin: auto;" /></p>
+</div>
+</div>
+<div id="summary" class="section level3">
+<h3>Summary</h3>
+<p>In this post, we learnt to build different types of plots using <code>geom_*</code> instead of <code>qplot()</code>.</p>
+</div>
+<div id="up-next.." class="section level3">
+<h3>Up Next..</h3>
+<p>In the next <a href="https://blog.aravindhebbali.com">post</a>, we will learn about aesthetics.</p>
+</div>
+
+    </div>
+  </article>
+
+  
+
+
+</main>
+
+      <footer class="footer">
+        <ul class="footer-links">
+          <li>
+            <a href="/index.xml" type="application/rss+xml" target="_blank">RSS feed</a>
+          </li>
+          <li>
+            <a href="https://gohugo.io/" class="footer-links-kudos">Made with <img src="/images/hugo-logo.png" width="22" height="22"></a> and <a href="https://github.com/rstudio/blogdown">blogdown</a>
+          </li>
+          <li><a href="https://twitter.com/aravindhebbali">@aravindhebbali</a></li>
+        </ul>
+        <ul>
+          <li>&copy 2017 Aravind Hebbali</li>
+        </ul>
+      </footer>
+
+    </div>
+    
+
+
+
+<script src="//cdn.bootcss.com/highlight.js/9.11.0/highlight.min.js"></script>
+
+
+
+<script src="//cdn.bootcss.com/highlight.js/9.11.0/languages/r.min.js"></script>
+<script src="//cdn.bootcss.com/highlight.js/9.11.0/languages/yaml.min.js"></script>
+<script>hljs.configure({languages: []}); hljs.initHighlightingOnLoad();</script>
+
+
+
+    
+
+    
+<script>
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-57270671-5', 'auto');
+ga('send', 'pageview');
+</script>
+
+  </body>
+</html>
+

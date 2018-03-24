@@ -177,6 +177,17 @@ Pipes allow us to clearly express a sequence of multiple operations by:
     </item>
     
     <item>
+      <title>ggplot2: Introduction to geoms</title>
+      <link>/2017/02/11/ggplot2-introduction-to-geoms/</link>
+      <pubDate>Sat, 11 Feb 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/2017/02/11/ggplot2-introduction-to-geoms/</guid>
+      <description>IntroductionThis is the third post in the series Elegant Data Visualization with ggplot2. In the previous post, we learnt how to create plots using the qplot() function. In this post, we will create some of the most routinely used plots to explore data using the geom_* functions.
+Libraries, Code &amp;amp; DataWe will use the following libraries in this post:
+readrggplot2tibbledplyrAll the data sets used in this post can be found here and code can be downloaded from here.</description>
+    </item>
+    
+    <item>
       <title>ggplot2: Quick Tour</title>
       <link>/2017/01/22/ggplot2-quick-tour/</link>
       <pubDate>Sun, 22 Jan 2017 00:00:00 +0000</pubDate>
@@ -412,6 +423,18 @@ args(data.frame)## function (..., row.names = NULL, check.rows = FALSE, check.n
       <guid>/2016/02/07/data-types-in-r/</guid>
       <description>IntroductionThis is the third post in the series Introduction to R. In the previous post, we learnt to install RStudio. In this post, we will learn about variables and data types. You can skip this post, if you have prior experience in any other programming language.
 What is a variable?variables are the fundamental elements of any programming languagethey are used to represent values that are likely to changethey reference memory locations that store information/dataLet us use a simple case study to understand variables.</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>/1/01/01/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/1/01/01/</guid>
+      <description>IntroductionThis is the third post in the series Elegant Data Visualization with ggplot2. In the previous post, we learnt how to create plots using the qplot() function. In this post, we will create some of the most routinely used plots to explore data using the geom_* functions.
+
+Libraries, Code &amp;amp; DataWe will use the following libraries in this post:
+readrggplot2tibbledplyrAll the data sets used in this post can be found here and code can be downloaded from here.</description>
     </item>
     
   </channel>

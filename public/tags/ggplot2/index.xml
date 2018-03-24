@@ -6,10 +6,21 @@
     <description>Recent content in Ggplot2 on Aravind&#39;s Blog | R | Economics | Finance</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 22 Jan 2017 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sat, 11 Feb 2017 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/tags/ggplot2/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>ggplot2: Introduction to geoms</title>
+      <link>/2017/02/11/ggplot2-introduction-to-geoms/</link>
+      <pubDate>Sat, 11 Feb 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/2017/02/11/ggplot2-introduction-to-geoms/</guid>
+      <description>IntroductionThis is the third post in the series Elegant Data Visualization with ggplot2. In the previous post, we learnt how to create plots using the qplot() function. In this post, we will create some of the most routinely used plots to explore data using the geom_* functions.
+Libraries, Code &amp;amp; DataWe will use the following libraries in this post:
+readrggplot2tibbledplyrAll the data sets used in this post can be found here and code can be downloaded from here.</description>
+    </item>
     
     <item>
       <title>ggplot2: Quick Tour</title>
