@@ -177,6 +177,17 @@ Pipes allow us to clearly express a sequence of multiple operations by:
     </item>
     
     <item>
+      <title>ggplot2 - Axis &amp; Plot Labels</title>
+      <link>/2017/03/05/axis-plot-labels/</link>
+      <pubDate>Sun, 05 Mar 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/2017/03/05/axis-plot-labels/</guid>
+      <description>IntroductionThis is the fifth post in the series Elegant Data Visualization with ggplot2. In the previous post, we learnt about aesthetics. In this post, we will learn to:
+add title and subtitle to the plotmodify axis labelsmodify axis rangeremove axisformat axisTitle &amp;amp; SubtitleLet us create a simple scatter plot with which we will work in the rest of the post.
+ggplot(mtcars) +geom_point(aes(disp, mpg))There are two ways to add title to a plot:</description>
+    </item>
+    
+    <item>
       <title>ggplot2: Introduction to aesthetics</title>
       <link>/2017/02/24/ggplot2-introduction-to-aesthetics/</link>
       <pubDate>Fri, 24 Feb 2017 00:00:00 +0000</pubDate>

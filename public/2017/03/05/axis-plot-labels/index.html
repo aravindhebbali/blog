@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Hugo 0.26" />
+
+
+<title>ggplot2 - Axis &amp; Plot Labels - Aravind&#39;s Blog | R | Economics | Finance</title>
+<meta property="og:title" content="ggplot2 - Axis &amp; Plot Labels - Aravind&#39;s Blog | R | Economics | Finance">
+
+
+
+  
+
+
+
+
+<link rel="stylesheet" href="/css/github-gist.css" rel="stylesheet" id="theme-stylesheet">
+<script src="/js/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+
+
+
+
+<link href='//cdn.bootcss.com/highlight.js/9.11.0/styles/github.min.css' rel='stylesheet' type='text/css' />
+
+
+
+<link rel="stylesheet" href="/css/fonts.css" media="all">
+<link rel="stylesheet" href="/css/main.css" media="all">
+
+
+
+  </head>
+  <body>
+    <div class="wrapper">
+      <header class="header">
+        <nav class="nav">
+  <a href="/" class="nav-logo">
+    <img src="/images/logo.jpg"
+         width="50"
+         height="50"
+         alt="Aravind Hebbali">
+  </a>
+
+  <ul class="nav-links">
+    
+    <li><a href="/">Home</a></li>
+    
+    <li><a href="https://github.com/aravindhebbali">Projects</a></li>
+    
+    <li><a href="https://www.aravindhebbali.com/">About</a></li>
+    
+  </ul>
+</nav>
+
+      </header>
+
+
+<main class="content" role="main">
+
+  <article class="article">
+    
+    <span class="article-duration">4 min read</span>
+    
+
+    <h1 class="article-title">ggplot2 - Axis &amp; Plot Labels</h1>
+
+    
+    <span class="article-date">2017/03/05</span>
+    
+
+    <div class="article-content">
+      <div id="introduction" class="section level3">
+<h3>Introduction</h3>
+<p>This is the fifth post in the series <strong>Elegant Data Visualization with ggplot2</strong>. In the previous <a href="https://blog.aravindhebbali.com/">post</a>, we learnt about aesthetics. In this post, we will learn to:</p>
+<ul>
+<li>add title and subtitle to the plot</li>
+<li>modify axis labels</li>
+<li>modify axis range</li>
+<li>remove axis</li>
+<li>format axis</li>
+</ul>
+<div id="title-subtitle" class="section level4">
+<h4>Title &amp; Subtitle</h4>
+<p>Let us create a simple scatter plot with which we will work in the rest of the post.</p>
+<pre class="r"><code>ggplot(mtcars) +
+  geom_point(aes(disp, mpg))</code></pre>
+<p><img src="/post/2017-03-05-ggplot2-axis-plot-labels_files/figure-html/axis2-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>There are two ways to add title to a plot:</p>
+<ul>
+<li><code>ggtitle()</code></li>
+<li><code>labs()</code></li>
+</ul>
+</div>
+<div id="ggtitle" class="section level4">
+<h4>ggtitle()</h4>
+<p>Let us explore the <code>ggtitle()</code> function first. It takes two arguments:</p>
+<ul>
+<li>label: title of the plot</li>
+<li>subtitle: subtitle of the plot</li>
+</ul>
+<div id="title-subtitle-1" class="section level5">
+<h5>Title &amp; Subtitle</h5>
+<pre class="r"><code>ggplot(mtcars) +
+  geom_point(aes(disp, mpg)) +
+  ggtitle(label = &#39;Displacement vs Mileage&#39;, subtitle = &#39;disp vs mpg&#39;)</code></pre>
+<p><img src="/post/2017-03-05-ggplot2-axis-plot-labels_files/figure-html/axis3-1.png" width="672" style="display: block; margin: auto;" /></p>
+</div>
+</div>
+<div id="axis-labels" class="section level4">
+<h4>Axis Labels</h4>
+<p>You can add labels to the axis using:</p>
+<ul>
+<li><code>xlab()</code></li>
+<li><code>ylab()</code></li>
+<li><code>labs()</code></li>
+</ul>
+<p>Let us add labels using <code>xlab()</code> for the X axis and <code>ylab()</code> for the Y axis.</p>
+<pre class="r"><code>ggplot(mtcars) +
+  geom_point(aes(disp, mpg)) +
+  xlab(&#39;Displacement&#39;) + ylab(&#39;Miles Per Gallon&#39;)</code></pre>
+<p><img src="/post/2017-03-05-ggplot2-axis-plot-labels_files/figure-html/axis4-1.png" width="672" style="display: block; margin: auto;" /></p>
+</div>
+<div id="labs" class="section level4">
+<h4>Labs</h4>
+<p>The <code>labs()</code> function can be used to add the following to a plot:</p>
+<ul>
+<li>title</li>
+<li>subtitle</li>
+<li>X axis label</li>
+<li>Y axis label</li>
+</ul>
+<p>Let us add title and axis labels using <code>labs()</code>.</p>
+<pre class="r"><code>ggplot(mtcars) +
+  geom_point(aes(disp, mpg)) +
+  labs(title = &#39;Displacement vs Mileage&#39;, subtitle = &#39;disp vs mpg&#39;, 
+    x = &#39;Displacement&#39;, y = &#39;Miles Per Gallon&#39;)</code></pre>
+<p><img src="/post/2017-03-05-ggplot2-axis-plot-labels_files/figure-html/axis5-1.png" width="672" style="display: block; margin: auto;" /></p>
+</div>
+<div id="axis-range" class="section level4">
+<h4>Axis Range</h4>
+<p>In certain scenarios, you may want to modify the range of the axis. In ggplot2, we can achieve this using:</p>
+<ul>
+<li><code>xlim()</code></li>
+<li><code>ylim()</code></li>
+<li><code>expand_limits()</code></li>
+</ul>
+<p><code>xlim()</code> and <code>ylim()</code> take a numeric vector of length 2 as input. <code>expand_limits()</code> takes two numeric vectors (each of length 2), one for each axis. In all of the above functions, the first element represents the lower limit and the second element represents the upper limit.</p>
+<p>Let us modify the range of the X axis using <code>xlim()</code>. The lower limit will be 0 and the upper limit 600.</p>
+<pre class="r"><code>ggplot(mtcars) +
+  geom_point(aes(disp, mpg)) +
+  xlim(c(0, 600))</code></pre>
+<p><img src="/post/2017-03-05-ggplot2-axis-plot-labels_files/figure-html/axis6-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>The range of the Y axis will be modified using <code>ylim()</code>. The lower limit will be 0 and the upper limit will be 40.</p>
+<pre class="r"><code>ggplot(mtcars) +
+  geom_point(aes(disp, mpg)) +
+  ylim(c(0, 40))</code></pre>
+<p><img src="/post/2017-03-05-ggplot2-axis-plot-labels_files/figure-html/axis7-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>Instead of using <code>xlim()</code> and <code>ylim()</code>, we can use <code>expand_limits()</code> to modify the range of both the X and Y axis.</p>
+<pre class="r"><code>ggplot(mtcars) +
+  geom_point(aes(disp, mpg)) +
+  expand_limits(x = c(0, 600), y = c(0, 40))</code></pre>
+<p><img src="/post/2017-03-05-ggplot2-axis-plot-labels_files/figure-html/axis8-1.png" width="672" style="display: block; margin: auto;" /></p>
+</div>
+<div id="remove-axis-labels" class="section level4">
+<h4>Remove Axis Labels</h4>
+<p>If you want to remove the axis labels all together, use the <code>theme()</code> function. It allows us to modify every aspect of the theme of the plot. Within <code>theme()</code>, set the following to <code>element_blank()</code>.</p>
+<ul>
+<li><code>axis.title.x</code></li>
+<li><code>axis.title.y</code></li>
+</ul>
+<p>In the below example, we use <code>theme()</code> to remove the X and Y axis labels.</p>
+<pre class="r"><code>ggplot(mtcars) +
+  geom_point(aes(disp, mpg)) +
+  theme(axis.title.x = element_blank(), axis.title.y = element_blank())</code></pre>
+<p><img src="/post/2017-03-05-ggplot2-axis-plot-labels_files/figure-html/axis9-1.png" width="672" style="display: block; margin: auto;" /></p>
+</div>
+<div id="format-title-axis-labels" class="section level4">
+<h4>Format Title &amp; Axis Labels</h4>
+<p>To format the title or the axis labels, we have to modify the theme of the plot using the <code>theme()</code> function. We can modify:</p>
+<ul>
+<li>color</li>
+<li>font family</li>
+<li>font face</li>
+<li>font size</li>
+<li>horizontal alignment</li>
+<li>and angle</li>
+</ul>
+<p><code>element_text()</code> is used to modify the properties of text. In the below examples, we use it
+to modify the plot title (which is a text).</p>
+<div id="color" class="section level5">
+<h5>Color</h5>
+<pre class="r"><code>ggplot(mtcars) +
+  geom_point(aes(disp, mpg)) + ggtitle(&#39;Diaplacement vs Mileage&#39;) +
+  theme(plot.title = element_text(color = &#39;blue&#39;))</code></pre>
+<p><img src="/post/2017-03-05-ggplot2-axis-plot-labels_files/figure-html/axis10-1.png" width="672" style="display: block; margin: auto;" /></p>
+</div>
+<div id="font-family" class="section level5">
+<h5>Font Family</h5>
+<pre class="r"><code>ggplot(mtcars) +
+  geom_point(aes(disp, mpg)) + ggtitle(&#39;Diaplacement vs Mileage&#39;) +
+  theme(plot.title = element_text(family = &#39;Arial&#39;))</code></pre>
+<p><img src="/post/2017-03-05-ggplot2-axis-plot-labels_files/figure-html/axis11-1.png" width="672" style="display: block; margin: auto;" /></p>
+</div>
+<div id="font-face" class="section level5">
+<h5>Font Face</h5>
+<p>The font face can be any of the following:</p>
+<ul>
+<li><code>plain</code></li>
+<li><code>bold</code></li>
+<li><code>italic</code></li>
+<li><code>bold.italic</code></li>
+</ul>
+</div>
+<div id="font-face-1" class="section level5">
+<h5>Font Face</h5>
+<pre class="r"><code>ggplot(mtcars) +
+  geom_point(aes(disp, mpg)) + ggtitle(&#39;Diaplacement vs Mileage&#39;) +
+  theme(plot.title = element_text(face = &#39;bold&#39;))</code></pre>
+<p><img src="/post/2017-03-05-ggplot2-axis-plot-labels_files/figure-html/axis12-1.png" width="672" style="display: block; margin: auto;" /></p>
+</div>
+<div id="font-size" class="section level5">
+<h5>Font Size</h5>
+<pre class="r"><code>ggplot(mtcars) +
+  geom_point(aes(disp, mpg)) + ggtitle(&#39;Diaplacement vs Mileage&#39;) +
+  theme(plot.title = element_text(size = 8))</code></pre>
+<p><img src="/post/2017-03-05-ggplot2-axis-plot-labels_files/figure-html/axis13-1.png" width="672" style="display: block; margin: auto;" /></p>
+</div>
+<div id="horizontal-alignment" class="section level5">
+<h5>Horizontal Alignment</h5>
+<pre class="r"><code>ggplot(mtcars) +
+  geom_point(aes(disp, mpg)) + ggtitle(&#39;Diaplacement vs Mileage&#39;) +
+  theme(plot.title = element_text(hjust = 0.3))</code></pre>
+<p><img src="/post/2017-03-05-ggplot2-axis-plot-labels_files/figure-html/axis14-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>Let us use <code>element_text()</code> and <code>theme()</code> to modify the appearance of
+the title and axis labels.</p>
+</div>
+</div>
+<div id="title" class="section level4">
+<h4>Title</h4>
+<pre class="r"><code>ggplot(mtcars) +
+  geom_point(aes(disp, mpg)) + ggtitle(&#39;Diaplacement vs Mileage&#39;) +
+  theme(plot.title = element_text(color = &#39;blue&#39;, family = &#39;Arial&#39;,
+    face = &#39;bold&#39;, size = 12, hjust = 0.5))</code></pre>
+<p><img src="/post/2017-03-05-ggplot2-axis-plot-labels_files/figure-html/axis15-1.png" width="672" style="display: block; margin: auto;" /></p>
+</div>
+<div id="x-axis-label" class="section level4">
+<h4>X Axis Label</h4>
+<pre class="r"><code>ggplot(mtcars) +
+  geom_point(aes(disp, mpg)) + xlab(&#39;Diaplacement&#39;) +
+  theme(axis.title.x = element_text(color = &#39;blue&#39;, family = &#39;Arial&#39;,
+    face = &#39;bold&#39;, size = 8, hjust = 0.5, angle = 15))</code></pre>
+<p><img src="/post/2017-03-05-ggplot2-axis-plot-labels_files/figure-html/axis16-1.png" width="672" style="display: block; margin: auto;" /></p>
+</div>
+<div id="y-axis-label" class="section level4">
+<h4>Y Axis Label</h4>
+<pre class="r"><code>ggplot(mtcars) +
+  geom_point(aes(disp, mpg)) + ylab(&#39;Miles Per Gallon&#39;) +
+  theme(axis.title.y = element_text(color = &#39;blue&#39;, family = &#39;Arial&#39;,
+    face = &#39;italic&#39;, size = 8, vjust = 0.3, angle = 90))</code></pre>
+<p><img src="/post/2017-03-05-ggplot2-axis-plot-labels_files/figure-html/axis17-1.png" width="672" style="display: block; margin: auto;" /></p>
+</div>
+</div>
+<div id="summary" class="section level3">
+<h3>Summary</h3>
+<p>In this post, we learnt to:</p>
+<ul>
+<li>add title and subtitle to the plot</li>
+<li>modify axis labels</li>
+<li>modify axis range</li>
+<li>remove axis</li>
+<li>format axis</li>
+</ul>
+</div>
+<div id="up-next.." class="section level3">
+<h3>Up Next..</h3>
+<p>In the next <a href="https://blog.aravindhebbali.com">post</a>, we will learn to add text annotations to plots.</p>
+</div>
+
+    </div>
+  </article>
+
+  
+
+
+</main>
+
+      <footer class="footer">
+        <ul class="footer-links">
+          <li>
+            <a href="/index.xml" type="application/rss+xml" target="_blank">RSS feed</a>
+          </li>
+          <li>
+            <a href="https://gohugo.io/" class="footer-links-kudos">Made with <img src="/images/hugo-logo.png" width="22" height="22"></a> and <a href="https://github.com/rstudio/blogdown">blogdown</a>
+          </li>
+          <li><a href="https://twitter.com/aravindhebbali">@aravindhebbali</a></li>
+        </ul>
+        <ul>
+          <li>&copy 2017 Aravind Hebbali</li>
+        </ul>
+      </footer>
+
+    </div>
+    
+
+
+
+<script src="//cdn.bootcss.com/highlight.js/9.11.0/highlight.min.js"></script>
+
+
+
+<script src="//cdn.bootcss.com/highlight.js/9.11.0/languages/r.min.js"></script>
+<script src="//cdn.bootcss.com/highlight.js/9.11.0/languages/yaml.min.js"></script>
+<script>hljs.configure({languages: []}); hljs.initHighlightingOnLoad();</script>
+
+
+
+    
+
+    
+<script>
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-57270671-5', 'auto');
+ga('send', 'pageview');
+</script>
+
+  </body>
+</html>
+

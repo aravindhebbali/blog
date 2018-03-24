@@ -78,6 +78,11 @@
   </url>
   
   <url>
+    <loc>/2017/03/05/axis-plot-labels/</loc>
+    <lastmod>2017-03-05T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>/2017/02/24/ggplot2-introduction-to-aesthetics/</loc>
     <lastmod>2017-02-24T00:00:00+00:00</lastmod>
   </url>
@@ -337,7 +342,7 @@
   
   <url>
     <loc>/tags/ggplot2/</loc>
-    <lastmod>2017-02-24T00:00:00+00:00</lastmod>
+    <lastmod>2017-03-05T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
