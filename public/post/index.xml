@@ -177,6 +177,17 @@ Pipes allow us to clearly express a sequence of multiple operations by:
     </item>
     
     <item>
+      <title>ggplot2: Text Annotations</title>
+      <link>/2017/03/17/ggplot2-text-annotations/</link>
+      <pubDate>Fri, 17 Mar 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/2017/03/17/ggplot2-text-annotations/</guid>
+      <description>IntroductionThis is the sixth post in the series Elegant Data Visualization with ggplot2. In the previous post, we learnt to modify the axis and plot labels. In this post, we will learn to add text to the plots.
+add custom textmodify colormodify sizemodify fontfacemodify angleLibraries, Code &amp;amp; DataWe will use the following libraries in this post:
+readrggplot2All the data sets used in this post can be found here and code can be downloaded from here.</description>
+    </item>
+    
+    <item>
       <title>ggplot2 - Axis &amp; Plot Labels</title>
       <link>/2017/03/05/axis-plot-labels/</link>
       <pubDate>Sun, 05 Mar 2017 00:00:00 +0000</pubDate>

@@ -6,10 +6,21 @@
     <description>Recent content in Visualization on Aravind&#39;s Blog | R | Economics | Finance</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 24 Feb 2017 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 17 Mar 2017 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/tags/visualization/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>ggplot2: Text Annotations</title>
+      <link>/2017/03/17/ggplot2-text-annotations/</link>
+      <pubDate>Fri, 17 Mar 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/2017/03/17/ggplot2-text-annotations/</guid>
+      <description>IntroductionThis is the sixth post in the series Elegant Data Visualization with ggplot2. In the previous post, we learnt to modify the axis and plot labels. In this post, we will learn to add text to the plots.
+add custom textmodify colormodify sizemodify fontfacemodify angleLibraries, Code &amp;amp; DataWe will use the following libraries in this post:
+readrggplot2All the data sets used in this post can be found here and code can be downloaded from here.</description>
+    </item>
     
     <item>
       <title>ggplot2: Introduction to aesthetics</title>
