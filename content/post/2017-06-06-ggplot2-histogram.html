@@ -1,0 +1,179 @@
+---
+title: 'ggplot2: Histogram'
+date: '2017-06-06'
+slug: ggplot2-histogram
+topics:
+  - ggplot2
+tags:
+  - ggplot2
+  - visualization
+---
+
+
+
+<div id="introduction" class="section level3">
+<h3>Introduction</h3>
+<p>This is the eleventh post in the series <strong>Elegant Data Visualization with ggplot2</strong>. In the previous <a href="https://blog.aravindhebbali.com/">post</a>, we learnt to build box plots. In this post, we will learn to</p>
+<ul>
+<li>build histogram</li>
+<li>specify bins</li>
+<li>modify
+<ul>
+<li>color</li>
+<li>fill</li>
+<li>alpha</li>
+<li>bin width</li>
+<li>line type</li>
+<li>line size</li>
+</ul></li>
+</ul>
+<p>A histogram is a plot that can be used to examine the shape and spread of continuous data. It looks very similar to a bar graph and can be used to detect outliers and skewness in data. The histogram graphically shows the following:</p>
+<ul>
+<li>center (location) of the data</li>
+<li>spread (dispersion) of the data</li>
+<li>skewness</li>
+<li>outliers</li>
+<li>presence of multiple modes</li>
+</ul>
+<p>To construct a histogram, the data is split into intervals called bins. The intervals may or may not be equal sized. For each bin, the number of data points that fall into it are counted (frequency). The Y axis of the histogram represents the frequency and the X axis represents the variable.</p>
+</div>
+<div id="libraries-code-data" class="section level3">
+<h3>Libraries, Code &amp; Data</h3>
+<p>We will use the following libraries in this post:</p>
+<ul>
+<li><a href="https://readr.tidyverse.org/">readr</a></li>
+<li><a href="https://ggplot2.tidyverse.org/">ggplot2</a></li>
+</ul>
+<p>All the data sets used in this post can be found <a href="https://github.com/rsquaredacademy/datasets">here</a> and code can be downloaded from <a href="https://gist.github.com/rsquaredacademy/674bc30cc1539d735bdc4e6210982d1d">here</a>.</p>
+</div>
+<div id="data" class="section level3">
+<h3>Data</h3>
+<pre class="r"><code>ecom &lt;- readr::read_csv(&#39;https://raw.githubusercontent.com/rsquaredacademy/datasets/master/web.csv&#39;)
+ecom</code></pre>
+<pre><code>## # A tibble: 1,000 x 11
+##       id referrer device bouncers n_visit n_pages duration country       
+##    &lt;int&gt; &lt;chr&gt;    &lt;chr&gt;  &lt;chr&gt;      &lt;int&gt;   &lt;dbl&gt;    &lt;dbl&gt; &lt;chr&gt;         
+##  1     1 google   laptop true          10    1.00    693   Czech Republic
+##  2     2 yahoo    tablet true           9    1.00    459   Yemen         
+##  3     3 direct   laptop true           0    1.00    996   Brazil        
+##  4     4 bing     tablet false          3   18.0     468   China         
+##  5     5 yahoo    mobile true           9    1.00    955   Poland        
+##  6     6 yahoo    laptop false          5    5.00    135   South Africa  
+##  7     7 yahoo    mobile true          10    1.00     75.0 Bangladesh    
+##  8     8 direct   mobile true          10    1.00    908   Indonesia     
+##  9     9 bing     mobile false          3   19.0     209   Netherlands   
+## 10    10 google   mobile true           6    1.00    208   Czech Republic
+## # ... with 990 more rows, and 3 more variables: purchase &lt;chr&gt;,
+## #   order_items &lt;dbl&gt;, order_value &lt;dbl&gt;</code></pre>
+</div>
+<div id="data-dictionary" class="section level3">
+<h3>Data Dictionary</h3>
+<ul>
+<li>id: row id</li>
+<li>referrer: referrer website/search engine</li>
+<li>os: operating system</li>
+<li>browser: browser</li>
+<li>device: device used to visit the website</li>
+<li>n_pages: number of pages visited</li>
+<li>duration: time spent on the website (in seconds)</li>
+<li>repeat: frequency of visits</li>
+<li>country: country of origin</li>
+<li>purchase: whether visitor purchased</li>
+<li>order_value: order value of visitor (in dollars)</li>
+</ul>
+<div id="histogram" class="section level4">
+<h4>Histogram</h4>
+<p>In ggplot2, a histogram is created using <code>geom_histogram()</code>. In the below example,
+we build the histogram of <code>n_visit</code> from the <code>ecom</code> data.</p>
+<pre class="r"><code>ggplot(ecom) +
+  geom_histogram(aes(n_visit))</code></pre>
+<pre><code>## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
+<p><img src="/post/2017-06-06-ggplot2-histogram_files/figure-html/hist2-1.png" width="672" style="display: block; margin: auto;" /></p>
+</div>
+<div id="specify-bins" class="section level4">
+<h4>Specify Bins</h4>
+<p>The default number of bins used by <code>geom_histogram()</code> is 30 and may not be always useful.
+Let us specify the number of bins using the <code>bins</code> argument.</p>
+<pre class="r"><code>ggplot(ecom) +
+  geom_histogram(aes(n_visit), bins = 7)</code></pre>
+<p><img src="/post/2017-06-06-ggplot2-histogram_files/figure-html/hist4-1.png" width="672" style="display: block; margin: auto;" /></p>
+</div>
+<div id="fill" class="section level4">
+<h4>Fill</h4>
+<p>Use the <code>fill</code> argument to modify the background color of the histogram. In the below
+example, we set the background color to blue.</p>
+<pre class="r"><code>ggplot(ecom) +
+  geom_histogram(aes(n_visit), bins = 7, fill = &#39;blue&#39;)</code></pre>
+<p><img src="/post/2017-06-06-ggplot2-histogram_files/figure-html/hist3-1.png" width="672" style="display: block; margin: auto;" /></p>
+</div>
+<div id="alpha" class="section level4">
+<h4>Alpha</h4>
+<p>The opacity of the background color of the histogram can be modified
+using the <code>alpha</code> argument. It takes values between <code>0</code> and <code>1</code>.</p>
+<pre class="r"><code>ggplot(ecom) +
+  geom_histogram(aes(n_visit), bins = 7, fill = &#39;blue&#39;, alpha = 0.3)</code></pre>
+<p><img src="/post/2017-06-06-ggplot2-histogram_files/figure-html/hist11-1.png" width="672" style="display: block; margin: auto;" /></p>
+</div>
+<div id="color" class="section level4">
+<h4>Color</h4>
+<p>The color of the histogram borders can be modified using the <code>color</code> argument.</p>
+<pre class="r"><code>ggplot(ecom) +
+  geom_histogram(aes(n_visit), bins = 7, fill = &#39;white&#39;, color = &#39;blue&#39;)</code></pre>
+<p><img src="/post/2017-06-06-ggplot2-histogram_files/figure-html/hist8-1.png" width="672" style="display: block; margin: auto;" /></p>
+</div>
+<div id="summing-up-what-we-have-learnt-so-far.." class="section level4">
+<h4>Summing up what we have learnt so far..</h4>
+<pre class="r"><code>ggplot(ecom) +
+  geom_histogram(aes(n_visit), bins = 7, fill = &#39;blue&#39;, color = &#39;white&#39;)</code></pre>
+<p><img src="/post/2017-06-06-ggplot2-histogram_files/figure-html/hist9-1.png" width="672" style="display: block; margin: auto;" /></p>
+</div>
+<div id="bin-width" class="section level4">
+<h4>Bin Width</h4>
+<p>The width of the bins can be specified using the <code>binwidth</code> argument. In the
+below example, we set the bin width to be 2.</p>
+<pre class="r"><code>ggplot(ecom) +
+  geom_histogram(aes(n_visit), binwidth = 2, fill = &#39;blue&#39;, color = &#39;black&#39;)</code></pre>
+<p><img src="/post/2017-06-06-ggplot2-histogram_files/figure-html/hist5-1.png" width="672" style="display: block; margin: auto;" /></p>
+</div>
+<div id="border" class="section level4">
+<h4>Border</h4>
+<p>The type and size of the histogram border/line can be modified using
+<code>linetype</code> and <code>size</code>. In the following examples, we set <code>linetype</code>
+to 3 and <code>size</code> to 1.25.</p>
+<div id="line-type" class="section level6">
+<h6>Line Type</h6>
+<pre class="r"><code>ggplot(ecom) +
+  geom_histogram(aes(n_visit), bins = 5, fill = &#39;white&#39;, 
+    color = &#39;blue&#39;, linetype = 3)</code></pre>
+<p><img src="/post/2017-06-06-ggplot2-histogram_files/figure-html/hist6-1.png" width="672" style="display: block; margin: auto;" /></p>
+</div>
+<div id="line-size" class="section level6">
+<h6>Line Size</h6>
+<pre class="r"><code>ggplot(ecom) +
+  geom_histogram(aes(n_visit), bins = 5, fill = &#39;white&#39;, 
+    color = &#39;blue&#39;, size = 1.25)</code></pre>
+<p><img src="/post/2017-06-06-ggplot2-histogram_files/figure-html/hist10-1.png" width="672" style="display: block; margin: auto;" /></p>
+</div>
+</div>
+</div>
+<div id="summary" class="section level3">
+<h3>Summary</h3>
+<p>In this post, we learnt to:</p>
+<ul>
+<li>build histogram</li>
+<li>specify bins</li>
+<li>modify
+<ul>
+<li>color</li>
+<li>fill</li>
+<li>alpha</li>
+<li>bin width</li>
+<li>line type</li>
+<li>line size</li>
+</ul></li>
+</ul>
+</div>
+<div id="up-next.." class="section level3">
+<h3>Up Next..</h3>
+<p>In the next <a href="https://blog.aravindhebbali.com/">post</a>, we will learn to modify the axes of a plot.</p>
+</div>
