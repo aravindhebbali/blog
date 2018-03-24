@@ -1,0 +1,204 @@
+---
+title: 'ggplot2: Scatter Plots'
+date: '2016-04-04'
+slug: ggplot2-scatter-plots
+topics:
+  - ggplot2
+tags:
+  - ggplot2
+  - visualization
+---
+
+### Introduction
+
+This is the fifth post in the series **Elegant Data Visualization with ggplot2**. In the previous [post](https://blog.aravindhebbali.com/), we learnt about text annotations. In this post, we will build scatter plots by applying everything we have learnt so far.
+
+- build scatter plots
+- modify point
+    - color
+    - fill
+    - alpha
+    - shape
+    - size
+- fit regression line
+
+```{r scat1, echo=FALSE, eval=TRUE, results='hide', message=FALSE}
+library(ggplot2)
+library(readr)
+```
+
+### Libraries, Code & Data
+
+We will use the following libraries in this post:
+
+- [readr](https://readr.tidyverse.org/)
+- [ggplot2](https://ggplot2.tidyverse.org/)
+
+All the data sets used in this post can be found [here](https://github.com/rsquaredacademy/datasets) and code can be downloaded from [here]().
+
+### Basic Plot
+
+Let us build a simple scatter plot using the `mtcars` data to examine the relationship 
+between `disp` (diaplacement) and `mpg` (miles per gallon).
+
+```{r scat2, fig.align='center'}
+ggplot(mtcars) +
+  geom_point(aes(disp, mpg))
+```
+
+#### Jitter
+
+```{r scat22, fig.align='center'}
+ggplot(mtcars) +
+  geom_point(aes(disp, mpg), position = 'jitter')
+```
+
+#### Aesthetics
+
+Now let us modify the aesthetics of the points. There are two ways:
+
+- map them to variables using the `aes()` function
+- or specify values
+
+In the next 4 examples, we will 
+
+- map color to a categorical variable
+- map color to a continuous variable
+- specify value for color
+- specify value for color opacity
+
+###### Map Color to Variable (Categorical)
+
+```{r scat4, fig.align='center'}
+ggplot(mtcars) +
+  geom_point(aes(disp, mpg, color = factor(cyl)))
+```
+
+###### Map Color to Variable (Continuous)
+
+```{r scat5, fig.align='center'}
+ggplot(mtcars) +
+  geom_point(aes(disp, mpg, color = hp))
+```
+
+###### Specify Value for Color
+
+```{r scat6, fig.align='center'}
+ggplot(mtcars) +
+  geom_point(aes(disp, mpg), color = 'blue')
+```
+
+###### Specify Value for Alpha
+
+```{r scat7, fig.align='center'}
+ggplot(mtcars) +
+  geom_point(aes(disp, mpg), color = 'blue', alpha = 0.4)
+```
+
+In the next 2 examples, we will 
+
+- map shape to a variable 
+- specify value for shape
+
+###### Map Shape to Variable
+
+```{r scat8, fig.align='center'}
+ggplot(mtcars) +
+  geom_point(aes(disp, mpg, shape = factor(cyl)))
+```
+
+###### Specify Value for Shape
+
+```{r scat9, fig.align='center'}
+ggplot(mtcars) +
+  geom_point(aes(disp, mpg), shape = 3)
+```
+
+In the next 2 examples, we will 
+
+- map size to a variable 
+- specify value for size
+
+###### Map Size to Variable
+
+```{r scat10, fig.align='center'}
+ggplot(mtcars) +
+  geom_point(aes(disp, mpg, size = hp), color = 'blue')
+```
+
+###### Specify Value for Size
+
+```{r scat11, fig.align='center'}
+ggplot(mtcars) +
+  geom_point(aes(disp, mpg), size = 3)
+```
+
+### Regression Line
+
+Most often, after building a scatter plot to examine the relationship between two variables, we fit
+a regression line. In this section, we will learn to fit a line to the scatter plot using:
+
+- `geom_smooth()`
+- `geom_abline()`
+
+In the below example, we fit a regression line using `geom_smooth()`. It takes two arguments:
+
+- `method` 
+- `se`
+
+The `method` argument is used to specify the model type i.e. `lm` or `loess`. 
+
+```{r aes12, fig.align='center'}
+ggplot(mtcars, aes(disp, mpg)) +
+  geom_point() +
+  geom_smooth(method = 'lm', se = FALSE)
+```
+
+###### Regression Line - Loess Method
+
+```{r aes14, fig.align='center'}
+ggplot(mtcars, aes(disp, mpg)) +
+  geom_point() +
+  geom_smooth(method = 'loess', se = FALSE)
+```
+
+###### Regression Line - Conf. Interval
+
+The `se` argument  takes logical values i.e. `TRUE` or `FALSE`. If set to `TRUE`, the confidence band for the regression line is drawn.
+
+```{r aes13, fig.align='center'}
+ggplot(mtcars, aes(disp, mpg)) +
+  geom_point() +
+  geom_smooth(method = 'lm', se = TRUE)
+```
+
+###### Fit Line - Intercept & Slope
+
+We can fit a regression line using `geom_abline()` as well. It takes 2 arguments:
+
+- `slope`
+- `intercept`
+
+We can get the `slope` and `intercept` by building a model using `lm()`.
+
+```{r aes17, fig.align='center'}
+ggplot(mtcars, aes(disp, mpg)) +
+  geom_point() +
+  geom_abline(slope = 29.59985, intercept = -0.04122)
+```
+
+### Summary
+
+In this post, we learnt to:
+
+- build scatter plots
+- map aesthetics to variables
+- modify axis and legend
+- fit regression line
+
+### Up Next..
+
+In the next [post](https://blog.aravindhebbali.com/), we will learn to build line charts.
+
+
+

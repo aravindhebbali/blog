@@ -417,6 +417,16 @@ args(data.frame)## function (..., row.names = NULL, check.rows = FALSE, check.n
     </item>
     
     <item>
+      <title>ggplot2: Scatter Plots</title>
+      <link>/2016/04/04/ggplot2-scatter-plots/</link>
+      <pubDate>Mon, 04 Apr 2016 00:00:00 +0000</pubDate>
+      
+      <guid>/2016/04/04/ggplot2-scatter-plots/</guid>
+      <description>IntroductionThis is the fifth post in the series Elegant Data Visualization with ggplot2. In the previous post, we learnt about text annotations. In this post, we will build scatter plots by applying everything we have learnt so far.
+build scatter plotsmodify pointcolorfillalphashapesizefit regression lineLibraries, Code &amp;amp; DataWe will use the following libraries in this post:</description>
+    </item>
+    
+    <item>
       <title>Vectors - Part 2</title>
       <link>/2016/03/20/vectors-part-2/</link>
       <pubDate>Sun, 20 Mar 2016 00:00:00 +0000</pubDate>
