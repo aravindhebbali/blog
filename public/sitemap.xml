@@ -1,488 +1,227 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-  xmlns:xhtml="http://www.w3.org/1999/xhtml">
-  
-  <url>
-    <loc>/2018/02/18/sql-for-data-science-part-2/</loc>
-    <lastmod>2018-02-18T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/2018/02/11/sql-for-data-science-part-1/</loc>
-    <lastmod>2018-02-11T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/2018/02/04/data-wrangling-with-dbplyr/</loc>
-    <lastmod>2018-02-04T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/2018/01/28/quick-guide-r-sqlite/</loc>
-    <lastmod>2018-01-28T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/2018/01/21/working-with-categorical-data-using-forcats/</loc>
-    <lastmod>2018-01-21T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/2018/01/14/working-with-dates-in-r/</loc>
-    <lastmod>2018-01-14T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/2018/01/07/hacking-strings-with-stringr/</loc>
-    <lastmod>2018-01-07T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/2017/12/24/data-wrangling-with-dplyr-part-3/</loc>
-    <lastmod>2017-12-24T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/2017/12/17/data-wrangling-with-dplyr-part-2/</loc>
-    <lastmod>2017-12-17T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/2017/12/10/data-wrangling-with-dplyr-part-1/</loc>
-    <lastmod>2017-12-10T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/2017/12/03/readable-code-with-pipes/</loc>
-    <lastmod>2017-12-03T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/2017/11/26/introduction-to-tibbles/</loc>
-    <lastmod>2017-11-26T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/2017/11/19/importing-data-into-r-part-3/</loc>
-    <lastmod>2017-11-19T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/2017/11/12/importing-data-into-r-part-2/</loc>
-    <lastmod>2017-11-12T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/2017/11/05/a-complete-guide-to-importing-data-into-r-part-1/</loc>
-    <lastmod>2017-11-05T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/2016/12/17/data-visualization-with-r-combining-plots/</loc>
-    <lastmod>2016-12-17T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/2016/12/08/data-visualization-with-r-text-annotations/</loc>
-    <lastmod>2016-12-08T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/2016/11/25/data-visualization-with-r-legends/</loc>
-    <lastmod>2016-11-25T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/2016/11/06/data-visualization-with-r-histogram/</loc>
-    <lastmod>2016-11-06T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/2016/10/21/data-visualization-with-r-box-plots/</loc>
-    <lastmod>2016-10-21T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/2016/10/05/data-visualization-with-r-bar-plots/</loc>
-    <lastmod>2016-10-05T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/2016/09/23/data-visualization-with-r-line-graphs/</loc>
-    <lastmod>2016-09-23T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/2016/09/07/data-visualization-with-r-scatter-plots/</loc>
-    <lastmod>2016-09-07T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/2016/08/22/data-visualization-with-r-title-and-axis-labels/</loc>
-    <lastmod>2016-08-22T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/2016/08/05/data-visualization-with-r-introduction/</loc>
-    <lastmod>2016-08-05T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/2016/07/28/getting-help-in-r/</loc>
-    <lastmod>2016-07-28T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/2016/07/07/beginners-guide-to-r-package-ecosystem/</loc>
-    <lastmod>2016-07-07T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/2016/06/23/dataframes/</loc>
-    <lastmod>2016-06-23T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/2016/06/16/introduction-to-factors/</loc>
-    <lastmod>2016-06-16T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/2016/05/24/introduction-to-lists/</loc>
-    <lastmod>2016-05-24T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/about/</loc>
-    <lastmod>2016-05-05T21:48:51-07:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/2016/05/05/matrix-part-2/</loc>
-    <lastmod>2016-05-05T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/2016/04/19/introduction-to-matrix/</loc>
-    <lastmod>2016-04-19T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/2016/04/04/vectors-part-3/</loc>
-    <lastmod>2016-04-04T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/2016/03/20/vectors-part-2/</loc>
-    <lastmod>2016-03-20T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/2016/03/03/introduction-to-vectors/</loc>
-    <lastmod>2016-03-03T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/2016/02/17/data-types-in-r/</loc>
-    <lastmod>2016-02-17T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/2016/02/07/data-types-in-r/</loc>
-    <lastmod>2016-02-07T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/tags/annotations/</loc>
-    <lastmod>2016-12-08T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>/</loc>
-    <lastmod>2018-02-18T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>/tags/bar-plot/</loc>
-    <lastmod>2016-10-05T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>/tags/base/</loc>
-    <lastmod>2016-12-17T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>/tags/box-plot/</loc>
-    <lastmod>2016-10-21T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>/tags/categorical/</loc>
-    <lastmod>2018-01-21T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>/categories/</loc>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>/tags/data/</loc>
-    <lastmod>2016-02-17T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>/categories/data-visualization/</loc>
-    <lastmod>2016-12-17T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>/categories/data-wrangling/</loc>
-    <lastmod>2018-02-04T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>/tags/database/</loc>
-    <lastmod>2018-01-28T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>/categories/database/</loc>
-    <lastmod>2018-02-18T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>/tags/dataframe/</loc>
-    <lastmod>2016-06-23T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>/tags/date/</loc>
-    <lastmod>2018-01-14T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>/tags/dbplyr/</loc>
-    <lastmod>2018-02-04T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>/tags/dplyr/</loc>
-    <lastmod>2018-02-04T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>/tags/facets/</loc>
-    <lastmod>2016-12-17T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>/tags/factor/</loc>
-    <lastmod>2018-01-21T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>/tags/factors/</loc>
-    <lastmod>2016-06-16T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>/tags/forcats/</loc>
-    <lastmod>2018-01-21T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>/tags/help/</loc>
-    <lastmod>2016-07-28T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>/tags/histogram/</loc>
-    <lastmod>2016-11-06T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>/tags/import/</loc>
-    <lastmod>2018-01-28T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>/tags/joins/</loc>
-    <lastmod>2017-12-17T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>/tags/json/</loc>
-    <lastmod>2017-11-19T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>/tags/legend/</loc>
-    <lastmod>2016-11-25T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>/tags/lists/</loc>
-    <lastmod>2016-05-24T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>/tags/lubridate/</loc>
-    <lastmod>2018-01-14T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>/tags/magrittr/</loc>
-    <lastmod>2017-12-03T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>/tags/matrix/</loc>
-    <lastmod>2016-05-05T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>/tags/packages/</loc>
-    <lastmod>2016-07-07T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>/tags/pipes/</loc>
-    <lastmod>2017-12-03T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>/post/</loc>
-    <lastmod>2018-02-18T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>/categories/r/</loc>
-    <lastmod>2017-11-05T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>/categories/r-introduction/</loc>
-    <lastmod>2016-07-28T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>/categories/r-programming/</loc>
-    <lastmod>2016-02-07T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>/tags/readr/</loc>
-    <lastmod>2017-11-05T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>/tags/readxl/</loc>
-    <lastmod>2017-11-12T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>/tags/rsqlite/</loc>
-    <lastmod>2018-01-28T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>/tags/sql/</loc>
-    <lastmod>2018-02-18T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>/tags/sqlite/</loc>
-    <lastmod>2018-02-18T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>/tags/strings/</loc>
-    <lastmod>2018-01-07T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>/tags/</loc>
-    <lastmod>2016-12-08T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>/tags/text/</loc>
-    <lastmod>2016-12-08T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>/tags/tibble/</loc>
-    <lastmod>2017-11-26T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>/tags/time/</loc>
-    <lastmod>2018-01-14T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>/tags/vectors/</loc>
-    <lastmod>2016-04-04T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>/tags/visualization/</loc>
-    <lastmod>2016-12-17T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>/tags/xml/</loc>
-    <lastmod>2017-11-19T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset
+      xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
+            http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+<!-- created with Free Online Sitemap Generator www.xml-sitemaps.com -->
+
+
+<url>
+  <loc>https://blog.aravindhebbali.com/</loc>
+  <lastmod>2018-03-15T14:01:01+00:00</lastmod>
+  <priority>1.00</priority>
+</url>
+<url>
+  <loc>https://blog.aravindhebbali.com/2018/02/18/sql-for-data-science-part-2/</loc>
+  <lastmod>2018-03-15T14:01:01+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://blog.aravindhebbali.com/2018/02/11/sql-for-data-science-part-1/</loc>
+  <lastmod>2018-03-15T14:01:01+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://blog.aravindhebbali.com/2018/02/04/data-wrangling-with-dbplyr/</loc>
+  <lastmod>2018-03-15T14:01:01+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://blog.aravindhebbali.com/2018/01/28/quick-guide-r-sqlite/</loc>
+  <lastmod>2018-03-15T14:01:01+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://blog.aravindhebbali.com/2018/01/21/working-with-categorical-data-using-forcats/</loc>
+  <lastmod>2018-03-15T14:01:01+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://blog.aravindhebbali.com/2018/01/14/working-with-dates-in-r/</loc>
+  <lastmod>2018-03-15T14:01:01+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://blog.aravindhebbali.com/2018/01/07/hacking-strings-with-stringr/</loc>
+  <lastmod>2018-03-15T14:01:01+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://blog.aravindhebbali.com/2017/12/24/data-wrangling-with-dplyr-part-3/</loc>
+  <lastmod>2018-03-15T14:01:01+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://blog.aravindhebbali.com/2017/12/17/data-wrangling-with-dplyr-part-2/</loc>
+  <lastmod>2018-03-15T14:01:01+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://blog.aravindhebbali.com/2017/12/10/data-wrangling-with-dplyr-part-1/</loc>
+  <lastmod>2018-03-15T14:01:01+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://blog.aravindhebbali.com/2017/12/03/readable-code-with-pipes/</loc>
+  <lastmod>2018-03-15T14:01:01+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://blog.aravindhebbali.com/2017/11/26/introduction-to-tibbles/</loc>
+  <lastmod>2018-03-15T14:01:01+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://blog.aravindhebbali.com/2017/11/19/importing-data-into-r-part-3/</loc>
+  <lastmod>2018-03-15T14:01:01+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://blog.aravindhebbali.com/2017/11/12/importing-data-into-r-part-2/</loc>
+  <lastmod>2018-03-15T14:01:01+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://blog.aravindhebbali.com/2017/11/05/a-complete-guide-to-importing-data-into-r-part-1/</loc>
+  <lastmod>2018-03-15T14:01:01+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://blog.aravindhebbali.com/2016/12/17/data-visualization-with-r-combining-plots/</loc>
+  <lastmod>2018-03-15T14:01:01+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://blog.aravindhebbali.com/2016/12/08/data-visualization-with-r-text-annotations/</loc>
+  <lastmod>2018-03-15T14:01:01+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://blog.aravindhebbali.com/2016/11/25/data-visualization-with-r-legends/</loc>
+  <lastmod>2018-03-15T14:01:01+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://blog.aravindhebbali.com/2016/11/06/data-visualization-with-r-histogram/</loc>
+  <lastmod>2018-03-15T14:01:01+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://blog.aravindhebbali.com/2016/10/21/data-visualization-with-r-box-plots/</loc>
+  <lastmod>2018-03-15T14:01:01+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://blog.aravindhebbali.com/2016/10/05/data-visualization-with-r-bar-plots/</loc>
+  <lastmod>2018-03-15T14:01:01+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://blog.aravindhebbali.com/2016/09/23/data-visualization-with-r-line-graphs/</loc>
+  <lastmod>2018-03-15T14:01:01+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://blog.aravindhebbali.com/2016/09/07/data-visualization-with-r-scatter-plots/</loc>
+  <lastmod>2018-03-15T14:01:01+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://blog.aravindhebbali.com/2016/08/22/data-visualization-with-r-title-and-axis-labels/</loc>
+  <lastmod>2018-03-15T14:01:01+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://blog.aravindhebbali.com/2016/08/05/data-visualization-with-r-introduction/</loc>
+  <lastmod>2018-03-15T14:01:01+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://blog.aravindhebbali.com/2016/07/28/getting-help-in-r/</loc>
+  <lastmod>2018-03-15T14:01:01+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://blog.aravindhebbali.com/2016/07/07/beginners-guide-to-r-package-ecosystem/</loc>
+  <lastmod>2018-03-15T14:01:01+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://blog.aravindhebbali.com/2016/06/23/dataframes/</loc>
+  <lastmod>2018-03-15T14:01:01+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://blog.aravindhebbali.com/2016/06/16/introduction-to-factors/</loc>
+  <lastmod>2018-03-15T14:01:01+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://blog.aravindhebbali.com/2016/05/24/introduction-to-lists/</loc>
+  <lastmod>2018-03-15T14:01:01+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://blog.aravindhebbali.com/2016/05/05/matrix-part-2/</loc>
+  <lastmod>2018-03-15T14:01:01+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://blog.aravindhebbali.com/2016/04/19/introduction-to-matrix/</loc>
+  <lastmod>2018-03-15T14:01:01+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://blog.aravindhebbali.com/2016/04/04/vectors-part-3/</loc>
+  <lastmod>2018-03-15T14:01:01+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://blog.aravindhebbali.com/2016/03/20/vectors-part-2/</loc>
+  <lastmod>2018-03-15T14:01:01+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://blog.aravindhebbali.com/2016/03/03/introduction-to-vectors/</loc>
+  <lastmod>2018-03-15T14:01:01+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://blog.aravindhebbali.com/2016/02/17/data-types-in-r/</loc>
+  <lastmod>2018-03-15T14:01:01+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://blog.aravindhebbali.com/2016/02/07/data-types-in-r/</loc>
+  <lastmod>2018-03-15T14:01:01+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://blog.aravindhebbali.com/2017/12/25/quick-guide-r-sqlite/</loc>
+  <lastmod>2018-03-15T14:01:01+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://blog.aravindhebbali.com/2017/12/25/data-wrangling-with-dplyr-part-2/</loc>
+  <lastmod>2018-03-15T14:01:01+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://blog.aravindhebbali.com/2017/12/25/data-wrangling-with-dplyr-part-1/</loc>
+  <lastmod>2018-03-15T14:01:01+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://blog.aravindhebbali.com/2017/12/24/a-complete-guide-to-importing-data-into-r-part-1/</loc>
+  <lastmod>2018-03-15T14:01:01+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://blog.aravindhebbali.com/2017/12/25/importing-data-into-r-part-2/</loc>
+  <lastmod>2018-03-15T14:01:01+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+
+
 </urlset>

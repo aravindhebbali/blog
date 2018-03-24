@@ -1,0 +1,163 @@
+---
+title: Introduction to ggplot2
+author: ''
+date: '2017-01-08'
+slug: introduction-to-ggplot2
+categories:
+  - data-visualization
+tags:
+  - ggplot2
+---
+
+### Introduction
+
+```{r install, echo=FALSE, message=FALSE}
+library(ggplot2)
+```
+
+This is the first post in the series **Elegant Data Visualization with ggplot2**. In this post, we will:
+
+- understand the philosophy of Grammar of Graphics
+- explore different aspects of ggplot2
+- learn to build some of the basic plots regularly used for exploring data
+
+[ggplot2](http://ggplot2.tidyverse.org/index.html) is an **awesome** alternative to base R for data visualization. It is based on [The Grammar of Graphics](http://www.springer.com/in/book/9780387245447). In this post, we will understand the philosophy behind **ggplot2** and learn to build some of the most frequently used plots for visualizing data. 
+
+### Libraries, Code & Data
+
+We will use the following libraries in this post:
+
+- [readr](http://readr.tidyverse.org/)
+- [ggplot2](http://ggplot2.tidyverse.org/)
+
+All the data sets used in this post can be found [here](https://github.com/rsquaredacademy/datasets) and code can be downloaded from [here](https://gist.github.com/rsquaredacademy/4bc7327c8e921657f90c5101e14a35a7).
+
+### Grammar of Graphics
+
+Grammar of graphics is a formal system for building plots. The core idea is that any plot can be uniquely described as a combination of
+
+- a dataset
+- a geom
+- a set of mappings
+- a statistic
+- a position adjustment
+- a coordinate system
+- a faceting scheme
+
+### Data
+
+Let us build a scatter plot from scratch using the `mtcars` data. We will build the plot incrementally and understand the above layers. The first step in any data visualization exercise is to identify the data set. In `ggplot2`, we can specify the data set using `ggplot()`.
+
+```{r gg1, fig.align='center', exercise = TRUE, exercise.eval = FALSE, exercise.cap = 'Data'}
+ggplot(data = mtcars) 
+```
+
+If you observe, `ggplot()` does not generate any plot, it just creates a coordinate system. 
+
+### Geom
+
+After specifying the data set, we have to decide how the data will be visualized. We will do this using  `geoms`. It basically details the geometric shapes that must be used to display the data. In our case, we want the data to displayed as `points`. 
+
+There are several `geoms` and we will explore them one by one. For the time time being, let us use `geom_point()`. This tells ggplot2 it must use points to represent the data. The next step is to specify the variables that will be represented by the `X` and `Y` axis. To do this we will use `mapping` and `aes`. 
+
+`aes` is the short for aesthetics. Using `mapping`, we can map variables to aesthetics. We specify the aesthetic type and the corresponding variable within `aes`.In our example, we want the `X` axis to be represented by `disp` and `Y` axis by `mpg`. ggplot2 will search for these variables in the data we have provided in `ggplot` which is `mtcars`. If ggplot2 can't find the variables, it will return an error.
+
+So far we have provided:
+
+- data set
+- geometric shape to represent data
+- variables to represent `X` and `Y` axis
+
+The above layers are the bare minimum required to create a plot in ggplot2.
+
+```{r gg2, fig.width=6, fig.height=5, fig.align='center'}
+ggplot(data = mtcars) +
+  geom_point(mapping = aes(x = disp, y = mpg))
+```
+
+### Aesthetics
+
+Aestheics are the visual properties of the objects in the plot. We can display the geometric object in different ways by changing the values of its aesthetic properties such as:
+
+- shape
+- size
+- color
+- opaqueness
+
+Let us modify the appearance of the scatter plot by changing the following:
+
+#### Color
+
+```{r gg3, fig.width=6, fig.height=5, fig.align='center'}
+ggplot(data = mtcars) +
+  geom_point(mapping = aes(x = disp, y = mpg, color = cyl))
+```
+
+#### Shape
+
+```{r gg4, fig.width=6, fig.height=5, fig.align='center'}
+ggplot(data = mtcars) +
+  geom_point(mapping = aes(x = disp, y = mpg, shape = factor(gear)))
+```
+
+#### Size
+
+```{r gg5, fig.width=6, fig.height=5, fig.align='center'}
+ggplot(data = mtcars) +
+  geom_point(mapping = aes(x = disp, y = mpg, size = hp))
+```
+
+### Stat
+
+Some graphs plot the raw data set, but others like bar plot, box plot and histograms compute new values and plot them. In this section, we will look at how the data is transformed before representing them 
+in a plot.
+
+#### Plot unique values
+
+Let us say we want to remove duplicates from the scatter plot. We can use `stat_unique()` which
+removes duplicate values before plotting the data.
+
+```{r gg6, fig.width=6, fig.height=5, fig.align='center'}
+ggplot(data = mtcars) +
+  geom_point(mapping = aes(x = disp, y = mpg), stat = "unique")
+```			
+
+### Position
+
+Sometimes the geoms tend to overlap each other. In such cases, we might want to reposition them to
+aid better visualization. In this section, we will learn to adjust the position of the geoms using:
+
+- `position_dodge`
+- `position_identity`
+- `position_jitter`
+- `position_fill`
+
+### Coordinate System
+
+The default coordinate system of ggplot2 is the cartesian coordinate system. In this section, 
+we will learn to tweak the system using different functions such as: 
+
+- `coord_flip`
+- `coord_polar`
+
+### Facet
+
+Faceting allows us to generate multiple visualizations for different subsets of data. In 
+this section, we will generate multiple plots using:
+
+- `facet_grid`
+- `facet_wrap`
+
+### Summary
+
+In this post, we learnt 
+
+- about grammar of graphics
+- the components of a plot/chart
+- how to build a plot step by step 
+
+### Up Next..
+
+In the next [post](https://blog.aravindhebbali.com/), we will learn to quickly build a set of plots/charts that are routinely used in exploring data.
+
+
