@@ -1,6 +1,6 @@
 ---
 title: 'ggplot2: Scatter Plots'
-date: '2016-04-04'
+date: '2017-04-04'
 slug: ggplot2-scatter-plots
 topics:
   - ggplot2
@@ -202,3 +202,4 @@ In the next [post](https://blog.aravindhebbali.com/), we will learn to build lin
 
 
 
+  

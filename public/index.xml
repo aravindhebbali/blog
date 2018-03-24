@@ -177,6 +177,27 @@ Pipes allow us to clearly express a sequence of multiple operations by:
     </item>
     
     <item>
+      <title>ggplot2: Line Graphs</title>
+      <link>/2017/04/19/ggplot2-line-graphs/</link>
+      <pubDate>Wed, 19 Apr 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/2017/04/19/ggplot2-line-graphs/</guid>
+      <description>IntroductionThis is the 8th post in the series Elegant Data Visualization with ggplot2. In the previous post, we learnt to build scatter plots. In this post, we will learn to
+buildsimple line chartgrouped line chartmap aesthetics to variablesmodify linecolortypesizeLibraries, Code &amp;amp; DataWe will use the following libraries in this post:
+readrggplot2All the data sets used in this post can be found here and code can be downloaded from here.</description>
+    </item>
+    
+    <item>
+      <title>ggplot2: Scatter Plots</title>
+      <link>/2017/04/04/ggplot2-scatter-plots/</link>
+      <pubDate>Tue, 04 Apr 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/2017/04/04/ggplot2-scatter-plots/</guid>
+      <description>IntroductionThis is the fifth post in the series Elegant Data Visualization with ggplot2. In the previous post, we learnt about text annotations. In this post, we will build scatter plots by applying everything we have learnt so far.
+build scatter plotsmodify pointcolorfillalphashapesizefit regression lineLibraries, Code &amp;amp; DataWe will use the following libraries in this post:</description>
+    </item>
+    
+    <item>
       <title>ggplot2: Text Annotations</title>
       <link>/2017/03/17/ggplot2-text-annotations/</link>
       <pubDate>Fri, 17 Mar 2017 00:00:00 +0000</pubDate>
@@ -423,16 +444,6 @@ args(data.frame)## function (..., row.names = NULL, check.rows = FALSE, check.n
       <guid>/2016/04/04/vectors-part-3/</guid>
       <description>IntroductionThis is the seventh post in the series Introduction to R. In the previous post, we learnt to perform simple operations on vector and handle missing values. In this post, we will learn to index/subset vectors.
 Index VectorsOne of the most important steps in data analysis is selecting a subset of data from a bigger data set. Indexing helps in retrieving values individually or a set of values that meet a specific criteria.</description>
-    </item>
-    
-    <item>
-      <title>ggplot2: Scatter Plots</title>
-      <link>/2016/04/04/ggplot2-scatter-plots/</link>
-      <pubDate>Mon, 04 Apr 2016 00:00:00 +0000</pubDate>
-      
-      <guid>/2016/04/04/ggplot2-scatter-plots/</guid>
-      <description>IntroductionThis is the fifth post in the series Elegant Data Visualization with ggplot2. In the previous post, we learnt about text annotations. In this post, we will build scatter plots by applying everything we have learnt so far.
-build scatter plotsmodify pointcolorfillalphashapesizefit regression lineLibraries, Code &amp;amp; DataWe will use the following libraries in this post:</description>
     </item>
     
     <item>

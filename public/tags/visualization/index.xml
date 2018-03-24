@@ -6,10 +6,31 @@
     <description>Recent content in Visualization on Aravind&#39;s Blog | R | Economics | Finance</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 17 Mar 2017 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 19 Apr 2017 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/tags/visualization/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>ggplot2: Line Graphs</title>
+      <link>/2017/04/19/ggplot2-line-graphs/</link>
+      <pubDate>Wed, 19 Apr 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/2017/04/19/ggplot2-line-graphs/</guid>
+      <description>IntroductionThis is the 8th post in the series Elegant Data Visualization with ggplot2. In the previous post, we learnt to build scatter plots. In this post, we will learn to
+buildsimple line chartgrouped line chartmap aesthetics to variablesmodify linecolortypesizeLibraries, Code &amp;amp; DataWe will use the following libraries in this post:
+readrggplot2All the data sets used in this post can be found here and code can be downloaded from here.</description>
+    </item>
+    
+    <item>
+      <title>ggplot2: Scatter Plots</title>
+      <link>/2017/04/04/ggplot2-scatter-plots/</link>
+      <pubDate>Tue, 04 Apr 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/2017/04/04/ggplot2-scatter-plots/</guid>
+      <description>IntroductionThis is the fifth post in the series Elegant Data Visualization with ggplot2. In the previous post, we learnt about text annotations. In this post, we will build scatter plots by applying everything we have learnt so far.
+build scatter plotsmodify pointcolorfillalphashapesizefit regression lineLibraries, Code &amp;amp; DataWe will use the following libraries in this post:</description>
+    </item>
     
     <item>
       <title>ggplot2: Text Annotations</title>
@@ -148,16 +169,6 @@
       <guid>/2016/08/05/data-visualization-with-r-introduction/</guid>
       <description>IntroductionThis is the first post of the series Data Visualization With R. The objective of the series is to provide a gentle introduction to working with base graphics in R. We will come up with a similar series using ggplot2 shortly.
 what is data visualizationwhy visualize dataunderstand R graphics systemgraphicsggplot2latticebuild some simple plotsLibraries, Code &amp;amp; DataAll the data sets used in this post can be found here and code can be downloaded from here.</description>
-    </item>
-    
-    <item>
-      <title>ggplot2: Scatter Plots</title>
-      <link>/2016/04/04/ggplot2-scatter-plots/</link>
-      <pubDate>Mon, 04 Apr 2016 00:00:00 +0000</pubDate>
-      
-      <guid>/2016/04/04/ggplot2-scatter-plots/</guid>
-      <description>IntroductionThis is the fifth post in the series Elegant Data Visualization with ggplot2. In the previous post, we learnt about text annotations. In this post, we will build scatter plots by applying everything we have learnt so far.
-build scatter plotsmodify pointcolorfillalphashapesizefit regression lineLibraries, Code &amp;amp; DataWe will use the following libraries in this post:</description>
     </item>
     
   </channel>
