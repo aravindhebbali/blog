@@ -6,10 +6,20 @@
     <description>Recent content in Data Visualization on Aravind&#39;s Blog | R | Economics | Finance</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 17 Dec 2016 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sun, 08 Jan 2017 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/categories/data-visualization/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Introduction to ggplot2</title>
+      <link>/2017/01/08/introduction-to-ggplot2/</link>
+      <pubDate>Sun, 08 Jan 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/2017/01/08/introduction-to-ggplot2/</guid>
+      <description>IntroductionThis is the first post in the series Elegant Data Visualization with ggplot2. In this post, we will:
+understand the philosophy of Grammar of Graphicsexplore different aspects of ggplot2learn to build some of the basic plots regularly used for exploring dataggplot2 is an awesome alternative to base R for data visualization. It is based on The Grammar of Graphics. In this post, we will understand the philosophy behind ggplot2 and learn to build some of the most frequently used plots for visualizing data.</description>
+    </item>
     
     <item>
       <title>Data Visualization with R - Combining Plots</title>

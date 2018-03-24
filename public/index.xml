@@ -177,6 +177,26 @@ Pipes allow us to clearly express a sequence of multiple operations by:
     </item>
     
     <item>
+      <title>ggplot2: Quick Tour</title>
+      <link>/2017/01/22/ggplot2-quick-tour/</link>
+      <pubDate>Sun, 22 Jan 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/2017/01/22/ggplot2-quick-tour/</guid>
+      <description>IntroductionThis is the second post in the series Elegant Data Visualization with ggplot2. In the previous post, we understood the concept of grammar of graphics and even built a bar plot step by step while exploring the different components of a plot/chart. In this post, we willlearn to quickly build a set of plots that are routinely used to explore data.
+Libraries, Code &amp;amp; DataWe will use the following libraries in this post:</description>
+    </item>
+    
+    <item>
+      <title>Introduction to ggplot2</title>
+      <link>/2017/01/08/introduction-to-ggplot2/</link>
+      <pubDate>Sun, 08 Jan 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/2017/01/08/introduction-to-ggplot2/</guid>
+      <description>IntroductionThis is the first post in the series Elegant Data Visualization with ggplot2. In this post, we will:
+understand the philosophy of Grammar of Graphicsexplore different aspects of ggplot2learn to build some of the basic plots regularly used for exploring dataggplot2 is an awesome alternative to base R for data visualization. It is based on The Grammar of Graphics. In this post, we will understand the philosophy behind ggplot2 and learn to build some of the most frequently used plots for visualizing data.</description>
+    </item>
+    
+    <item>
       <title>Data Visualization with R - Combining Plots</title>
       <link>/2016/12/17/data-visualization-with-r-combining-plots/</link>
       <pubDate>Sat, 17 Dec 2016 00:00:00 +0000</pubDate>

@@ -6,10 +6,20 @@
     <description>Recent content in Visualization on Aravind&#39;s Blog | R | Economics | Finance</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 17 Dec 2016 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sun, 22 Jan 2017 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/tags/visualization/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>ggplot2: Quick Tour</title>
+      <link>/2017/01/22/ggplot2-quick-tour/</link>
+      <pubDate>Sun, 22 Jan 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/2017/01/22/ggplot2-quick-tour/</guid>
+      <description>IntroductionThis is the second post in the series Elegant Data Visualization with ggplot2. In the previous post, we understood the concept of grammar of graphics and even built a bar plot step by step while exploring the different components of a plot/chart. In this post, we willlearn to quickly build a set of plots that are routinely used to explore data.
+Libraries, Code &amp;amp; DataWe will use the following libraries in this post:</description>
+    </item>
     
     <item>
       <title>Data Visualization with R - Combining Plots</title>
