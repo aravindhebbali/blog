@@ -1,0 +1,194 @@
+---
+title: 'ggplot2: Bar Plots'
+date: '2017-05-07'
+slug: ggplot2-bar-plots
+topics:
+  - ggplot2
+tags:
+  - ggplot2
+  - visualization
+---
+
+
+
+<div id="introduction" class="section level3">
+<h3>Introduction</h3>
+<p>This is the ninth post in the series <strong>Elegant Data Visualization with ggplot2</strong>. In the previous <a href="https://blog.aravindhebbali.com/">post</a>, we learnt to build line charts. In this post, we will learn to:</p>
+<ul>
+<li>build
+<ul>
+<li>simple bar plot</li>
+<li>stacked bar plot</li>
+<li>grouped bar plot</li>
+<li>proportional bar plot</li>
+</ul></li>
+<li>map aesthetics to variables</li>
+<li>specify values for
+<ul>
+<li>bar color</li>
+<li>bar line color</li>
+<li>bar line type</li>
+<li>bar line size</li>
+</ul></li>
+</ul>
+</div>
+<div id="libraries-code-data" class="section level3">
+<h3>Libraries, Code &amp; Data</h3>
+<p>We will use the following libraries in this post:</p>
+<ul>
+<li><a href="https://readr.tidyverse.org/">readr</a></li>
+<li><a href="https://ggplot2.tidyverse.org/">ggplot2</a></li>
+</ul>
+<p>All the data sets used in this post can be found <a href="https://github.com/rsquaredacademy/datasets">here</a> and code can be downloaded from <a href="https://gist.github.com/rsquaredacademy/096329693fa1f9313771d4e259cce1ec">here</a>.</p>
+</div>
+<div id="data" class="section level3">
+<h3>Data</h3>
+<pre class="r"><code>ecom &lt;- readr::read_csv(&#39;https://raw.githubusercontent.com/rsquaredacademy/datasets/master/web.csv&#39;)
+ecom</code></pre>
+<pre><code>## # A tibble: 1,000 x 11
+##       id referrer device bouncers n_visit n_pages duration country       
+##    &lt;int&gt; &lt;chr&gt;    &lt;chr&gt;  &lt;chr&gt;      &lt;int&gt;   &lt;dbl&gt;    &lt;dbl&gt; &lt;chr&gt;         
+##  1     1 google   laptop true          10    1.00    693   Czech Republic
+##  2     2 yahoo    tablet true           9    1.00    459   Yemen         
+##  3     3 direct   laptop true           0    1.00    996   Brazil        
+##  4     4 bing     tablet false          3   18.0     468   China         
+##  5     5 yahoo    mobile true           9    1.00    955   Poland        
+##  6     6 yahoo    laptop false          5    5.00    135   South Africa  
+##  7     7 yahoo    mobile true          10    1.00     75.0 Bangladesh    
+##  8     8 direct   mobile true          10    1.00    908   Indonesia     
+##  9     9 bing     mobile false          3   19.0     209   Netherlands   
+## 10    10 google   mobile true           6    1.00    208   Czech Republic
+## # ... with 990 more rows, and 3 more variables: purchase &lt;chr&gt;,
+## #   order_items &lt;dbl&gt;, order_value &lt;dbl&gt;</code></pre>
+</div>
+<div id="data-dictionary" class="section level3">
+<h3>Data Dictionary</h3>
+<ul>
+<li>id: row id</li>
+<li>referrer: referrer website/search engine</li>
+<li>os: operating system</li>
+<li>browser: browser</li>
+<li>device: device used to visit the website</li>
+<li>n_pages: number of pages visited</li>
+<li>duration: time spent on the website (in seconds)</li>
+<li>repeat: frequency of visits</li>
+<li>country: country of origin</li>
+<li>purchase: whether visitor purchased</li>
+<li>order_value: order value of visitor (in dollars)</li>
+</ul>
+</div>
+<div id="aesthetics" class="section level3">
+<h3>Aesthetics</h3>
+<ul>
+<li><code>fill</code></li>
+<li><code>color</code></li>
+<li><code>linetype</code></li>
+<li><code>size</code></li>
+<li><code>position</code></li>
+</ul>
+<div id="simple-bar-plot" class="section level4">
+<h4>Simple Bar Plot</h4>
+<p>Let us start by building a simple bar plot using <code>geom_bar()</code>. We will look at the
+distribution of devices that drive traffic to a fictional website.</p>
+<pre class="r"><code>ggplot(ecom) +
+  geom_bar(aes(factor(device)))</code></pre>
+<p><img src="/post/2017-05-07-ggplot2-bar-plots_files/figure-html/bar2-1.png" width="672" style="display: block; margin: auto;" /></p>
+</div>
+<div id="bar-color" class="section level4">
+<h4>Bar Color</h4>
+<p>Use the <code>fill</code> argument to modify the color of the bars.</p>
+<pre class="r"><code>ggplot(ecom) +
+  geom_bar(aes(factor(device)),
+           fill = c(&#39;red&#39;, &#39;blue&#39;, &#39;green&#39;))</code></pre>
+<p><img src="/post/2017-05-07-ggplot2-bar-plots_files/figure-html/bar3-1.png" width="672" style="display: block; margin: auto;" /></p>
+</div>
+<div id="stacked-bar-plot" class="section level4">
+<h4>Stacked Bar Plot</h4>
+<p>To build a stacked bar plot, map the <code>fill</code> argument to another categorical variable. In
+the below example, we map <code>fill</code> to <code>referrer</code>.</p>
+<pre class="r"><code>ggplot(ecom) +
+  geom_bar(aes(device, fill = factor(referrer)))</code></pre>
+<p><img src="/post/2017-05-07-ggplot2-bar-plots_files/figure-html/bar7-1.png" width="672" style="display: block; margin: auto;" /></p>
+</div>
+<div id="grouped-bar-plot" class="section level4">
+<h4>Grouped Bar Plot</h4>
+<p>Use the <code>position</code> argument to create a grouped bar plot. Assign the value <code>dodge</code>
+to <code>position</code> argument. Instead of stacking the bars on top of one another, the bar
+are placed next to each other.</p>
+<pre class="r"><code>ggplot(ecom) +
+  geom_bar(aes(device, fill = factor(referrer)), position = &#39;dodge&#39;)</code></pre>
+<p><img src="/post/2017-05-07-ggplot2-bar-plots_files/figure-html/bar8-1.png" width="672" style="display: block; margin: auto;" /></p>
+</div>
+<div id="proportional-bar-plot" class="section level4">
+<h4>Proportional Bar Plot</h4>
+<p>Proportional bar plots can be created by assigning the value <code>fill</code> to
+the <code>position</code> argument. In a proportional bar plot, the height of all
+the bars is same.</p>
+<pre class="r"><code>ggplot(ecom) +
+  geom_bar(aes(device, fill = factor(referrer)), position = &#39;fill&#39;)</code></pre>
+<p><img src="/post/2017-05-07-ggplot2-bar-plots_files/figure-html/bar10-1.png" width="672" style="display: block; margin: auto;" /></p>
+</div>
+<div id="horizontal-bar-plot" class="section level4">
+<h4>Horizontal Bar Plot</h4>
+<p>Use <code>coord_flip()</code> to create a horizontal bar plot.</p>
+<pre class="r"><code>ggplot(ecom) +
+  geom_bar(aes(factor(device), fill = factor(referrer))) +
+  coord_flip()</code></pre>
+<p><img src="/post/2017-05-07-ggplot2-bar-plots_files/figure-html/bar9-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>In the next 3 examples, we will learn to modify the following properties of the bar lines:</p>
+<ul>
+<li>line color</li>
+<li>line type</li>
+<li>and line size</li>
+</ul>
+</div>
+<div id="bar-line-color" class="section level4">
+<h4>Bar Line Color</h4>
+<p>The color of the bar lines can be specified using the <code>color</code> argument.</p>
+<pre class="r"><code>ggplot(ecom) +
+  geom_bar(aes(factor(device)), fill = &#39;white&#39;,
+           color = c(&#39;red&#39;, &#39;blue&#39;, &#39;green&#39;))</code></pre>
+<p><img src="/post/2017-05-07-ggplot2-bar-plots_files/figure-html/bar4-1.png" width="672" style="display: block; margin: auto;" /></p>
+</div>
+<div id="bar-line-type" class="section level4">
+<h4>Bar Line Type</h4>
+<p>To modify the line type of the bars, use the <code>linetype</code> argument.</p>
+<pre class="r"><code>ggplot(ecom) +
+  geom_bar(aes(factor(device)), fill = &#39;white&#39;, 
+          color = &#39;black&#39;, linetype = 2)</code></pre>
+<p><img src="/post/2017-05-07-ggplot2-bar-plots_files/figure-html/bar5-1.png" width="672" style="display: block; margin: auto;" /></p>
+</div>
+<div id="bar-line-size" class="section level4">
+<h4>Bar Line Size</h4>
+<p>The <code>size</code> argument can be used to modify the size of the bar lines.</p>
+<pre class="r"><code>ggplot(ecom) +
+  geom_bar(aes(factor(device)), fill = &#39;white&#39;, 
+           color = &#39;black&#39;, size = 2)</code></pre>
+<p><img src="/post/2017-05-07-ggplot2-bar-plots_files/figure-html/bar6-1.png" width="672" style="display: block; margin: auto;" /></p>
+</div>
+</div>
+<div id="summary" class="section level3">
+<h3>Summary</h3>
+<p>In this post, we learnt to:</p>
+<ul>
+<li>build
+<ul>
+<li>simple bar plot</li>
+<li>stacked bar plot</li>
+<li>grouped bar plot</li>
+<li>proportional bar plot</li>
+</ul></li>
+<li>map aesthetics to variables</li>
+<li>specify values for
+<ul>
+<li>bar color</li>
+<li>bar line color</li>
+<li>bar line type</li>
+<li>bar line size</li>
+</ul></li>
+</ul>
+</div>
+<div id="up-next.." class="section level3">
+<h3>Up Next..</h3>
+<p>In the next <a href="https://blog.aravindhebbali.com/">post</a>, we will learn to build box plots.</p>
+</div>

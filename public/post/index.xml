@@ -177,6 +177,16 @@ Pipes allow us to clearly express a sequence of multiple operations by:
     </item>
     
     <item>
+      <title>ggplot2: Bar Plots</title>
+      <link>/2017/05/07/ggplot2-bar-plots/</link>
+      <pubDate>Sun, 07 May 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/2017/05/07/ggplot2-bar-plots/</guid>
+      <description>IntroductionThis is the ninth post in the series Elegant Data Visualization with ggplot2. In the previous post, we learnt to build line charts. In this post, we will learn to:
+buildsimple bar plotstacked bar plotgrouped bar plotproportional bar plotmap aesthetics to variablesspecify values forbar colorbar line colorbar line typebar line sizeLibraries, Code &amp;amp; DataWe will use the following libraries in this post:</description>
+    </item>
+    
+    <item>
       <title>ggplot2: Line Graphs</title>
       <link>/2017/04/19/ggplot2-line-graphs/</link>
       <pubDate>Wed, 19 Apr 2017 00:00:00 +0000</pubDate>

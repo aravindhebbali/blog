@@ -1,0 +1,190 @@
+---
+title: 'ggplot2: Bar Plots'
+date: '2017-05-07'
+slug: ggplot2-bar-plots
+topics:
+  - ggplot2
+tags:
+  - ggplot2
+  - visualization
+---
+
+### Introduction
+
+This is the ninth post in the series **Elegant Data Visualization with ggplot2**. In the previous [post](https://blog.aravindhebbali.com/), we learnt to build line charts. In this post, we will learn to:
+
+- build 
+    - simple bar plot
+    - stacked bar plot
+    - grouped bar plot
+    - proportional bar plot
+- map aesthetics to variables
+- specify values for 
+    - bar color
+    - bar line color
+    - bar line type
+    - bar line size
+
+```{r bar, echo=FALSE, eval=TRUE, results='hide', message=FALSE}
+library(ggplot2)
+library(readr)
+```
+
+### Libraries, Code & Data
+
+We will use the following libraries in this post:
+
+- [readr](https://readr.tidyverse.org/)
+- [ggplot2](https://ggplot2.tidyverse.org/)
+
+All the data sets used in this post can be found [here](https://github.com/rsquaredacademy/datasets) and code can be downloaded from [here](https://gist.github.com/rsquaredacademy/096329693fa1f9313771d4e259cce1ec).
+
+### Data
+
+```{r import2, eval=TRUE, message=FALSE}
+ecom <- readr::read_csv('https://raw.githubusercontent.com/rsquaredacademy/datasets/master/web.csv')
+ecom
+```
+
+### Data Dictionary
+
+- id: row id
+- referrer: referrer website/search engine
+- os: operating system
+- browser: browser
+- device: device used to visit the website
+- n_pages: number of pages visited
+- duration: time spent on the website (in seconds)
+- repeat: frequency of visits
+- country: country of origin
+- purchase: whether visitor purchased
+- order_value: order value of visitor (in dollars)
+
+### Aesthetics
+
+- `fill`
+- `color`
+- `linetype`
+- `size`
+- `position`
+
+
+#### Simple Bar Plot
+
+Let us start by building a simple bar plot using `geom_bar()`. We will look at the
+distribution of devices that drive traffic to a fictional website.
+
+```{r bar2, fig.align='center'}
+ggplot(ecom) +
+  geom_bar(aes(factor(device)))
+```
+
+#### Bar Color
+
+Use the `fill` argument to modify the color of the bars.
+
+```{r bar3, fig.align='center'}
+ggplot(ecom) +
+  geom_bar(aes(factor(device)),
+           fill = c('red', 'blue', 'green'))
+```
+
+#### Stacked Bar Plot
+
+To build a stacked bar plot, map the `fill` argument to another categorical variable. In 
+the below example, we map `fill` to `referrer`.
+
+```{r bar7, fig.align='center'}
+ggplot(ecom) +
+  geom_bar(aes(device, fill = factor(referrer)))
+```
+
+#### Grouped Bar Plot
+
+Use the `position` argument to create a grouped bar plot. Assign the value `dodge` 
+to `position` argument. Instead of stacking the bars on top of one another, the bar 
+are placed next to each other. 
+
+```{r bar8, fig.align='center'}
+ggplot(ecom) +
+  geom_bar(aes(device, fill = factor(referrer)), position = 'dodge')
+```
+
+#### Proportional Bar Plot
+
+Proportional bar plots can be created by assigning the value `fill` to 
+the `position` argument. In a proportional bar plot, the height of all 
+the bars is same.
+
+```{r bar10, fig.align='center'}
+ggplot(ecom) +
+  geom_bar(aes(device, fill = factor(referrer)), position = 'fill')
+```
+
+#### Horizontal Bar Plot
+
+Use `coord_flip()` to create a horizontal bar plot.
+
+```{r bar9, fig.align='center'}
+ggplot(ecom) +
+  geom_bar(aes(factor(device), fill = factor(referrer))) +
+  coord_flip()
+```
+
+In the next 3 examples, we will learn to modify the following properties of the bar lines:
+
+- line color
+- line type
+- and line size
+
+#### Bar Line Color
+
+The color of the bar lines can be specified using the `color` argument.
+
+```{r bar4, fig.align='center'}
+ggplot(ecom) +
+  geom_bar(aes(factor(device)), fill = 'white',
+           color = c('red', 'blue', 'green'))
+```
+
+#### Bar Line Type
+
+To modify the line type of the bars, use the `linetype` argument.
+
+```{r bar5, fig.align='center'}
+ggplot(ecom) +
+  geom_bar(aes(factor(device)), fill = 'white', 
+          color = 'black', linetype = 2)
+```
+
+#### Bar Line Size
+
+The `size` argument can be used to modify the size of the bar lines.
+
+```{r bar6, fig.align='center'}
+ggplot(ecom) +
+  geom_bar(aes(factor(device)), fill = 'white', 
+           color = 'black', size = 2)
+```
+
+### Summary
+
+In this post, we learnt to:
+
+- build 
+    - simple bar plot
+    - stacked bar plot
+    - grouped bar plot
+    - proportional bar plot
+- map aesthetics to variables
+- specify values for 
+    - bar color
+    - bar line color
+    - bar line type
+    - bar line size
+
+
+### Up Next..
+
+In the next [post](https://blog.aravindhebbali.com/), we will learn to build box plots.
+
