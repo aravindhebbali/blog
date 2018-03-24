@@ -6,10 +6,19 @@
     <description>Recent content in Ggplot2 on Aravind&#39;s Blog | R | Economics | Finance</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 11 Feb 2017 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 24 Feb 2017 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/tags/ggplot2/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>ggplot2: Introduction to aesthetics</title>
+      <link>/2017/02/24/ggplot2-introduction-to-aesthetics/</link>
+      <pubDate>Fri, 24 Feb 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/2017/02/24/ggplot2-introduction-to-aesthetics/</guid>
+      <description>IntroductionThis is the fourth post in the series Elegant Data Visualization with ggplot2. In the previous post we learnt about geoms and how we can use them to build different plots. In this post, we will focus on the aesthetics i.e. color, shape, size, alpha, line type, line width etc. We can map these to variables or specify values for them. If we want to map the above to variables, we have to specify them within the aes() function.</description>
+    </item>
     
     <item>
       <title>ggplot2: Introduction to geoms</title>
