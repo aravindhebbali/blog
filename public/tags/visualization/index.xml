@@ -6,10 +6,21 @@
     <description>Recent content in Visualization on Aravind&#39;s Blog | R | Economics | Finance</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 07 May 2017 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 23 May 2017 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/tags/visualization/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>ggplot2: Box Plots</title>
+      <link>/2017/05/23/ggplot2-box-plots/</link>
+      <pubDate>Tue, 23 May 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/2017/05/23/ggplot2-box-plots/</guid>
+      <description>IntroductionThis is the 9th post in the series Elegant Data Visualization with ggplot2. In the previous post, we learnt how to build bar charts. In this post, we will
+build box plotsmodify boxcolorfillalphaline sizeline typemodify outliercolorshapesizealphaLibraries, Code &amp;amp; DataWe will use the following libraries in this post:
+readrggplot2All the data sets used in this post can be found here and code can be downloaded from here.</description>
+    </item>
     
     <item>
       <title>ggplot2: Bar Plots</title>

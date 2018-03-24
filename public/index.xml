@@ -177,6 +177,17 @@ Pipes allow us to clearly express a sequence of multiple operations by:
     </item>
     
     <item>
+      <title>ggplot2: Box Plots</title>
+      <link>/2017/05/23/ggplot2-box-plots/</link>
+      <pubDate>Tue, 23 May 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/2017/05/23/ggplot2-box-plots/</guid>
+      <description>IntroductionThis is the 9th post in the series Elegant Data Visualization with ggplot2. In the previous post, we learnt how to build bar charts. In this post, we will
+build box plotsmodify boxcolorfillalphaline sizeline typemodify outliercolorshapesizealphaLibraries, Code &amp;amp; DataWe will use the following libraries in this post:
+readrggplot2All the data sets used in this post can be found here and code can be downloaded from here.</description>
+    </item>
+    
+    <item>
       <title>ggplot2: Bar Plots</title>
       <link>/2017/05/07/ggplot2-bar-plots/</link>
       <pubDate>Sun, 07 May 2017 00:00:00 +0000</pubDate>
