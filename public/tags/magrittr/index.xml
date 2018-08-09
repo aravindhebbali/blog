@@ -1,26 +1,0 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>Magrittr on Aravind&#39;s Blog | R | Economics | Finance</title>
-    <link>/tags/magrittr/</link>
-    <description>Recent content in Magrittr on Aravind&#39;s Blog | R | Economics | Finance</description>
-    <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language>
-    <lastBuildDate>Sun, 03 Dec 2017 00:00:00 +0000</lastBuildDate>
-    
-	<atom:link href="/tags/magrittr/index.xml" rel="self" type="application/rss+xml" />
-    
-    
-    <item>
-      <title>Readable Code with Pipes</title>
-      <link>/2017/12/03/readable-code-with-pipes/</link>
-      <pubDate>Sun, 03 Dec 2017 00:00:00 +0000</pubDate>
-      
-      <guid>/2017/12/03/readable-code-with-pipes/</guid>
-      <description>IntroductionR code contain a lot of parentheses in case of a sequence of multiple operations. When you are dealing withcomplex code, it results in nested function calls which are hard to read and maintain. The magrittr package by Stefan Milton Bache provides pipes enabling us to write R code that is readable.
-Pipes allow us to clearly express a sequence of multiple operations by:
-structuring operations from left to rightavoidingnested function callsintermediate stepsoverwriting of original dataminimizing creation of local variablesPipesIf you are using tidyverse, magrittr will be automatically loaded.</description>
-    </item>
-    
-  </channel>
-</rss>

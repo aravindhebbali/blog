@@ -1,25 +1,0 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>R Programming on Aravind&#39;s Blog | R | Economics | Finance</title>
-    <link>/categories/r-programming/</link>
-    <description>Recent content in R Programming on Aravind&#39;s Blog | R | Economics | Finance</description>
-    <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language>
-    <lastBuildDate>Sun, 07 Feb 2016 00:00:00 +0000</lastBuildDate>
-    
-	<atom:link href="/categories/r-programming/index.xml" rel="self" type="application/rss+xml" />
-    
-    
-    <item>
-      <title>Getting Started With R</title>
-      <link>/2016/02/07/data-types-in-r/</link>
-      <pubDate>Sun, 07 Feb 2016 00:00:00 +0000</pubDate>
-      
-      <guid>/2016/02/07/data-types-in-r/</guid>
-      <description>IntroductionThis is the third post in the series Introduction to R. In the previous post, we learnt to install RStudio. In this post, we will learn about variables and data types. You can skip this post, if you have prior experience in any other programming language.
-What is a variable?variables are the fundamental elements of any programming languagethey are used to represent values that are likely to changethey reference memory locations that store information/dataLet us use a simple case study to understand variables.</description>
-    </item>
-    
-  </channel>
-</rss>

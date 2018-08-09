@@ -1,157 +1,0 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>Data Wrangling on Aravind&#39;s Blog | R | Economics | Finance</title>
-    <link>/categories/data-wrangling/</link>
-    <description>Recent content in Data Wrangling on Aravind&#39;s Blog | R | Economics | Finance</description>
-    <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language>
-    <lastBuildDate>Sun, 04 Feb 2018 00:00:00 +0000</lastBuildDate>
-    
-	<atom:link href="/categories/data-wrangling/index.xml" rel="self" type="application/rss+xml" />
-    
-    
-    <item>
-      <title>Data Wrangling with dbplyr</title>
-      <link>/2018/02/04/data-wrangling-with-dbplyr/</link>
-      <pubDate>Sun, 04 Feb 2018 00:00:00 +0000</pubDate>
-      
-      <guid>/2018/02/04/data-wrangling-with-dbplyr/</guid>
-      <description>IntroductionThis is the third post in the series R &amp;amp; Databases. You can find the links to the other two posts of this series below:
-Quick Guide: R &amp;amp; SQLiteIn this post, we will learn to query data from a database using dplyr.
-Libraries, Code &amp;amp; DataWe will use the following libraries in this post:
-DBIRSQLitedbplyrdplyrAll the data sets used in this post can be found here and code can be downloaded from here.</description>
-    </item>
-    
-    <item>
-      <title>Quick Guide: R &amp; SQLite</title>
-      <link>/2018/01/28/quick-guide-r-sqlite/</link>
-      <pubDate>Sun, 28 Jan 2018 00:00:00 +0000</pubDate>
-      
-      <guid>/2018/01/28/quick-guide-r-sqlite/</guid>
-      <description>IntroductionThis is the first post in the series R &amp;amp; Databases. You can find the links to the other two posts of this series below:
-Data Wrangling with dbplyrSQL for Data Science - Part 1SQL for Data Science - Part 2In this post, we will learn to:
-connect to a SQLite database from Rdisplay database informationlist tables in the databasequery dataread entire tableread few rowsread data in batchescreate table in databaseoverwrite table in databaseappend data to table in databaseremove table from databasegenerate SQL queryclose database connectionLibraries, Code &amp;amp; DataWe will use the following libraries in this post:</description>
-    </item>
-    
-    <item>
-      <title>Working with Categorical Data using forcats</title>
-      <link>/2018/01/21/working-with-categorical-data-using-forcats/</link>
-      <pubDate>Sun, 21 Jan 2018 00:00:00 +0000</pubDate>
-      
-      <guid>/2018/01/21/working-with-categorical-data-using-forcats/</guid>
-      <description>IntroductionIn this post, we will learn to work with categorical/qualitative data in R using forcats. Let us begin by installing and loading forcats and a set of other pacakges we will be using.
-Libraries &amp;amp; CodeWe will use the following packages:
-forcatsdplyrmagrittrggplot2tibbepurrrand readrThe codes from here.
-library(forcats)library(tibble)library(magrittr)library(purrr)library(dplyr)library(ggplot2)library(readr)Case StudyWe will use a case study to explore the various features of the forcats package.</description>
-    </item>
-    
-    <item>
-      <title>Working with Dates in R </title>
-      <link>/2018/01/14/working-with-dates-in-r/</link>
-      <pubDate>Sun, 14 Jan 2018 00:00:00 +0000</pubDate>
-      
-      <guid>/2018/01/14/working-with-dates-in-r/</guid>
-      <description>IntroductionIn this post, we will learn to work with date/time data in R using lubridate, an R package that makes it easy to work with dates and time.Let us begin by installing and loading the pacakge.
-Libraries, Code &amp;amp; DataWe will use the following packages:
-lubridatedplyrmagrittrreadrThe data sets can be downloaded from here and the codes from here.
-library(lubridate)library(dplyr)library(magrittr)library(readr)Quic IntroOriginLet us look at the origin for the numbering system used for date and timecalculations in R.</description>
-    </item>
-    
-    <item>
-      <title>Hacking strings with stringr</title>
-      <link>/2018/01/07/hacking-strings-with-stringr/</link>
-      <pubDate>Sun, 07 Jan 2018 00:00:00 +0000</pubDate>
-      
-      <guid>/2018/01/07/hacking-strings-with-stringr/</guid>
-      <description>IntroductionIn this post, we will learn to work with string data in R using stringr. As we did in the other posts, we will use a case study to explore the various features of the stringr package. Let us begin by installing and loading stringr and a set of other pacakges we will be using.
-Libraries, Code &amp;amp; DataWe will use the following libraries:
-stringrdplyrmagrittrtibblepurrrand readrThe data sets can be downloaded from here and the codes from here.</description>
-    </item>
-    
-    <item>
-      <title>Data Wrangling with dplyr - Part 3</title>
-      <link>/2017/12/24/data-wrangling-with-dplyr-part-3/</link>
-      <pubDate>Sun, 24 Dec 2017 00:00:00 +0000</pubDate>
-      
-      <guid>/2017/12/24/data-wrangling-with-dplyr-part-3/</guid>
-      <description>IntroductionIn the previous post,we learnt to combine tables using dplyr. In this post, we will explore a set ofhelper functions in order to:
-extract unique rowsrename columnssample dataextract columnsslice rowsarrange rowscompare tablesextract/mutate data using predicate functionscount observations for different levels of a variableLibraries, Code &amp;amp; DataWe will use the following packages:
-dplyrreadrThe data sets can be downloaded from hereand the codes from here.</description>
-    </item>
-    
-    <item>
-      <title>Data Wrangling with dplyr - Part 2</title>
-      <link>/2017/12/17/data-wrangling-with-dplyr-part-2/</link>
-      <pubDate>Sun, 17 Dec 2017 00:00:00 +0000</pubDate>
-      
-      <guid>/2017/12/17/data-wrangling-with-dplyr-part-2/</guid>
-      <description>IntroductionIn the previous post,we learnt about dplyr verbs and used them to compute average order value for anonline retail company data. In this post, we will learn to combine tables usingdifferent *_join functions provided in dplyr.
-Libraries, Code &amp;amp; DataWe will use the following packages:
-dplyrreadrThe data sets can be downloaded from hereand the codes from here.
-library(dplyr)library(readr)options(tibble.</description>
-    </item>
-    
-    <item>
-      <title>Data Wrangling with dplyr - Part 1</title>
-      <link>/2017/12/10/data-wrangling-with-dplyr-part-1/</link>
-      <pubDate>Sun, 10 Dec 2017 00:00:00 +0000</pubDate>
-      
-      <guid>/2017/12/10/data-wrangling-with-dplyr-part-1/</guid>
-      <description>IntroductionAccording to a survey by CrowdFlower, data scientists spend most of theirtime cleaning and manipulating data rather than mining or modeling them forinsights. As such, it becomes important to have tools that make datamanipulation faster and easier. In today’s post, we introduce you todplyr, a grammar of data manipulation.
-Libraries, Code &amp;amp; DataWe will use the following libraries:
-dplyrand readrThe data sets can be downloaded from hereand the codes from here.</description>
-    </item>
-    
-    <item>
-      <title>Readable Code with Pipes</title>
-      <link>/2017/12/03/readable-code-with-pipes/</link>
-      <pubDate>Sun, 03 Dec 2017 00:00:00 +0000</pubDate>
-      
-      <guid>/2017/12/03/readable-code-with-pipes/</guid>
-      <description>IntroductionR code contain a lot of parentheses in case of a sequence of multiple operations. When you are dealing withcomplex code, it results in nested function calls which are hard to read and maintain. The magrittr package by Stefan Milton Bache provides pipes enabling us to write R code that is readable.
-Pipes allow us to clearly express a sequence of multiple operations by:
-structuring operations from left to rightavoidingnested function callsintermediate stepsoverwriting of original dataminimizing creation of local variablesPipesIf you are using tidyverse, magrittr will be automatically loaded.</description>
-    </item>
-    
-    <item>
-      <title>Introduction to tibbles</title>
-      <link>/2017/11/26/introduction-to-tibbles/</link>
-      <pubDate>Sun, 26 Nov 2017 00:00:00 +0000</pubDate>
-      
-      <guid>/2017/11/26/introduction-to-tibbles/</guid>
-      <description>IntroductionA tibble, or tbl_df, is a modern reimagining of the data.frame, keeping what time has proven to be effective, and throwing out what is not. Tibbles are data.frames that are lazy and surly: they do less (i.e. they don’t change variable names or types, and don’t do partial matching) and complain more (e.g. when a variable does not exist). This forces you to confront problems earlier, typically leading to cleaner, more expressive code.</description>
-    </item>
-    
-    <item>
-      <title>Importing Data into R - Part 3</title>
-      <link>/2017/11/19/importing-data-into-r-part-3/</link>
-      <pubDate>Sun, 19 Nov 2017 00:00:00 +0000</pubDate>
-      
-      <guid>/2017/11/19/importing-data-into-r-part-3/</guid>
-      <description>IntroductionThis is the third post in the series Importing Data into R. You can find the link to the previous posts below:
-Importing Data into R - Part 1Importing Data into R - Part 2In the previous post, we explored reading data from excel spreadsheets and files from other statistical softwares such as SAS, SPSS and STATA. In this post, we will learn to read data from:</description>
-    </item>
-    
-    <item>
-      <title>Importing Data into R - Part 2</title>
-      <link>/2017/11/12/importing-data-into-r-part-2/</link>
-      <pubDate>Sun, 12 Nov 2017 00:00:00 +0000</pubDate>
-      
-      <guid>/2017/11/12/importing-data-into-r-part-2/</guid>
-      <description>IntroductionThis is the second post in the series Importing Data into R. In the previous post, we explored reading data from flat/delimited files. In this post, we will:
-list sheets in an excel fileread data from an excel sheetread specific cells from an excel sheetread specific rowsread specific columnsread data from- SAS- SPSS- STATALibraries, Data &amp;amp; CodeWe will use the readxl package.</description>
-    </item>
-    
-    <item>
-      <title>Importing Data into R - Part 1</title>
-      <link>/2017/11/05/a-complete-guide-to-importing-data-into-r-part-1/</link>
-      <pubDate>Sun, 05 Nov 2017 00:00:00 +0000</pubDate>
-      
-      <guid>/2017/11/05/a-complete-guide-to-importing-data-into-r-part-1/</guid>
-      <description>IntroductionThis is the first post in the series Importing Data into R. Before we get started, let me talk a bit about what we will learn in this series. I am planning to write 3 posts in which we will explore how to read data from:
-flat/delimited files (.csv, .txt, .tsv)excel spreadsheets (.xls, .xlsx)statistical softwaresJSON/XMLThere are other ways to get data into R such as databases, APIs etc.</description>
-    </item>
-    
-  </channel>
-</rss>

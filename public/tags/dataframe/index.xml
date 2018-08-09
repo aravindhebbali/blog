@@ -1,26 +1,0 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>Dataframe on Aravind&#39;s Blog | R | Economics | Finance</title>
-    <link>/tags/dataframe/</link>
-    <description>Recent content in Dataframe on Aravind&#39;s Blog | R | Economics | Finance</description>
-    <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language>
-    <lastBuildDate>Thu, 23 Jun 2016 00:00:00 +0000</lastBuildDate>
-    
-	<atom:link href="/tags/dataframe/index.xml" rel="self" type="application/rss+xml" />
-    
-    
-    <item>
-      <title>Dataframes</title>
-      <link>/2016/06/23/dataframes/</link>
-      <pubDate>Thu, 23 Jun 2016 00:00:00 +0000</pubDate>
-      
-      <guid>/2016/06/23/dataframes/</guid>
-      <description>IntroductionThis is the tenth post in the series Introduction to R. In the previous post. In the previous post, we learnt about lists. In this post, we will learn about dataframe.
-create dataframeselect columnsselect rowsutitlity functionsCreate dataframesUse data.frame to create dataframes. Below is the function syntax:
-args(data.frame)## function (..., row.names = NULL, check.rows = FALSE, check.names = TRUE, ## fix.empty.names = TRUE, stringsAsFactors = default.</description>
-    </item>
-    
-  </channel>
-</rss>

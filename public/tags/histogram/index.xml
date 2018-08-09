@@ -1,25 +1,0 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>Histogram on Aravind&#39;s Blog | R | Economics | Finance</title>
-    <link>/tags/histogram/</link>
-    <description>Recent content in Histogram on Aravind&#39;s Blog | R | Economics | Finance</description>
-    <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language>
-    <lastBuildDate>Sun, 06 Nov 2016 00:00:00 +0000</lastBuildDate>
-    
-	<atom:link href="/tags/histogram/index.xml" rel="self" type="application/rss+xml" />
-    
-    
-    <item>
-      <title>Data Visualization with R - Histogram</title>
-      <link>/2016/11/06/data-visualization-with-r-histogram/</link>
-      <pubDate>Sun, 06 Nov 2016 00:00:00 +0000</pubDate>
-      
-      <guid>/2016/11/06/data-visualization-with-r-histogram/</guid>
-      <description>IntroductionThis is the seventh post in the series Data Visualization With R. In the previous post, we learnt about box and whisker plots. In this post, we will learn to:
-create a bare bones histogramspecify the number of bins/intervalsrepresent frequency density on the Y axisadd colors to the bars and the borderadd labels to the barsA histogram is a plot that can be used to examine the shape and spread of continuous data.</description>
-    </item>
-    
-  </channel>
-</rss>

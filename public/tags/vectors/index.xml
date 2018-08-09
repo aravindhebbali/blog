@@ -1,45 +1,0 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>Vectors on Aravind&#39;s Blog | R | Economics | Finance</title>
-    <link>/tags/vectors/</link>
-    <description>Recent content in Vectors on Aravind&#39;s Blog | R | Economics | Finance</description>
-    <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language>
-    <lastBuildDate>Mon, 04 Apr 2016 00:00:00 +0000</lastBuildDate>
-    
-	<atom:link href="/tags/vectors/index.xml" rel="self" type="application/rss+xml" />
-    
-    
-    <item>
-      <title>Vectors - Part 3</title>
-      <link>/2016/04/04/vectors-part-3/</link>
-      <pubDate>Mon, 04 Apr 2016 00:00:00 +0000</pubDate>
-      
-      <guid>/2016/04/04/vectors-part-3/</guid>
-      <description>IntroductionThis is the seventh post in the series Introduction to R. In the previous post, we learnt to perform simple operations on vector and handle missing values. In this post, we will learn to index/subset vectors.
-Index VectorsOne of the most important steps in data analysis is selecting a subset of data from a bigger data set. Indexing helps in retrieving values individually or a set of values that meet a specific criteria.</description>
-    </item>
-    
-    <item>
-      <title>Vectors - Part 2</title>
-      <link>/2016/03/20/vectors-part-2/</link>
-      <pubDate>Sun, 20 Mar 2016 00:00:00 +0000</pubDate>
-      
-      <guid>/2016/03/20/vectors-part-2/</guid>
-      <description>IntroductionThis is the sixth post in the series Introduction to R. In the previous post, we learnt to create vectors of different data types. In this post, we will learn to
-coerce different data typesperform simple operations on vectorshandle missing dataindex/subset vectorsNaming Vector ElementsIt is possible to name the different elements of a vector. The advantage of naming vector elements is that we can later on use these names to access the elements.</description>
-    </item>
-    
-    <item>
-      <title>Vectors - Part 1</title>
-      <link>/2016/03/03/introduction-to-vectors/</link>
-      <pubDate>Thu, 03 Mar 2016 00:00:00 +0000</pubDate>
-      
-      <guid>/2016/03/03/introduction-to-vectors/</guid>
-      <description>IntroductionThis is the fifth post in the series Introduction to R. In the previous post, we learnt about the basic data types in R. IN this post, we will:
-understand the concept of vectorslearn to create vectors of different data typesVectorsVector is the most basic data structure in R. It is a sequence of elements of the same data type. If the elements are of different data types, they will be coerced to a common type that can accommodate all the elements.</description>
-    </item>
-    
-  </channel>
-</rss>

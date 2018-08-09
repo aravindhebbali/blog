@@ -1,129 +1,0 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>Ggplot2 on Aravind&#39;s Blog | R | Economics | Finance</title>
-    <link>/tags/ggplot2/</link>
-    <description>Recent content in Ggplot2 on Aravind&#39;s Blog | R | Economics | Finance</description>
-    <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language>
-    <lastBuildDate>Tue, 06 Jun 2017 00:00:00 +0000</lastBuildDate>
-    
-	<atom:link href="/tags/ggplot2/index.xml" rel="self" type="application/rss+xml" />
-    
-    
-    <item>
-      <title>ggplot2: Histogram</title>
-      <link>/2017/06/06/ggplot2-histogram/</link>
-      <pubDate>Tue, 06 Jun 2017 00:00:00 +0000</pubDate>
-      
-      <guid>/2017/06/06/ggplot2-histogram/</guid>
-      <description>IntroductionThis is the eleventh post in the series Elegant Data Visualization with ggplot2. In the previous post, we learnt to build box plots. In this post, we will learn to
-build histogramspecify binsmodifycolorfillalphabin widthline typeline sizeA histogram is a plot that can be used to examine the shape and spread of continuous data. It looks very similar to a bar graph and can be used to detect outliers and skewness in data.</description>
-    </item>
-    
-    <item>
-      <title>ggplot2: Box Plots</title>
-      <link>/2017/05/23/ggplot2-box-plots/</link>
-      <pubDate>Tue, 23 May 2017 00:00:00 +0000</pubDate>
-      
-      <guid>/2017/05/23/ggplot2-box-plots/</guid>
-      <description>IntroductionThis is the 9th post in the series Elegant Data Visualization with ggplot2. In the previous post, we learnt how to build bar charts. In this post, we will
-build box plotsmodify boxcolorfillalphaline sizeline typemodify outliercolorshapesizealphaLibraries, Code &amp;amp; DataWe will use the following libraries in this post:
-readrggplot2All the data sets used in this post can be found here and code can be downloaded from here.</description>
-    </item>
-    
-    <item>
-      <title>ggplot2: Bar Plots</title>
-      <link>/2017/05/07/ggplot2-bar-plots/</link>
-      <pubDate>Sun, 07 May 2017 00:00:00 +0000</pubDate>
-      
-      <guid>/2017/05/07/ggplot2-bar-plots/</guid>
-      <description>IntroductionThis is the ninth post in the series Elegant Data Visualization with ggplot2. In the previous post, we learnt to build line charts. In this post, we will learn to:
-buildsimple bar plotstacked bar plotgrouped bar plotproportional bar plotmap aesthetics to variablesspecify values forbar colorbar line colorbar line typebar line sizeLibraries, Code &amp;amp; DataWe will use the following libraries in this post:</description>
-    </item>
-    
-    <item>
-      <title>ggplot2: Line Graphs</title>
-      <link>/2017/04/19/ggplot2-line-graphs/</link>
-      <pubDate>Wed, 19 Apr 2017 00:00:00 +0000</pubDate>
-      
-      <guid>/2017/04/19/ggplot2-line-graphs/</guid>
-      <description>IntroductionThis is the 8th post in the series Elegant Data Visualization with ggplot2. In the previous post, we learnt to build scatter plots. In this post, we will learn to
-buildsimple line chartgrouped line chartmap aesthetics to variablesmodify linecolortypesizeLibraries, Code &amp;amp; DataWe will use the following libraries in this post:
-readrggplot2All the data sets used in this post can be found here and code can be downloaded from here.</description>
-    </item>
-    
-    <item>
-      <title>ggplot2: Scatter Plots</title>
-      <link>/2017/04/04/ggplot2-scatter-plots/</link>
-      <pubDate>Tue, 04 Apr 2017 00:00:00 +0000</pubDate>
-      
-      <guid>/2017/04/04/ggplot2-scatter-plots/</guid>
-      <description>IntroductionThis is the fifth post in the series Elegant Data Visualization with ggplot2. In the previous post, we learnt about text annotations. In this post, we will build scatter plots by applying everything we have learnt so far.
-build scatter plotsmodify pointcolorfillalphashapesizefit regression lineLibraries, Code &amp;amp; DataWe will use the following libraries in this post:</description>
-    </item>
-    
-    <item>
-      <title>ggplot2: Text Annotations</title>
-      <link>/2017/03/17/ggplot2-text-annotations/</link>
-      <pubDate>Fri, 17 Mar 2017 00:00:00 +0000</pubDate>
-      
-      <guid>/2017/03/17/ggplot2-text-annotations/</guid>
-      <description>IntroductionThis is the sixth post in the series Elegant Data Visualization with ggplot2. In the previous post, we learnt to modify the axis and plot labels. In this post, we will learn to add text to the plots.
-add custom textmodify colormodify sizemodify fontfacemodify angleLibraries, Code &amp;amp; DataWe will use the following libraries in this post:
-readrggplot2All the data sets used in this post can be found here and code can be downloaded from here.</description>
-    </item>
-    
-    <item>
-      <title>ggplot2 - Axis &amp; Plot Labels</title>
-      <link>/2017/03/05/axis-plot-labels/</link>
-      <pubDate>Sun, 05 Mar 2017 00:00:00 +0000</pubDate>
-      
-      <guid>/2017/03/05/axis-plot-labels/</guid>
-      <description>IntroductionThis is the fifth post in the series Elegant Data Visualization with ggplot2. In the previous post, we learnt about aesthetics. In this post, we will learn to:
-add title and subtitle to the plotmodify axis labelsmodify axis rangeremove axisformat axisTitle &amp;amp; SubtitleLet us create a simple scatter plot with which we will work in the rest of the post.
-ggplot(mtcars) +geom_point(aes(disp, mpg))There are two ways to add title to a plot:</description>
-    </item>
-    
-    <item>
-      <title>ggplot2: Introduction to aesthetics</title>
-      <link>/2017/02/24/ggplot2-introduction-to-aesthetics/</link>
-      <pubDate>Fri, 24 Feb 2017 00:00:00 +0000</pubDate>
-      
-      <guid>/2017/02/24/ggplot2-introduction-to-aesthetics/</guid>
-      <description>IntroductionThis is the fourth post in the series Elegant Data Visualization with ggplot2. In the previous post we learnt about geoms and how we can use them to build different plots. In this post, we will focus on the aesthetics i.e. color, shape, size, alpha, line type, line width etc. We can map these to variables or specify values for them. If we want to map the above to variables, we have to specify them within the aes() function.</description>
-    </item>
-    
-    <item>
-      <title>ggplot2: Introduction to geoms</title>
-      <link>/2017/02/11/ggplot2-introduction-to-geoms/</link>
-      <pubDate>Sat, 11 Feb 2017 00:00:00 +0000</pubDate>
-      
-      <guid>/2017/02/11/ggplot2-introduction-to-geoms/</guid>
-      <description>IntroductionThis is the third post in the series Elegant Data Visualization with ggplot2. In the previous post, we learnt how to create plots using the qplot() function. In this post, we will create some of the most routinely used plots to explore data using the geom_* functions.
-Libraries, Code &amp;amp; DataWe will use the following libraries in this post:
-readrggplot2tibbledplyrAll the data sets used in this post can be found here and code can be downloaded from here.</description>
-    </item>
-    
-    <item>
-      <title>ggplot2: Quick Tour</title>
-      <link>/2017/01/22/ggplot2-quick-tour/</link>
-      <pubDate>Sun, 22 Jan 2017 00:00:00 +0000</pubDate>
-      
-      <guid>/2017/01/22/ggplot2-quick-tour/</guid>
-      <description>IntroductionThis is the second post in the series Elegant Data Visualization with ggplot2. In the previous post, we understood the concept of grammar of graphics and even built a bar plot step by step while exploring the different components of a plot/chart. In this post, we willlearn to quickly build a set of plots that are routinely used to explore data.
-Libraries, Code &amp;amp; DataWe will use the following libraries in this post:</description>
-    </item>
-    
-    <item>
-      <title>Introduction to ggplot2</title>
-      <link>/2017/01/08/introduction-to-ggplot2/</link>
-      <pubDate>Sun, 08 Jan 2017 00:00:00 +0000</pubDate>
-      
-      <guid>/2017/01/08/introduction-to-ggplot2/</guid>
-      <description>IntroductionThis is the first post in the series Elegant Data Visualization with ggplot2. In this post, we will:
-understand the philosophy of Grammar of Graphicsexplore different aspects of ggplot2learn to build some of the basic plots regularly used for exploring dataggplot2 is an awesome alternative to base R for data visualization. It is based on The Grammar of Graphics. In this post, we will understand the philosophy behind ggplot2 and learn to build some of the most frequently used plots for visualizing data.</description>
-    </item>
-    
-  </channel>
-</rss>

@@ -1,27 +1,0 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>Lubridate on Aravind&#39;s Blog | R | Economics | Finance</title>
-    <link>/tags/lubridate/</link>
-    <description>Recent content in Lubridate on Aravind&#39;s Blog | R | Economics | Finance</description>
-    <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language>
-    <lastBuildDate>Sun, 14 Jan 2018 00:00:00 +0000</lastBuildDate>
-    
-	<atom:link href="/tags/lubridate/index.xml" rel="self" type="application/rss+xml" />
-    
-    
-    <item>
-      <title>Working with Dates in R </title>
-      <link>/2018/01/14/working-with-dates-in-r/</link>
-      <pubDate>Sun, 14 Jan 2018 00:00:00 +0000</pubDate>
-      
-      <guid>/2018/01/14/working-with-dates-in-r/</guid>
-      <description>IntroductionIn this post, we will learn to work with date/time data in R using lubridate, an R package that makes it easy to work with dates and time.Let us begin by installing and loading the pacakge.
-Libraries, Code &amp;amp; DataWe will use the following packages:
-lubridatedplyrmagrittrreadrThe data sets can be downloaded from here and the codes from here.
-library(lubridate)library(dplyr)library(magrittr)library(readr)Quic IntroOriginLet us look at the origin for the numbering system used for date and timecalculations in R.</description>
-    </item>
-    
-  </channel>
-</rss>
