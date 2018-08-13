@@ -39,8 +39,7 @@ library(stringr)</code></pre>
 </div>
 <div id="read-data" class="section level2">
 <h2>Read Data</h2>
-<p>The first step is to read XML data into R using <code>read_xml()</code>. Let us
-read the data from the <strong>books.xml</strong> file.</p>
+<p>The first step is to read XML data into R using <code>read_xml()</code>. Let us read the data from the <strong>books.xml</strong> file.</p>
 <pre class="r"><code>books &lt;- read_xml(&#39;books.xml&#39;)</code></pre>
 </div>
 <div id="root-node" class="section level2">
@@ -61,8 +60,7 @@ read the data from the <strong>books.xml</strong> file.</p>
 ## [10] &lt;book id=&quot;bk110&quot;&gt;\n  &lt;author&gt;O&#39;Brien, Tim&lt;/author&gt;\n  &lt;title&gt;Micros ...
 ## [11] &lt;book id=&quot;bk111&quot;&gt;\n  &lt;author&gt;O&#39;Brien, Tim&lt;/author&gt;\n  &lt;title&gt;MSXML3 ...
 ## [12] &lt;book id=&quot;bk112&quot;&gt;\n  &lt;author&gt;Galos, Mike&lt;/author&gt;\n  &lt;title&gt;Visual  ...</code></pre>
-<p><code>xml_name()</code> returns the name of a node. Here it returns the name of the
-root node. It can also be used to modify the name of a node.</p>
+<p><code>xml_name()</code> returns the name of a node. Here it returns the name of the root node. It can also be used to modify the name of a node.</p>
 <pre class="r"><code>xml_name(books)</code></pre>
 <pre><code>## [1] &quot;catalog&quot;</code></pre>
 <p>The contents of a node can be viewed using <code>xml_contents()</code>.</p>
@@ -86,9 +84,7 @@ root node. It can also be used to modify the name of a node.</p>
 </div>
 <div id="child-node" class="section level2">
 <h2>Child Node</h2>
-<p><code>xml_children()</code> will return all the child nodes of the current node. If you
-want to see the detailed contents of each child node, use <code>xml_contents()</code>.
-To know the number of nodes in each child node, use <code>xml_length()</code>.</p>
+<p><code>xml_children()</code> will return all the child nodes of the current node. If you want to see the detailed contents of each child node, use <code>xml_contents()</code>. To know the number of nodes in each child node, use <code>xml_length()</code>.</p>
 <pre class="r"><code>xml_children(books) 
 ## {xml_nodeset (12)}
 ##  [1] &lt;book id=&quot;bk101&quot;&gt;\n  &lt;author&gt;Gambardella, Matthew&lt;/author&gt;\n  &lt;titl ...
@@ -134,9 +130,7 @@ books %&gt;%
   xml_children() %&gt;% 
   xml_length()
 ##  [1] 6 6 6 6 6 6 6 6 6 6 6 6</code></pre>
-<p>We can view the contents of a specific child node using <code>xml_child()</code>. By default,
-it returns the first child node. Use the <code>search</code> argument to specify a
-different child node.</p>
+<p>We can view the contents of a specific child node using <code>xml_child()</code>. By default, it returns the first child node. Use the <code>search</code> argument to specify a different child node.</p>
 <pre class="r"><code>xml_child(books)
 ## {xml_node}
 ## &lt;book id=&quot;bk101&quot;&gt;
@@ -177,9 +171,7 @@ xml_child(books, search = 2)
 </div>
 <div id="attributes" class="section level2">
 <h2>Attributes</h2>
-<p>We can extract attributes using <code>xml_attrs()</code>. If we want to extract a specific
-attribute value, use <code>xml_attr()</code> and specify the attribute name. In the <strong>books</strong>
-data, <code>book id</code> is an attribute.</p>
+<p>We can extract attributes using <code>xml_attrs()</code>. If we want to extract a specific attribute value, use <code>xml_attr()</code> and specify the attribute name. In the <strong>books</strong> data, <code>book id</code> is an attribute.</p>
 <pre class="r"><code>xml_find_all(books, &#39;.//book&#39;) %&gt;% 
     map_chr(xml_attrs)
 ##  [1] &quot;bk101&quot; &quot;bk102&quot; &quot;bk103&quot; &quot;bk104&quot; &quot;bk105&quot; &quot;bk106&quot; &quot;bk107&quot; &quot;bk108&quot;
@@ -189,9 +181,7 @@ xml_find_all(books, &#39;.//book&#39;) %&gt;%
   xml_attr(attr = &quot;id&quot;)
 ##  [1] &quot;bk101&quot; &quot;bk102&quot; &quot;bk103&quot; &quot;bk104&quot; &quot;bk105&quot; &quot;bk106&quot; &quot;bk107&quot; &quot;bk108&quot;
 ##  [9] &quot;bk109&quot; &quot;bk110&quot; &quot;bk111&quot; &quot;bk112&quot;</code></pre>
-<p>Since we want to convert the xml data into a tibble, let us use
-<code>xml_find_all()</code> to extract data for each of the columns. We will
-use the node name prepended by <code>.//</code> to extract the data.</p>
+<p>Since we want to convert the xml data into a tibble, let us use <code>xml_find_all()</code> to extract data for each of the columns. We will use the node name prepended by <code>.//</code> to extract the data.</p>
 <pre class="r"><code>xml_find_all(books, &#39;.//author&#39;)</code></pre>
 <pre><code>## {xml_nodeset (12)}
 ##  [1] &lt;author&gt;Gambardella, Matthew&lt;/author&gt;
@@ -206,8 +196,7 @@ use the node name prepended by <code>.//</code> to extract the data.</p>
 ## [10] &lt;author&gt;O&#39;Brien, Tim&lt;/author&gt;
 ## [11] &lt;author&gt;O&#39;Brien, Tim&lt;/author&gt;
 ## [12] &lt;author&gt;Galos, Mike&lt;/author&gt;</code></pre>
-<p>We want the author names and not the nodes. Let us extract the author names
-as string using <code>xml_text()</code>. In case of numbers, we can use <code>xml_double()</code>.</p>
+<p>We want the author names and not the nodes. Let us extract the author names as string using <code>xml_text()</code>. In case of numbers, we can use <code>xml_double()</code>.</p>
 <pre class="r"><code>books %&gt;%
   xml_find_all(xpath = &#39;.//author&#39;) %&gt;%
   xml_text()</code></pre>
@@ -215,8 +204,7 @@ as string using <code>xml_text()</code>. In case of numbers, we can use <code>xm
 ##  [4] &quot;Corets, Eva&quot;          &quot;Corets, Eva&quot;          &quot;Randall, Cynthia&quot;    
 ##  [7] &quot;Thurman, Paula&quot;       &quot;Knorr, Stefan&quot;        &quot;Kress, Peter&quot;        
 ## [10] &quot;O&#39;Brien, Tim&quot;         &quot;O&#39;Brien, Tim&quot;         &quot;Galos, Mike&quot;</code></pre>
-<p><code>xml_find_all()</code> will find all the matches. If you want to find a specific match use
-<code>xml_find_first()</code>.</p>
+<p><code>xml_find_all()</code> will find all the matches. If you want to find a specific match use <code>xml_find_first()</code>.</p>
 <pre class="r"><code>xml_find_first(books, &#39;.//author&#39;)
 ## {xml_node}
 ## &lt;author&gt;
@@ -265,8 +253,7 @@ books %&gt;%
 </div>
 <div id="book-price" class="section level4">
 <h4>Book Price</h4>
-<p>Since book price is numeric, we will use <code>xml_double()</code> to extract the
-data as number and not text.</p>
+<p>Since book price is numeric, we will use <code>xml_double()</code> to extract the data as number and not text.</p>
 <pre class="r"><code>books %&gt;%
     xml_find_all(xpath = &#39;.//price&#39;)
 ## {xml_nodeset (12)}

@@ -34,79 +34,74 @@ tags:
 <h4>Connect to Database</h4>
 <p>Let us connect to an in memory SQLite database using <code>dbConnect()</code>.</p>
 <pre class="r"><code>con &lt;- dbConnect(RSQLite::SQLite(), &quot;:memory:&quot;)</code></pre>
-<p>We will copy the <code>mtcars</code> data to the database so that we can use it for running
-dplyr statements.</p>
+<p>We will copy the <code>mtcars</code> data to the database so that we can use it for running dplyr statements.</p>
 <pre class="r"><code>dplyr::copy_to(con, mtcars)</code></pre>
 </div>
 <div id="reference-copied-data-frame" class="section level4">
 <h4>Reference Copied Data Frame</h4>
-<p>In order to use dplyr functions, we need to reference the table in the database using
-<code>tbl()</code>.</p>
+<p>In order to use dplyr functions, we need to reference the table in the database using <code>tbl()</code>.</p>
 <pre class="r"><code>mtcars2 &lt;- dplyr::tbl(con, &quot;mtcars&quot;)
 mtcars2</code></pre>
 <pre><code>## # Source:   table&lt;mtcars&gt; [?? x 11]
-## # Database: sqlite 3.19.3 [:memory:]
+## # Database: sqlite 3.22.0 [:memory:]
 ##      mpg   cyl  disp    hp  drat    wt  qsec    vs    am  gear  carb
 ##    &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
-##  1  21.0  6.00   160 110    3.90  2.62  16.5  0     1.00  4.00  4.00
-##  2  21.0  6.00   160 110    3.90  2.88  17.0  0     1.00  4.00  4.00
-##  3  22.8  4.00   108  93.0  3.85  2.32  18.6  1.00  1.00  4.00  1.00
-##  4  21.4  6.00   258 110    3.08  3.22  19.4  1.00  0     3.00  1.00
-##  5  18.7  8.00   360 175    3.15  3.44  17.0  0     0     3.00  2.00
-##  6  18.1  6.00   225 105    2.76  3.46  20.2  1.00  0     3.00  1.00
-##  7  14.3  8.00   360 245    3.21  3.57  15.8  0     0     3.00  4.00
-##  8  24.4  4.00   147  62.0  3.69  3.19  20.0  1.00  0     4.00  2.00
-##  9  22.8  4.00   141  95.0  3.92  3.15  22.9  1.00  0     4.00  2.00
-## 10  19.2  6.00   168 123    3.92  3.44  18.3  1.00  0     4.00  4.00
+##  1  21       6  160    110  3.9   2.62  16.5     0     1     4     4
+##  2  21       6  160    110  3.9   2.88  17.0     0     1     4     4
+##  3  22.8     4  108     93  3.85  2.32  18.6     1     1     4     1
+##  4  21.4     6  258    110  3.08  3.22  19.4     1     0     3     1
+##  5  18.7     8  360    175  3.15  3.44  17.0     0     0     3     2
+##  6  18.1     6  225    105  2.76  3.46  20.2     1     0     3     1
+##  7  14.3     8  360    245  3.21  3.57  15.8     0     0     3     4
+##  8  24.4     4  147.    62  3.69  3.19  20       1     0     4     2
+##  9  22.8     4  141.    95  3.92  3.15  22.9     1     0     4     2
+## 10  19.2     6  168.   123  3.92  3.44  18.3     1     0     4     4
 ## # ... with more rows</code></pre>
 </div>
 <div id="query-data" class="section level4">
 <h4>Query Data</h4>
-<p>We will look at some simple examples. Let us start by selecting <code>mpg</code>, <code>cyl</code> and <code>drat</code>
-columns from <code>mtcars2</code>.</p>
+<p>We will look at some simple examples. Let us start by selecting <code>mpg</code>, <code>cyl</code> and <code>drat</code> columns from <code>mtcars2</code>.</p>
 <pre class="r"><code>select(mtcars2, mpg, cyl, drat)</code></pre>
 <pre><code>## # Source:   lazy query [?? x 3]
-## # Database: sqlite 3.19.3 [:memory:]
+## # Database: sqlite 3.22.0 [:memory:]
 ##      mpg   cyl  drat
 ##    &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
-##  1  21.0  6.00  3.90
-##  2  21.0  6.00  3.90
-##  3  22.8  4.00  3.85
-##  4  21.4  6.00  3.08
-##  5  18.7  8.00  3.15
-##  6  18.1  6.00  2.76
-##  7  14.3  8.00  3.21
-##  8  24.4  4.00  3.69
-##  9  22.8  4.00  3.92
-## 10  19.2  6.00  3.92
+##  1  21       6  3.9 
+##  2  21       6  3.9 
+##  3  22.8     4  3.85
+##  4  21.4     6  3.08
+##  5  18.7     8  3.15
+##  6  18.1     6  2.76
+##  7  14.3     8  3.21
+##  8  24.4     4  3.69
+##  9  22.8     4  3.92
+## 10  19.2     6  3.92
 ## # ... with more rows</code></pre>
-<p>We can filter data as well. Filter all the rows from <code>mtcars2</code> where <code>mpg</code> is
-greater than 25.</p>
+<p>We can filter data as well. Filter all the rows from <code>mtcars2</code> where <code>mpg</code> is greater than 25.</p>
 <pre class="r"><code>filter(mtcars2, mpg &gt; 25)</code></pre>
 <pre><code>## # Source:   lazy query [?? x 11]
-## # Database: sqlite 3.19.3 [:memory:]
+## # Database: sqlite 3.22.0 [:memory:]
 ##     mpg   cyl  disp    hp  drat    wt  qsec    vs    am  gear  carb
 ##   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
-## 1  32.4  4.00  78.7  66.0  4.08  2.20  19.5  1.00  1.00  4.00  1.00
-## 2  30.4  4.00  75.7  52.0  4.93  1.62  18.5  1.00  1.00  4.00  2.00
-## 3  33.9  4.00  71.1  65.0  4.22  1.84  19.9  1.00  1.00  4.00  1.00
-## 4  27.3  4.00  79.0  66.0  4.08  1.94  18.9  1.00  1.00  4.00  1.00
-## 5  26.0  4.00 120    91.0  4.43  2.14  16.7  0     1.00  5.00  2.00
-## 6  30.4  4.00  95.1 113    3.77  1.51  16.9  1.00  1.00  5.00  2.00</code></pre>
-<p>Time to do some grouping and summarizing. Let us compute the average mileage for
-different types of cylinders.</p>
+## 1  32.4     4  78.7    66  4.08  2.2   19.5     1     1     4     1
+## 2  30.4     4  75.7    52  4.93  1.62  18.5     1     1     4     2
+## 3  33.9     4  71.1    65  4.22  1.84  19.9     1     1     4     1
+## 4  27.3     4  79      66  4.08  1.94  18.9     1     1     4     1
+## 5  26       4 120.     91  4.43  2.14  16.7     0     1     5     2
+## 6  30.4     4  95.1   113  3.77  1.51  16.9     1     1     5     2</code></pre>
+<p>Time to do some grouping and summarizing. Let us compute the average mileage for different types of cylinders.</p>
 <pre class="r"><code>mtcars2 %&gt;%
   group_by(cyl) %&gt;%
   summarise(mileage = mean(mpg))</code></pre>
 <pre><code>## Warning: Missing values are always removed in SQL.
 ## Use `AVG(x, na.rm = TRUE)` to silence this warning</code></pre>
 <pre><code>## # Source:   lazy query [?? x 2]
-## # Database: sqlite 3.19.3 [:memory:]
+## # Database: sqlite 3.22.0 [:memory:]
 ##     cyl mileage
 ##   &lt;dbl&gt;   &lt;dbl&gt;
-## 1  4.00    26.7
-## 2  6.00    19.7
-## 3  8.00    15.1</code></pre>
+## 1     4    26.7
+## 2     6    19.7
+## 3     8    15.1</code></pre>
 </div>
 <div id="show-query" class="section level4">
 <h4>Show Query</h4>
@@ -184,18 +179,16 @@ dplyr::explain(mileages)
 </div>
 <div id="collect-data" class="section level4">
 <h4>Collect Data</h4>
-<p>Now, some interesting facts. When working with databases, <strong>dplyr</strong> never pulls data into R unless you explicitly ask for it. In the previous example, dplyr will not do anything until you ask for the mileages data. It generates the SQL and only pulls down a few rows when you try to print <code>mileages</code>.
-So how do we pull all the data and store it for further analysis? <code>collect()</code> will pull all
-the data and store it in a tibble and you can use it for any further analysis.</p>
+<p>Now, some interesting facts. When working with databases, <strong>dplyr</strong> never pulls data into R unless you explicitly ask for it. In the previous example, dplyr will not do anything until you ask for the mileages data. It generates the SQL and only pulls down a few rows when you try to print <code>mileages</code>. So how do we pull all the data and store it for further analysis? <code>collect()</code> will pull all the data and store it in a tibble and you can use it for any further analysis.</p>
 <pre class="r"><code>dplyr::collect(mileages)</code></pre>
 <pre><code>## Warning: Missing values are always removed in SQL.
 ## Use `AVG(x, na.rm = TRUE)` to silence this warning</code></pre>
 <pre><code>## # A tibble: 3 x 2
 ##     cyl mileage
 ##   &lt;dbl&gt;   &lt;dbl&gt;
-## 1  4.00    26.7
-## 2  6.00    19.7
-## 3  8.00    15.1</code></pre>
+## 1     4    26.7
+## 2     6    19.7
+## 3     8    15.1</code></pre>
 </div>
 </div>
 <div id="up-next.." class="section level3">

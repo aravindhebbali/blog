@@ -43,8 +43,7 @@ copy_to(con, ecom)</code></pre>
 <h4>Syntax</h4>
 <p>Below is the basic syntax of the SELECT statement.</p>
 <p><code>SELECT column1, column2, columnN FROM table_name;</code></p>
-<p>Here, column1, column2… are the fields of a table whose values you want to fetch.
-If you want to fetch all the fields, use the following syntax.</p>
+<p>Here, column1, column2… are the fields of a table whose values you want to fetch. If you want to fetch all the fields, use the following syntax.</p>
 <p><code>SELECT * FROM table_name;</code></p>
 </div>
 <div id="select-single-column" class="section level4">
@@ -150,8 +149,7 @@ If you want to fetch all the fields, use the following syntax.</p>
 </div>
 <div id="limit" class="section level4">
 <h4>Limit</h4>
-<p>If you have a large table with thousands of rows, returning all the records
-will take time. Use LIMIT to specify the number of records to return.</p>
+<p>If you have a large table with thousands of rows, returning all the records will take time. Use LIMIT to specify the number of records to return.</p>
 <pre class="r"><code>dbGetQuery(con, &quot;SELECT * FROM ecom limit 10&quot;)</code></pre>
 <pre><code>##    id referrer device bouncers n_visit n_pages duration        country
 ## 1   1   google laptop     true      10       1      693 Czech Republic
@@ -167,8 +165,7 @@ will take time. Use LIMIT to specify the number of records to return.</p>
 </div>
 <div id="distinct" class="section level4">
 <h4>Distinct</h4>
-<p>A column in a table may often contain many duplicate values; and we might be interested only in the
-distinct/unique values. In such cases, we can use the SELECT DISTINCT statement to return only distinct values.</p>
+<p>A column in a table may often contain many duplicate values; and we might be interested only in the distinct/unique values. In such cases, we can use the SELECT DISTINCT statement to return only distinct values.</p>
 <pre class="r"><code>dbGetQuery(con, &quot;SELECT distinct referrer FROM ecom&quot;)</code></pre>
 <pre><code>##   referrer
 ## 1   google
@@ -189,8 +186,7 @@ distinct/unique values. In such cases, we can use the SELECT DISTINCT statement 
 <li><code>&lt;=</code> less than or equal to</li>
 <li><code>&gt;=</code> greater than or equal to</li>
 </ul>
-<p>The following SQL statement filters all rows from the <code>ecom</code> table where the <code>duration</code> field
-is greater than 300.</p>
+<p>The following SQL statement filters all rows from the <code>ecom</code> table where the <code>duration</code> field is greater than 300.</p>
 <pre class="r"><code>dbGetQuery(con, &quot;SELECT * 
                  FROM ecom 
                  WHERE duration &gt; 300&quot;)</code></pre>
@@ -205,8 +201,7 @@ is greater than 300.</p>
 ## 3                             Brazil    false           0           0
 ## 4                              China     true           6         434
 ##  [ reached getOption(&quot;max.print&quot;) -- omitted 472 rows ]</code></pre>
-<p>Let us filter data based on a text value. In the following example, we filter all rows
-from the <code>ecom</code> table where the <code>device</code> used is <code>mobile</code>.</p>
+<p>Let us filter data based on a text value. In the following example, we filter all rows from the <code>ecom</code> table where the <code>device</code> used is <code>mobile</code>.</p>
 <pre class="r"><code>dbGetQuery(con, &quot;SELECT * 
                  FROM ecom 
                  WHERE device == &#39;mobile&#39;&quot;)</code></pre>
@@ -230,9 +225,7 @@ from the <code>ecom</code> table where the <code>device</code> used is <code>mob
 <li>NOT - displays a record if the condition(s) is NOT TRUE</li>
 </ul>
 <p>to filter data based on more than one condition or to create more complex conditions.</p>
-<p>In the following example, we filter all the rows from the <code>ecom</code> table where
-<code>n_visit</code> (visit count) is greater than 3 and <code>duration</code> (time spent on the site)
-is greater than 100. We use AND to create multiple conditions.</p>
+<p>In the following example, we filter all the rows from the <code>ecom</code> table where <code>n_visit</code> (visit count) is greater than 3 and <code>duration</code> (time spent on the site) is greater than 100. We use AND to create multiple conditions.</p>
 <pre class="r"><code>dbGetQuery(con, &quot;SELECT * 
                  FROM ecom 
                  WHERE n_visit &gt; 3 AND duration &gt; 100&quot;)</code></pre>
@@ -247,8 +240,7 @@ is greater than 100. We use AND to create multiple conditions.</p>
 ## 3                             Poland    false           0           0
 ## 4                       South Africa    false           0           0
 ##  [ reached getOption(&quot;max.print&quot;) -- omitted 509 rows ]</code></pre>
-<p>In the next example, we will use both AND &amp; OR. Our goal is to filter all
-rows from the <code>ecom</code> table that follow the below conditions:</p>
+<p>In the next example, we will use both AND &amp; OR. Our goal is to filter all rows from the <code>ecom</code> table that follow the below conditions:</p>
 <ul>
 <li><code>n_visit</code> (visit count) is either equal to 3 or 5</li>
 <li><code>device</code> used to visit the website is either <code>mobile</code> or <code>tablet</code></li>
@@ -270,9 +262,7 @@ rows from the <code>ecom</code> table that follow the below conditions:</p>
 </div>
 <div id="between" class="section level5">
 <h5>BETWEEN</h5>
-<p>The BETWEEN operator selects values within a given range and is inclusive: begin and end values are included. The values can be numbers, text, or dates. In the following example, we filter rows from
-the <code>ecom</code> table where the visit count is between 1 and 3, and the <code>device</code> used to visit the website is
-<code>mobile</code>.</p>
+<p>The BETWEEN operator selects values within a given range and is inclusive: begin and end values are included. The values can be numbers, text, or dates. In the following example, we filter rows from the <code>ecom</code> table where the visit count is between 1 and 3, and the <code>device</code> used to visit the website is <code>mobile</code>.</p>
 <pre class="r"><code>dbGetQuery(con, &quot;SELECT * 
                  FROM ecom
                  WHERE n_visit BETWEEN 1 AND 3 AND device = &#39;mobile&#39;&quot;)</code></pre>
@@ -290,10 +280,7 @@ the <code>ecom</code> table where the visit count is between 1 and 3, and the <c
 </div>
 <div id="in" class="section level5">
 <h5>IN</h5>
-<p>The IN operator allows us to specify multiple values in a WHERE clause. It is a shorthand
-for multiple OR conditions. In the below example, we filter rows from the <code>ecom</code> table where
-the visit count is either 2 or 4 or 6 or 8 or 10. Instead of using multiple OR conditions,
-we use the IN operator.</p>
+<p>The IN operator allows us to specify multiple values in a WHERE clause. It is a shorthand for multiple OR conditions. In the below example, we filter rows from the <code>ecom</code> table where the visit count is either 2 or 4 or 6 or 8 or 10. Instead of using multiple OR conditions, we use the IN operator.</p>
 <pre class="r"><code>dbGetQuery(con, &quot;SELECT * 
                  FROM ecom 
                  WHERE n_visit IN (2, 4, 6, 8, 10)&quot;)</code></pre>
@@ -311,8 +298,7 @@ we use the IN operator.</p>
 </div>
 <div id="is-null" class="section level5">
 <h5>IS NULL</h5>
-<p>A field with a NULL value is a field with no value. If a field in a table is optional, it is possible to insert a new record or update a record without adding a value to this field. Then, the field will be saved with a NULL value. In the next example, we filter all rows from the <code>ecom</code> table where the <code>device</code> column
-has NULL values.</p>
+<p>A field with a NULL value is a field with no value. If a field in a table is optional, it is possible to insert a new record or update a record without adding a value to this field. Then, the field will be saved with a NULL value. In the next example, we filter all rows from the <code>ecom</code> table where the <code>device</code> column has NULL values.</p>
 <pre class="r"><code>dbGetQuery(con, &quot;SELECT * 
                  FROM ecom 
                  WHERE device IS NULL&quot;)</code></pre>
@@ -343,8 +329,7 @@ has NULL values.</p>
 ## 3                    Peru     true           6        1049
 ## 4                Portugal    false           0           0
 ##  [ reached getOption(&quot;max.print&quot;) -- omitted 135 rows ]</code></pre>
-<p>Let us look at another example where we filter all rows from the <code>ecom</code> table where the name of the
-country should follow the below conditions:</p>
+<p>Let us look at another example where we filter all rows from the <code>ecom</code> table where the name of the country should follow the below conditions:</p>
 <ul>
 <li>name can start with any character</li>
 <li>the second character must be <code>o</code></li>
@@ -378,14 +363,12 @@ country should follow the below conditions:</p>
 </ul></li>
 <li>limit the number of records returned</li>
 <li>handle NULL values</li>
-<li>and filter columns using the following operators
-<ul>
+<li>and filter columns using the following operators</li>
 <li>WHERE</li>
 <li>AND, or &amp; NOT</li>
 <li>BETWEEN</li>
 <li>IN</li>
 <li>LIKE</li>
-</ul></li>
 </ul>
 </div>
 <div id="up-next.." class="section level3">

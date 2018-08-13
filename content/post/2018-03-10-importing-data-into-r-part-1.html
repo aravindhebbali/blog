@@ -1,13 +1,15 @@
 ---
-title: "Importing Data into R - Part 1"
+title: "Import Data into R - Part 1"
 author: "Aravind Hebbali"
-date: '2017-11-05'
-slug: a-complete-guide-to-importing-data-into-r-part-1
+date: '2018-03-10'
+twitterImg: /img/import.png
+description: "Learn to read data from flat/delimited files into R."
+slug: import-data-into-r-part-1
 tags:
 - import
 - readr
-categories:
-- data wrangling
+topics:
+- import
 - R
 ---
 
@@ -15,37 +17,30 @@ categories:
 
 <div id="introduction" class="section level2">
 <h2>Introduction</h2>
-<p>This is the first post in the series <strong>Importing Data into R</strong>. Before we get started, let me talk a bit about what we will learn in this series. I am planning to write 3 posts in which we will explore how to read data from:</p>
+<p>In this post, we will learn to:</p>
 <ul>
-<li>flat/delimited files (.csv, .txt, .tsv)</li>
-<li>excel spreadsheets (.xls, .xlsx)</li>
-<li>statistical softwares</li>
-<li>JSON/XML</li>
-</ul>
-<p>There are other ways to get data into R such as databases, APIs etc. and I intend to write a separate series of posts for each of them. Coming back to this post, we will focus on</p>
-<ul>
-<li>reading data from flat or delimited files</li>
-<li>specifying column data types</li>
-<li>reading specific columns only</li>
+<li>read data from flat or delimited files</li>
+<li>handle column names/header</li>
+<li>skip text/info present before data</li>
+<li>specify column/variable types</li>
+<li>read specific columns/variables</li>
 </ul>
 </div>
 <div id="libraries-data-code" class="section level2">
 <h2>Libraries, Data &amp; Code</h2>
 <p>We will use the <a href="http://readr.tidyverse.org/index.html">readr</a> package. The data sets can be downloaded from <a href="https://github.com/rsquaredacademy/datasets">here</a> and the codes from <a href="https://gist.github.com/aravindhebbali/ade2338fd725438f57345e6bd0bccfac">here</a>.</p>
 <pre class="r"><code>library(readr)</code></pre>
+<pre><code>## Warning: package &#39;readr&#39; was built under R version 3.5.1</code></pre>
 </div>
-<div id="overview" class="section level2">
-<h2>Overview</h2>
-<center>
-<img src="import_func.png" style="width:60.0%" />
-</center>
-<p>The above table gives an overview of the functions for reading different types of files in readr and Base R. All the functions in readr offer a common set of options which are described below. We will learn about them in greater detail in the next section.</p>
-<ul>
-<li><code>col_names</code>: whether data includes column names</li>
-<li><code>n_max</code>: maximum number of lines/rows to read</li>
-<li><code>col_types</code>: data type of the columns</li>
-<li><code>skip</code>: number of lines/rows to skip</li>
-</ul>
+<div id="delimiters" class="section level2">
+<h2>Delimiters</h2>
+<p><img src="/img/mtcars_comma.png" style="display: block; margin: auto;" /></p>
+<p><br></p>
+<p><img src="/img/mtcars_semicolon.png" style="display: block; margin: auto;" /></p>
+<p><br></p>
+<p><img src="/img/mtcars_space.png" style="display: block; margin: auto;" /></p>
+<p><br></p>
+<p><img src="/img/mtcars_tab.png" style="display: block; margin: auto;" /></p>
 </div>
 <div id="case-study" class="section level2">
 <h2>Case Study</h2>
@@ -103,6 +98,10 @@ categories:
 <h3>Options</h3>
 <div id="column-names" class="section level4">
 <h4>Column Names</h4>
+<p><img src="/img/mtcars_comma.png" style="display: block; margin: auto;" /></p>
+<p><br></p>
+<p><img src="/img/mtcars_column_false.png" style="display: block; margin: auto;" /></p>
+<p><br></p>
 <p>Use <code>col_names</code> to indicate whether the data includes column names. It takes two values, <code>TRUE</code> and <code>FALSE</code>. If set to <code>FALSE</code>, readr will generate column names. In the below example, we will read data from a file which does not have column names present in the first row.</p>
 <pre class="r"><code>read_csv(&#39;hsb3.csv&#39;, col_names = FALSE)</code></pre>
 <pre><code>## # A tibble: 200 x 11
@@ -140,6 +139,8 @@ read_csv(&#39;hsb3.csv&#39;, col_names = cnames)</code></pre>
 </div>
 <div id="skip-lines" class="section level3">
 <h3>Skip Lines</h3>
+<p><img src="/img/mtcars_skip.png" width="80%" style="display: block; margin: auto;" /></p>
+<p><br></p>
 <p>Use <code>skip</code> to skip a certain number of lines. For example, if the file has contents other than data in the first few lines, we need to skip them before reading the data. In the below example, we will skip the first 3 lines as they contain information about the data set which we do not need.</p>
 <pre class="r"><code>read_csv(&#39;hsb4.csv&#39;, skip = 3)</code></pre>
 <pre><code>## # A tibble: 200 x 11
@@ -178,6 +179,8 @@ read_csv(&#39;hsb3.csv&#39;, col_names = cnames)</code></pre>
 </div>
 <div id="column-types" class="section level3">
 <h3>Column Types</h3>
+<p><img src="/img/column_types_list_canva.png" style="display: block; margin: auto;" /></p>
+<p><br></p>
 <p>In certain cases, we need to specify the data type of the columns. It might be related to dates or categorical variables. readr allows us to specify the data types using <code>col_xxx</code> functions which include:</p>
 <ul>
 <li><code>col_double()</code></li>
@@ -211,10 +214,59 @@ read_csv(&#39;hsb3.csv&#39;, col_names = cnames)</code></pre>
 </div>
 <div id="specific-columns" class="section level3">
 <h3>Specific Columns</h3>
+<p><img src="/img/column_objective_function_map.png" style="display: block; margin: auto;" /></p>
+<p><br></p>
 <p>We may not always want to read all the columns from a file. In such cases, we can specify the columns to be read using <code>col_types</code> argument and supplying to it the names of the columns to be read. We will use <code>cols_only()</code> to specify the column names and their respective data types.</p>
 <pre class="r"><code>read_csv(&#39;hsb2.csv&#39;, col_types = cols_only(id = col_integer(),
   prog = col_factor(levels = c(1, 2, 3)), read = col_integer())
 )</code></pre>
+<pre><code>## Warning in read_tokens_(data, tokenizer, col_specs, col_names, locale_, :
+## length of NULL cannot be changed
+
+## Warning in read_tokens_(data, tokenizer, col_specs, col_names, locale_, :
+## length of NULL cannot be changed
+
+## Warning in read_tokens_(data, tokenizer, col_specs, col_names, locale_, :
+## length of NULL cannot be changed
+
+## Warning in read_tokens_(data, tokenizer, col_specs, col_names, locale_, :
+## length of NULL cannot be changed
+
+## Warning in read_tokens_(data, tokenizer, col_specs, col_names, locale_, :
+## length of NULL cannot be changed
+
+## Warning in read_tokens_(data, tokenizer, col_specs, col_names, locale_, :
+## length of NULL cannot be changed
+
+## Warning in read_tokens_(data, tokenizer, col_specs, col_names, locale_, :
+## length of NULL cannot be changed
+
+## Warning in read_tokens_(data, tokenizer, col_specs, col_names, locale_, :
+## length of NULL cannot be changed
+
+## Warning in read_tokens_(data, tokenizer, col_specs, col_names, locale_, :
+## length of NULL cannot be changed
+
+## Warning in read_tokens_(data, tokenizer, col_specs, col_names, locale_, :
+## length of NULL cannot be changed
+
+## Warning in read_tokens_(data, tokenizer, col_specs, col_names, locale_, :
+## length of NULL cannot be changed
+
+## Warning in read_tokens_(data, tokenizer, col_specs, col_names, locale_, :
+## length of NULL cannot be changed
+
+## Warning in read_tokens_(data, tokenizer, col_specs, col_names, locale_, :
+## length of NULL cannot be changed
+
+## Warning in read_tokens_(data, tokenizer, col_specs, col_names, locale_, :
+## length of NULL cannot be changed
+
+## Warning in read_tokens_(data, tokenizer, col_specs, col_names, locale_, :
+## length of NULL cannot be changed
+
+## Warning in read_tokens_(data, tokenizer, col_specs, col_names, locale_, :
+## length of NULL cannot be changed</code></pre>
 <pre><code>## # A tibble: 200 x 3
 ##       id prog   read
 ##    &lt;int&gt; &lt;fct&gt; &lt;int&gt;
@@ -230,6 +282,10 @@ read_csv(&#39;hsb3.csv&#39;, col_names = cnames)</code></pre>
 ## 10    48 2        57
 ## # ... with 190 more rows</code></pre>
 </div>
+</div>
+<div id="summary" class="section level2">
+<h2>Summary</h2>
+<p><img src="/img/import_funca.png" width="80%" style="display: block; margin: auto;" /></p>
 <div id="practice" class="section level3">
 <h3>Practice</h3>
 <ul>
@@ -242,7 +298,7 @@ read_csv(&#39;hsb3.csv&#39;, col_names = cnames)</code></pre>
 </ul></li>
 </ul>
 </div>
-<div id="summary" class="section level3">
+<div id="summary-1" class="section level3">
 <h3>Summary</h3>
 <p>In this post, we explored:</p>
 <ul>
@@ -256,7 +312,6 @@ read_csv(&#39;hsb3.csv&#39;, col_names = cnames)</code></pre>
 <li>if data includes column names</li>
 </ul></li>
 </ul>
-<p>In the next post, we will explore reading data from excel spreadsheets
-and other statistical softwares.</p>
+<p>In the next post, we will explore reading data from excel spreadsheets and other statistical softwares.</p>
 </div>
 </div>

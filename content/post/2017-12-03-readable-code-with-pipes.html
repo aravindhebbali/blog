@@ -14,8 +14,7 @@ tags:
 
 <div id="introduction" class="section level2">
 <h2>Introduction</h2>
-<p>R code contain a lot of parentheses in case of a sequence of multiple operations. When you are dealing with
-complex code, it results in nested function calls which are hard to read and maintain. The <a href="https://CRAN.R-project.org/package=magrittr">magrittr</a> package by <a href="http://stefanbache.dk/">Stefan Milton Bache</a> provides pipes enabling us to write R code that is readable.</p>
+<p>R code contain a lot of parentheses in case of a sequence of multiple operations. When you are dealing with complex code, it results in nested function calls which are hard to read and maintain. The <a href="https://CRAN.R-project.org/package=magrittr">magrittr</a> package by <a href="http://stefanbache.dk/">Stefan Milton Bache</a> provides pipes enabling us to write R code that is readable.</p>
 <p>Pipes allow us to clearly express a sequence of multiple operations by:</p>
 <ul>
 <li>structuring operations from left to right</li>
@@ -47,11 +46,11 @@ complex code, it results in nested function calls which are hard to read and mai
 <li><a href="http://stringr.tidyverse.org/">stringr</a></li>
 <li>and <a href="http://readr.tidyverse.org/">purrr</a></li>
 </ul>
-<p>You can find the data sets <a href="https://github.com/rsquaredacademy/datasets">here</a> and the codes
-<a href="https://gist.github.com/aravindhebbali/26d85ab4a4dadd2fe7c1f58d854cc950">here</a>.</p>
+<p>You can find the data sets <a href="https://github.com/rsquaredacademy/datasets">here</a> and the codes <a href="https://gist.github.com/aravindhebbali/26d85ab4a4dadd2fe7c1f58d854cc950">here</a>.</p>
 <pre class="r"><code>library(magrittr)
-library(readr)
-library(dplyr)
+library(readr)</code></pre>
+<pre><code>## Warning: package &#39;readr&#39; was built under R version 3.5.1</code></pre>
+<pre class="r"><code>library(dplyr)
 library(stringr)
 library(purrr)</code></pre>
 </div>
@@ -62,16 +61,16 @@ ecom</code></pre>
 <pre><code>## # A tibble: 1,000 x 11
 ##       id referrer device bouncers n_visit n_pages duration country       
 ##    &lt;int&gt; &lt;chr&gt;    &lt;chr&gt;  &lt;chr&gt;      &lt;int&gt;   &lt;dbl&gt;    &lt;dbl&gt; &lt;chr&gt;         
-##  1     1 google   laptop true          10    1.00    693   Czech Republic
-##  2     2 yahoo    tablet true           9    1.00    459   Yemen         
-##  3     3 direct   laptop true           0    1.00    996   Brazil        
-##  4     4 bing     tablet false          3   18.0     468   China         
-##  5     5 yahoo    mobile true           9    1.00    955   Poland        
-##  6     6 yahoo    laptop false          5    5.00    135   South Africa  
-##  7     7 yahoo    mobile true          10    1.00     75.0 Bangladesh    
-##  8     8 direct   mobile true          10    1.00    908   Indonesia     
-##  9     9 bing     mobile false          3   19.0     209   Netherlands   
-## 10    10 google   mobile true           6    1.00    208   Czech Republic
+##  1     1 google   laptop true          10       1      693 Czech Republic
+##  2     2 yahoo    tablet true           9       1      459 Yemen         
+##  3     3 direct   laptop true           0       1      996 Brazil        
+##  4     4 bing     tablet false          3      18      468 China         
+##  5     5 yahoo    mobile true           9       1      955 Poland        
+##  6     6 yahoo    laptop false          5       5      135 South Africa  
+##  7     7 yahoo    mobile true          10       1       75 Bangladesh    
+##  8     8 direct   mobile true          10       1      908 Indonesia     
+##  9     9 bing     mobile false          3      19      209 Netherlands   
+## 10    10 google   mobile true           6       1      208 Czech Republic
 ## # ... with 990 more rows, and 3 more variables: purchase &lt;chr&gt;,
 ## #   order_items &lt;dbl&gt;, order_value &lt;dbl&gt;</code></pre>
 <div id="data-dictionary" class="section level4">
@@ -93,24 +92,21 @@ ecom</code></pre>
 </div>
 <div id="first-example" class="section level2">
 <h2>First Example</h2>
-<p>Let us start with a simple example. You must be aware of <code>head()</code>. If not,
-do not worry. It returns the first few observations/rows of data. We can
-specify the number of observations it should return as well. Let us use
-it to view the first 10 rows of our data set.</p>
+<p>Let us start with a simple example. You must be aware of <code>head()</code>. If not, do not worry. It returns the first few observations/rows of data. We can specify the number of observations it should return as well. Let us use it to view the first 10 rows of our data set.</p>
 <pre class="r"><code>head(ecom, 10)</code></pre>
 <pre><code>## # A tibble: 10 x 11
 ##       id referrer device bouncers n_visit n_pages duration country       
 ##    &lt;int&gt; &lt;chr&gt;    &lt;chr&gt;  &lt;chr&gt;      &lt;int&gt;   &lt;dbl&gt;    &lt;dbl&gt; &lt;chr&gt;         
-##  1     1 google   laptop true          10    1.00    693   Czech Republic
-##  2     2 yahoo    tablet true           9    1.00    459   Yemen         
-##  3     3 direct   laptop true           0    1.00    996   Brazil        
-##  4     4 bing     tablet false          3   18.0     468   China         
-##  5     5 yahoo    mobile true           9    1.00    955   Poland        
-##  6     6 yahoo    laptop false          5    5.00    135   South Africa  
-##  7     7 yahoo    mobile true          10    1.00     75.0 Bangladesh    
-##  8     8 direct   mobile true          10    1.00    908   Indonesia     
-##  9     9 bing     mobile false          3   19.0     209   Netherlands   
-## 10    10 google   mobile true           6    1.00    208   Czech Republic
+##  1     1 google   laptop true          10       1      693 Czech Republic
+##  2     2 yahoo    tablet true           9       1      459 Yemen         
+##  3     3 direct   laptop true           0       1      996 Brazil        
+##  4     4 bing     tablet false          3      18      468 China         
+##  5     5 yahoo    mobile true           9       1      955 Poland        
+##  6     6 yahoo    laptop false          5       5      135 South Africa  
+##  7     7 yahoo    mobile true          10       1       75 Bangladesh    
+##  8     8 direct   mobile true          10       1      908 Indonesia     
+##  9     9 bing     mobile false          3      19      209 Netherlands   
+## 10    10 google   mobile true           6       1      208 Czech Republic
 ## # ... with 3 more variables: purchase &lt;chr&gt;, order_items &lt;dbl&gt;,
 ## #   order_value &lt;dbl&gt;</code></pre>
 <div id="using-pipe" class="section level4">
@@ -120,25 +116,23 @@ it to view the first 10 rows of our data set.</p>
 <pre><code>## # A tibble: 10 x 11
 ##       id referrer device bouncers n_visit n_pages duration country       
 ##    &lt;int&gt; &lt;chr&gt;    &lt;chr&gt;  &lt;chr&gt;      &lt;int&gt;   &lt;dbl&gt;    &lt;dbl&gt; &lt;chr&gt;         
-##  1     1 google   laptop true          10    1.00    693   Czech Republic
-##  2     2 yahoo    tablet true           9    1.00    459   Yemen         
-##  3     3 direct   laptop true           0    1.00    996   Brazil        
-##  4     4 bing     tablet false          3   18.0     468   China         
-##  5     5 yahoo    mobile true           9    1.00    955   Poland        
-##  6     6 yahoo    laptop false          5    5.00    135   South Africa  
-##  7     7 yahoo    mobile true          10    1.00     75.0 Bangladesh    
-##  8     8 direct   mobile true          10    1.00    908   Indonesia     
-##  9     9 bing     mobile false          3   19.0     209   Netherlands   
-## 10    10 google   mobile true           6    1.00    208   Czech Republic
+##  1     1 google   laptop true          10       1      693 Czech Republic
+##  2     2 yahoo    tablet true           9       1      459 Yemen         
+##  3     3 direct   laptop true           0       1      996 Brazil        
+##  4     4 bing     tablet false          3      18      468 China         
+##  5     5 yahoo    mobile true           9       1      955 Poland        
+##  6     6 yahoo    laptop false          5       5      135 South Africa  
+##  7     7 yahoo    mobile true          10       1       75 Bangladesh    
+##  8     8 direct   mobile true          10       1      908 Indonesia     
+##  9     9 bing     mobile false          3      19      209 Netherlands   
+## 10    10 google   mobile true           6       1      208 Czech Republic
 ## # ... with 3 more variables: purchase &lt;chr&gt;, order_items &lt;dbl&gt;,
 ## #   order_value &lt;dbl&gt;</code></pre>
 </div>
 </div>
 <div id="square-root" class="section level2">
 <h2>Square Root</h2>
-<p>Time to try a slightly more challenging example. We want the square root of
-<code>n_pages</code> column from the data set. To ensure the output does not clutter
-the page, we will view the first few observations using <code>head()</code>.</p>
+<p>Time to try a slightly more challenging example. We want the square root of <code>n_pages</code> column from the data set. To ensure the output does not clutter the page, we will view the first few observations using <code>head()</code>.</p>
 <pre class="r"><code>y &lt;- head(sqrt(ecom$n_pages))</code></pre>
 <p>Let us break down the above computation into small steps:</p>
 <ul>
@@ -168,9 +162,7 @@ head(y)</code></pre>
 </div>
 <div id="visualization" class="section level2">
 <h2>Visualization</h2>
-<p>Let us look at a data visualization example. We will create a bar plot to
-visualize the frequency of different referrer types that drove purchasers
-to the website. Let us look at the steps involved in creating the bar plot:</p>
+<p>Let us look at a data visualization example. We will create a bar plot to visualize the frequency of different referrer types that drove purchasers to the website. Let us look at the steps involved in creating the bar plot:</p>
 <ul>
 <li>extract rows where purchase == true</li>
 <li>select/expose <code>referrer</code> column</li>
@@ -194,10 +186,7 @@ to the website. Let us look at the steps involved in creating the bar plot:</p>
 </div>
 <div id="correlation" class="section level2">
 <h2>Correlation</h2>
-<p>Correlation is a statistical measure that indicates the extent to which two or more variables
-fluctuate together. In R, correlation is computed using <code>cor()</code>. Let us look at the
-correlation between the number of pages browsed and time spent on the site for
-visitors who purchased some product. Below are the steps for computing correlation:</p>
+<p>Correlation is a statistical measure that indicates the extent to which two or more variables fluctuate together. In R, correlation is computed using <code>cor()</code>. Let us look at the correlation between the number of pages browsed and time spent on the site for visitors who purchased some product. Below are the steps for computing correlation:</p>
 <ul>
 <li>extract rows where purchase == true</li>
 <li>select/expose <code>n_pages</code> and <code>duration</code> columns</li>
@@ -220,8 +209,7 @@ ecom %&gt;%
 </div>
 <div id="regression" class="section level2">
 <h2>Regression</h2>
-<p>Let us look at a regression example. We regress time spent on the site on
-number of pages visited. Below are the steps involved in running the regression:</p>
+<p>Let us look at a regression example. We regress time spent on the site on number of pages visited. Below are the steps involved in running the regression:</p>
 <ul>
 <li>use <code>duration</code> and <code>n_pages</code> columns from econ data</li>
 <li>pass the above data to <code>lm()</code></li>
@@ -273,8 +261,7 @@ number of pages visited. Below are the steps involved in running the regression:
 </div>
 <div id="string-manipulation" class="section level2">
 <h2>String Manipulation</h2>
-<p>We want to extract the first name (jovial) from the below email id and
-convert it to upper case. Below are the steps to achieve this:</p>
+<p>We want to extract the first name (jovial) from the below email id and convert it to upper case. Below are the steps to achieve this:</p>
 <ul>
 <li>split the email id using the pattern <code>@</code> using <code>str_split()</code></li>
 <li>extract the first element from the resulting list using <code>extract2()</code></li>
@@ -308,8 +295,7 @@ email %&gt;%
 </div>
 <div id="data-extraction" class="section level2">
 <h2>Data Extraction</h2>
-<p>Let us turn our attention towards data extraction. magrittr provides
-alternatives to <code>$</code>, <code>[</code> and <code>[[</code>.</p>
+<p>Let us turn our attention towards data extraction. magrittr provides alternatives to <code>$</code>, <code>[</code> and <code>[[</code>.</p>
 <ul>
 <li><code>extract()</code></li>
 <li><code>extract2()</code></li>
@@ -317,56 +303,48 @@ alternatives to <code>$</code>, <code>[</code> and <code>[[</code>.</p>
 </ul>
 <div id="extract-column-by-name" class="section level4">
 <h4>Extract Column By Name</h4>
-<p>To extract a specific column using the column name, we mention the name
-of the column in single/double quotes within <code>[</code> or <code>[[</code>. In case of <code>$</code>,
-we do not use quotes.</p>
+<p>To extract a specific column using the column name, we mention the name of the column in single/double quotes within <code>[</code> or <code>[[</code>. In case of <code>$</code>, we do not use quotes.</p>
 <p>Let us extract the first 3 observations of <code>n_pages</code> column.</p>
 <pre class="r"><code>head(ecom[&#39;n_pages&#39;], 3)</code></pre>
 <pre><code>## # A tibble: 3 x 1
 ##   n_pages
 ##     &lt;dbl&gt;
-## 1    1.00
-## 2    1.00
-## 3    1.00</code></pre>
+## 1       1
+## 2       1
+## 3       1</code></pre>
 <pre class="r"><code>ecom %&gt;%
   extract(&#39;n_pages&#39;) %&gt;%
   head(3)</code></pre>
 <pre><code>## # A tibble: 3 x 1
 ##   n_pages
 ##     &lt;dbl&gt;
-## 1    1.00
-## 2    1.00
-## 3    1.00</code></pre>
+## 1       1
+## 2       1
+## 3       1</code></pre>
 </div>
 <div id="extract-column-by-position" class="section level4">
 <h4>Extract Column By Position</h4>
-<p>We can extract columns using their index position. Keep in mind that index
-position starts from <strong>1</strong> in R. In the below example, we show how to
-extract the first 3 observations of <code>n_pages</code> column but instead of using
-the column name, we use the column position.</p>
+<p>We can extract columns using their index position. Keep in mind that index position starts from <strong>1</strong> in R. In the below example, we show how to extract the first 3 observations of <code>n_pages</code> column but instead of using the column name, we use the column position.</p>
 <pre class="r"><code>head(ecom[6], 3)</code></pre>
 <pre><code>## # A tibble: 3 x 1
 ##   n_pages
 ##     &lt;dbl&gt;
-## 1    1.00
-## 2    1.00
-## 3    1.00</code></pre>
+## 1       1
+## 2       1
+## 3       1</code></pre>
 <pre class="r"><code>ecom %&gt;%
   extract(6) %&gt;%
   head(3)</code></pre>
 <pre><code>## # A tibble: 3 x 1
 ##   n_pages
 ##     &lt;dbl&gt;
-## 1    1.00
-## 2    1.00
-## 3    1.00</code></pre>
+## 1       1
+## 2       1
+## 3       1</code></pre>
 </div>
 <div id="extract-column-as-vector" class="section level4">
 <h4>Extract Column (as vector)</h4>
-<p>One important differentiator between <code>[</code> and <code>[[</code> is that <code>[[</code> will
-return a atomic vector and not a <code>data.frame</code>. <code>$</code> will also return
-a atomic vector. In magrittr, we can use <code>use_series()</code> in place of
-<code>$</code>.</p>
+<p>One important differentiator between <code>[</code> and <code>[[</code> is that <code>[[</code> will return a atomic vector and not a <code>data.frame</code>. <code>$</code> will also return a atomic vector. In magrittr, we can use <code>use_series()</code> in place of <code>$</code>.</p>
 <pre class="r"><code>head(ecom$n_pages)</code></pre>
 <pre><code>## [1]  1  1  1 18  1  5</code></pre>
 <pre class="r"><code>ecom %&gt;%
@@ -376,8 +354,7 @@ a atomic vector. In magrittr, we can use <code>use_series()</code> in place of
 </div>
 <div id="extract-list-element-by-name" class="section level4">
 <h4>Extract List Element By Name</h4>
-<p>To extract elements of a list, we can use <code>extract2()</code>. If is an
-alternative for <code>[[</code>.</p>
+<p>To extract elements of a list, we can use <code>extract2()</code>. If is an alternative for <code>[[</code>.</p>
 <pre class="r"><code>mt &lt;- as.list(mtcars)
 
 mt[[&#39;mpg&#39;]]</code></pre>
@@ -422,8 +399,7 @@ mt$mpg</code></pre>
 </div>
 <div id="arithmetic-operations" class="section level2">
 <h2>Arithmetic Operations</h2>
-<p>magrittr offer alternatives for arithemtic operations as well. We will look at
-a few examples below.</p>
+<p>magrittr offer alternatives for arithemtic operations as well. We will look at a few examples below.</p>
 <ul>
 <li><code>add()</code></li>
 <li><code>subtract()</code></li>
@@ -473,8 +449,7 @@ a few examples below.</p>
 </div>
 <div id="logical-operators" class="section level2">
 <h2>Logical Operators</h2>
-<p>There are alternatives for logical operators as well. We will look at
-a few examples below.</p>
+<p>There are alternatives for logical operators as well. We will look at a few examples below.</p>
 <ul>
 <li><code>and()</code></li>
 <li><code>or()</code></li>

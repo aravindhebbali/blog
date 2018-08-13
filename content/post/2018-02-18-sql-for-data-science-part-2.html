@@ -91,8 +91,7 @@ copy_to(con, ecom)</code></pre>
 </div>
 <div id="alias" class="section level4">
 <h4>Alias</h4>
-<p>SQL aliases are used to give a table, or a column in a table, a temporary name. They are often used to make column names more readable. An alias only exists for the duration of the query. Below are a
-few examples:</p>
+<p>SQL aliases are used to give a table, or a column in a table, a temporary name. They are often used to make column names more readable. An alias only exists for the duration of the query. Below are a few examples:</p>
 <pre class="r"><code>dbGetQuery(con, &quot;SELECT AVG(n_visit) AS avg_mobile 
                  FROM ecom 
                  WHERE device == &#39;mobile&#39;&quot;)</code></pre>
