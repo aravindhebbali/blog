@@ -2,22 +2,33 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 {{ .Hugo.Generator }}
 
-{{ if eq .URL "/" }}
-<title>{{ .Site.Title }}</title>
-<meta property="og:title" content="{{ .Site.Title }}">
-<meta property="og:type" content="website">
-{{ else }}
-<title>{{ .Title }}{{ with .Params.subtitle }} - {{ . }} {{ end }} - {{ .Site.Title }}</title>
-<meta property="og:title" content="{{ .Title }} - {{ .Site.Title }}">
-{{ end }}
+  {{ if eq .URL "/" }}
+  <title>{{ .Site.Title }}</title>
+  <meta property="og:title" content="{{ .Site.Title }}">
+  <meta property="og:type" content="website">
+  <meta property="description" content="{{ .Site.Params.description }}">
+  <meta property="og:description" content="{{ .Site.Params.description }}">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:image" content="https://blog.aravindhebbali.com/images/{{ .Site.Params.logo.url }}" >
+  {{ else }}
+  <title>{{ .Title }}{{ with .Params.subtitle }} - {{ . }} {{ end }} - {{ .Site.Title }}</title>
+  <meta property="og:title" content="{{ .Title }} - {{ .Site.Title }}">
+  <meta property="og:type" content="article">
 
-{{ if eq .URL "/" }}
-<meta property="description" content="{{ .Site.Params.description }}">
-{{ else }}
-  {{ if .Description }}
-  <meta property="description" content="{{ .Description }}">
+    {{ if .Params.twitterImg }}
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://blog.aravindhebbali.com/{{ .Params.twitterImg }}" >
+    {{ else }}
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:image" content="https://blog.aravindhebbali.com/images/{{ .Site.Params.logo.url }}" >
+    {{ end }}
+    
+  {{ $defaultDescription := printf "Article posted by %s, on %s" .Params.author (.Date.Format "Monday, January 2nd, 2006") }}
+  <meta property="description" content="{{ .Description | default $defaultDescription }}">
+  <meta property="og:description" content="{{ .Description | default $defaultDescription }}">
   {{ end }}
-{{ end }}
+
+  <meta name="twitter:creator" content="{{ .Params.twitterAuthor }}">
 
 {{ if .Keywords }}
 <meta property="keywords" content ="{{ delimit .Keywords ", " }}">

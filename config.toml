@@ -25,6 +25,7 @@ ignoreFiles = ["\\.Rmd$", "\\.Rmarkdown$", "_files$", "_cache$"]
 [params]
     description = "Personal blog of Aravind Hebbali, built through Hugo and blogdown."
     keywords = "aravind"
+    twitterAuthor = "@hebbaliaravind"
     # options for highlight.js (version, additional languages, and theme)
     highlightjsVersion = "9.11.0"
     highlightjsCDN = "//cdn.bootcss.com"

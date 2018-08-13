@@ -1,30 +1,27 @@
 ---
-title: "Importing Data into R - Part 1"
+title: "Import Data into R - Part 1"
 author: "Aravind Hebbali"
-date: '2017-11-05'
-slug: a-complete-guide-to-importing-data-into-r-part-1
+date: '2018-03-10'
+twitterImg: /img/import.png
+description: "Learn to read data from flat/delimited files into R."
+slug: import-data-into-r-part-1
 tags:
 - import
 - readr
-categories:
-- data wrangling
+topics:
+- import
 - R
 ---
 
 ## Introduction
 
-This is the first post in the series **Importing Data into R**. Before we get started, let me talk a bit about what we will learn in this series. I am planning to write 3 posts in which we will explore how to read data from:
+In this post, we will learn to:
 
-- flat/delimited files (.csv, .txt, .tsv)
-- excel spreadsheets (.xls, .xlsx)
-- statistical softwares
-- JSON/XML
-
-There are other ways to get data into R such as databases, APIs etc. and I intend to write a separate series of posts for each of them. Coming back to this post, we will focus on 
-
-- reading data from flat or delimited files
-- specifying column data types
-- reading specific columns only
+- read data from flat or delimited files
+- handle column names/header
+- skip text/info present before data
+- specify column/variable types
+- read specific columns/variables
 
 ## Libraries, Data & Code
 
@@ -34,25 +31,34 @@ We will use the [readr](http://readr.tidyverse.org/index.html) package. The data
 library(readr)
 ```
 
+## Delimiters
 
-## Overview
+```{r img1, fig.align='center', echo=FALSE}
+knitr::include_graphics('/img/mtcars_comma.png')
+```
 
+<br>
 
-<center>
-![](import_func.png){width=60%}
-</center>
+```{r img2, fig.align='center', echo=FALSE}
+knitr::include_graphics('/img/mtcars_semicolon.png')
+```
 
+<br>
 
-The above table gives an overview of the functions for reading different types of files in readr and Base R. All the functions in readr offer a common set of options which are described below. We will learn about them in greater detail in the next section.
+```{r img3, fig.align='center', echo=FALSE}
+knitr::include_graphics('/img/mtcars_space.png')
+```
 
-- `col_names`: whether data includes column names
-- `n_max`: maximum number of lines/rows to read
-- `col_types`: data type of the columns
-- `skip`: number of lines/rows to skip
+<br>
+
+```{r img4, fig.align='center', echo=FALSE}
+knitr::include_graphics('/img/mtcars_tab.png')
+```
 
 ## Case Study
 
 In this section, we will read data from a csv (comma separated values) file and explore the options listed in the previous section.   
+
 ```{r csv}
 read_csv('hsb2.csv')
 ```
@@ -72,6 +78,18 @@ spec_csv('hsb2.csv')
 
 #### Column Names
 
+```{r img5, fig.align='center', echo=FALSE}
+knitr::include_graphics('/img/mtcars_comma.png')
+```
+
+<br>
+
+```{r img6, fig.align='center', echo=FALSE}
+knitr::include_graphics('/img/mtcars_column_false.png')
+```
+
+<br>
+
 Use `col_names` to indicate whether the data includes column names. It takes two values, `TRUE` and `FALSE`. If set to `FALSE`, readr will generate column names. In the below example, we will read data from a file which does not have column names present in the first row.
 
 ```{r col_names, message=FALSE}
@@ -88,6 +106,12 @@ read_csv('hsb3.csv', col_names = cnames)
 
 ### Skip Lines
 
+```{r img7, fig.align='center', echo=FALSE, out.width="80%"}
+knitr::include_graphics('/img/mtcars_skip.png')
+```
+
+<br>
+
 Use `skip` to skip a certain number of lines. For example, if the file has contents other than data in the first few lines, we need to skip them before reading the data. In the below example, we will skip the first 3 lines as they contain information about the data set which we do not need.
 
 ```{r skip, message=FALSE}
@@ -103,6 +127,12 @@ read_csv('hsb2.csv', n_max = 120)
 ```
 
 ### Column Types
+
+```{r img8, fig.align='center', echo=FALSE}
+knitr::include_graphics('/img/column_types_list_canva.png')
+```
+
+<br>
 
 In certain cases, we need to specify the data type of the columns. It might be related to dates or categorical variables. readr allows us to specify the data types using `col_xxx` functions which include:
 
@@ -127,12 +157,24 @@ read_csv('hsb2.csv', col_types = list(
 
 ### Specific Columns
 
+```{r img9, fig.align='center', echo=FALSE}
+knitr::include_graphics('/img/column_objective_function_map.png')
+```
+
+<br>
+
 We may not always want to read all the columns from a file. In such cases, we can specify the columns to be read using `col_types` argument and supplying to it the names of the columns to be read. We will use `cols_only()` to specify the column names and their respective data types.
 
 ```{r specific_cols}
 read_csv('hsb2.csv', col_types = cols_only(id = col_integer(),
   prog = col_factor(levels = c(1, 2, 3)), read = col_integer())
 )
+```
+
+## Summary
+
+```{r img10, fig.align='center', echo=FALSE, out.width="80%"}
+knitr::include_graphics('/img/import_funca.png')
 ```
 
 ### Practice 
