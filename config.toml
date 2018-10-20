@@ -2,7 +2,6 @@ baseurl = "https://blog.aravindhebbali.com/"
 languageCode = "en-us"
 title = "Aravind's Blog | R | Economics | Finance"
 theme = "hugo-lithium-theme"
-googleAnalytics = "UA-57270671-5"
 disqusShortname = ""
 ignoreFiles = ["\\.Rmd$", "\\.Rmarkdown$", "_files$", "_cache$"]
 
@@ -26,6 +25,13 @@ ignoreFiles = ["\\.Rmd$", "\\.Rmarkdown$", "_files$", "_cache$"]
     description = "Personal blog of Aravind Hebbali, built through Hugo and blogdown."
     keywords = "aravind"
     twitterAuthor = "@hebbaliaravind"
+
+    [params.logo]
+    url = "logo.jpg"
+    width = 50
+    height = 50
+    alt = "Aravind Hebbali"
+
     # options for highlight.js (version, additional languages, and theme)
     highlightjsVersion = "9.11.0"
     highlightjsCDN = "//cdn.bootcss.com"
@@ -35,9 +41,4 @@ ignoreFiles = ["\\.Rmd$", "\\.Rmarkdown$", "_files$", "_cache$"]
     MathJaxCDN = "//cdn.bootcss.com"
     MathJaxVersion = "2.7.1"
 
-    [params.logo]
-    url = "logo.jpg"
-    width = 50
-    height = 50
-    alt = "Aravind Hebbali"
-
+    
