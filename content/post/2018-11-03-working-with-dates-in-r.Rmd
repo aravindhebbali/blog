@@ -1,10 +1,11 @@
 ---
-title: 'Working with Dates in R '
+title: 'Working with Date and Time in R '
 author: Aravind Hebbali
-date: '2018-01-14'
+date: '2018-11-03'
 slug: working-with-dates-in-r
 categories:
   - data wrangling
+  - lubridate
 tags:
   - lubridate
   - date
@@ -34,7 +35,7 @@ library(magrittr)
 library(readr)
 ```
 
-## Quic Intro
+## Quick Intro
 
 #### Origin
 
@@ -67,7 +68,7 @@ transact <- read_csv('https://raw.githubusercontent.com/rsquaredacademy/datasets
 ```
 
 ```{r show, echo=FALSE, eval=TRUE, message=FALSE}
-transact <- readr::read_csv('https://raw.githubusercontent.com/rsquaredacademy/datasets/master/transact.csv')
+transact <- read_csv('https://raw.githubusercontent.com/rsquaredacademy/datasets/master/transact.csv')
 transact
 ```
 
@@ -95,6 +96,14 @@ questions we have about the transact data.
 
 The first thing we will learn is to extract the date, month and year. 
 
+<br>
+
+```{r img1, echo=FALSE, out.width="100%", fig.align="center"}
+knitr::include_graphics("/img/day_week_month.png")
+```
+
+<br>
+
 ```{r lub18}
 this_day <- as_date('2017-03-23')
 day(this_day)
@@ -107,9 +116,9 @@ Let us now extract the date, month and year from the `Due` column.
 ```{r lub2}
 transact %>%
   mutate(
-    due_day = day(Due),
+    due_day   = day(Due),
     due_month = month(Due),
-    due_year = year(Due)
+    due_year  = year(Due)
   )
 ```
 
@@ -118,13 +127,18 @@ transact %>%
 Time to do some arithmetic with the dates. Let us calculate the duration of a 
 course by subtracting the course start date from the course end date.
 
+<br>
+
+```{r img2, echo=FALSE, out.width="100%", fig.align="center"}
+knitr::include_graphics("/img/course_duration.png")
+```
+
+<br>
+
 ```{r lub19, collapse = TRUE}
-course_start <- as_date('2017-04-12')
-
-course_end <- as_date('2017-04-21')
-
+course_start    <- as_date('2017-04-12')
+course_end      <- as_date('2017-04-21')
 course_duration <- course_end - course_start
-
 course_duration
 ```
 
@@ -151,7 +165,7 @@ transact %>%
     delay = Due - Payment
   ) %>%
   filter(delay < 0) %>%
-  tally
+  tally()
 ```
 
 ## Is due year a leap year?
@@ -168,28 +182,30 @@ transact %>%
 ## If due day is February 29, is it a leap year?
 
 Let us do some data sanitization. If the due day happens to be February 29, 
-let us ensure that the due year is a leap year. We will extract the following
-from the due date:
+let us ensure that the due year is a leap year. Below are the steps to check 
+if the due year is a leap year:
 
-- day
-- month
-- year
-
-We will then create a new column `is_leap` which will have be set to `TRUE` if 
-the year is a leap year else it will be set to `FALSE` and filter all the rows
-where the month is 2 and the day is 29. Since we do not need 
-the invoice or payment date, they will not be selected.
+- we will extract the following from the due date:
+    - day
+    - month
+    - year
+- we will then create a new column `is_leap` which will have be set to `TRUE` if 
+the year is a leap year else it will be set to `FALSE` 
+- filter all the payments due on 29th Feb
+- select the following columns:
+    - `Due`
+    - `is_leap`
 
 ```{r lub6}
 transact %>%
   mutate(
-    due_day = day(Due),
+    due_day   = day(Due),
     due_month = month(Due),
-    due_year = year(Due),
-    is_leap = leap_year(due_year)
+    due_year  = year(Due),
+    is_leap   = leap_year(due_year)
   ) %>%
-  select(-(Invoice), -(Payment)) %>%
-  filter(due_month == 2 & due_day == 29)
+  filter(due_month == 2 & due_day == 29) %>%
+  select(Due, is_leap) 
 ```
 
 ## Shift Date
@@ -201,11 +217,17 @@ shift the course start date by:
 - 3 weeks
 - 1 year
 
+<br>
+
+```{r img3, echo=FALSE, out.width="100%", fig.align="center"}
+knitr::include_graphics("/img/shift_dates.png")
+```
+
+<br>
+
 ```{r lab40, collapse = TRUE}
 course_start + days(2)
-
 course_start + weeks(3)
-
 course_start + years(1)
 ```
 
@@ -214,6 +236,14 @@ course_start + years(1)
 Let us calculate the duration of the course using `interval`. If you observe
 carefully, the result is not the duration in days but an object of class
 `interval`. Now let us learn how we can use intervals.
+
+<br>
+
+```{r img4, echo=FALSE, out.width="100%", fig.align="center"}
+knitr::include_graphics("/img/course_interval.png")
+```
+
+<br>
 
 ```{r lub10}
 interval(course_start, course_end)
@@ -231,15 +261,19 @@ if the intervals overlap else `FALSE`.
 Let us use the vacation start and end dates to create `vacation_interval`
 and then check if it overlaps with `course_interval`. 
 
+<br>
+
+```{r img6, echo=FALSE, out.width="100%", fig.align="center"}
+knitr::include_graphics("/img/interval_overlap.png")
+```
+
+<br>
+
 ```{r lub60, collapse = TRUE}
-vacation_start <- as_date('2017-04-19')
-
-vacation_end <- as_date('2017-04-25')
-
-course_interval <- interval(course_start, course_end)
-
+vacation_start    <- as_date('2017-04-19')
+vacation_end      <- as_date('2017-04-25')
+course_interval   <- interval(course_start, course_end)
 vacation_interval <- interval(vacation_start, vacation_end)
-
 int_overlaps(course_interval, vacation_interval)
 ```
 
@@ -249,16 +283,17 @@ Let us use intervals to count the number of invoices that were settled within
 the due date. To do this, we will:
 
 - create an interval for the invoice and due date
-- another interval for the due date and the payment date
+- create a new column `due_next` by incrementing the due date by 1 day
+- another interval for `due_next` and the payment date
 - if the intervals overlap, the payment was made within the due date 
 
 ```{r lub7}
 transact %>%
   mutate(
     inv_due_interval = interval(Invoice, Due),
-    due_next = Due + days(1),
+    due_next         = Due + days(1),
     due_pay_interval = interval(due_next, Payment),
-    overlaps = int_overlaps(inv_due_interval, due_pay_interval)
+    overlaps         = int_overlaps(inv_due_interval, due_pay_interval)
   ) %>%
   select(Invoice, Due, Payment, overlaps)
 ```
@@ -272,12 +307,26 @@ transact %>%
   mutate(
     inv_due_interval = interval(Invoice, Due),
     due_pay_interval = interval(Due, Payment),  
-    due_pay_next = int_shift(due_pay_interval, by = days(1)),
-    overlaps = int_overlaps(inv_due_interval, due_pay_next)
+    due_pay_next     = int_shift(due_pay_interval, by = days(1)),
+    overlaps         = int_overlaps(inv_due_interval, due_pay_next)
   ) %>%
   select(Invoice, Due, Payment, overlaps)
 ```
 
+You might be thinking why we incremented the due date by a day before creating
+the interval between the due day and the payment day. If we do not increment, 
+both the intervals will share a common date i.e. the due date and they will
+always overlap as shown below:
+
+```{r lub7a}
+transact %>%
+  mutate(
+    inv_due_interval = interval(Invoice, Due),
+    due_pay_interval = interval(Due, Payment),
+    overlaps         = int_overlaps(inv_due_interval, due_pay_interval)
+  ) %>%
+  select(Invoice, Due, Payment, overlaps)
+```
 
 ## Shift Interval
 
@@ -288,28 +337,38 @@ interval by:
 - 3 weeks
 - 1 year 
 
+<br>
+
+```{r img5, echo=FALSE, out.width="100%", fig.align="center"}
+knitr::include_graphics("/img/shift_interval.png")
+```
+
+<br>
+
 ```{r lab50, collapse = TRUE}
 course_interval <- interval(course_start, course_end)
-
-course_interval %>%
-  int_shift(by = days(1))
-
-course_interval %>%
-  int_shift(by = weeks(3))
-
-course_interval %>%
-  int_shift(by = years(1))
+int_shift(course_interval, by = days(1))
+int_shift(course_interval, by = weeks(3))
+int_shift(course_interval, by = years(1))
 ```
 
 ## Within
 
-Does a conference that we need to attend occur during the
-course duration?
+Let us assume that we have to attend a conference in April 2017. Does it occur
+during the course duration? We can answer this using `%within%` which will
+return `TRUE` if a date falls within an interval.
+
+<br>
+
+```{r img7, echo=FALSE, out.width="100%", fig.align="center"}
+knitr::include_graphics("/img/within.png")
+```
+
+<br>
 
 ```{r lub30, collapse = TRUE}
 conference <- as_date('2017-04-15')
-
-conference %within% interval(course_start, course_end)
+conference %within% course_interval
 ```
 
 #### How many invoices were settled within due date?
@@ -324,7 +383,7 @@ the due date. We will do this by:
 transact %>%
   mutate(
     inv_due_interval = interval(Invoice, Due),
-    overlaps = Payment %within% inv_due_interval
+    overlaps         = Payment %within% inv_due_interval
   ) %>%
   select(Due, Payment, overlaps)
 ```
@@ -333,17 +392,19 @@ transact %>%
 
 Let us check the quarter and the semester in which the course starts.
 
+<br>
+
+```{r img8, echo=FALSE, out.width="100%", fig.align="center"}
+knitr::include_graphics("/img/quarter_semester.png")
+```
+
+<br>
+
 ```{r lub20, collapse = TRUE}
 course_start
-
-course_start %>%
-  quarter
-
-course_start %>%
-  quarter(with_year = TRUE)
-
-course_start %>%
-  semester
+quarter(course_start)
+quarter(course_start, with_year = TRUE)
+semester(course_start)  
 ```
 
 Let us count the invoices due for each quarter.
@@ -363,63 +424,57 @@ transact %>%
   )
 ```
 
-## Duration
-
-Let us get the course duration in different units.
-
-```{r lub15, collapse = TRUE}
-course_duration <- 
-  (course_end - course_start) %>%
-  as.numeric
-
-course_duration %>%
-  duration(units = 'hours')
-
-course_duration %>%
-  duration(units = 'days')
-
-course_duration %>%
-  duration(units = 'weeks')
-```
-
 #### Case Study
+
+```{r img9, echo=FALSE, out.width="100%", fig.align="center"}
+knitr::include_graphics("/img/convert.png")
+```
 
 Let us also get the course interval in different units.
 
+<br>
+
 ```{r lub11, collapse = TRUE}
-interval(course_start, course_end) / dseconds()
-
-interval(course_start, course_end) / dminutes()
-
-interval(course_start, course_end) / dhours()
-
-interval(course_start, course_end) / dweeks()
-
-interval(course_start, course_end) / dyears()
+course_interval / dseconds()
+course_interval / dminutes()
+course_interval / dhours()
+course_interval / dweeks()
+course_interval / dyears()
 ```
 
 We can use `time_length()` to get the course interval in different units.
 
+<br>
+
+```{r img10, echo=FALSE, out.width="100%", fig.align="center"}
+knitr::include_graphics("/img/time_length.png")
+```
+
+<br>
+
 ```{r lub16, collapse = TRUE}
-interval(course_start, course_end) %>%
-  time_length(unit = "seconds")
-
-interval(course_start, course_end) %>%
-  time_length(unit = "minutes")
-
-interval(course_start, course_end) %>%
-  time_length(unit = "hours")
+time_length(course_interval, unit = "seconds")
+time_length(course_interval, unit = "minutes")
+time_length(course_interval, unit = "hours")
 ```
 
 `as.period()` is another way to get the course interval in different units.
 
-```{r lub17, collapse = TRUE}
-interval(course_start, course_end) %>%
-  as.period(unit = "seconds")
+<br>
 
-interval(course_start, course_end) %>%
-  as.period(unit = "minutes")
-
-interval(course_start, course_end) %>%
-  as.period(unit = "hours")
+```{r img11, echo=FALSE, out.width="100%", fig.align="center"}
+knitr::include_graphics("/img/as_period.png")
 ```
+
+<br>
+
+```{r lub17, collapse = TRUE}
+as.period(course_interval, unit = "seconds")
+as.period(course_interval, unit = "minutes")
+as.period(course_interval, unit = "hours")
+```
+
+## References
+
+- https://lubridate.tidyverse.org/
+- http://r4ds.had.co.nz/dates-and-times.html

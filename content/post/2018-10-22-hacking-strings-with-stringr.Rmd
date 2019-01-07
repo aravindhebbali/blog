@@ -1,12 +1,14 @@
 ---
 title: Hacking strings with stringr
 author: Aravind Hebbali
-date: '2018-01-07'
+date: '2018-10-22'
 slug: hacking-strings-with-stringr
 categories:
   - data wrangling
+  - stringr
 tags:
   - strings
+  - stringr
 ---
 
 ## Introduction
@@ -48,7 +50,7 @@ library(readr)
 ### Data
 
 ```{r show, message=FALSE, collapse=FALSE}
-mockstring <- readr::read_csv('https://raw.githubusercontent.com/rsquaredacademy/datasets/master/mock_strings.csv')
+mockstring <- read_csv('https://raw.githubusercontent.com/rsquaredacademy/datasets/master/mock_strings.csv')
 mockstring
 ```
 
@@ -83,8 +85,24 @@ mockdata <- slice(mockstring, 1:10)
 mockdata
 ```
 
+<br>
+
+```{r str3a, echo=FALSE, out.width="100%", fig.align="center"}
+knitr::include_graphics("/img/str_count.png")
+```
+
+<br>
+
 Use `str_detect()` to detect `@` and `str_count()` to count the number of times
 `@` appears in the email ids.
+
+<br>
+
+```{r str2a, echo=FALSE, out.width="100%", fig.align="center"}
+knitr::include_graphics("/img/str_detect.png")
+```
+
+<br>
 
 ```{r str62, collapse=FALSE}
 # detect @
@@ -97,6 +115,14 @@ str_count(mockdata$email, pattern = "@")
 We can use `str_c()` to concatenate strings. Let us add the string `email id:` before each
 email id in the data set.
 
+<br>
+
+```{r str4a, echo=FALSE, out.width="100%", fig.align="center"}
+knitr::include_graphics("/img/str_c.png")
+```
+
+<br>
+
 ```{r str63}
 str_c("email id:", mockdata$email)
 ```
@@ -105,6 +131,14 @@ If we want to split a string into two parts using a particular pattern, we use `
 Let us split the domain name and extension from the domain column in the data. The domain name
 and extension are separated by `.` and we will use it to split the domain column. Since `.` is 
 a special character, we will use two slashes to escape the special character. 
+
+<br>
+
+```{r str5a, echo=FALSE, out.width="100%", fig.align="center"}
+knitr::include_graphics("/img/str_split.png")
+```
+
+<br>
 
 ```{r str64}
 str_split(mockdata$domain, pattern = "\\.")
@@ -119,8 +153,24 @@ str_trunc(mockdata$email, width = 10, side = "left")
 str_trunc(mockdata$email, width = 10, side = "center")
 ```
 
+<br>
+
+```{r str7a, echo=FALSE, out.width="100%", fig.align="center"}
+knitr::include_graphics("/img/str_sort_descending.png")
+```
+
+<br>
+
 Strings can be sorted using `str_sort()`. Let us quickly sort the emails in both
 ascending and descending orders.
+
+<br>
+
+```{r str6a, echo=FALSE, out.width="100%", fig.align="center"}
+knitr::include_graphics("/img/str_sort.png")
+```
+
+<br>
 
 ```{r str66, collapse=FALSE}
 str_sort(mockdata$email)
@@ -128,6 +178,14 @@ str_sort(mockdata$email, decreasing = TRUE)
 ```
 
 The case of a string can be changed to upper, lower or title case as shown below.
+
+<br>
+
+```{r str8a, echo=FALSE, out.width="100%", fig.align="center"}
+knitr::include_graphics("/img/str_to_upper.png")
+```
+
+<br>
 
 ```{r str67, collapse=FALSE}
 str_to_upper(mockdata$full_name)
@@ -140,6 +198,14 @@ let us replace:
 - Street with ST
 - Road with RD
 
+<br>
+
+```{r str9a, echo=FALSE, out.width="100%", fig.align="center"}
+knitr::include_graphics("/img/str_replace.png")
+```
+
+<br>
+
 ```{r str68, collapse=FALSE}
 str_replace(mockdata$address, "Street", "ST")
 str_replace(mockdata$address, "Road", "RD")
@@ -147,12 +213,28 @@ str_replace(mockdata$address, "Road", "RD")
 
 We can extract parts of the string that match a particular pattern using `str_extract()`.
 
+<br>
+
+```{r str10a, echo=FALSE, out.width="100%", fig.align="center"}
+knitr::include_graphics("/img/str_extract.png")
+```
+
+<br>
+
 ```{r str69}
 str_extract(mockdata$email, pattern = "org")
 ```
 
 Before we extract, we need to know whether the string contains text that match our pattern.
 Use `str_match()` to see if the pattern is present in the string.
+
+<br>
+
+```{r str11a, echo=FALSE, out.width="100%", fig.align="center"}
+knitr::include_graphics("/img/str_match.png")
+```
+
+<br>
 
 ```{r str70}
 str_match(mockdata$email, pattern = "org")
@@ -162,6 +244,14 @@ If we are dealing with a character vector and know that the pattern we are looki
 is present in the vector, we might want to know the index of the strings in which it is
 present. Use `str_which()` to identify the index of the strings that match our pattern.
 
+<br>
+
+```{r str12a, echo=FALSE, out.width="100%", fig.align="center"}
+knitr::include_graphics("/img/str_which.png")
+```
+
+<br>
+
 ```{r str71}
 str_which(mockdata$email, pattern = "org")
 ```
@@ -170,12 +260,28 @@ Another objective might be to locate the position of the pattern we are looking 
 string. For example, if we want to know the position of `@`  in the email ids, we can use
 `str_locate()`.
 
+<br>
+
+```{r str13a, echo=FALSE, out.width="100%", fig.align="center"}
+knitr::include_graphics("/img/str_locate.png")
+```
+
+<br>
+
 ```{r str72}
 str_locate(mockdata$email, pattern = "@")
 ```
 
 The length of the string can be computed using `str_length()`. Let us ensure that the length 
 of the strings in the `password` column is 16.
+
+<br>
+
+```{r str14a, echo=FALSE, out.width="100%", fig.align="center"}
+knitr::include_graphics("/img/str_length.png")
+```
+
+<br>
 
 ```{r str74}
 str_length(mockdata$passwords)
@@ -184,13 +290,29 @@ str_length(mockdata$passwords)
 We can extract parts of a string by specifying the starting and ending position using
 `str_sub()`. Let us extract the currency type from the `currency` column.
 
+<br>
+
+```{r str15a, echo=FALSE, out.width="100%", fig.align="center"}
+knitr::include_graphics("/img/str_sub.png")
+```
+
+<br>
+
 ```{r str75}
 str_sub(mockdata$currency, start = 1, end = 1)
 ```
 
 One final function that we will look at before the case study is `word()`. It extracts 
-word(s) from sentences. We do not have any senetences in the data set, but let us use it
+word(s) from sentences. We do not have any sentences in the data set, but let us use it
 to extract the first and last name from the `full_name` column.
+
+<br>
+
+```{r str16a, echo=FALSE, out.width="100%", fig.align="center"}
+knitr::include_graphics("/img/word.png")
+```
+
+<br>
 
 ```{r 73, collapse=FALSE}
 word(mockdata$full_name, 1)
@@ -214,7 +336,7 @@ Let us take a look at the emails before we extract the domain names.
 emails <- 
   mockstring %>%
   pull(email) %>%
-  head
+  head()
 
 emails
 ```
@@ -300,7 +422,7 @@ Let us take a look at the URL of the image.
 img <- 
   mockstring %>%
   pull(imageurl) %>%
-  head
+  head()
 
 img
 ```
@@ -310,8 +432,7 @@ img
 Let us split imageurl using `str_split` and the pattern `\\.`.
 
 ```{r str22}
-img %>%
-  str_split(pattern = '\\.')
+str_split(img, pattern = '\\.')
 ```
 
 #### Step 2: Extract the third value from each element of the resulting list
@@ -376,8 +497,7 @@ which instructs to look for any number between and including 0
 and 9.
 
 ```{r str26}
-img %>%
-  str_locate(pattern = "[0-9]") 
+str_locate(img, pattern = "[0-9]") 
 ```
 
 #### Step 2: Extract url 
@@ -386,8 +506,7 @@ We know where the dimension is located in the url. Let us extract the
 part of the url that contains the image dimension using `str_sub()`.
 
 ```{r str27}
-img %>%
-  str_sub(start = 23) 
+str_sub(img, start = 23) 
 ```
 
 #### Step 3: Split the string using the pattern `\\.`.
@@ -426,7 +545,7 @@ img %>%
 url1 <- 
   mockstring %>%
   pull(url) %>%
-  first
+  first()
 
 url1
 ```
@@ -445,8 +564,7 @@ pattern `:`. Since `:` is a special character, we
 will escape it using `\\`.
 
 ```{r str31}
-url1 %>%
-  str_split(pattern = '://') 
+str_split(url1, pattern = '://') 
 ```
 
 #### Step 2: Extract the first element.
@@ -489,7 +607,7 @@ urls %>%
   str_locate_all(pattern = '\\.') %>%
   map_int(nrow) %>%
   is_greater_than(2) %>%
-  sum
+  sum()
 ```
 
 #### Step 2: Check if there is only 1 question mark in the URL
@@ -502,7 +620,7 @@ urls %>%
   str_locate_all(pattern = "[?]") %>%
   map_int(nrow) %>%
   is_greater_than(1) %>%
-  sum
+  sum()
 ```
 
 #### Step 3: Detect the staritng position of file type
@@ -548,6 +666,10 @@ first question mark in the url. Let us use them with `str_sub()`
 to extract the file type.
 
 ```{r str13}
-urls %>% 
-  str_sub(start = d, end = q)
+str_sub(urls, start = d, end = q)
 ```
+
+## References
+
+- https://stringr.tidyverse.org/
+- http://r4ds.had.co.nz/strings.html
