@@ -53,16 +53,16 @@ library(dplyr)</code></pre>
 <pre><code>## # A tibble: 26 x 3
 ##    x         y     z
 ##    &lt;chr&gt; &lt;int&gt; &lt;int&gt;
-##  1 a         1    52
-##  2 b         2    10
-##  3 c         3    36
-##  4 d         4    32
-##  5 e         5    63
-##  6 f         6    21
-##  7 g         7    86
-##  8 h         8    51
-##  9 i         9    77
-## 10 j        10    56
+##  1 a         1    14
+##  2 b         2    92
+##  3 c         3    98
+##  4 d         4    31
+##  5 e         5    47
+##  6 f         6    48
+##  7 g         7    75
+##  8 h         8    43
+##  9 i         9    85
+## 10 j        10    32
 ## # ... with 16 more rows</code></pre>
 <p>We mentioned the column names followed by the data. If you do not specify the
 column names, <code>tibble()</code> will supply them. Ensure that the length of each column
@@ -83,15 +83,15 @@ you need to set <code>stringsAsFactors</code> to <code>FALSE</code>.</p>
 ##    x         y     z
 ##    &lt;chr&gt; &lt;int&gt; &lt;int&gt;
 ##  1 a         1    10
-##  2 b         2    68
-##  3 c         3    53
-##  4 d         4    56
-##  5 e         5    34
-##  6 f         6    49
-##  7 g         7    64
-##  8 h         8    94
-##  9 i         9    29
-## 10 j        10    27
+##  2 b         2    14
+##  3 c         3    65
+##  4 d         4    92
+##  5 e         5    87
+##  6 f         6    42
+##  7 g         7    89
+##  8 h         8    15
+##  9 i         9    76
+## 10 j        10     7
 ## # ... with 16 more rows</code></pre>
 <ul>
 <li>never adjusts variable names</li>
@@ -117,15 +117,15 @@ tibble(x, y, z)</code></pre>
 ##        x y     z    
 ##    &lt;int&gt; &lt;chr&gt; &lt;lgl&gt;
 ##  1     1 a     TRUE 
-##  2     2 a     FALSE
-##  3     3 a     FALSE
+##  2     2 a     TRUE 
+##  3     3 a     TRUE 
 ##  4     4 a     FALSE
 ##  5     5 a     FALSE
 ##  6     6 a     FALSE
-##  7     7 a     TRUE 
-##  8     8 a     FALSE
+##  7     7 a     FALSE
+##  8     8 a     TRUE 
 ##  9     9 a     TRUE 
-## 10    10 a     TRUE 
+## 10    10 a     FALSE
 ## # ... with 90 more rows</code></pre>
 <ul>
 <li>never recycles vector of length greater than 1</li>
