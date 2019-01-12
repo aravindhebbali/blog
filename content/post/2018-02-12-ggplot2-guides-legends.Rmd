@@ -1,0 +1,151 @@
+---
+title: 'ggplot2: Legends - Part 1'
+author: Aravind Hebbali
+twitterImg: /img/gg_leg_part_1.png
+description: "ggplot2 - Quick Tour"
+date: '2018-02-12'
+slug: legend-part-1
+categories:
+  - data-visualization
+tags:
+  - ggplot2
+---
+
+### Introduction
+
+This is the 13th post in the series **Elegant Data Visualization with 
+ggplot2**. In the previos post, we learnt how to modify the axis of plots. In 
+this post, we will focus on modifying the legends of plots when the aesthetics 
+are mapped to variables. If the aesthetics are mapped to variables, ggplot2 
+automatically creates legends wherever applicable and you may want to modify the 
+appearance of legends. In this post, we will learn to modify the legends 
+when `color` is mapped to categorical variables. Specifically, we will learn
+to modify:
+
+- title
+- breaks
+- limits
+- labels
+- values
+
+```{r leg1, echo=FALSE, eval=TRUE, results='hide', message=FALSE}
+library(ggplot2)
+library(dplyr)
+library(tidyr)
+```
+
+<br>
+
+### Libraries, Code & Data
+
+We will use the following libraries in this post:
+
+- [readr](http://readr.tidyverse.org/)
+- [ggplot2](http://ggplot2.tidyverse.org/)
+
+All the data sets used in this post can be found [here](https://github.com/rsquaredacademy/datasets) 
+and code can be downloaded from [here](https://gist.github.com/rsquaredacademy/f099b954fa8f5a84cd8e5a2a031f91db).
+
+<br>
+
+### Basic Plot
+
+Let us start with a scatter plot examining the relationship between displacement
+and miles per gallon from the mtcars data. We will map the color of the points
+to the `cyl` variable. 
+
+```{r leg15, fig.align='center'}
+ggplot(mtcars) +
+  geom_point(aes(disp, mpg, color = factor(cyl)))
+```
+
+<br>
+
+### Values
+
+```{r leg17, fig.align='center'}
+ggplot(mtcars) +
+  geom_point(aes(disp, mpg, color = factor(cyl))) +
+  scale_color_manual(values = c("red", "blue", "green"))
+```
+
+<br>
+
+### Title
+
+The title can be modified using the `name` argument in `scale_color_manual()`. 
+
+```{r leg16, fig.align='center'}
+ggplot(mtcars) +
+  geom_point(aes(disp, mpg, color = factor(cyl))) +
+  scale_color_manual(name = "Cylinders", 
+    values = c("red", "blue", "green"))
+```
+
+<br>
+
+### Limits
+
+Modify the data to be displayed.
+
+```{r leg18, fig.align='center'}
+ggplot(mtcars) +
+  geom_point(aes(disp, mpg, color = factor(cyl))) +
+  scale_color_manual(values = c("red", "blue", "green"),
+    limits = c(5, 6, 8))
+```
+
+<br>
+
+### Labels
+
+```{r leg19, fig.align='center'}
+ggplot(mtcars) +
+  geom_point(aes(disp, mpg, color = factor(cyl))) +
+  scale_color_manual(values = c("red", "blue", "green"),
+    labels = c('Four', 'Six', 'Eight'))
+```
+
+<br>
+
+### Breaks
+
+Breaks to be displayed in the legend.
+
+```{r leg20, fig.align='center'}
+ggplot(mtcars) +
+  geom_point(aes(disp, mpg, color = factor(cyl))) +
+  scale_color_manual(values = c("red", "blue", "green"),
+    breaks = c(4, 8))
+```
+
+<br>
+
+### Putting it all together...
+
+```{r leg21, fig.align='center'}
+ggplot(mtcars) +
+  geom_point(aes(disp, mpg, color = factor(cyl))) +
+  scale_color_manual(name = "Cylinders", values = c("red", "blue", "green"),
+    labels = c('Four', 'Six', 'Eight'), limits = c(4, 6, 8), breaks = c(4, 6, 8))
+```
+
+<br>
+
+### Summary
+
+In this post, we learnt to modify the following aspects of legends: 
+
+- title
+- breaks
+- limits
+- labels
+- values
+
+<br>
+
+### Up Next..
+
+In the next post, we will learn how to modify legend when `fill` is mapped to variables.
+
+<br>

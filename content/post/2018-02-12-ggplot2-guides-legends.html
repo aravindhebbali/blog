@@ -1,0 +1,129 @@
+---
+title: 'ggplot2: Legends - Part 1'
+author: Aravind Hebbali
+twitterImg: /img/gg_leg_part_1.png
+description: "ggplot2 - Quick Tour"
+date: '2018-02-12'
+slug: legend-part-1
+categories:
+  - data-visualization
+tags:
+  - ggplot2
+---
+
+
+
+<div id="introduction" class="section level3">
+<h3>Introduction</h3>
+<p>This is the 13th post in the series <strong>Elegant Data Visualization with
+ggplot2</strong>. In the previos post, we learnt how to modify the axis of plots. In
+this post, we will focus on modifying the legends of plots when the aesthetics
+are mapped to variables. If the aesthetics are mapped to variables, ggplot2
+automatically creates legends wherever applicable and you may want to modify the
+appearance of legends. In this post, we will learn to modify the legends
+when <code>color</code> is mapped to categorical variables. Specifically, we will learn
+to modify:</p>
+<ul>
+<li>title</li>
+<li>breaks</li>
+<li>limits</li>
+<li>labels</li>
+<li>values</li>
+</ul>
+<p><br></p>
+</div>
+<div id="libraries-code-data" class="section level3">
+<h3>Libraries, Code &amp; Data</h3>
+<p>We will use the following libraries in this post:</p>
+<ul>
+<li><a href="http://readr.tidyverse.org/">readr</a></li>
+<li><a href="http://ggplot2.tidyverse.org/">ggplot2</a></li>
+</ul>
+<p>All the data sets used in this post can be found <a href="https://github.com/rsquaredacademy/datasets">here</a>
+and code can be downloaded from <a href="https://gist.github.com/rsquaredacademy/f099b954fa8f5a84cd8e5a2a031f91db">here</a>.</p>
+<p><br></p>
+</div>
+<div id="basic-plot" class="section level3">
+<h3>Basic Plot</h3>
+<p>Let us start with a scatter plot examining the relationship between displacement
+and miles per gallon from the mtcars data. We will map the color of the points
+to the <code>cyl</code> variable.</p>
+<pre class="r"><code>ggplot(mtcars) +
+  geom_point(aes(disp, mpg, color = factor(cyl)))</code></pre>
+<p><img src="/post/2018-02-12-ggplot2-guides-legends_files/figure-html/leg15-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><br></p>
+</div>
+<div id="values" class="section level3">
+<h3>Values</h3>
+<pre class="r"><code>ggplot(mtcars) +
+  geom_point(aes(disp, mpg, color = factor(cyl))) +
+  scale_color_manual(values = c(&quot;red&quot;, &quot;blue&quot;, &quot;green&quot;))</code></pre>
+<p><img src="/post/2018-02-12-ggplot2-guides-legends_files/figure-html/leg17-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><br></p>
+</div>
+<div id="title" class="section level3">
+<h3>Title</h3>
+<p>The title can be modified using the <code>name</code> argument in <code>scale_color_manual()</code>.</p>
+<pre class="r"><code>ggplot(mtcars) +
+  geom_point(aes(disp, mpg, color = factor(cyl))) +
+  scale_color_manual(name = &quot;Cylinders&quot;, 
+    values = c(&quot;red&quot;, &quot;blue&quot;, &quot;green&quot;))</code></pre>
+<p><img src="/post/2018-02-12-ggplot2-guides-legends_files/figure-html/leg16-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><br></p>
+</div>
+<div id="limits" class="section level3">
+<h3>Limits</h3>
+<p>Modify the data to be displayed.</p>
+<pre class="r"><code>ggplot(mtcars) +
+  geom_point(aes(disp, mpg, color = factor(cyl))) +
+  scale_color_manual(values = c(&quot;red&quot;, &quot;blue&quot;, &quot;green&quot;),
+    limits = c(5, 6, 8))</code></pre>
+<pre><code>## Warning: Removed 11 rows containing missing values (geom_point).</code></pre>
+<p><img src="/post/2018-02-12-ggplot2-guides-legends_files/figure-html/leg18-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><br></p>
+</div>
+<div id="labels" class="section level3">
+<h3>Labels</h3>
+<pre class="r"><code>ggplot(mtcars) +
+  geom_point(aes(disp, mpg, color = factor(cyl))) +
+  scale_color_manual(values = c(&quot;red&quot;, &quot;blue&quot;, &quot;green&quot;),
+    labels = c(&#39;Four&#39;, &#39;Six&#39;, &#39;Eight&#39;))</code></pre>
+<p><img src="/post/2018-02-12-ggplot2-guides-legends_files/figure-html/leg19-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><br></p>
+</div>
+<div id="breaks" class="section level3">
+<h3>Breaks</h3>
+<p>Breaks to be displayed in the legend.</p>
+<pre class="r"><code>ggplot(mtcars) +
+  geom_point(aes(disp, mpg, color = factor(cyl))) +
+  scale_color_manual(values = c(&quot;red&quot;, &quot;blue&quot;, &quot;green&quot;),
+    breaks = c(4, 8))</code></pre>
+<p><img src="/post/2018-02-12-ggplot2-guides-legends_files/figure-html/leg20-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><br></p>
+</div>
+<div id="putting-it-all-together" class="section level3">
+<h3>Putting it all together…</h3>
+<pre class="r"><code>ggplot(mtcars) +
+  geom_point(aes(disp, mpg, color = factor(cyl))) +
+  scale_color_manual(name = &quot;Cylinders&quot;, values = c(&quot;red&quot;, &quot;blue&quot;, &quot;green&quot;),
+    labels = c(&#39;Four&#39;, &#39;Six&#39;, &#39;Eight&#39;), limits = c(4, 6, 8), breaks = c(4, 6, 8))</code></pre>
+<p><img src="/post/2018-02-12-ggplot2-guides-legends_files/figure-html/leg21-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><br></p>
+</div>
+<div id="summary" class="section level3">
+<h3>Summary</h3>
+<p>In this post, we learnt to modify the following aspects of legends:</p>
+<ul>
+<li>title</li>
+<li>breaks</li>
+<li>limits</li>
+<li>labels</li>
+<li>values</li>
+</ul>
+<p><br></p>
+</div>
+<div id="up-next.." class="section level3">
+<h3>Up Next..</h3>
+<p>In the next post, we will learn how to modify legend when <code>fill</code> is mapped to variables.</p>
+<p><br></p>
+</div>
