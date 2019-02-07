@@ -39,7 +39,11 @@ devtools::install_github("rsquaredacademy/olsrr")
 ```
 
 Read on to learn more about the features of **olsrr**, or see the 
+<<<<<<< HEAD
 [olsrr website](https://olsrr.rsquaredacademy.com/) for 
+=======
+[olsrr website](https://olsrr.rsquaredacademy.com/) for 
+>>>>>>> 9b100ff41a497dab5c7eca8f132e4a52af18bec8
 detailed documentation on using the package.
 
 ### Regression Output
@@ -72,7 +76,11 @@ of interaction terms by setting `iterm` to `TRUE`.
 ols_plot_resid_qq(model)
 ```
 
+<<<<<<< HEAD
 See [Residual Diagnostics](https://olsrr.rsquaredacademy.com/articles/residual_diagnostics.html) 
+=======
+See [Residual Diagnostics](https://olsrr.rsquaredacademy.com/articles/residual_diagnostics.html) 
+>>>>>>> 9b100ff41a497dab5c7eca8f132e4a52af18bec8
 for more details.
 
 ### Heteroskedasticity
@@ -88,7 +96,11 @@ for more details.
 ols_test_breusch_pagan(model)
 ```
 
+<<<<<<< HEAD
 See [Heteroskedasticity](https://olsrr.rsquaredacademy.com/articles/heteroskedasticity.html) 
+=======
+See [Heteroskedasticity](https://olsrr.rsquaredacademy.com/articles/heteroskedasticity.html) 
+>>>>>>> 9b100ff41a497dab5c7eca8f132e4a52af18bec8
 for more details.
 
 ### Collinearity Diagnostics
