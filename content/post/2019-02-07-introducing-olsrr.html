@@ -37,8 +37,8 @@ install.packages(&quot;olsrr&quot;)
 # install.packages(&quot;devtools&quot;)
 devtools::install_github(&quot;rsquaredacademy/olsrr&quot;)</code></pre>
 <p>Read on to learn more about the features of <strong>olsrr</strong>, or see the
-<a href="https://olsrr.rsquaredacademy.com/">olsrr website</a> for detailed documentation
-on using the package.</p>
+<a href="https://olsrr.rsquaredacademy.com/">olsrr website</a> for
+detailed documentation on using the package.</p>
 </div>
 <div id="regression-output" class="section level3">
 <h3>Regression Output</h3>
@@ -78,7 +78,7 @@ ols_regress(model)</code></pre>
 <p>In the presence of interaction terms in the model, the predictors are scaled
 and centered before computing the standardized betas. <code>ols_regress()</code> will
 detect interaction terms automatically but in case you have created a new
-variable instead of using the inline function *, you can indicate the presence
+variable instead of using the inline function, you can indicate the presence
 of interaction terms by setting <code>iterm</code> to <code>TRUE</code>.</p>
 </div>
 <div id="residual-diagnostics" class="section level3">
@@ -92,7 +92,8 @@ of interaction terms by setting <code>iterm</code> to <code>TRUE</code>.</p>
 </ul>
 <pre class="r"><code>ols_plot_resid_qq(model)</code></pre>
 <p><img src="/post/2019-02-07-introducing-olsrr_files/figure-html/residiag-1.png" width="672" /></p>
-<p>See <a href="https://olsrr.rsquaredacademy.com/articles/residual_diagnostics.html">Residual Diagnostics</a> for more details.</p>
+<p>See <a href="https://olsrr.rsquaredacademy.com/articles/residual_diagnostics.html">Residual Diagnostics</a>
+for more details.</p>
 </div>
 <div id="heteroskedasticity" class="section level3">
 <h3>Heteroskedasticity</h3>
@@ -120,7 +121,8 @@ of interaction terms by setting <code>iterm</code> to <code>TRUE</code>.</p>
 ##  DF            =    1 
 ##  Chi2          =    0.5884673 
 ##  Prob &gt; Chi2   =    0.4430124</code></pre>
-<p>See <a href="https://olsrr.rsquaredacademy.com/articles/heteroskedasticity.html">Heteroskedasticity</a> for more details.</p>
+<p>See <a href="https://olsrr.rsquaredacademy.com/articles/heteroskedasticity.html">Heteroskedasticity</a>
+for more details.</p>
 </div>
 <div id="collinearity-diagnostics" class="section level3">
 <h3>Collinearity Diagnostics</h3>

@@ -39,8 +39,8 @@ devtools::install_github("rsquaredacademy/olsrr")
 ```
 
 Read on to learn more about the features of **olsrr**, or see the 
-[olsrr website](https://olsrr.rsquaredacademy.com/) for detailed documentation
-on using the package.
+[olsrr website](https://olsrr.rsquaredacademy.com/) for 
+detailed documentation on using the package.
 
 ### Regression Output
 
@@ -56,7 +56,7 @@ ols_regress(model)
 In the presence of interaction terms in the model, the predictors are scaled 
 and centered before computing the standardized betas. `ols_regress()` will 
 detect interaction terms automatically but in case you have created a new 
-variable instead of using the inline function *, you can indicate the presence 
+variable instead of using the inline function, you can indicate the presence 
 of interaction terms by setting `iterm` to `TRUE`.
 
 ### Residual Diagnostics
@@ -72,7 +72,8 @@ of interaction terms by setting `iterm` to `TRUE`.
 ols_plot_resid_qq(model)
 ```
 
-See [Residual Diagnostics](https://olsrr.rsquaredacademy.com/articles/residual_diagnostics.html) for more details.
+See [Residual Diagnostics](https://olsrr.rsquaredacademy.com/articles/residual_diagnostics.html) 
+for more details.
 
 ### Heteroskedasticity
 
@@ -87,12 +88,13 @@ See [Residual Diagnostics](https://olsrr.rsquaredacademy.com/articles/residual_d
 ols_test_breusch_pagan(model)
 ```
 
-See [Heteroskedasticity](https://olsrr.rsquaredacademy.com/articles/heteroskedasticity.html) for more details.
+See [Heteroskedasticity](https://olsrr.rsquaredacademy.com/articles/heteroskedasticity.html) 
+for more details.
 
 ### Collinearity Diagnostics
 
- VIF, Tolerance and condition indices to detect collinearity and plots for 
- assessing mode fit and contributions of variables.
+VIF, Tolerance and condition indices to detect collinearity and plots for 
+assessing mode fit and contributions of variables.
 
 ```{r collinearity}
 ols_coll_diag(model)
