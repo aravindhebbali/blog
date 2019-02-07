@@ -38,6 +38,16 @@ install.packages("olsrr")
 devtools::install_github("rsquaredacademy/olsrr")
 ```
 
+### Shiny App
+
+**olsrr** includes a shiny app which can be launched using
+
+```{r app, eval=FALSE}
+ols_launch_app()
+```
+
+or try the live version [here](https://www.rsquaredcomputing.com/olsrr/).
+
 Read on to learn more about the features of **olsrr**, or see the 
 [olsrr website](https://olsrr.rsquaredacademy.com/) for 
 detailed documentation on using the package.
