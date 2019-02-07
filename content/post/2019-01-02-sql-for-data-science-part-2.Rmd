@@ -19,7 +19,7 @@ library(RSQLite)
 knitr::opts_chunk$set(R.options=list(max.print=50))
 ```
 
-#### Introduction
+### Introduction
 
 This is the fourth post in the series **R & Databases**. You can find the links to the other two posts of this series below:
 
