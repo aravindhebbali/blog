@@ -336,13 +336,12 @@ blr_plot_diag_fit(model)
 
 The [blorr website](https://blorr.rsquaredacademy.com/index.html) includes 
 comprehensive documentation on using the package, including the following
-an [article](https://blorr.rsquaredacademy.com/articles/introduction.html) 
+[article](https://blorr.rsquaredacademy.com/articles/introduction.html) 
 that covers various aspects of using blorr.
 
 ## Feedback
 
 All feedback is welcome. Issues (bugs and feature 
 requests) can be posted to [github tracker](https://github.com/rsquaredacademy/blorr/issues).
-For help with code or other related questions, feel free to reach me hebbali.aravind@gmail.com.
 
 
