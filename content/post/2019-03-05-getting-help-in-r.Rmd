@@ -26,9 +26,9 @@ help in R:
 - built in help system
 - online
 
-In the first section, we will look at various ways to access the built in help 
-system of R. In the second section, we will look at various online resources 
-that can supplement the built in help system. Let us get started!
+In the first section, we will look at various online resources that can 
+supplement the built in help system. In the second section, we will look at 
+various ways to access the built in help system of R. Let us get started!
 
 ## Online Resources
 
