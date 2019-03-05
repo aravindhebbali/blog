@@ -32,7 +32,7 @@ that can supplement the built in help system. Let us get started!
 
 ## Online Resources
 
-```{r tube1, eval=TRUE}
+```{r tube1, eval=TRUE, echo=FALSE}
 blogdown::shortcode("youtube", "ZgU6ICh2YzI")
 ```
 
@@ -75,10 +75,10 @@ An online learning community that brings learners and mentors on a single platfo
 community [here](http://www.rfordatasci.com/).
 
 ```{r r4ds, echo=FALSE, out.width="80%", fig.align="center"}
-knitr::include_graphics("r4ds.png")
+knitr::include_graphics("/img/r4ds.png")
 ```
 
-### RStudio 
+### RStudio Resources
 
 [RStudio](https://resources.rstudio.com/) has very good resources including cheatsheets, webinars and blogs. 
 
@@ -112,7 +112,7 @@ knitr::include_graphics("/img/user-group.png")
 
 ## Internal
 
-```{r tube2, eval=TRUE}
+```{r tube2, eval=TRUE, echo=FALSE}
 blogdown::shortcode("youtube", "gwpFCPDa8Tw")
 ```
 
@@ -155,7 +155,7 @@ help.search('regression')
 ??regression
 ```
 
-```{r tube3, eval=TRUE}
+```{r tube3, eval=TRUE, echo=FALSE}
 blogdown::shortcode("youtube", "Y9lcHOT7tJc")
 ```
 
@@ -216,6 +216,11 @@ browseVignettes()
 RSiteSearch('glm')
 ```
 
-```{r tube4, eval=TRUE}
+```{r tube4, eval=TRUE, echo=FALSE}
 blogdown::shortcode("youtube", "FsgJbDxsuT0")
 ```
+
+## Summary
+
+To sum it up, the R community is very beginner friendly and we hope you will
+find all the above resources useful.
