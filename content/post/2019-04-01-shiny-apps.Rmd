@@ -14,7 +14,7 @@ tags:
 knitr::include_graphics("/img/apps_banner.png")
 ```
 
-We are excited and happy to share a set of <a href="https://shiny.rstudio.com/" target="_blank">shiny</a>
+I am excited and happy to share a set of <a href="https://shiny.rstudio.com/" target="_blank">shiny</a>
 apps built for interactive data analysis and teaching at <a href="https://www.rsquaredacademy.com" target="_blank">Rsquared Academy</a>. The apps are part of our <a href="https://pkgs.rsquaredacademy.com" target="_blank">R packages</a> and presently cover the following topics:
 
 - Descriptive Statistics
@@ -33,7 +33,7 @@ blogdown::shortcode("youtube", "7lBEqrZLUOU")
 
 ## Details
 
-You can try the live version of the below apps 
+You can try the live version of the apps 
 <a href="https://apps.rsquaredacademy.com" target="_blank">here</a> or 
 locally launch these apps from the R packages mentioned in the below table. 
 **It will be easier to use the apps if you refer to the documentation of 
