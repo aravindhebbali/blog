@@ -16,8 +16,6 @@ knitr::include_graphics("/img/ws_meme.jpg")
 
 ## Introduction
 
-
-
 Are you trying to compare price of products across websites? Are you trying to
 monitor price changes every hour? Or planning to do some text mining or 
 sentiment analysis on reviews of products or services? If yes, how would you do 
@@ -38,8 +36,6 @@ blogdown::shortcode("youtube", "l37n_HDD1qs")
 
 ## The What?
 
-
-
 ```{r cover_what, echo=FALSE, fig.align='center', out.width="80%"}
 knitr::include_graphics("/img/blog_ws_what_border.png")
 ```
@@ -51,8 +47,6 @@ goal of web scraping is to take advantage of the pattern or structure of web
 pages to extract and store data in a format suitable for data analysis.
 
 ## The Why?
-
-
 
 ```{r why, echo=FALSE, fig.align='center', out.width="80%"}
 knitr::include_graphics("/img/blog_ws_why_border.png")
@@ -72,8 +66,6 @@ to extract the required data.
 extraction/harvesting.
 
 ## The How?
-
-
 
 ```{r how, echo=FALSE, fig.align='center', out.width="80%"}
 knitr::include_graphics("/img/blog_ws_how_border.png")
@@ -96,8 +88,6 @@ data and store it for further analysis.
 
 ## Use Cases
 
-
-
 ```{r use_cases, echo=FALSE, fig.align='center', out.width="80%"}
 knitr::include_graphics("/img/blog_ws_use_cases_border.png")
 ```
@@ -113,8 +103,6 @@ fluctuations that you can take advantage of.
 for text mining/sentiment analysis etc.
 
 ## Things to keep in mind...
-
-
 
 ```{r keep_in_mind, echo=FALSE, fig.align='center', out.width="80%"}
 knitr::include_graphics("/img/blog_ws_keep_in_mind_border.png")
@@ -140,8 +128,6 @@ not blocked from accessing the website.
 
 ## Case Studies
 
-
-
 ```{r case_studies, echo=FALSE, fig.align='center', out.width="80%"}
 knitr::include_graphics("/img/blog_ws_case_studies_border.png")
 ```
@@ -159,24 +145,15 @@ average time on site, average pages browsed per vist and bounce rate.
 of RBI Governors from Wikipedia, and analyze the background from which they
 came i.e whether there were more economists or bureaucrats?
 
-<hr color="black" width="80%">
-
-<a href="https://www.rsquaredacademy.com/" target="_blank"><img src="/img/ad.png" width="80%" alt="course ad" style="text-decoration: none;"></a>
-
-<hr color="black" width="80%">
-
+<a href="https://www.rsquaredacademy.com/" target="_blank"><img src="/img/ad.png" width="100%" alt="course ad" style="text-decoration: none;"></a>
 
 ## HTML Basics
-
-
 
 To be able to scrape data from websites, we need to understand how the web 
 pages are structured. In this section, we will learn just enough HTML to be 
 able to start scraping data from websites.
 
 ### HTML, CSS & JAVASCRIPT
-
-
 
 ```{r html_css_js, echo=FALSE, fig.align='center', out.width="80%"}
 knitr::include_graphics("/img/html_css_js_2.png")
@@ -192,8 +169,6 @@ identify the **id** or **class** that manage the appearance of content.
 - **JS** (Javascript) takes care of the behavior of the web page. 
 
 ### HTML Element
-
-
 
 ```{r html_tags_2, echo=FALSE, fig.align='center', out.width="80%"}
 knitr::include_graphics("/img/blog_ws_html_tags_2_border.png")
@@ -214,8 +189,6 @@ knitr::include_graphics("/img/html_tags.jpg")
 
 ### DOM 
 
-
-
 ```{r html_dom, echo=FALSE, fig.align='center', out.width="80%"}
 knitr::include_graphics("/img/blog_ws_html_dom_border.png")
 ```
@@ -229,8 +202,6 @@ is well structured, we should be able to locate the content using a unique
 combination of tags and attributes.
 
 ### HTML Attributes
-
-
 
 ```{r html_attributes, echo=FALSE, fig.align='center', out.width="80%"}
 knitr::include_graphics("/img/blog_ws_html_attributes_crop.png")
@@ -247,17 +218,11 @@ style. The `id` attribute specifies a unique id for an HTML element. It can be
 used on any HTML element and is case sensitive. The `style` attribute sets the 
 style of an HTML element.
 
-<hr color="black" width="80%">
-
 <p>
-<a href="https://www.youtube.com/user/rsquaredin/" target="_blank"><img src="/img/ad_youtube.png" width="80%" alt="youtube ad" style="text-decoration: none;"></a>
+<a href="https://www.youtube.com/user/rsquaredin/" target="_blank"><img src="/img/ad_youtube.png" width="100%" alt="youtube ad" style="text-decoration: none;"></a>
 </p>
 
-<hr color="black" width="80%">
-
 ## Libraries
-
-
 
 We will use the following R packages in this tutorial. 
 
@@ -279,8 +244,6 @@ library(purrr)
 
 ## Best Selling Mobile Phones
 
-
-
 ```{r top_mobiles, echo=FALSE, fig.align='center', out.width="80%"}
 knitr::include_graphics("/img/blog_ws_cs_top_mobiles_border.png")
 ```
@@ -297,8 +260,6 @@ Our goal is to extract the following:
 - Actual price (after discount)
 
 ### robotstxt
-
-
 
 As mentioned earlier, we will first check if we can scrape data from the web 
 page using `paths_allowed()` from the **robotstxt** package. We need to 
@@ -322,8 +283,6 @@ top_phones
 ```
 
 ### Brand Name
-
-
 
 ```{r mobile_brand_name, echo=FALSE, fig.align='center', out.width="80%"}
 knitr::include_graphics("/img/blog_ws_mobile_brand_name_border.png")
@@ -380,8 +339,6 @@ mobile_name
 
 ### Color
 
-
-
 ```{r mobile_color, echo=FALSE, fig.align='center', out.width="80%"}
 knitr::include_graphics("/img/blog_ws_mobile_color_border.png")
 ```
@@ -422,8 +379,6 @@ mobile_color
 
 ### Rating
 
-
-
 ```{r mobile_rating, echo=FALSE, fig.align='center', out.width="80%"}
 knitr::include_graphics("/img/blog_ws_mobile_rating_border.png")
 ```
@@ -462,8 +417,6 @@ mobile_rating
 
 ### Number of Reviews
 
-
-
 ```{r mobile_reviews, echo=FALSE, fig.align='center', out.width="80%"}
 knitr::include_graphics("/img/blog_ws_mobile_reviews_border.png")
 ```
@@ -501,8 +454,6 @@ mobile_review
 ```
 
 ### Real Price
-
-
 
 ```{r mobile_real_price, echo=FALSE, fig.align='center', out.width="80%"}
 knitr::include_graphics("/img/blog_ws_real_price_border.png")
@@ -549,8 +500,6 @@ real_price
 
 ### Actual Price
 
-
-
 ```{r mobile_actual_price, echo=FALSE, fig.align='center', out.width="80%"}
 knitr::include_graphics("/img/blog_ws_actual_price_border.png")
 ```
@@ -591,8 +540,6 @@ discounted_price
 
 ### Putting it all together...
 
-
-
 ```{r phones8}
 best_sellers <- tibble(title = mobile_name, color = mobile_color, 
   rating = mobile_rating, reviews = mobile_review, `Real Price (Rs.)` = real_price,
@@ -601,15 +548,9 @@ best_sellers <- tibble(title = mobile_name, color = mobile_color,
 best_sellers
 ```
 
-<hr color="black" width="80%">
-
-<a href="https://apps.rsquaredacademy.com/" target="_blank"><img src="/img/ad_apps.png" width="80%" alt="apps ad" style="text-decoration: none;"></a>
-
-<hr color="black" width="80%">
+<a href="https://apps.rsquaredacademy.com/" target="_blank"><img src="/img/ad_apps.png" width="100%" alt="apps ad" style="text-decoration: none;"></a>
 
 ## IMDB Top 50 
-
-
 
 ```{r imdb_top_50, echo=FALSE, fig.align='center', out.width="80%"}
 knitr::include_graphics("/img/blog_ws_cs_imdb_top_50_border.png")
@@ -629,8 +570,6 @@ from the IMDB website:
 
 ### robotstxt
 
-
-
 Let us check if we can scrape the data from the website using `paths_allowed()` 
 from **robotstxt** package.
 
@@ -649,8 +588,6 @@ imdb
 ```
 
 ### Title
-
-
 
 ```{r imdb_movie_name, echo=FALSE, fig.align='center', out.width="80%"}
 knitr::include_graphics("/img/blog_ws_imdb_movie_name_border.png")
@@ -675,8 +612,6 @@ movie_title
 ```
 
 ### Year of Release
-
-
 
 ```{r imdb_movie_year, echo=FALSE, fig.align='center', out.width="80%"}
 knitr::include_graphics("/img/blog_ws_imdb_movie_year_border.png")
@@ -717,8 +652,6 @@ movie_year
 
 ### Certificate
 
-
-
 ```{r imdb_movie_certificate, echo=FALSE, fig.align='center', out.width="80%"}
 knitr::include_graphics("/img/blog_ws_imdb_movie_certificate_border.png")
 ```
@@ -739,8 +672,6 @@ movie_certificate
 ```
 
 ### Runtime
-
-
 
 ```{r imdb_movie_runtime, echo=FALSE, fig.align='center', out.width="80%"}
 knitr::include_graphics("/img/blog_ws_imdb_movie_runtime_border.png")
@@ -783,8 +714,6 @@ movie_runtime
 
 ### Genre
 
-
-
 ```{r imdb_movie_genre, echo=FALSE, fig.align='center', out.width="80%"}
 knitr::include_graphics("/img/blog_ws_imdb_movie_genre_border.png")
 ```
@@ -814,8 +743,6 @@ movie_genre
 ```
 
 ### Rating
-
-
 
 ```{r imdb_movie_rating, echo=FALSE, fig.align='center', out.width="80%"}
 knitr::include_graphics("/img/blog_ws_imdb_movie_rating_border.png")
@@ -853,8 +780,6 @@ movie_rating
 
 ### XPATH
 
-
-
 ```{r imdb_movie_xpath, echo=FALSE, fig.align='center', out.width="80%"}
 knitr::include_graphics("/img/blog_ws_html_xpath_border.png")
 ```
@@ -870,8 +795,6 @@ votes received by the top 50 movies.
 - attribute value
 
 ### Votes
-
-
 
 ```{r imdb_movie_votes, echo=FALSE, fig.align='center', out.width="80%"}
 knitr::include_graphics("/img/blog_ws_imdb_movie_votes_border.png")
@@ -905,8 +828,6 @@ movie_votes
 
 ### Revenue
 
-
-
 ```{r imdb_movie_revenue, echo=FALSE, fig.align='center', out.width="80%"}
 knitr::include_graphics("/img/blog_ws_imdb_movie_revenue_border.png")
 ```
@@ -937,7 +858,7 @@ follows:
 - extract values that begin with `$`
 - omit missing values
 - convert values to character using `as.character()`
-- append NA where revenue is missing
+- append NA where revenue is missing (rank 31 and 47)
 - remove `$` and `M` 
 - convert to number using `as.numeric()`
 
@@ -958,8 +879,6 @@ movie_revenue
 
 ### Putting it all together...
 
-
-
 ```{r imdb11}
 top_50 <- tibble(title = movie_title, release = movie_year, 
     `runtime (mins)` = movie_runtime, genre = movie_genre, rating = movie_rating, 
@@ -968,96 +887,17 @@ top_50 <- tibble(title = movie_title, release = movie_year,
 top_50
 ```
 
-<hr color="black" width="80%">
-
-<a href="https://pkgs.rsquaredacademy.com/" target="_blank"><img src="/img/ad_packages.png" width="80%" alt="packages ad" style="text-decoration: none;"></a>
-
-<hr color="black" width="80%">
+<a href="https://pkgs.rsquaredacademy.com/" target="_blank"><img src="/img/ad_packages.png" width="100%" alt="packages ad" style="text-decoration: none;"></a>
 
 ## Top Websites
 
-
-
-```{r top_websites, echo=FALSE, fig.align='center', out.width="80%"}
-knitr::include_graphics("/img/blog_ws_cs_top_websites_border.png")
-```
-
-In this case study, we will extract the following details of the 50 movst 
-visited websites in the world:
-
-- ranking
-- domain
-- category
-- change in ranking
-- average time spent on the website
-- average pages visited per visit
-- bounce rate
-
-### robotstxt
-
-
-
-Let us check if we can scrape the data from the IMDB website using 
-`paths_allowed()` from **robotstxt** package.
-
-
-```{r web1}
-paths_allowed(
-  paths = c("https://www.similarweb.com/top-websites")
-)
-```
-
-Since it has returned `TRUE`, we will go ahead and download the web page using
-`read_html()` from **xml2** package.
-
-```{r web2}
-top_sites <- read_html("https://www.similarweb.com/top-websites")
-top_sites
-```
-
-Let us look at the code and the output first.
-
-### Website Ranking
-
-
-
-```{r web3}
-top_sites %>%
-  html_node("table") %>%
-  html_table() -> ranking
-
-# rename columns
-col_names <- c("ranking", "domain", "category", "change", 
-  "avg_time_on_site", "avg_pages_per_visit", "bounce_rate")
-colnames(ranking) <- col_names
-
-head(ranking)
-```
-
-Surprising right! Whenever data is structured as a table in HTML, you need to 
-specify the class `.table` in `html_node()` and it will return all the tables 
-in the web page after which you can use `html_table()` to extract and convert 
-the whole table to a `data.frame` in R.
-
-Since the names of the columns are very long, we have renamed them to be 
-concise and descriptive.
-
-### Top Categories
-
-
-
-Now, let us look at the categories to which these top 50 websites belong using
-`count()` from **dplyr**. We will sort the result in descending order using the
-`sort` argument and assign it the value `TRUE`.
-
-```{r web6}
-ranking %>%
-  count(category, sort = TRUE)
-```
+**Unfortunately, we had to drop this case study as the HTML code changed while we
+were working on this blog post. Remember, the third point we mentioned in the
+things to keep in mind, where we had warned that the design or underlying HTML
+code of the website may change. It just happened as we were finalizing this 
+post.**
 
 ## RBI Governors
-
-
 
 ```{r rbi_governors, echo=FALSE, fig.align='center', out.width="80%"}
 knitr::include_graphics("/img/blog_ws_rbi_governors_border.png")
@@ -1077,8 +917,6 @@ bank. We will extact the following details:
 
 ### robotstxt
 
-
-
 Let us check if we can scrape the data from Wikipedia website using 
 `paths_allowed()` from **robotstxt** package.
 
@@ -1097,8 +935,6 @@ rbi_guv
 ```
 
 ### List of Governors
-
-
 
 The data in the Wikipedia page is luckily structured as a table and we can 
 extract it using `html_table()`.
@@ -1122,8 +958,6 @@ rbi_guv %>%
 
 ### Sort
 
-
-
 Let us arrange the data by number of days served. The `Term in office` column
 contains this information but it also includes the text days. Let us split this
 column into two columns, `term` and `days`, using `separate()` from tidyr and 
@@ -1138,8 +972,6 @@ profile %>%
 ```
 
 ### Backgrounds
-
-
 
 What we are interested is in the background of the Governors? Use `count()` 
 from **dplyr** to look at the backgound of the Governors and the respective 
@@ -1183,8 +1015,6 @@ backgrounds %>%
 ```
 
 ## Summary
-
-
 
 - web scraping is the extraction of data from web sites
 - best for static & well structured HTML pages
