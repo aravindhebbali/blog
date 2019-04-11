@@ -55,7 +55,6 @@ to extract the required data.</li>
 <li><strong>Automation</strong>: With web scraping, we can automate the process of data
 extraction/harvesting.</li>
 </ul>
-<hr color="black">
 </div>
 <div id="the-how" class="section level2">
 <h2>The How?</h2>
@@ -130,9 +129,9 @@ average time on site, average pages browsed per vist and bounce rate.</li>
 of RBI Governors from Wikipedia, and analyze the background from which they
 came i.e whether there were more economists or bureaucrats?</li>
 </ul>
-<hr color="black">
-<p><a href="https://www.rsquaredacademy.com/" target="_blank"><img src="/img/ad.png" width="80%" alt="course ad"></a></p>
-<hr color="black">
+<hr color="black" width="80%">
+<p><a href="https://www.rsquaredacademy.com/" target="_blank"><img src="/img/ad.png" width="80%" alt="course ad" style="text-decoration: none;"></a></p>
+<hr color="black" width="80%">
 </div>
 <div id="html-basics" class="section level2">
 <h2>HTML Basics</h2>
@@ -190,11 +189,11 @@ class name. HTML elements with same class name will have the same format and
 style. The <code>id</code> attribute specifies a unique id for an HTML element. It can be
 used on any HTML element and is case sensitive. The <code>style</code> attribute sets the
 style of an HTML element.</p>
-<hr color="black">
+<hr color="black" width="80%">
 <p>
-<a href="https://www.youtube.com/user/rsquaredin/" target="_blank"><img src="/img/ad_youtube.png" width="80%" alt="youtube ad"></a>
+<a href="https://www.youtube.com/user/rsquaredin/" target="_blank"><img src="/img/ad_youtube.png" width="80%" alt="youtube ad" style="text-decoration: none;"></a>
 </p>
-<hr color="black">
+<hr color="black" width="80%">
 </div>
 </div>
 <div id="libraries" class="section level2">
@@ -400,8 +399,8 @@ located within the following:</p>
 <pre class="r"><code>top_phones %&gt;%
   html_nodes(&quot;.crwProductDetail span.a-size-small .a-link-normal&quot;) %&gt;%
   html_text() </code></pre>
-<pre><code>##  [1] &quot;1,100&quot;  &quot;12,047&quot; &quot;552&quot;    &quot;23,484&quot; &quot;6,401&quot;  &quot;3,007&quot;  &quot;12,363&quot;
-##  [8] &quot;10,410&quot; &quot;819&quot;    &quot;14,370&quot;</code></pre>
+<pre><code>##  [1] &quot;1,100&quot;  &quot;12,047&quot; &quot;552&quot;    &quot;23,484&quot; &quot;6,401&quot;  &quot;3,010&quot;  &quot;12,365&quot;
+##  [8] &quot;10,410&quot; &quot;820&quot;    &quot;14,371&quot;</code></pre>
 <p>We use the above information within <code>html_nodes()</code> to extract the data. Now
 let us clean it up a bit and convert it into a number instead of leaving it
 as a character. If you use <code>as.numeric()</code> directly, you will see <code>NA</code> in
@@ -416,7 +415,7 @@ it into a number.</p>
   as.numeric() -&gt; mobile_review
 
 mobile_review</code></pre>
-<pre><code>##  [1]  1100 12047   552 23484  6401  3007 12363 10410   819 14370</code></pre>
+<pre><code>##  [1]  1100 12047   552 23484  6401  3010 12365 10410   820 14371</code></pre>
 </div>
 <div id="real-price" class="section level3">
 <h3>Real Price</h3>
@@ -478,7 +477,7 @@ phones.</p>
   html_text() </code></pre>
 <pre><code>##  [1] &quot;  Rs. 14,990.00&quot; &quot;  Rs. 12,990.00&quot; &quot;  Rs. 14,990.00&quot;
 ##  [4] &quot;  Rs. 5,999.00&quot;  &quot;  Rs. 7,999.00&quot;  &quot;  Rs. 8,990.00&quot; 
-##  [7] &quot;  Rs. 10,000.00&quot; &quot;  Rs. 9,999.00&quot;  &quot;  Rs. 8,999.00&quot; 
+##  [7] &quot;  Rs. 10,000.00&quot; &quot;  Rs. 9,999.00&quot;  &quot;  Rs. 10,999.00&quot;
 ## [10] &quot;  Rs. 34,999.00&quot;</code></pre>
 <p>Let use convert the price to a number using the same steps as in the
 case of real price.</p>
@@ -493,7 +492,7 @@ case of real price.</p>
   as.numeric() -&gt; discounted_price
 
 discounted_price</code></pre>
-<pre><code>##  [1] 14990 12990 14990  5999  7999  8990 10000  9999  8999 34999</code></pre>
+<pre><code>##  [1] 14990 12990 14990  5999  7999  8990 10000  9999 10999 34999</code></pre>
 </div>
 <div id="putting-it-all-together" class="section level3">
 <h3>Putting it all together…</h3>
@@ -510,14 +509,14 @@ best_sellers</code></pre>
 ##  3 Samsung Ga~ Gradatio~    4.1     552            16490              14990
 ##  4 Redmi 6A    Black        4.2   23484             6999               5999
 ##  5 Redmi 6 Pro Black        4.2    6401            11499               7999
-##  6 Samsung Ga~ Ocean Bl~    4.1    3007             9290               8990
-##  7 Redmi 6 Pro Black        4.1   12363            13499              10000
+##  6 Samsung Ga~ Ocean Bl~    4.1    3010             9290               8990
+##  7 Redmi 6 Pro Black        4.1   12365            13499              10000
 ##  8 Realme U1   Ambitiou~    4.4   10410            12999               9999
-##  9 Honor 8C    Blue         4.2     819            12999               8999
-## 10 OnePlus 6T  Mirror B~    4.5   14370            37999              34999</code></pre>
-<hr color="black">
-<p><a href="https://apps.rsquaredacademy.com/" target="_blank"><img src="/img/ad_apps.png" width="80%" alt="apps ad"></a></p>
-<hr color="black">
+##  9 Honor 8C    Blue         4.2     820            12999              10999
+## 10 OnePlus 6T  Mirror B~    4.5   14371            37999              34999</code></pre>
+<hr color="black" width="80%">
+<p><a href="https://apps.rsquaredacademy.com/" target="_blank"><img src="/img/ad_apps.png" width="80%" alt="apps ad" style="text-decoration: none;"></a></p>
+<hr color="black" width="80%">
 </div>
 </div>
 <div id="imdb-top-50" class="section level2">
@@ -997,9 +996,9 @@ top_50</code></pre>
 ##  9 12 Angr~    1957               96 Drama      8.9 5.85e5             4.36
 ## 10 Incepti~    2010              148 Action~    8.8 1.82e6           293.  
 ## # ... with 40 more rows</code></pre>
-<hr color="black">
-<p><a href="https://pkgs.rsquaredacademy.com/" target="_blank"><img src="/img/ad_packages.png" width="80%" alt="packages ad"></a></p>
-<hr color="black">
+<hr color="black" width="80%">
+<p><a href="https://pkgs.rsquaredacademy.com/" target="_blank"><img src="/img/ad_packages.png" width="80%" alt="packages ad" style="text-decoration: none;"></a></p>
+<hr color="black" width="80%">
 </div>
 </div>
 <div id="top-websites" class="section level2">

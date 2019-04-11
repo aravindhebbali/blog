@@ -71,8 +71,6 @@ to extract the required data.
 - **Automation**: With web scraping, we can automate the process of data 
 extraction/harvesting.
 
-<hr color="black">
-
 ## The How?
 
 
@@ -161,11 +159,11 @@ average time on site, average pages browsed per vist and bounce rate.
 of RBI Governors from Wikipedia, and analyze the background from which they
 came i.e whether there were more economists or bureaucrats?
 
-<hr color="black">
+<hr color="black" width="80%">
 
-<a href="https://www.rsquaredacademy.com/" target="_blank"><img src="/img/ad.png" width="80%" alt="course ad"></a>
+<a href="https://www.rsquaredacademy.com/" target="_blank"><img src="/img/ad.png" width="80%" alt="course ad" style="text-decoration: none;"></a>
 
-<hr color="black">
+<hr color="black" width="80%">
 
 
 ## HTML Basics
@@ -249,13 +247,13 @@ style. The `id` attribute specifies a unique id for an HTML element. It can be
 used on any HTML element and is case sensitive. The `style` attribute sets the 
 style of an HTML element.
 
-<hr color="black">
+<hr color="black" width="80%">
 
 <p>
-<a href="https://www.youtube.com/user/rsquaredin/" target="_blank"><img src="/img/ad_youtube.png" width="80%" alt="youtube ad"></a>
+<a href="https://www.youtube.com/user/rsquaredin/" target="_blank"><img src="/img/ad_youtube.png" width="80%" alt="youtube ad" style="text-decoration: none;"></a>
 </p>
 
-<hr color="black">
+<hr color="black" width="80%">
 
 ## Libraries
 
@@ -603,11 +601,11 @@ best_sellers <- tibble(title = mobile_name, color = mobile_color,
 best_sellers
 ```
 
-<hr color="black">
+<hr color="black" width="80%">
 
-<a href="https://apps.rsquaredacademy.com/" target="_blank"><img src="/img/ad_apps.png" width="80%" alt="apps ad"></a>
+<a href="https://apps.rsquaredacademy.com/" target="_blank"><img src="/img/ad_apps.png" width="80%" alt="apps ad" style="text-decoration: none;"></a>
 
-<hr color="black">
+<hr color="black" width="80%">
 
 ## IMDB Top 50 
 
@@ -970,11 +968,11 @@ top_50 <- tibble(title = movie_title, release = movie_year,
 top_50
 ```
 
-<hr color="black">
+<hr color="black" width="80%">
 
-<a href="https://pkgs.rsquaredacademy.com/" target="_blank"><img src="/img/ad_packages.png" width="80%" alt="packages ad"></a>
+<a href="https://pkgs.rsquaredacademy.com/" target="_blank"><img src="/img/ad_packages.png" width="80%" alt="packages ad" style="text-decoration: none;"></a>
 
-<hr color="black">
+<hr color="black" width="80%">
 
 ## Top Websites
 
