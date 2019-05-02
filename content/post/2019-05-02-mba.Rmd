@@ -15,7 +15,7 @@ tags:
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-```{r meme, fig.align='center', out.width="80%", echo=FALSE}
+```{r meme, fig.align='center', out.width = "50%", echo=FALSE}
 knitr::include_graphics("/img/mba_meme.jpg")
 ```
 
