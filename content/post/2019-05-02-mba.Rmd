@@ -2,7 +2,7 @@
 title: "Practical Introduction to Market Basket Analysis - Asociation Rules"
 author: Aravind Hebbali
 twitterImg: /img/cover_image.jpg
-description: "Practical Introduction to Market Basket Analysis"
+description: "Learn the what, why and how of market basket analysis in R"
 date: '2019-05-02'
 slug: market-basket-analysis-in-r
 categories:
@@ -126,7 +126,9 @@ harder it gets for him/her to switch to another operator. Market basket
 analysis is used to bundle mobile, landline, TV and internet services to 
 customers to increase stickiness and reduce churn.
 
+
 <a href="https://www.rsquaredacademy.com/" target="_blank"><img src="/img/ad.png" width="100%" alt="course ad" style="text-decoration: none;"></a>
+
 
 ## Simple Example
 
@@ -226,9 +228,11 @@ more often than random)
 phone and screen guard (i.e., mobile phone and screen guard occur together 
 less often than random)
 
+
 <p>
 <a href="https://www.youtube.com/user/rsquaredin/" target="_blank"><img src="/img/ad_youtube.png" width="100%" alt="youtube ad" style="text-decoration: none;"></a>
 </p>
+
 
 ## Data
 
@@ -256,21 +260,9 @@ required by the **arules** package.
 
 ## Libraries 
 
-We have created a tiny R package 
-<a href="" target="_blank">mbar</a>,  for data pre-processing. It can be 
-installed from GitHub as shown below:
-
-```{r mbar, eval=FALSE}
-# install.packages("devtools")
-devtools::install_github("rsquaredacademy/mbar")
-```
-
-Other than mbar, we will be using the following packages:
-
 ```{r libs, message=FALSE, warning=FALSE}
 library(readxl)
 library(readr)
-library(mbar)
 library(arules)
 library(arulesViz)
 library(magrittr)
@@ -282,15 +274,28 @@ library(ggplot2)
 
 ## Preprocessing
 
+This section is optional. You can skip to the **Read Data** section without
+any loss of continuity.
+
 ```{r pre_process, fig.align='center', out.width="80%", echo=FALSE}
 knitr::include_graphics("/img/mba_pre_process.png")
 ```
 
-As shown above, the data set has one row per item. We will use 
-`mbar_prep_data()` from the mbar package to reshape the data so that there is 
-one row per transaction with items across columns exclusing the column names. 
+As shown above, the data set has one row per item. We have created a tiny R 
+package <a href="https://github.com/rsquaredacademy/mbar" target="_blank">mbar</a>,  
+for data pre-processing. It can be installed from GitHub as shown below:
+
+```{r mbar, eval=FALSE}
+# install.packages("devtools")
+devtools::install_github("rsquaredacademy/mbar")
+```
+
+We will use `mbar_prep_data()` from the mbar package to reshape the data so 
+that there is one row per transaction with items across columns excluding 
+the column names. 
 
 ```{r preprocess}
+library(mbar)
 mba_data     <- read_excel("online-retail.xlsx")
 transactions <- mbar_prep_data(mba_data, InvoiceNo, Description)
 head(transactions)
@@ -390,7 +395,7 @@ should be set to the value `single` and the `cols` argument should specify
 the names or positions of the columns that represent the **transaction id** and
 **item id**. We tried to read data in this way as well but failed to do so. 
 However, the code is available below for other users to try and let us know if
-you find a way to get it to work.
+you find a way to get it to work or spot any mistakes we may have made.
 
 ```{r read_data_try, eval=FALSE}
 get_data <- read.transactions("retail.csv", 
@@ -434,18 +439,20 @@ absolute/relative frequency of the items.
 itemFrequencyPlot(basket_data, topN = 10, type = 'absolute')
 ```
 
-In the below, plot the `Y` axis represents the relative frequency of the items
+In the below plot, the `Y` axis represents the relative frequency of the items
 plotted.
 
 ```{r plot_freq_relative, fig.align='center', fig.height=5}
 itemFrequencyPlot(basket_data, topN = 10, type = 'relative')
 ```
 
+
 <a href="https://apps.rsquaredacademy.com/" target="_blank"><img src="/img/ad_apps.png" width="100%" alt="apps ad" style="text-decoration: none;"></a>
+
 
 ## Generate Rules
 
-Finally, what you have been waiting for. Let us generate some rules. The 
+Finally, to the part you all have been waiting for, rules generation. The 
 `apriori()` function is used for generating the rules. We will first learn the 
 different inputs that must be specified and later on play around with them and
 see how the rules generated change.
@@ -657,7 +664,9 @@ top_rules <- lift_rules[1:10]
 inspect(top_rules)
 ```
 
+
 <a href="https://pkgs.rsquaredacademy.com/" target="_blank"><img src="/img/ad_packages.png" width="100%" alt="packages ad" style="text-decoration: none;"></a>
+
 
 ## Visualization
 
@@ -719,17 +728,17 @@ knitr::include_graphics("/img/mba_conf_warn_final.png")
 
 ## Summary
 
-```{r summary_meme, fig.align='center', out.width="80%", echo=FALSE}
-knitr::include_graphics("/img/mba_summary_meme.jpg")
-```
-
-- unsupervised data mining technique
+- market basket analysis is an unsupervised data mining technique
 - uncovers products frequently bought together
 - creates if-then scenario rules
 - cost-effective, insightful and actionable
 - association rule mining has applications in several industries
 - directionality of rule is lost while using lift
 - confidence as a measure can be misleading
+
+```{r summary_meme, fig.align='center', out.width="80%", echo=FALSE}
+knitr::include_graphics("/img/mba_summary_meme.jpg")
+```
 
 Your knowledge of the domain/business matters a lot when you are trying to 
 use market basket analysis. Especially, when you are trying to select or 
