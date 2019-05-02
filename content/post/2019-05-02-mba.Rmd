@@ -15,14 +15,14 @@ tags:
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-```{r meme, fig.align='center', out.width="60%", echo=FALSE}
-knitr::include_graphics("J:/R/blog_research/mba/img/mba_meme.jpg")
+```{r meme, fig.align='center', out.width="80%", echo=FALSE}
+knitr::include_graphics("/img/mba_meme.jpg")
 ```
 
 ## Introduction
 
-```{r mba_intro, fig.align='center', out.width="100%", echo=FALSE}
-knitr::include_graphics("img/mba_intro.png")
+```{r mba_intro, fig.align='center', out.width="80%", echo=FALSE}
+knitr::include_graphics("/img/mba_intro.png")
 ```
 
 Ever wondered why items are displayed in a particular way in retail/online 
@@ -39,8 +39,8 @@ Below are the links to all the resources related to this post:
 
 ## What?
 
-```{r mba_what, fig.align='center', out.width="100%", echo=FALSE}
-knitr::include_graphics("img/mba_what.png")
+```{r mba_what, fig.align='center', out.width="80%", echo=FALSE}
+knitr::include_graphics("/img/mba_what.png")
 ```
 
 Market basket analysis uses association rule mining under the hood to identify
@@ -56,8 +56,8 @@ and the set is the transaction. In short, market basket analysis
 
 ## Why ?
 
-```{r why, fig.align='center', out.width="100%", echo=FALSE}
-knitr::include_graphics("img/mba_why.png")
+```{r why, fig.align='center', out.width="80%", echo=FALSE}
+knitr::include_graphics("/img/mba_why.png")
 ```
 
 Market basket analysis creates actionable insights for:
@@ -70,8 +70,8 @@ Market basket analysis creates actionable insights for:
 
 ## Advantages
 
-```{r advantages, fig.align='center', out.width="100%", echo=FALSE}
-knitr::include_graphics("img/mba_advantages.png")
+```{r advantages, fig.align='center', out.width="80%", echo=FALSE}
+knitr::include_graphics("/img/mba_advantages.png")
 ```
 
 Market basket analysisis is **cost effective** as data required is readily 
@@ -82,8 +82,8 @@ inventory control etc.
 
 ## Use Cases
 
-```{r use_cases, fig.align='center', out.width="100%", echo=FALSE}
-knitr::include_graphics("img/mba_use_cases.png")
+```{r use_cases, fig.align='center', out.width="80%", echo=FALSE}
+knitr::include_graphics("/img/mba_use_cases.png")
 ```
 
 Association rule mining has applications in several industries including
@@ -126,12 +126,12 @@ harder it gets for him/her to switch to another operator. Market basket
 analysis is used to bundle mobile, landline, TV and internet services to 
 customers to increase stickiness and reduce churn.
 
-<a href="https://www.rsquaredacademy.com/" target="_blank"><img src="img/ad.png" width="100%" alt="course ad" style="text-decoration: none;"></a>
+<a href="https://www.rsquaredacademy.com/" target="_blank"><img src="/img/ad.png" width="100%" alt="course ad" style="text-decoration: none;"></a>
 
 ## Simple Example
 
-```{r simple_example, fig.align='center', out.width="100%", echo=FALSE}
-knitr::include_graphics("img/mba_items_description.png")
+```{r simple_example, fig.align='center', out.width="80%", echo=FALSE}
+knitr::include_graphics("/img/mba_items_description.png")
 ```
 
 Before we move on to the case study, let us use a simple example to understand
@@ -150,8 +150,8 @@ tutorial. In the example, the transactions include the following products:
 
 ## Steps
 
-```{r steps, fig.align='center', out.width="100%", echo=FALSE}
-knitr::include_graphics("img/mba_steps.png")
+```{r steps, fig.align='center', out.width="80%", echo=FALSE}
+knitr::include_graphics("/img/mba_steps.png")
 ```
 
 The two important steps in market basket analysis are:
@@ -163,8 +163,8 @@ We will discuss these steps in more detail in the case study.
 
 ## Itemset
 
-```{r itemset, fig.align='center', out.width="100%", echo=FALSE}
-knitr::include_graphics("img/mba_itemset.png")
+```{r itemset, fig.align='center', out.width="80%", echo=FALSE}
+knitr::include_graphics("/img/mba_itemset.png")
 ```
 
 Itemset is the collection of items purchased by a customer. In our example,
@@ -173,8 +173,8 @@ mobile phone and screen guard are a frequent intemset. They are present in
 
 ## Antecedent & Consequent
 
-```{r ante_cons, fig.align='center', out.width="100%", echo=FALSE}
-knitr::include_graphics("img/mba_antecedent_consequent.png")
+```{r ante_cons, fig.align='center', out.width="80%", echo=FALSE}
+knitr::include_graphics("/img/mba_antecedent_consequent.png")
 ```
 
 Antecedent is the items of the left hand side of the rule and consequent is 
@@ -183,8 +183,8 @@ and screen guard is the consequent.
 
 ## Support
 
-```{r support, fig.align='center', out.width="100%", echo=FALSE}
-knitr::include_graphics("img/mba_support.png")
+```{r support, fig.align='center', out.width="80%", echo=FALSE}
+knitr::include_graphics("/img/mba_support.png")
 ```
 
 Support is the probability of the antecedent event occuring. It is the relative
@@ -194,8 +194,8 @@ transactions that include both mobile phone and screen guard.
 
 ## Confidence 
 
-```{r confidence, fig.align='center', out.width="100%", echo=FALSE}
-knitr::include_graphics("img/mba_confidence.png")
+```{r confidence, fig.align='center', out.width="80%", echo=FALSE}
+knitr::include_graphics("/img/mba_confidence.png")
 ```
 
 Confidence is the probability the consequent will co-occur with the antecedent.
@@ -205,8 +205,8 @@ already bought the mobile phone.
 
 ## Lift
 
-```{r lift, fig.align='center', out.width="100%", echo=FALSE}
-knitr::include_graphics("img/mba_lift.png")
+```{r lift, fig.align='center', out.width="80%", echo=FALSE}
+knitr::include_graphics("/img/mba_lift.png")
 ```
 
 The lift ratio calculates the efficiency of the rule in finding consequences, 
@@ -227,7 +227,7 @@ phone and screen guard (i.e., mobile phone and screen guard occur together
 less often than random)
 
 <p>
-<a href="https://www.youtube.com/user/rsquaredin/" target="_blank"><img src="img/ad_youtube.png" width="100%" alt="youtube ad" style="text-decoration: none;"></a>
+<a href="https://www.youtube.com/user/rsquaredin/" target="_blank"><img src="/img/ad_youtube.png" width="100%" alt="youtube ad" style="text-decoration: none;"></a>
 </p>
 
 ## Data
@@ -282,8 +282,8 @@ library(ggplot2)
 
 ## Preprocessing
 
-```{r pre_process, fig.align='center', out.width="100%", echo=FALSE}
-knitr::include_graphics("J:/R/blog_research/mba/img/mba_pre_process.png")
+```{r pre_process, fig.align='center', out.width="80%", echo=FALSE}
+knitr::include_graphics("/img/mba_pre_process.png")
 ```
 
 As shown above, the data set has one row per item. We will use 
@@ -441,7 +441,7 @@ plotted.
 itemFrequencyPlot(basket_data, topN = 10, type = 'relative')
 ```
 
-<a href="https://apps.rsquaredacademy.com/" target="_blank"><img src="img/ad_apps.png" width="100%" alt="apps ad" style="text-decoration: none;"></a>
+<a href="https://apps.rsquaredacademy.com/" target="_blank"><img src="/img/ad_apps.png" width="100%" alt="apps ad" style="text-decoration: none;"></a>
 
 ## Generate Rules
 
@@ -521,8 +521,8 @@ general if it has the same RHS but one or more items removed from the LHS.
 
 #### Example 1
 
-```{r red_rule_1, fig.align='center', out.width="100%", echo=FALSE}
-knitr::include_graphics("J:/R/blog_research/mba/img/mba_redundant_rule_1.png")
+```{r red_rule_1, fig.align='center', out.width="80%", echo=FALSE}
+knitr::include_graphics("/img/mba_redundant_rule_1.png")
 ```
 
 In the above example, the first rule has the same support, condifence and lift
@@ -531,8 +531,8 @@ adding any value and as such makes the rule redundant.
 
 #### Example 2
 
-```{r red_rule_2, fig.align='center', out.width="100%", echo=FALSE}
-knitr::include_graphics("J:/R/blog_research/mba/img/mba_redundant_rule_2.png")
+```{r red_rule_2, fig.align='center', out.width="80%", echo=FALSE}
+knitr::include_graphics("/img/mba_redundant_rule_2.png")
 ```
 
 In the above example, the first two rules have the same support, condifence and 
@@ -540,8 +540,8 @@ lift. The third rule differs only with respect to lift.
 
 #### Example 3
 
-```{r red_rule_3, fig.align='center', out.width="100%", echo=FALSE}
-knitr::include_graphics("J:/R/blog_research/mba/img/mba_redundant_rule_3.png")
+```{r red_rule_3, fig.align='center', out.width="80%", echo=FALSE}
+knitr::include_graphics("/img/mba_redundant_rule_3.png")
 ```
 
 In the above example, the first and third rule have the same support, 
@@ -657,7 +657,7 @@ top_rules <- lift_rules[1:10]
 inspect(top_rules)
 ```
 
-<a href="https://pkgs.rsquaredacademy.com/" target="_blank"><img src="img/ad_packages.png" width="100%" alt="packages ad" style="text-decoration: none;"></a>
+<a href="https://pkgs.rsquaredacademy.com/" target="_blank"><img src="/img/ad_packages.png" width="100%" alt="packages ad" style="text-decoration: none;"></a>
 
 ## Visualization
 
@@ -700,8 +700,8 @@ the lift is same for both the following rules:
 
 It is clear that the lift is the same irrespective of the direction of the rule.
 
-```{r lift_warning, fig.align='center', out.width="100%", echo=FALSE}
-knitr::include_graphics("J:/R/blog_research/mba/img/mba_lift_warning_final.png")
+```{r lift_warning, fig.align='center', out.width="80%", echo=FALSE}
+knitr::include_graphics("/img/mba_lift_warning_final.png")
 ```
 
 #### Confidence as a measure can be misleading
@@ -713,14 +713,14 @@ a mobile phone to a customer who is purchasing a screen guard. It is important
 to ensure that we do not use rules just because they have high confidence 
 associated with them.
 
-```{r conf_warning, fig.align='center', out.width="100%", echo=FALSE}
-knitr::include_graphics("J:/R/blog_research/mba/img/mba_conf_warn_final.png")
+```{r conf_warning, fig.align='center', out.width="80%", echo=FALSE}
+knitr::include_graphics("/img/mba_conf_warn_final.png")
 ```
 
 ## Summary
 
-```{r summary_meme, fig.align='center', out.width="60%", echo=FALSE}
-knitr::include_graphics("J:/R/blog_research/mba/img/mba_summary_meme.jpg")
+```{r summary_meme, fig.align='center', out.width="80%", echo=FALSE}
+knitr::include_graphics("/img/mba_summary_meme.jpg")
 ```
 
 - unsupervised data mining technique
