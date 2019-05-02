@@ -2,7 +2,7 @@
 title: "Practical Introduction to Market Basket Analysis - Asociation Rules"
 author: Aravind Hebbali
 twitterImg: /img/cover_image.jpg
-description: "Practical Introduction to Market Basket Analysis"
+description: "Learn the what, why and how of market basket analysis in R"
 date: '2019-05-02'
 slug: market-basket-analysis-in-r
 categories:
@@ -13,7 +13,7 @@ tags:
 
 
 
-<p><img src="/img/mba_meme.jpg" style="display: block; margin: auto;" /></p>
+<p><img src="/img/mba_meme.jpg" width="50%" style="display: block; margin: auto;" /></p>
 <div id="introduction" class="section level2">
 <h2>Introduction</h2>
 <p><img src="/img/mba_intro.png" width="80%" style="display: block; margin: auto;" /></p>
@@ -222,15 +222,8 @@ required by the <strong>arules</strong> package.</p>
 </div>
 <div id="libraries" class="section level2">
 <h2>Libraries</h2>
-<p>We have created a tiny R package
-<a href="" target="_blank">mbar</a>, for data pre-processing. It can be
-installed from GitHub as shown below:</p>
-<pre class="r"><code># install.packages(&quot;devtools&quot;)
-devtools::install_github(&quot;rsquaredacademy/mbar&quot;)</code></pre>
-<p>Other than mbar, we will be using the following packages:</p>
 <pre class="r"><code>library(readxl)
 library(readr)
-library(mbar)
 library(arules)
 library(arulesViz)
 library(magrittr)
@@ -241,22 +234,30 @@ library(ggplot2)</code></pre>
 </div>
 <div id="preprocessing" class="section level2">
 <h2>Preprocessing</h2>
+<p>This section is optional. You can skip to the <strong>Read Data</strong> section without
+any loss of continuity.</p>
 <p><img src="/img/mba_pre_process.png" width="80%" style="display: block; margin: auto;" /></p>
-<p>As shown above, the data set has one row per item. We will use
-<code>mbar_prep_data()</code> from the mbar package to reshape the data so that there is
-one row per transaction with items across columns exclusing the column names.</p>
-<pre class="r"><code>mba_data     &lt;- read_excel(&quot;online-retail.xlsx&quot;)
+<p>As shown above, the data set has one row per item. We have created a tiny R
+package <a href="https://github.com/rsquaredacademy/mbar" target="_blank">mbar</a>,<br />
+for data pre-processing. It can be installed from GitHub as shown below:</p>
+<pre class="r"><code># install.packages(&quot;devtools&quot;)
+devtools::install_github(&quot;rsquaredacademy/mbar&quot;)</code></pre>
+<p>We will use <code>mbar_prep_data()</code> from the mbar package to reshape the data so
+that there is one row per transaction with items across columns excluding
+the column names.</p>
+<pre class="r"><code>library(mbar)
+mba_data     &lt;- read_excel(&quot;online-retail.xlsx&quot;)
 transactions &lt;- mbar_prep_data(mba_data, InvoiceNo, Description)
 head(transactions)</code></pre>
 <pre><code>## # A tibble: 6 x 1,114
 ##   item_1 item_2 item_3 item_4 item_5 item_6 item_7 item_8 item_9 item_10
 ##   &lt;chr&gt;  &lt;chr&gt;  &lt;chr&gt;  &lt;chr&gt;  &lt;chr&gt;  &lt;chr&gt;  &lt;chr&gt;  &lt;chr&gt;  &lt;chr&gt;  &lt;chr&gt;  
-## 1 BATH ~ &quot;&quot;     &quot;&quot;     &quot;&quot;     &quot;&quot;     &quot;&quot;     &quot;&quot;     &quot;&quot;     &quot;&quot;     &quot;&quot;     
-## 2 PAPER~ &quot;&quot;     &quot;&quot;     &quot;&quot;     &quot;&quot;     &quot;&quot;     &quot;&quot;     &quot;&quot;     &quot;&quot;     &quot;&quot;     
-## 3 VICTO~ &quot;&quot;     &quot;&quot;     &quot;&quot;     &quot;&quot;     &quot;&quot;     &quot;&quot;     &quot;&quot;     &quot;&quot;     &quot;&quot;     
-## 4 JAM M~ &quot;&quot;     &quot;&quot;     &quot;&quot;     &quot;&quot;     &quot;&quot;     &quot;&quot;     &quot;&quot;     &quot;&quot;     &quot;&quot;     
-## 5 Disco~ &quot;&quot;     &quot;&quot;     &quot;&quot;     &quot;&quot;     &quot;&quot;     &quot;&quot;     &quot;&quot;     &quot;&quot;     &quot;&quot;     
-## 6 SET O~ &quot;&quot;     &quot;&quot;     &quot;&quot;     &quot;&quot;     &quot;&quot;     &quot;&quot;     &quot;&quot;     &quot;&quot;     &quot;&quot;     
+## 1 WHITE~ WHITE~ CREAM~ KNITT~ RED W~ SET 7~ GLASS~ &quot;&quot;     &quot;&quot;     &quot;&quot;     
+## 2 HAND ~ HAND ~ &quot;&quot;     &quot;&quot;     &quot;&quot;     &quot;&quot;     &quot;&quot;     &quot;&quot;     &quot;&quot;     &quot;&quot;     
+## 3 ASSOR~ POPPY~ POPPY~ FELTC~ IVORY~ BOX O~ BOX O~ BOX O~ HOME ~ LOVE B~
+## 4 JAM M~ RED C~ YELLO~ BLUE ~ &quot;&quot;     &quot;&quot;     &quot;&quot;     &quot;&quot;     &quot;&quot;     &quot;&quot;     
+## 5 BATH ~ &quot;&quot;     &quot;&quot;     &quot;&quot;     &quot;&quot;     &quot;&quot;     &quot;&quot;     &quot;&quot;     &quot;&quot;     &quot;&quot;     
+## 6 ALARM~ ALARM~ ALARM~ PANDA~ STARS~ INFLA~ VINTA~ SET/2~ ROUND~ SPACEB~
 ## # ... with 1,104 more variables: item_11 &lt;chr&gt;, item_12 &lt;chr&gt;,
 ## #   item_13 &lt;chr&gt;, item_14 &lt;chr&gt;, item_15 &lt;chr&gt;, item_16 &lt;chr&gt;,
 ## #   item_17 &lt;chr&gt;, item_18 &lt;chr&gt;, item_19 &lt;chr&gt;, item_20 &lt;chr&gt;,
@@ -387,7 +388,7 @@ should be set to the value <code>single</code> and the <code>cols</code> argumen
 the names or positions of the columns that represent the <strong>transaction id</strong> and
 <strong>item id</strong>. We tried to read data in this way as well but failed to do so.
 However, the code is available below for other users to try and let us know if
-you find a way to get it to work.</p>
+you find a way to get it to work or spot any mistakes we may have made.</p>
 <pre class="r"><code>get_data &lt;- read.transactions(&quot;retail.csv&quot;, 
   format = &quot;single&quot;,
   sep = &quot;,&quot;,
@@ -482,7 +483,7 @@ and the <code>type</code> argument can be used to specify whether the <code>Y</c
 absolute/relative frequency of the items.</p>
 <pre class="r"><code>itemFrequencyPlot(basket_data, topN = 10, type = &#39;absolute&#39;)</code></pre>
 <p><img src="/post/2019-05-02-mba_files/figure-html/plot_freq-1.png" width="672" style="display: block; margin: auto;" /></p>
-<p>In the below, plot the <code>Y</code> axis represents the relative frequency of the items
+<p>In the below plot, the <code>Y</code> axis represents the relative frequency of the items
 plotted.</p>
 <pre class="r"><code>itemFrequencyPlot(basket_data, topN = 10, type = &#39;relative&#39;)</code></pre>
 <p><img src="/post/2019-05-02-mba_files/figure-html/plot_freq_relative-1.png" width="672" style="display: block; margin: auto;" /></p>
@@ -490,7 +491,7 @@ plotted.</p>
 </div>
 <div id="generate-rules" class="section level2">
 <h2>Generate Rules</h2>
-<p>Finally, what you have been waiting for. Let us generate some rules. The
+<p>Finally, to the part you all have been waiting for, rules generation. The
 <code>apriori()</code> function is used for generating the rules. We will first learn the
 different inputs that must be specified and later on play around with them and
 see how the rules generated change.</p>
@@ -531,16 +532,16 @@ time and the process will eventually run out of memory.</p>
 ## Absolute minimum support count: 233 
 ## 
 ## set item appearances ...[0 item(s)] done [0.00s].
-## set transactions ...[10085 item(s), 25901 transaction(s)] done [1.27s].
-## sorting and recoding items ... [508 item(s)] done [0.03s].
+## set transactions ...[10085 item(s), 25901 transaction(s)] done [1.09s].
+## sorting and recoding items ... [508 item(s)] done [0.05s].
 ## creating transaction tree ... done [0.08s].
 ## checking subsets of size 1 2 3 4</code></pre>
 <pre><code>## Warning in apriori(basket_data, parameter = list(supp = 0.009, conf =
 ## 0.8, : Mining stopped (maxlen reached). Only patterns up to a length of 4
 ## returned!</code></pre>
-<pre><code>##  done [0.12s].
+<pre><code>##  done [0.08s].
 ## writing ... [22 rule(s)] done [0.00s].
-## creating S4 object  ... done [0.02s].</code></pre>
+## creating S4 object  ... done [0.03s].</code></pre>
 <p>Change the values of <code>supp</code>, <code>conf</code> and <code>maxlen</code>, and observe how the rules
 generated change.</p>
 </div>
@@ -723,11 +724,11 @@ sugar can appear on the left hand side of the rule by default.</p>
 ## Absolute minimum support count: 233 
 ## 
 ## set item appearances ...[1 item(s)] done [0.00s].
-## set transactions ...[10085 item(s), 25901 transaction(s)] done [1.40s].
+## set transactions ...[10085 item(s), 25901 transaction(s)] done [1.45s].
 ## sorting and recoding items ... [508 item(s)] done [0.03s].
-## creating transaction tree ... done [0.08s].
-## checking subsets of size 1 2 3 4 done [0.10s].
-## writing ... [3 rule(s)] done [0.01s].
+## creating transaction tree ... done [0.05s].
+## checking subsets of size 1 2 3 4 done [0.17s].
+## writing ... [3 rule(s)] done [0.00s].
 ## creating S4 object  ... done [0.02s].</code></pre>
 <pre class="r"><code>rules_sugar &lt;- sort(sugar_rules, by = &quot;confidence&quot;, decreasing = TRUE)
 inspect(rules_sugar)</code></pre>
@@ -775,10 +776,10 @@ hand side of the rule by default.</p>
 ## Absolute minimum support count: 233 
 ## 
 ## set item appearances ...[1 item(s)] done [0.00s].
-## set transactions ...[10085 item(s), 25901 transaction(s)] done [1.12s].
+## set transactions ...[10085 item(s), 25901 transaction(s)] done [1.65s].
 ## sorting and recoding items ... [508 item(s)] done [0.03s].
-## creating transaction tree ... done [0.07s].
-## checking subsets of size 1 2 done [0.02s].
+## creating transaction tree ... done [0.05s].
+## checking subsets of size 1 2 done [0.03s].
 ## writing ... [2 rule(s)] done [0.00s].
 ## creating S4 object  ... done [0.02s].</code></pre>
 <pre class="r"><code>rules_sugar &lt;- sort(sugar_rules, by = &quot;confidence&quot;, decreasing = TRUE)
@@ -912,9 +913,8 @@ associated with them.</p>
 </div>
 <div id="summary" class="section level2">
 <h2>Summary</h2>
-<p><img src="/img/mba_summary_meme.jpg" width="80%" style="display: block; margin: auto;" /></p>
 <ul>
-<li>unsupervised data mining technique</li>
+<li>market basket analysis is an unsupervised data mining technique</li>
 <li>uncovers products frequently bought together</li>
 <li>creates if-then scenario rules</li>
 <li>cost-effective, insightful and actionable</li>
@@ -922,6 +922,7 @@ associated with them.</p>
 <li>directionality of rule is lost while using lift</li>
 <li>confidence as a measure can be misleading</li>
 </ul>
+<p><img src="/img/mba_summary_meme.jpg" width="80%" style="display: block; margin: auto;" /></p>
 <p>Your knowledge of the domain/business matters a lot when you are trying to
 use market basket analysis. Especially, when you are trying to select or
 shortlist rules and use them for product placement in a store or for
