@@ -1,7 +1,7 @@
 ---
 title: "Demystifying Regular Expressions in R"
 author: Aravind Hebbali
-twitterImg: img/regex_cover_image.png
+twitterImg: /img/regex_cover_image.png
 description: "Beginners guide to regular expressions in R"
 date: '2019-05-27'
 slug: regular-expression-in-r
@@ -16,7 +16,7 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 
 ```{r regex_cover_image, echo=FALSE, fig.align="center", out.width="100%"}
-knitr::include_graphics("img/regex_cover_image.png")
+knitr::include_graphics("/img/regex_cover_image.png")
 ```
 
 ## Introduction
@@ -41,7 +41,7 @@ topics in the second section.
 ### What
 
 ```{r regex_what, echo=FALSE, fig.align="center", out.width="100%"}
-knitr::include_graphics("img/regex_what.png")
+knitr::include_graphics("/img/regex_what.png")
 ```
 
 ### Why
@@ -54,7 +54,7 @@ Regular expressions can be used for:
 - extraction
 
 ```{r regex_why, echo=FALSE, fig.align="center", out.width="100%"}
-knitr::include_graphics("img/regex_why.png")
+knitr::include_graphics("/img/regex_why.png")
 ```
 
 ### Use Cases
@@ -70,7 +70,7 @@ the most popular ones below:
 - web scraping
 
 ```{r regex_use_case, echo=FALSE, fig.align="center", out.width="100%"}
-knitr::include_graphics("img/regex_use_case_blog.png")
+knitr::include_graphics("/img/regex_use_case_blog.png")
 ```
 
 ## Learning
@@ -93,7 +93,7 @@ Below are the links to all the resources related to this post:
 
 <hr>
 
-<a href="https://www.rsquaredacademy.com/" target="_blank"><img src="img/ad.png" width="100%" alt="course ad" style="text-decoration: none;"></a>
+<a href="https://www.rsquaredacademy.com/" target="_blank"><img src="/img/ad.png" width="100%" alt="course ad" style="text-decoration: none;"></a>
 
 <hr>
 
@@ -138,7 +138,7 @@ few functions from base R for pattern matching. We will learn about using
 regular expressions with the stringr package in an upcoming post.
 
 ```{r regex_base_functions, echo=FALSE, fig.align="center", out.width="100%"}
-knitr::include_graphics("img/regex_base_functions.png")
+knitr::include_graphics("/img/regex_base_functions.png")
 ```
 
 ## grep
@@ -149,7 +149,7 @@ or the index of the elements based on your specification. In the below example,
 `grep()` returns the index of the elements that match the given pattern. 
 
 ```{r grep_index, echo=FALSE, fig.align="center", out.width="100%"}
-knitr::include_graphics("img/regex_grep_index_canva.png")
+knitr::include_graphics("/img/regex_grep_index_canva.png")
 ```
 
 ```{r grep_code}
@@ -172,7 +172,7 @@ If you want `grep()` to return the element instead of the index, set the
 `grep()` returns the elements and not their index.
 
 ```{r grep_value, echo=FALSE, fig.align="center", out.width="100%"}
-knitr::include_graphics("img/regex_grep_value_canva.png")
+knitr::include_graphics("/img/regex_grep_value_canva.png")
 ```
 
 ```{r grep_value_code}
@@ -187,7 +187,7 @@ case sensitive. The `ignore.case` argument will ignore case while matching the
 pattern as shown below.
 
 ```{r grep_ignore_case, echo=FALSE, fig.align="center", out.width="100%"}
-knitr::include_graphics("img/regex_grep_ignore_case_canva.png")
+knitr::include_graphics("/img/regex_grep_ignore_case_canva.png")
 ```
 
 ```{r grep_ignore_case_code}
@@ -204,7 +204,7 @@ the pattern. In the below example, the elements returned do not match the
 pattern specified by us.
 
 ```{r grep_invert, echo=FALSE, fig.align="center", out.width="100%"}
-knitr::include_graphics("img/regex_grep_invert_canva.png")
+knitr::include_graphics("/img/regex_grep_invert_canva.png")
 ```
 
 ```{r grep_invert_code}
@@ -219,7 +219,7 @@ grep(x = top_downloads, pattern = "r", value = TRUE,
 specified, it will return `TRUE` else `FALSE`.
 
 ```{r grepl, echo=FALSE, fig.align="center", out.width="100%"}
-knitr::include_graphics("img/regex_grepl_canva.png")
+knitr::include_graphics("/img/regex_grepl_canva.png")
 ```
 
 ```{r grepl_code}
@@ -231,7 +231,7 @@ grepl(x = top_downloads, pattern = "r")
 To ignore the case, use the `ignore.case` argument and set it to `TRUE`.
 
 ```{r grepl_ignore_case, echo=FALSE, fig.align="center", out.width="100%"}
-knitr::include_graphics("img/regex_grepl_ignore_case_canva.png")
+knitr::include_graphics("/img/regex_grepl_ignore_case_canva.png")
 ```
 
 ```{r grepl_ignore_case_code}
@@ -268,7 +268,7 @@ regexec("r", rr_pkgs)
 <hr>
 
 <p>
-<a href="https://www.youtube.com/user/rsquaredin/" target="_blank"><img src="img/ad_youtube.png" width="100%" alt="youtube ad" style="text-decoration: none;"></a>
+<a href="https://www.youtube.com/user/rsquaredin/" target="_blank"><img src="/img/ad_youtube.png" width="100%" alt="youtube ad" style="text-decoration: none;"></a>
 </p>
 
 <hr>
@@ -280,7 +280,7 @@ you can observe that only the first match of `r` is replaced by `s` while
 the rest remain the same. 
 
 ```{r sub, echo=FALSE, fig.align="center", out.width="100%"}
-knitr::include_graphics("img/regex_sub_canva.png")
+knitr::include_graphics("/img/regex_sub_canva.png")
 ```
 
 ```{r sub_code}
@@ -295,7 +295,7 @@ all the `s` are replaced by `r`. Compare the below output with the output from
 `sub()` to understand the difference between them.
 
 ```{r gsub, echo=FALSE, fig.align="center", out.width="100%"}
-knitr::include_graphics("img/regex_gsub_canva.png")
+knitr::include_graphics("/img/regex_gsub_canva.png")
 ```
 
 ```{r gsub_code}
@@ -323,7 +323,7 @@ regex or pattern at a certain position. Anchors are useful when we are searching
 for a pattern at the beggining or end of a string.
 
 ```{r regex_anchors, echo=FALSE, fig.align="center", out.width="100%"}
-knitr::include_graphics("img/regex_anchors.png")
+knitr::include_graphics("/img/regex_anchors.png")
 ```
 
 ### Caret Symbol (^)
@@ -334,7 +334,7 @@ the letter `r`. To achieve this, we use `^`, the caret symbol, which specifies
 that the pattern must be present at the beginning of the string.
 
 ```{r anchor_start}, echo=FALSE, fig.align="center", out.width="100%"}
-knitr::include_graphics("img/regex_anchor_start_canva.png")
+knitr::include_graphics("/img/regex_anchor_start_canva.png")
 ```
 
 ```{r anchor_start_code}
@@ -346,7 +346,7 @@ even `Rcpp` begins with `r` but has been ignored. Let us ignore the case of the
 pattern and see if the results change.
 
 ```{r anchor_start_ignore_case, echo=FALSE, fig.align="center", out.width="100%"}
-knitr::include_graphics("img/regex_anchor_start_ignore_case_canva.png")
+knitr::include_graphics("/img/regex_anchor_start_ignore_case_canva.png")
 ```
 
 ```{r anchor_start_ignore_case_code}
@@ -361,7 +361,7 @@ use `$`, the dollar symbol. As you can see in the below example, the `$` is
 specified at the end of the pattern we are looking for.
 
 ```{r anchor_end, echo=FALSE, fig.align="center", out.width="100%"}
-knitr::include_graphics("img/regex_anchor_end_canva.png")
+knitr::include_graphics("/img/regex_anchor_end_canva.png")
 ```
 
 From our sample data set, we can see that there are 2 packages that end with
@@ -379,7 +379,7 @@ expressions will not detect them. In order to be detected, they must be
 prefixed by double backslash (\\). The below table displays the metacharacters:
 
 ```{r meta_characters, echo=FALSE, fig.align="center", out.width="50%"}
-knitr::include_graphics("img/regex_meta_characters.png")
+knitr::include_graphics("/img/regex_meta_characters.png")
 ```
 
 Now that we know the meta characters, let us look at some examples. In the first
@@ -405,7 +405,7 @@ data set.
 
 <hr>
 
-<a href="https://apps.rsquaredacademy.com/" target="_blank"><img src="img/ad_apps.png" width="100%" alt="apps ad" style="text-decoration: none;"></a>
+<a href="https://apps.rsquaredacademy.com/" target="_blank"><img src="/img/ad_apps.png" width="100%" alt="apps ad" style="text-decoration: none;"></a>
 
 <hr>
 
@@ -417,7 +417,7 @@ times a pattern must appear or be matched. The below table shows the different
 quantifiers and their description:
 
 ```{r regex_quantifiers, echo=FALSE, fig.align="center", out.width="80%"}
-knitr::include_graphics("img/regex_quantifiers.png")
+knitr::include_graphics("/img/regex_quantifiers.png")
 ```
 
 #### Dot
@@ -428,7 +428,7 @@ to match more than 1 character, you need to specify as many dots. Let us look
 at a few examples.
 
 ```{r quantifier_dot, echo=FALSE, fig.align="center", out.width="100%"}
-knitr::include_graphics("img/regex_quantifier_dot_canva.png")
+knitr::include_graphics("/img/regex_quantifier_dot_canva.png")
 ```
 
 ```{r quantifier_dot_code_1}
@@ -455,7 +455,7 @@ grep(x = r_packages, pattern = "stat..r", value = TRUE, ignore.case = TRUE)
 is matched at most once.
 
 ```{r regex_optional, echo=FALSE, fig.align="center", out.width="100%"}
-knitr::include_graphics("img/regex_optional.png")
+knitr::include_graphics("/img/regex_optional.png")
 ``` 
 
 In this first example, we are looking for package names that include the 
@@ -466,7 +466,7 @@ following pattern:
 - there may be zero or one character between `r` and `data`
 
 ```{r quantifier_mark_1, echo=FALSE, fig.align="center", out.width="100%"}
-knitr::include_graphics("img/regex_quantifier_question_mark.png")
+knitr::include_graphics("/img/regex_quantifier_question_mark.png")
 ```
 
 ```{r quantifier_question_code_1}
@@ -481,7 +481,7 @@ following pattern:
 - there may be zero or one dot between `r` and `data`
 
 ```{r quantifier_mark_2, echo=FALSE, fig.align="center", out.width="100%"}
-knitr::include_graphics("img/regex_quantifier_question_mark_2.png")
+knitr::include_graphics("/img/regex_quantifier_question_mark_2.png")
 ```
 
 ```{r quantifier_question_code_2}
@@ -500,7 +500,7 @@ following pattern:
     - q
 
 ```{r quantifier_mark_3, echo=FALSE, fig.align="center", out.width="100%"}
-knitr::include_graphics("img/regex_quantifier_question_mark_3.png")
+knitr::include_graphics("/img/regex_quantifier_question_mark_3.png")
 ```
 
 ```{r quantifier_question_code_3}
@@ -520,7 +520,7 @@ following pattern:
     - dot
 
 ```{r quantifier_mark_4, echo=FALSE, fig.align="center", out.width="100%"}
-knitr::include_graphics("img/regex_quantifier_question_mark_4.png")
+knitr::include_graphics("/img/regex_quantifier_question_mark_4.png")
 ```
 
 ```{r quantifier_question_code_4}
@@ -533,7 +533,7 @@ grep(x = data_pkgs, pattern = "r(\\.|m|y|q)?data", value = TRUE)
 or more times.
 
 ```{r regex_asterik, echo=FALSE, fig.align="center", out.width="100%"}
-knitr::include_graphics("img/regex_asterik.png")
+knitr::include_graphics("/img/regex_asterik.png")
 ```
 
 In the below example, we are looking for package names that include the 
@@ -544,7 +544,7 @@ following pattern:
 - there may be zero or more character(s) between `r` and `data`
 
 ```{r quantifier_star, echo=FALSE, fig.align="center", out.width="100%"}
-knitr::include_graphics("img/regex_quantifier_star.png")
+knitr::include_graphics("/img/regex_quantifier_star.png")
 ```
 
 ```{r quantifier_star_code}
@@ -557,7 +557,7 @@ grep(x = data_pkgs, pattern = "r(.)*data", value = TRUE)
 times.
 
 ```{r regex_plus, echo=FALSE, fig.align="center", out.width="100%"}
-knitr::include_graphics("img/regex_plus.png")
+knitr::include_graphics("/img/regex_plus.png")
 ```
 
 In the below example, we are looking for package names that include the 
@@ -567,7 +567,7 @@ following pattern:
 - `plot` is preceded by one or more `g`
 
 ```{r quantifier_plus, echo=FALSE, fig.align="center", out.width="100%"}
-knitr::include_graphics("img/regex_quantifier_plus.png")
+knitr::include_graphics("/img/regex_quantifier_plus.png")
 ```
 
 ```{r quantifier_plus_code}
@@ -578,7 +578,7 @@ grep(x = plot_pkgs, pattern = "(g)+plot", value = TRUE, ignore.case = TRUE)
 ## Brackets
 
 ```{r regex_brackets, echo=FALSE, fig.align="center", out.width="100%"}
-knitr::include_graphics("img/regex_brackets.png")
+knitr::include_graphics("/img/regex_brackets.png")
 ```
 
 #### {n}
@@ -591,7 +591,7 @@ pattern:
 - `plot` is preceded by exactly one `g`
 
 ```{r quantifier_exact_n_match, echo=FALSE, fig.align="center", out.width="100%"}
-knitr::include_graphics("img/regex_quantifier_exact_n_match_canva.png")
+knitr::include_graphics("/img/regex_quantifier_exact_n_match_canva.png")
 ```
 
 ```{r quantifier_n_code}
@@ -608,7 +608,7 @@ pattern:
 - `plot` is preceded by one or more `g`
 
 ```{r quantifier_match_one_or_more, echo=FALSE, fig.align="center", out.width="100%"}
-knitr::include_graphics("img/regex_quantifier_match_one_or_more_canva.png")
+knitr::include_graphics("/img/regex_quantifier_match_one_or_more_canva.png")
 ```
 
 ```{r quantifier_n_or_more_code}
@@ -625,7 +625,7 @@ include the following pattern:
 - `plot` is preceded by 1 or 3 `t`
 
 ```{r quantifier_match_between, echo=FALSE, fig.align="center", out.width="100%"}
-knitr::include_graphics("img/regex_quantifier_match_between_canva.png")
+knitr::include_graphics("/img/regex_quantifier_match_between_canva.png")
 ```
 
 ```{r quantifier_between_code}
@@ -635,7 +635,7 @@ grep(x = plot_pkgs, pattern = "(t){1,3}plot", value = TRUE)
 ## OR
 
 ```{r regex_or, echo=FALSE, fig.align="center", out.width="100%"}
-knitr::include_graphics("img/regex_or.png")
+knitr::include_graphics("/img/regex_or.png")
 ```
 
 The `|` (OR) operator is useful when you want to match one amongst the given 
@@ -643,7 +643,7 @@ options. For example, let us say we are looking for package names that begin
 with `g` and is followed by either another `g` or `l`.
 
 ```{r or_round, echo=FALSE, fig.align="center", out.width="100%"}
-knitr::include_graphics("img/regex_or_round_bracket_canva.png")
+knitr::include_graphics("/img/regex_or_round_bracket_canva.png")
 ```
 
 ```{r or_round_code}
@@ -655,7 +655,7 @@ example where we are looking for package names that begin with the letter
 `d` and is followed by either `e` or `p` or `a`.
 
 ```{r or_square, echo=FALSE, fig.align="center", out.width="100%"}
-knitr::include_graphics("img/regex_or_square_bracket_canva.png")
+knitr::include_graphics("/img/regex_or_square_bracket_canva.png")
 ```
 
 ```{r or_square_code}
@@ -664,14 +664,14 @@ grep(x = top_downloads, pattern = "d[epa]", value = TRUE)
 
 <hr>
 
-<a href="https://pkgs.rsquaredacademy.com/" target="_blank"><img src="img/ad_packages.png" width="100%" alt="packages ad" style="text-decoration: none;"></a>
+<a href="https://pkgs.rsquaredacademy.com/" target="_blank"><img src="/img/ad_packages.png" width="100%" alt="packages ad" style="text-decoration: none;"></a>
 
 <hr>
 
 ## Sequences
 
 ```{r regex_sequences, echo=FALSE, fig.align="center", out.width="100%"}
-knitr::include_graphics("img/regex_sequences.png")
+knitr::include_graphics("/img/regex_sequences.png")
 ```
 
 #### Digit Character
@@ -680,7 +680,7 @@ knitr::include_graphics("img/regex_sequences.png")
 include a digit.
 
 ```{r sequence_digit, echo=FALSE, fig.align="center", out.width="100%"}
-knitr::include_graphics("img/regex_match_digit.png")
+knitr::include_graphics("/img/regex_match_digit.png")
 ```
 
 ```{r digit_code}
@@ -703,7 +703,7 @@ use dummy data of Invoice IDs and see if they conform to certain rules such as:
 include only numbers and no letters.
 
 ```{r sequence_non_digit, echo=FALSE, fig.align="center", out.width="100%"}
-knitr::include_graphics("img/regex_match_non_digit.png")
+knitr::include_graphics("/img/regex_match_non_digit.png")
 ```
 
 As you can see below, thre are 3 invoice ids that did not conform to the rules 
@@ -725,7 +725,7 @@ grep(x = invoice_id, pattern = "\\D", value = TRUE, invert = TRUE)
 detect invoice ids that include any white space (space or tab).
 
 ```{r sequence_space, echo=FALSE, fig.align="center", out.width="100%"}
-knitr::include_graphics("img/regex_match_space.png")
+knitr::include_graphics("/img/regex_match_space.png")
 ```
 
 As you can see below, there are 4 invoice ids that include white space 
@@ -747,7 +747,7 @@ grep(x = c("R536365", "R 536472", "R536671", "R536915", "R53 6125", "R536287",
 invoice ids which are blank or missing.
 
 ```{r sequence_non_space, echo=FALSE, fig.align="center", out.width="100%"}
-knitr::include_graphics("img/regex_match_non_space.png")
+knitr::include_graphics("/img/regex_match_non_space.png")
 ```
 
 As you can see below, two invoice ids which were blank have been removed. If you
@@ -776,7 +776,7 @@ grep(x = c("R536365", "R 536472", " ", "R536915", "R53 6125", "R536287",
 - underscore(_)
 
 ```{r sequence_word, echo=FALSE, fig.align="center", out.width="100%"}
-knitr::include_graphics("img/regex_match_word.png")
+knitr::include_graphics("/img/regex_match_word.png")
 ```
 
 Let us use it to remove those invoice ids which include only symbols or special
@@ -801,7 +801,7 @@ grep(x = c("R536365", "%+$!#@?", "R536671", "R536915", "$%+#!@?", "R5362@87",
 is not a word character.
 
 ```{r sequence_non_word, echo=FALSE, fig.align="center", out.width="100%"}
-knitr::include_graphics("img/regex_match_non_word.png")
+knitr::include_graphics("/img/regex_match_non_word.png")
 ```
 
 Let us use it to detect invoice ids that include any non-word character. As you
@@ -836,7 +836,7 @@ Let us say we are looking for package names beginning with the string `stat`.
 In this case, we can prefix `stat` with `\\b`. 
 
 ```{r word_boundary_1, echo=FALSE, fig.align="center", out.width="100%"}
-knitr::include_graphics("img/regex_word_boundary_1.png")
+knitr::include_graphics("/img/regex_word_boundary_1.png")
 ```
 
 ```{r boundary_code_2}
@@ -847,7 +847,7 @@ Suffix `\\b` to `stat` to look at all package names that end with the string
 `stat`.
 
 ```{r word_boundary_2, echo=FALSE, fig.align="center", out.width="100%"}
-knitr::include_graphics("img/regex_word_boundary_2.png")
+knitr::include_graphics("/img/regex_word_boundary_2.png")
 ```
 
 If you observe the output, you can find package names that do not end with 
@@ -864,7 +864,7 @@ Do package names include the string `stat` either at the end or in the middle
 but not at the beginning? Prefix `stat` with `\\B` to find the answer.
 
 ```{r word_boundary_3, echo=FALSE, fig.align="center", out.width="100%"}
-knitr::include_graphics("img/regex_word_boundary_3.png")
+knitr::include_graphics("/img/regex_word_boundary_3.png")
 ```
 
 ```{r boundary_code_4}
@@ -876,7 +876,7 @@ beginning or in the middle but not at the end. Suffix `\\B` to `stat` to
 answer this question.
 
 ```{r word_boundary_4, echo=FALSE, fig.align="center", out.width="100%"}
-knitr::include_graphics("img/regex_word_boundary_4.png")
+knitr::include_graphics("/img/regex_word_boundary_4.png")
 ```
 
 ```{r boundary_code_5}
@@ -887,7 +887,7 @@ Prefix and suffix `\\B` to `stat` to look at package names that include the
 string `stat` but neither in the beginning nor in the end. 
 
 ```{r word_boundary_5, echo=FALSE, fig.align="center", out.width="100%"}
-knitr::include_graphics("img/regex_word_boundary_5.png")
+knitr::include_graphics("/img/regex_word_boundary_5.png")
 ```
 
 In the below output, you can observe that the string `stat` must be between
@@ -901,7 +901,7 @@ grep(x = r_packages, pattern = "\\Bstat\\B", value = TRUE)
 ## Character Classes
 
 ```{r regex_character_classes, echo=FALSE, fig.align="center", out.width="100%"}
-knitr::include_graphics("img/regex_character_classes.png")
+knitr::include_graphics("/img/regex_character_classes.png")
 ```
 
 A set of characters enclosed in a square bracket (`[]`). The regular expression
@@ -915,7 +915,7 @@ the opening bracket negates the character class. For example, [^0-9] will match
 a single character that is not a digit.
 
 ```{r character_class_numbers, echo=FALSE, fig.align="center", out.width="100%"}
-knitr::include_graphics("img/regex_character_class_numbers.png")
+knitr::include_graphics("/img/regex_character_class_numbers.png")
 ```
 Let us go through a few examples to understand character classes in more detail.
 
@@ -958,7 +958,7 @@ on the presence and absence of antibodies and inherited antigenic substances on
 the surface of red blood cells (RBCs).
 
 ```{r regex_bg_validation, echo=FALSE, fig.align="center", out.width="100%"}
-knitr::include_graphics("img/regex_cs_blood_groups.png")
+knitr::include_graphics("/img/regex_cs_blood_groups.png")
 ```
 
 The below table defines the matching pattern for blood group and maps them to
@@ -968,7 +968,7 @@ regular expressions.
 - it must end with `+` or `-`
 
 ```{r regex_bg_table, echo=FALSE, fig.align="center", out.width="100%"}
-knitr::include_graphics("img/regex_cs_bg_table.png")
+knitr::include_graphics("/img/regex_cs_bg_table.png")
 ```
 
 Let us test the regular expression with some examples.
@@ -990,7 +990,7 @@ expressions are used to validate email address and in this case study we will
 attempt to do the same.
 
 ```{r regex_email_validation, echo=FALSE, fig.align="center", out.width="100%"}
-knitr::include_graphics("img/regex_cs_email.png")
+knitr::include_graphics("/img/regex_cs_email.png")
 ```
 
 First, we will create some basic rules for simple email validation:
@@ -1005,7 +1005,7 @@ First, we will create some basic rules for simple email validation:
 In the below table, we map the above rules to general expression.
 
 ```{r regex_email_table, echo=FALSE, fig.align="center", out.width="100%"}
-knitr::include_graphics("img/regex_cs_email_table.png")
+knitr::include_graphics("/img/regex_cs_email_table.png")
 ```
 
 Let us now test the regular expression with some dummy email ids.
@@ -1030,7 +1030,7 @@ information for a person/company is recorded against a single PAN number.
 - the last character is a letter
 
 ```{r regex_pan_validation_1, echo=FALSE, fig.align="center", out.width="100%"}
-knitr::include_graphics("img/regex_cs_pan_1.png")
+knitr::include_graphics("/img/regex_cs_pan_1.png")
 ```
 
 - the first 3 characters are a sequence from AAA to ZZZ
@@ -1041,13 +1041,13 @@ A, B, C, F, G, H, L, J, P, T or E
 - the last character is a letter
 
 ```{r regex_pan_validation_2, echo=FALSE, fig.align="center", out.width="100%"}
-knitr::include_graphics("img/regex_cs_pan_2.png")
+knitr::include_graphics("/img/regex_cs_pan_2.png")
 ```
 
 In the below table, we map the pattern to regular expression.
 
 ```{r regex_pan_table, echo=FALSE, fig.align="center", out.width="100%"}
-knitr::include_graphics("img/regex_cs_pan_table.png")
+knitr::include_graphics("/img/regex_cs_pan_table.png")
 ```
 
 Let us test the regular expression with some dummy PAN numbers.
@@ -1066,7 +1066,7 @@ previously existed in India. GST identification number is assigned to every
 GST registed dealer.
 
 ```{r regex_gst_validation, echo=FALSE, fig.align="center", out.width="100%"}
-knitr::include_graphics("img/regex_cs_gst.png")
+knitr::include_graphics("/img/regex_cs_gst.png")
 ```
 
 #### Structure
@@ -1083,7 +1083,7 @@ Below is the format break down of GST identification number:
 In the below table, we map the pattern to regular expression.
 
 ```{r regex_gst_table, echo=FALSE, fig.align="center", out.width="100%"}
-knitr::include_graphics("img/regex_cs_gst_table.png")
+knitr::include_graphics("/img/regex_cs_gst_table.png")
 ```
 
 Let us test the regular expression with some dummy GST numbers.
