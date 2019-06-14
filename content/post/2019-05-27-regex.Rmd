@@ -1145,3 +1145,7 @@ editors, html tags validation, web scraping etc.
 - https://r4ds.had.co.nz/strings.html
 - https://github.com/rstudio/cheatsheets/blob/master/strings.pdf
 - https://www.garrickadenbuie.com/project/regexplain/
+
+If you see mistakes or want to suggest changes, please create an issue on the
+<a href="https://github.com/rsquaredacademy-infra/blog" target="_blank">source repository</a>
+or reach out to us at feedback@rsquaredacademy.com.
