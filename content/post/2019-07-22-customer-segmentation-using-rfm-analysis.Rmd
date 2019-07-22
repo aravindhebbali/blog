@@ -335,7 +335,7 @@ assigned the score 1.
 <hr>
 
 <p>
-<a href="https://www.youtube.com/user/rsquaredin/" target="_blank"><img src="//img/ad_youtube.png" width="100%" alt="youtube ad" style="text-decoration: none;"></a>
+<a href="https://www.youtube.com/user/rsquaredin/" target="_blank"><img src="/img/ad_youtube.png" width="100%" alt="youtube ad" style="text-decoration: none;"></a>
 </p>
 
 <hr>
@@ -554,7 +554,7 @@ segments %>%
 
 <hr>
 
-<a href="https://pkgs.rsquaredacademy.com/" target="_blank"><img src="//img/ad_packages.png" width="100%" alt="packages ad" style="text-decoration: none;"></a>
+<a href="https://pkgs.rsquaredacademy.com/" target="_blank"><img src="/img/ad_packages.png" width="100%" alt="packages ad" style="text-decoration: none;"></a>
 
 <hr>
 
