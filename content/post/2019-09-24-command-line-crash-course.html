@@ -1,0 +1,871 @@
+---
+title: "Command Line Basics"
+author: Aravind Hebbali
+twitterImg: /img/dbi_cover_image.png
+description: "Learn to connect, explore and query database from R"
+date: '2019-09-24'
+slug: command-line-basics
+categories:
+  - bash
+tags:
+  - bash
+  - shell
+  - terminal
+  - cli
+---
+
+
+
+<p><img src="/img/dbi_cover_image.png" width="100%" style="display: block; margin: auto;" /></p>
+<div id="introduction" class="section level2">
+<h2>Introduction</h2>
+<p>In a previous <a href="https://blog.rsquaredacademy.com/quick-guide-r-sqlite/" target="_blank">post</a>, we had briefly looked at connecting to databases from R and using dplyr for querying data. In this new expanded post, we will focus on the following:</p>
+<ul>
+<li>connect to &amp; explore database</li>
+<li>read &amp; write data</li>
+<li>use RStudio SQL script &amp; knitr SQL engine</li>
+<li>query data using dplyr</li>
+<li>visualize data with dbplot</li>
+<li>modeling data with modeldb &amp; tidypredict</li>
+<li>explore RStudio connections pane</li>
+<li>handling credentials</li>
+</ul>
+</div>
+<div id="resources" class="section level2">
+<h2>Resources</h2>
+<p>Below are the links to all the resources related to this post:</p>
+<ul>
+<li><a href="https://slides.rsquaredacademy.com/sql/sqlite.html#/section" target="_blank">Slides</a></li>
+<li><a href="https://github.com/rsquaredacademy-education/online-courses/" target="_blank">Code &amp; Data</a></li>
+<li><a href="https://rstudio.cloud/project/430439" target="_blank">RStudio Cloud</a></li>
+</ul>
+<p>You can try our <strong>free online course</strong> <a href="https://rsquared-academy.thinkific.com/courses/working-with-databases-using-r"><strong>Working with Databases using R</strong></a> if you prefer to learn through self paced online courses.</p>
+{{% youtube "bPlGPmjPFeU" %}}
+<pre class="sh"><code>whoami</code></pre>
+<pre><code>## aravind\hp</code></pre>
+<pre class="sh"><code>date</code></pre>
+<pre><code>## Tue Sep 24 17:19:37 IST 2019</code></pre>
+<pre class="sh"><code>pwd</code></pre>
+<pre><code>## /cygdrive/j/blog/content/post/cline</code></pre>
+<pre class="sh"><code>ls</code></pre>
+<pre><code>## imports_blorr.txt
+## imports_olsrr.txt
+## myfiles
+## mypackage
+## myproject
+## myproject1
+## r
+## release_names.txt
+## release_names_18.txt
+## release_names_19.txt</code></pre>
+<pre class="sh"><code>mkdir data
+ls</code></pre>
+<pre><code>## data
+## imports_blorr.txt
+## imports_olsrr.txt
+## myfiles
+## mypackage
+## myproject
+## myproject1
+## r
+## release_names.txt
+## release_names_18.txt
+## release_names_19.txt</code></pre>
+<pre class="sh"><code>cd r
+pwd</code></pre>
+<pre><code>## /cygdrive/j/blog/content/post/cline/r</code></pre>
+<pre class="sh"><code>cd ..
+pwd</code></pre>
+<pre><code>## /cygdrive/j/blog/content/post/cline</code></pre>
+<pre class="sh"><code>cd /
+pwd</code></pre>
+<pre><code>## /</code></pre>
+<pre class="sh"><code>rmdir data
+ls</code></pre>
+<pre><code>## imports_blorr.txt
+## imports_olsrr.txt
+## myfiles
+## mypackage
+## myproject
+## myproject1
+## r
+## release_names.txt
+## release_names_18.txt
+## release_names_19.txt</code></pre>
+<div id="list-directory-contents" class="section level3">
+<h3>List Directory Contents</h3>
+<pre class="sh"><code>ls -l</code></pre>
+<pre><code>## total 13
+## ---------- 1 HP mkpasswd  35 Sep 20 13:36 imports_blorr.txt
+## ---------- 1 HP mkpasswd  34 Sep 20 13:36 imports_olsrr.txt
+## d--------- 1 HP mkpasswd   0 Sep 24 17:18 myfiles
+## d--------- 1 HP mkpasswd   0 Sep 24 17:18 mypackage
+## d--------- 1 HP mkpasswd   0 Sep 24 17:18 myproject
+## d--------- 1 HP mkpasswd   0 Sep 24 17:18 myproject1
+## d--------- 1 HP mkpasswd   0 Sep 16 12:42 r
+## ---------- 1 HP mkpasswd 546 Sep 16 15:59 release_names.txt
+## ---------- 1 HP mkpasswd  65 Sep 16 15:58 release_names_18.txt
+## ---------- 1 HP mkpasswd  53 Sep 16 15:59 release_names_19.txt</code></pre>
+<pre class="sh"><code>ls -a</code></pre>
+<pre><code>## .
+## ..
+## imports_blorr.txt
+## imports_olsrr.txt
+## myfiles
+## mypackage
+## myproject
+## myproject1
+## r
+## release_names.txt
+## release_names_18.txt
+## release_names_19.txt</code></pre>
+<pre class="sh"><code>ls -la</code></pre>
+<pre><code>## total 81
+## d--------- 1 HP mkpasswd   0 Sep 24 17:19 .
+## d--------- 1 HP mkpasswd   0 Sep 24 17:16 ..
+## ---------- 1 HP mkpasswd  35 Sep 20 13:36 imports_blorr.txt
+## ---------- 1 HP mkpasswd  34 Sep 20 13:36 imports_olsrr.txt
+## d--------- 1 HP mkpasswd   0 Sep 24 17:18 myfiles
+## d--------- 1 HP mkpasswd   0 Sep 24 17:18 mypackage
+## d--------- 1 HP mkpasswd   0 Sep 24 17:18 myproject
+## d--------- 1 HP mkpasswd   0 Sep 24 17:18 myproject1
+## d--------- 1 HP mkpasswd   0 Sep 16 12:42 r
+## ---------- 1 HP mkpasswd 546 Sep 16 15:59 release_names.txt
+## ---------- 1 HP mkpasswd  65 Sep 16 15:58 release_names_18.txt
+## ---------- 1 HP mkpasswd  53 Sep 16 15:59 release_names_19.txt</code></pre>
+<pre class="sh"><code>ls -lh</code></pre>
+<pre><code>## total 13K
+## ---------- 1 HP mkpasswd  35 Sep 20 13:36 imports_blorr.txt
+## ---------- 1 HP mkpasswd  34 Sep 20 13:36 imports_olsrr.txt
+## d--------- 1 HP mkpasswd   0 Sep 24 17:18 myfiles
+## d--------- 1 HP mkpasswd   0 Sep 24 17:18 mypackage
+## d--------- 1 HP mkpasswd   0 Sep 24 17:18 myproject
+## d--------- 1 HP mkpasswd   0 Sep 24 17:18 myproject1
+## d--------- 1 HP mkpasswd   0 Sep 16 12:42 r
+## ---------- 1 HP mkpasswd 546 Sep 16 15:59 release_names.txt
+## ---------- 1 HP mkpasswd  65 Sep 16 15:58 release_names_18.txt
+## ---------- 1 HP mkpasswd  53 Sep 16 15:59 release_names_19.txt</code></pre>
+<pre class="sh"><code>ls -lS</code></pre>
+<pre><code>## total 13
+## ---------- 1 HP mkpasswd 546 Sep 16 15:59 release_names.txt
+## ---------- 1 HP mkpasswd  65 Sep 16 15:58 release_names_18.txt
+## ---------- 1 HP mkpasswd  53 Sep 16 15:59 release_names_19.txt
+## ---------- 1 HP mkpasswd  35 Sep 20 13:36 imports_blorr.txt
+## ---------- 1 HP mkpasswd  34 Sep 20 13:36 imports_olsrr.txt
+## d--------- 1 HP mkpasswd   0 Sep 24 17:18 myfiles
+## d--------- 1 HP mkpasswd   0 Sep 24 17:18 mypackage
+## d--------- 1 HP mkpasswd   0 Sep 24 17:18 myproject
+## d--------- 1 HP mkpasswd   0 Sep 24 17:18 myproject1
+## d--------- 1 HP mkpasswd   0 Sep 16 12:42 r</code></pre>
+<pre class="sh"><code>ls -ltr</code></pre>
+<pre><code>## total 13
+## d--------- 1 HP mkpasswd   0 Sep 16 12:42 r
+## ---------- 1 HP mkpasswd  65 Sep 16 15:58 release_names_18.txt
+## ---------- 1 HP mkpasswd  53 Sep 16 15:59 release_names_19.txt
+## ---------- 1 HP mkpasswd 546 Sep 16 15:59 release_names.txt
+## ---------- 1 HP mkpasswd  34 Sep 20 13:36 imports_olsrr.txt
+## ---------- 1 HP mkpasswd  35 Sep 20 13:36 imports_blorr.txt
+## d--------- 1 HP mkpasswd   0 Sep 24 17:18 myfiles
+## d--------- 1 HP mkpasswd   0 Sep 24 17:18 mypackage
+## d--------- 1 HP mkpasswd   0 Sep 24 17:18 myproject
+## d--------- 1 HP mkpasswd   0 Sep 24 17:18 myproject1</code></pre>
+</div>
+<div id="file-management" class="section level3">
+<h3>File Management</h3>
+<pre class="sh"><code>touch myfile.txt
+ls</code></pre>
+<pre><code>## imports_blorr.txt
+## imports_olsrr.txt
+## myfile.txt
+## myfiles
+## mypackage
+## myproject
+## myproject1
+## r
+## release_names.txt
+## release_names_18.txt
+## release_names_19.txt</code></pre>
+<pre class="sh"><code>cp release_names.txt release_names_copy.txt
+ls</code></pre>
+<pre><code>## imports_blorr.txt
+## imports_olsrr.txt
+## myfile.txt
+## myfiles
+## mypackage
+## myproject
+## myproject1
+## r
+## release_names.txt
+## release_names_18.txt
+## release_names_19.txt
+## release_names_copy.txt</code></pre>
+<pre class="sh"><code>cp release_names.txt r/release_names.txt</code></pre>
+<pre class="sh"><code>ls r</code></pre>
+<pre><code>## release_names.txt</code></pre>
+<pre class="sh"><code>cp -r r r2
+ls</code></pre>
+<pre><code>## imports_blorr.txt
+## imports_olsrr.txt
+## myfile.txt
+## myfiles
+## mypackage
+## myproject
+## myproject1
+## r
+## r2
+## release_names.txt
+## release_names_18.txt
+## release_names_19.txt
+## release_names_copy.txt</code></pre>
+<pre class="sh"><code>mv release_names_copy.txt r/release_names_copy.txt</code></pre>
+<pre class="sh"><code>ls</code></pre>
+<pre><code>## imports_blorr.txt
+## imports_olsrr.txt
+## myfile.txt
+## myfiles
+## mypackage
+## myproject
+## myproject1
+## r
+## release_names.txt
+## release_names_18.txt
+## release_names_19.txt</code></pre>
+<pre class="sh"><code>ls r</code></pre>
+<pre><code>## release_names.txt
+## release_names_copy.txt</code></pre>
+<pre class="sh"><code>mv -v release_names_copy.txt r/release_names_copy.txt</code></pre>
+<pre><code>## &#39;release_names_copy.txt&#39; -&gt; &#39;r/release_names_copy.txt&#39;</code></pre>
+<pre class="sh"><code>ls</code></pre>
+<pre><code>## imports_blorr.txt
+## imports_olsrr.txt
+## myfile.txt
+## myfiles
+## mypackage
+## myproject
+## myproject1
+## r
+## release_names.txt
+## release_names_18.txt
+## release_names_19.txt</code></pre>
+<pre class="sh"><code>rm myfile.txt
+ls</code></pre>
+<pre><code>## imports_blorr.txt
+## imports_olsrr.txt
+## myfiles
+## mypackage
+## myproject
+## myproject1
+## r
+## release_names.txt
+## release_names_18.txt
+## release_names_19.txt</code></pre>
+<pre class="sh"><code>rm -r myproject1
+ls</code></pre>
+<pre><code>## imports_blorr.txt
+## imports_olsrr.txt
+## myfiles
+## mypackage
+## myproject
+## r
+## release_names.txt
+## release_names_18.txt
+## release_names_19.txt</code></pre>
+<pre class="sh"><code>cd myfiles
+rm -v *.txt</code></pre>
+<pre><code>## removed &#39;release_names.txt&#39;
+## removed &#39;release_names_18.txt&#39;
+## removed &#39;release_names_19.txt&#39;</code></pre>
+</div>
+<div id="comparing-files" class="section level3">
+<h3>Comparing Files</h3>
+<pre class="sh"><code>diff imports_olsrr.txt imports_blorr.txt</code></pre>
+<pre><code>## 1,4c1,5
+## &lt; car 
+## &lt; checkmate
+## &lt; cli
+## &lt; clisymbols
+## ---
+## &gt; car
+## &gt; caret
+## &gt; checkmate
+## &gt; clisymbols
+## &gt; cli</code></pre>
+<pre class="sh"><code>diff -w imports_olsrr.txt imports_blorr.txt</code></pre>
+<pre><code>## 1a2
+## &gt; caret
+## 3d3
+## &lt; cli
+## 4a5
+## &gt; cli</code></pre>
+<pre class="sh"><code>diff -y imports_olsrr.txt imports_blorr.txt</code></pre>
+<pre><code>## car 
+                                  | car
+## checkmate
+                                  | caret
+## cli
+                                  | checkmate
+## clisymbols
+                                  | clisymbols
+##                                &gt; cli</code></pre>
+<pre class="sh"><code>diff -u imports_olsrr.txt imports_blorr.txt</code></pre>
+<pre><code>## --- imports_olsrr.txt    2019-09-20 13:36:03.000000000 +0530
+## +++ imports_blorr.txt    2019-09-20 13:36:35.000000000 +0530
+## @@ -1,4 +1,5 @@
+## -car 
+## -checkmate
+## -cli
+## -clisymbols
+## +car
+## +caret
+## +checkmate
+## +clisymbols
+## +cli</code></pre>
+</div>
+<div id="inputoutput" class="section level3">
+<h3>Input/Output</h3>
+<pre class="sh"><code>echo Action of the Toes</code></pre>
+<pre><code>## [1] &quot;Action of the Toes&quot;</code></pre>
+<pre class="sh"><code>echo Great Truth &gt; release.txt</code></pre>
+<pre class="sh"><code>ls</code></pre>
+<pre><code>## imports_blorr.txt
+## imports_olsrr.txt
+## myfiles
+## mypackage
+## myproject
+## r
+## release_names.txt
+## release_names_18.txt
+## release_names_19.txt</code></pre>
+<pre class="sh"><code>cat release_names.txt</code></pre>
+<pre><code>##  [1] &quot;Unsuffered Consequences&quot;  &quot;Great Pumpkin&quot;           
+##  [3] &quot;December Snowflakes&quot;      &quot;Gift-Getting Season&quot;     
+##  [5] &quot;Easter Beagle&quot;            &quot;Roasted Marshmallows&quot;    
+##  [7] &quot;Trick or Treat&quot;           &quot;Security Blanket&quot;        
+##  [9] &quot;Masked Marvel&quot;            &quot;Good Sport&quot;              
+## [11] &quot;Frisbee Sailing&quot;          &quot;Warm Puppy&quot;              
+## [13] &quot;Spring Dance&quot;             &quot;Sock it to Me&quot;           
+## [15] &quot;Pumpkin Helmet&quot;           &quot;Smooth Sidewalk&quot;         
+## [17] &quot;Full of Ingredients&quot;      &quot;World-Famous Astronaut&quot;  
+## [19] &quot;Fire Safety&quot;              &quot;Wooden Christmas Tree&quot;   
+## [21] &quot;Very Secure Dishes&quot;       &quot;Very, Very Secure Dishes&quot;
+## [23] &quot;Supposedly Educational&quot;   &quot;Bug in Your Hair&quot;        
+## [25] &quot;Sincere Pumpkin Patch&quot;    &quot;Another Canoe&quot;           
+## [27] &quot;You Stupid Darkness&quot;      &quot;Single Candle&quot;           
+## [29] &quot;Short Summer&quot;             &quot;Kite Eating Tree&quot;</code></pre>
+<pre class="sh"><code>cat -n release_names.txt</code></pre>
+<pre><code>##  [1] &quot;     1\tUnsuffered Consequences&quot;  &quot;     2\tGreat Pumpkin&quot;           
+##  [3] &quot;     3\tDecember Snowflakes&quot;      &quot;     4\tGift-Getting Season&quot;     
+##  [5] &quot;     5\tEaster Beagle&quot;            &quot;     6\tRoasted Marshmallows&quot;    
+##  [7] &quot;     7\tTrick or Treat&quot;           &quot;     8\tSecurity Blanket&quot;        
+##  [9] &quot;     9\tMasked Marvel&quot;            &quot;    10\tGood Sport&quot;              
+## [11] &quot;    11\tFrisbee Sailing&quot;          &quot;    12\tWarm Puppy&quot;              
+## [13] &quot;    13\tSpring Dance&quot;             &quot;    14\tSock it to Me&quot;           
+## [15] &quot;    15\tPumpkin Helmet&quot;           &quot;    16\tSmooth Sidewalk&quot;         
+## [17] &quot;    17\tFull of Ingredients&quot;      &quot;    18\tWorld-Famous Astronaut&quot;  
+## [19] &quot;    19\tFire Safety&quot;              &quot;    20\tWooden Christmas Tree&quot;   
+## [21] &quot;    21\tVery Secure Dishes&quot;       &quot;    22\tVery, Very Secure Dishes&quot;
+## [23] &quot;    23\tSupposedly Educational&quot;   &quot;    24\tBug in Your Hair&quot;        
+## [25] &quot;    25\tSincere Pumpkin Patch&quot;    &quot;    26\tAnother Canoe&quot;           
+## [27] &quot;    27\tYou Stupid Darkness&quot;      &quot;    28\tSingle Candle&quot;           
+## [29] &quot;    29\tShort Summer&quot;             &quot;    30\tKite Eating Tree&quot;</code></pre>
+<pre class="sh"><code>cat release_names_18.txt release_names_19.txt &gt; release_names_18_19.txt</code></pre>
+<pre class="sh"><code>cat release_names_18_19.txt</code></pre>
+<pre><code>## [1] &quot;Someone to Lean On&quot;        &quot;Joy in Playing&quot;           
+## [3] &quot;Feather Spray&quot;             &quot;Eggshell IglooGreat Truth&quot;
+## [5] &quot;Planting of a Tree&quot;        &quot;Action of the Toes&quot;</code></pre>
+<pre class="sh"><code>head release_names.txt</code></pre>
+<pre><code>## Unsuffered Consequences
+## Great Pumpkin
+## December Snowflakes
+## Gift-Getting Season
+## Easter Beagle
+## Roasted Marshmallows
+## Trick or Treat
+## Security Blanket
+## Masked Marvel
+## Good Sport</code></pre>
+<pre class="sh"><code>head -n 5 release_names.txt</code></pre>
+<pre><code>## Unsuffered Consequences
+## Great Pumpkin
+## December Snowflakes
+## Gift-Getting Season
+## Easter Beagle</code></pre>
+<pre class="sh"><code>head -c 5 release_names.txt</code></pre>
+<pre><code>## Unsuf</code></pre>
+<pre class="sh"><code>head -n -5 release_names.txt</code></pre>
+<pre><code>## Unsuffered Consequences
+## Great Pumpkin
+## December Snowflakes
+## Gift-Getting Season
+## Easter Beagle
+## Roasted Marshmallows
+## Trick or Treat
+## Security Blanket
+## Masked Marvel
+## Good Sport
+## Frisbee Sailing
+## Warm Puppy
+## Spring Dance
+## Sock it to Me
+## Pumpkin Helmet
+## Smooth Sidewalk
+## Full of Ingredients
+## World-Famous Astronaut
+## Fire Safety
+## Wooden Christmas Tree
+## Very Secure Dishes
+## Very, Very Secure Dishes
+## Supposedly Educational
+## Bug in Your Hair
+## Sincere Pumpkin Patch</code></pre>
+<pre class="sh"><code>head -c -3 release_names.txt</code></pre>
+<pre><code>## Unsuffered Consequences
+## Great Pumpkin
+## December Snowflakes
+## Gift-Getting Season
+## Easter Beagle
+## Roasted Marshmallows
+## Trick or Treat
+## Security Blanket
+## Masked Marvel
+## Good Sport
+## Frisbee Sailing
+## Warm Puppy
+## Spring Dance
+## Sock it to Me
+## Pumpkin Helmet
+## Smooth Sidewalk
+## Full of Ingredients
+## World-Famous Astronaut
+## Fire Safety
+## Wooden Christmas Tree
+## Very Secure Dishes
+## Very, Very Secure Dishes
+## Supposedly Educational
+## Bug in Your Hair
+## Sincere Pumpkin Patch
+## Another Canoe
+## You Stupid Darkness
+## Single Candle
+## Short Summer
+## Kite Eating Tre</code></pre>
+<pre class="sh"><code>sort release_names.txt</code></pre>
+<pre><code>## Another Canoe
+## Bug in Your Hair
+## December Snowflakes
+## Easter Beagle
+## Fire Safety
+## Frisbee Sailing
+## Full of Ingredients
+## Gift-Getting Season
+## Good Sport
+## Great Pumpkin
+## Kite Eating Tree
+## Masked Marvel
+## Pumpkin Helmet
+## Roasted Marshmallows
+## Security Blanket
+## Short Summer
+## Sincere Pumpkin Patch
+## Single Candle
+## Smooth Sidewalk
+## Sock it to Me
+## Spring Dance
+## Supposedly Educational
+## Trick or Treat
+## Unsuffered Consequences
+## Very Secure Dishes
+## Very, Very Secure Dishes
+## Warm Puppy
+## Wooden Christmas Tree
+## World-Famous Astronaut
+## You Stupid Darkness</code></pre>
+<pre class="sh"><code>sort -r release_names.txt</code></pre>
+<pre><code>## You Stupid Darkness
+## World-Famous Astronaut
+## Wooden Christmas Tree
+## Warm Puppy
+## Very, Very Secure Dishes
+## Very Secure Dishes
+## Unsuffered Consequences
+## Trick or Treat
+## Supposedly Educational
+## Spring Dance
+## Sock it to Me
+## Smooth Sidewalk
+## Single Candle
+## Sincere Pumpkin Patch
+## Short Summer
+## Security Blanket
+## Roasted Marshmallows
+## Pumpkin Helmet
+## Masked Marvel
+## Kite Eating Tree
+## Great Pumpkin
+## Good Sport
+## Gift-Getting Season
+## Full of Ingredients
+## Frisbee Sailing
+## Fire Safety
+## Easter Beagle
+## December Snowflakes
+## Bug in Your Hair
+## Another Canoe</code></pre>
+<pre class="sh"><code>sort -n release_names.txt</code></pre>
+<pre><code>## Another Canoe
+## Bug in Your Hair
+## December Snowflakes
+## Easter Beagle
+## Fire Safety
+## Frisbee Sailing
+## Full of Ingredients
+## Gift-Getting Season
+## Good Sport
+## Great Pumpkin
+## Kite Eating Tree
+## Masked Marvel
+## Pumpkin Helmet
+## Roasted Marshmallows
+## Security Blanket
+## Short Summer
+## Sincere Pumpkin Patch
+## Single Candle
+## Smooth Sidewalk
+## Sock it to Me
+## Spring Dance
+## Supposedly Educational
+## Trick or Treat
+## Unsuffered Consequences
+## Very Secure Dishes
+## Very, Very Secure Dishes
+## Warm Puppy
+## Wooden Christmas Tree
+## World-Famous Astronaut
+## You Stupid Darkness</code></pre>
+<pre class="sh"><code>sort -u release_names.txt</code></pre>
+<pre><code>## Another Canoe
+## Bug in Your Hair
+## December Snowflakes
+## Easter Beagle
+## Fire Safety
+## Frisbee Sailing
+## Full of Ingredients
+## Gift-Getting Season
+## Good Sport
+## Great Pumpkin
+## Kite Eating Tree
+## Masked Marvel
+## Pumpkin Helmet
+## Roasted Marshmallows
+## Security Blanket
+## Short Summer
+## Sincere Pumpkin Patch
+## Single Candle
+## Smooth Sidewalk
+## Sock it to Me
+## Spring Dance
+## Supposedly Educational
+## Trick or Treat
+## Unsuffered Consequences
+## Very Secure Dishes
+## Very, Very Secure Dishes
+## Warm Puppy
+## Wooden Christmas Tree
+## World-Famous Astronaut
+## You Stupid Darkness</code></pre>
+<pre class="sh"><code>wc release_names.txt</code></pre>
+<pre><code>##  30  73 546 release_names.txt</code></pre>
+<pre class="sh"><code>wc -l release_names.txt</code></pre>
+<pre><code>## 30 release_names.txt</code></pre>
+<pre class="sh"><code>wc -w release_names.txt</code></pre>
+<pre><code>## 73 release_names.txt</code></pre>
+<pre class="sh"><code>wc -c release_names.txt</code></pre>
+<pre><code>## 546 release_names.txt</code></pre>
+<pre class="sh"><code>grep Very release_names.txt</code></pre>
+<pre><code>## Very Secure Dishes
+## Very, Very Secure Dishes</code></pre>
+<pre class="sh"><code>grep -i very release_names.txt</code></pre>
+<pre><code>## Very Secure Dishes
+## Very, Very Secure Dishes</code></pre>
+<pre class="sh"><code>grep -Hn Very release_names.txt</code></pre>
+<pre><code>## release_names.txt:21:Very Secure Dishes
+## release_names.txt:22:Very, Very Secure Dishes</code></pre>
+<pre class="sh"><code>grep -v Very release_names.txt</code></pre>
+<pre><code>## Unsuffered Consequences
+## Great Pumpkin
+## December Snowflakes
+## Gift-Getting Season
+## Easter Beagle
+## Roasted Marshmallows
+## Trick or Treat
+## Security Blanket
+## Masked Marvel
+## Good Sport
+## Frisbee Sailing
+## Warm Puppy
+## Spring Dance
+## Sock it to Me
+## Pumpkin Helmet
+## Smooth Sidewalk
+## Full of Ingredients
+## World-Famous Astronaut
+## Fire Safety
+## Wooden Christmas Tree
+## Supposedly Educational
+## Bug in Your Hair
+## Sincere Pumpkin Patch
+## Another Canoe
+## You Stupid Darkness
+## Single Candle
+## Short Summer
+## Kite Eating Tree</code></pre>
+<pre class="sh"><code>find -name release_names.txt</code></pre>
+<pre><code>## ./r/release_names.txt
+## ./release_names.txt</code></pre>
+<pre class="sh"><code>find r -name &#39;*.txt&#39;</code></pre>
+<pre><code>## r/release_names.txt
+## r/release_names_copy.txt</code></pre>
+<pre class="sh"><code>find -type d -iname R</code></pre>
+<pre><code>## ./mypackage/R
+## ./r</code></pre>
+<pre class="sh"><code>find -type d -name r</code></pre>
+<pre><code>## ./r</code></pre>
+<pre class="sh"><code>curl https://www.r-project.org/</code></pre>
+<pre><code>##   % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+##                                  Dload  Upload   Total   Spent    Left  Speed
+## 
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0&lt;!DOCTYPE html&gt;
+## &lt;html lang=&quot;en&quot;&gt;
+##   &lt;head&gt;
+##     &lt;meta charset=&quot;utf-8&quot;&gt;
+##     &lt;meta http-equiv=&quot;X-UA-Compatible&quot; content=&quot;IE=edge&quot;&gt;
+##     &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1&quot;&gt;
+##     &lt;title&gt;R: The R Project for Statistical Computing&lt;/title&gt;
+## 
+##     &lt;link rel=&quot;icon&quot; type=&quot;image/png&quot; href=&quot;/favicon-32x32.png&quot; sizes=&quot;32x32&quot; /&gt;
+##     &lt;link rel=&quot;icon&quot; type=&quot;image/png&quot; href=&quot;/favicon-16x16.png&quot; sizes=&quot;16x16&quot; /&gt;
+## 
+##     &lt;!-- Bootstrap --&gt;
+##     &lt;link href=&quot;/css/bootstrap.min.css&quot; rel=&quot;stylesheet&quot;&gt;
+##     &lt;link href=&quot;/css/R.css&quot; rel=&quot;stylesheet&quot;&gt;
+## 
+##     &lt;!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries --&gt;
+##     &lt;!-- WARNING: Respond.js doesn&#39;t work if you view the page via file:// --&gt;
+##     &lt;!--[if lt IE 9]&gt;
+##       &lt;script src=&quot;https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js&quot;&gt;&lt;/script&gt;
+##       &lt;script src=&quot;https://oss.maxcdn.com/respond/1.4.2/respond.min.js&quot;&gt;&lt;/script&gt;
+##     &lt;![endif]--&gt;
+##   &lt;/head&gt;
+##   &lt;body&gt;
+##     &lt;div class=&quot;container page&quot;&gt;
+##       &lt;div class=&quot;row&quot;&gt;
+##         &lt;div class=&quot;col-xs-12 col-sm-offset-1 col-sm-2 sidebar&quot; role=&quot;navigation&quot;&gt;
+## &lt;div class=&quot;row&quot;&gt;
+## &lt;div class=&quot;col-xs-6 col-sm-12&quot;&gt;
+## &lt;p&gt;&lt;a href=&quot;/&quot;&gt;&lt;img src=&quot;/Rlogo.png&quot; width=&quot;100&quot; height=&quot;78&quot; alt = &quot;R&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+## &lt;p&gt;&lt;small&gt;&lt;a href=&quot;/&quot;&gt;[Home]&lt;/a&gt;&lt;/small&gt;&lt;/p&gt;
+## &lt;h2 id=&quot;download&quot;&gt;Download&lt;/h2&gt;
+## &lt;p&gt;&lt;a href=&quot;http://cran.r-project.org/mirrors.html&quot;&gt;CRAN&lt;/a&gt;&lt;/p&gt;
+## &lt;h2 id=&quot;r-project&quot;&gt;R Project&lt;/h2&gt;
+## &lt;ul&gt;
+## &lt;li&gt;&lt;a href=&quot;/about.html&quot;&gt;About R&lt;/a&gt;&lt;/li&gt;
+## &lt;li&gt;&lt;a href=&quot;/logo/&quot;&gt;Logo&lt;/a&gt;&lt;/li&gt;
+## &lt;li&gt;&lt;a href=&quot;/contributors.html&quot;&gt;Contributors&lt;/a&gt;&lt;/li&gt;
+## &lt;li&gt;&lt;a href=&quot;/news.html&quot;&gt;Whatâ€™s New?&lt;/a&gt;&lt;/li&gt;
+## &lt;li&gt;&lt;a href=&quot;/bugs.html&quot;&gt;Reporting Bugs&lt;/a&gt;&lt;/li&gt;
+## &lt;li&gt;&lt;a href=&quot;/conferences/&quot;&gt;Conferences&lt;/a&gt;&lt;/li&gt;
+## &lt;li&gt;&lt;a href=&quot;/search.html&quot;&gt;Search&lt;/a&gt;&lt;/li&gt;
+## &lt;li&gt;&lt;a href=&quot;/mail.html&quot;&gt;Get Involved: Mailing Lists&lt;/a&gt;&lt;/li&gt;
+## &lt;li&gt;&lt;a href=&quot;http://developer.R-project.org&quot;&gt;Developer Pages&lt;/a&gt;&lt;/li&gt;
+## &lt;li&gt;&lt;a href=&quot;https://developer.r-project.org/Blog/public/&quot;&gt;R Blog&lt;/a&gt;&lt;/li&gt;
+## &lt;/ul&gt;
+## &lt;/div&gt;
+## &lt;div class=&quot;col-xs-6 col-sm-12&quot;&gt;
+## &lt;h2 id=&quot;r-foundation&quot;&gt;R Foundation&lt;/h2&gt;
+## &lt;ul&gt;
+## &lt;li&gt;&lt;a href=&quot;/foundation/&quot;&gt;Foundation&lt;/a&gt;&lt;/li&gt;
+## &lt;li&gt;&lt;a href=&quot;/foundation/board.html&quot;&gt;Board&lt;/a&gt;&lt;/li&gt;
+## &lt;li&gt;&lt;a href=&quot;/foundation/members.html&quot;&gt;Members&lt;/a&gt;&lt;/li&gt;
+## &lt;li&gt;&lt;a href=&quot;/foundation/donors.html&quot;&gt;Donors&lt;/a&gt;&lt;/li&gt;
+## &lt;li&gt;&lt;a href=&quot;/foundation/donations.html&quot;&gt;Donate&lt;/a&gt;&lt;/li&gt;
+## &lt;/ul&gt;
+## &lt;h2 id=&quot;help-with-r&quot;&gt;Help With R&lt;/h2&gt;
+## &lt;ul&gt;
+## &lt;li&gt;&lt;a href=&quot;/help.html&quot;&gt;Getting Help&lt;/a&gt;&lt;/li&gt;
+## &lt;/ul&gt;
+## &lt;h2 id=&quot;documentation&quot;&gt;Documentation&lt;/h2&gt;
+## &lt;ul&gt;
+## &lt;li&gt;&lt;a href=&quot;http://cran.r-project.org/manuals.html&quot;&gt;Manuals&lt;/a&gt;&lt;/li&gt;
+## &lt;li&gt;&lt;a href=&quot;http://cran.r-project.org/faqs.html&quot;&gt;FAQs&lt;/a&gt;&lt;/li&gt;
+## &lt;li&gt;&lt;a href=&quot;http://journal.r-project.org&quot;&gt;The R Journal&lt;/a&gt;&lt;/li&gt;
+## &lt;li&gt;&lt;a href=&quot;/doc/bib/R-books.html&quot;&gt;Books&lt;/a&gt;&lt;/li&gt;
+## &lt;li&gt;&lt;a href=&quot;/certification.html&quot;&gt;Certification&lt;/a&gt;&lt;/li&gt;
+## &lt;li&gt;&lt;a href=&quot;/other-docs.html&quot;&gt;Other&lt;/a&gt;&lt;/li&gt;
+## &lt;/ul&gt;
+## &lt;h2 id=&quot;links&quot;&gt;Links&lt;/h2&gt;
+## &lt;ul&gt;
+## &lt;li&gt;&lt;a href=&quot;http://www.bioconductor.org&quot;&gt;Bioconductor&lt;/a&gt;&lt;/li&gt;
+## &lt;li&gt;&lt;a href=&quot;/other-projects.html&quot;&gt;Related Projects&lt;/a&gt;&lt;/li&gt;
+## &lt;li&gt;&lt;a href=&quot;/gsoc.html&quot;&gt;GSoC&lt;/a&gt;&lt;/li&gt;
+## &lt;/ul&gt;
+## &lt;/div&gt;
+## &lt;/div&gt;
+##         &lt;/div&gt;
+##         &lt;div class=&quot;col-xs-12 col-sm-7&quot;&gt;
+##         &lt;h1&gt;The R Project for Statistical Computing&lt;/h1&gt;
+## &lt;h2 id=&quot;getting-started&quot;&gt;Getting Started&lt;/h2&gt;
+## &lt;p&gt;R is a free software environment for statistical computing and graphics. It compiles and runs on a wide variety of UNIX platforms, Windows and MacOS. To &lt;strong&gt;&lt;a href=&quot;http://cran.r-project.org/mirrors.html&quot;&gt;download R&lt;/a&gt;&lt;/strong&gt;, please choose your preferred &lt;a href=&quot;http://cran.r-project.org/mirrors.html&quot;&gt;CRAN mirror&lt;/a&gt;.&lt;/p&gt;
+## &lt;p&gt;If you have questions about R like how to download and install the software, or what the license terms are, please read our &lt;a href=&quot;http://cran.R-project.org/faqs.html&quot;&gt;answers to frequently asked questions&lt;/a&gt; before you send an email.&lt;/p&gt;
+## &lt;h2 id=&quot;news&quot;&gt;News&lt;/h2&gt;
+## &lt;ul&gt;
+## &lt;li&gt;&lt;p&gt;&lt;a href=&quot;https://cran.r-project.org/src/base/R-3&quot;&gt;&lt;strong&gt;R version 3.6.1 (Action of the Toes)&lt;/strong&gt;&lt;/a&gt; has been released on 2019-07-05.&lt;/p&gt;&lt;/li&gt;
+## &lt;li&gt;&lt;p&gt;useR! 2020 will take place in St.Â Louis, Missouri, USA.&lt;/p&gt;&lt;/li&gt;
+## &lt;li&gt;&lt;p&gt;&lt;a href=&quot;https://cran.r-project.org/src/base/R-3&quot;&gt;&lt;strong&gt;R version 3.5.3 (
+100  6213  100  6213    0     0   6213      0  0:00:01 --:--:--  0:00:01  7100
+## Great Truth)&lt;/strong&gt;&lt;/a&gt; has been released on 2019-03-11.&lt;/p&gt;&lt;/li&gt;
+## &lt;li&gt;&lt;p&gt;The R Foundation Conference Committee has released a &lt;a href=&quot;https://www.r-project.org/useR-2020_call.html&quot;&gt;call for proposals&lt;/a&gt; to host useR! 2020 in North America.&lt;/p&gt;&lt;/li&gt;
+## &lt;li&gt;&lt;p&gt;You can now support the R Foundation with a renewable subscription as a &lt;a href=&quot;https://www.r-project.org/foundation/donations.html&quot;&gt;supporting member&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+## &lt;li&gt;&lt;p&gt;The R Foundation has been awarded the Personality/Organization of the year 2018 award by the professional association of German market and social researchers.&lt;/p&gt;&lt;/li&gt;
+## &lt;/ul&gt;
+## &lt;h2 id=&quot;news-via-twitter&quot;&gt;News via Twitter&lt;/h2&gt;
+## &lt;a class=&quot;twitter-timeline&quot;
+##  href=&quot;https://twitter.com/_R_Foundation?ref_src=twsrc%5Etfw&quot;
+##  data-width=&quot;400&quot;
+##  data-show-replies=&quot;false&quot;
+##  data-chrome=&quot;noheader,nofooter,noborders&quot;
+##  data-dnt=&quot;true&quot;
+##  data-tweet-limit=&quot;3&quot;&gt;News from the R Foundation&lt;/a&gt;
+## &lt;script async
+##  src=&quot;https://platform.twitter.com/widgets.js&quot;
+##  charset=&quot;utf-8&quot;&gt;&lt;/script&gt;
+## &lt;!--- (Boilerplate for release run-in)
+## -   [**R version 3.1.3 (Smooth Sidewalk) prerelease versions**](http://cran.r-project.org/src/base-prerelease) will appear starting February 28. Final release is scheduled for 2015-03-09.
+## --&gt;
+##         &lt;/div&gt;
+##       &lt;/div&gt;
+##       &lt;div class=&quot;raw footer&quot;&gt;
+##         &amp;copy; The R Foundation. For queries about this web site, please contact
+##  &lt;script type=&#39;text/javascript&#39;&gt;
+## &lt;!--
+## var s=&quot;=b!isfg&gt;#nbjmup;xfcnbtufsAs.qspkfdu/psh#?uif!xfcnbtufs=0b?&quot;;
+## m=&quot;&quot;; for (i=0; i&lt;s.length; i++) {if(s.charCodeAt(i) == 28){m+= &#39;&amp;&#39;;} else if (s.charCodeAt(i) == 23) {m+= &#39;!&#39;;} else {m+=String.fromCharCode(s.charCodeAt(i)-1);}}document.write(m);//--&gt;
+##  &lt;/script&gt;;
+##         for queries about R itself, please consult the 
+##         &lt;a href=&quot;help.html&quot;&gt;Getting Help&lt;/a&gt; section.
+##       &lt;/div&gt;
+##     &lt;/div&gt;
+##     &lt;!-- jQuery (necessary for Bootstrap&#39;s JavaScript plugins) --&gt;
+##     &lt;script src=&quot;https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js&quot;&gt;&lt;/script&gt;
+##     &lt;!-- Include all compiled plugins (below), or include individual files as needed --&gt;
+##     &lt;script src=&quot;/js/bootstrap.min.js&quot;&gt;&lt;/script&gt;
+##   &lt;/body&gt;
+## &lt;/html&gt;</code></pre>
+<pre class="sh"><code>curl http://cran-logs.rstudio.com/2019/2019-09-08.csv.gz -o sept_08.csv.gz </code></pre>
+<pre><code>##   % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+##                                  Dload  Upload   Total   Spent    Left  Speed
+## 
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
+  0 25.8M    0     0    0     0      0      0 --:--:--  0:00:01 --:--:--     0
+  0 25.8M    0  215k    0     0   107k      0  0:04:05  0:00:02  0:04:03   97k
+  4 25.8M    4 1255k    0     0   418k      0  0:01:03  0:00:03  0:01:00  393k
+ 13 25.8M   13 3440k    0     0   860k      0  0:00:30  0:00:04  0:00:26  818k
+ 22 25.8M   22 5922k    0     0  1184k      0  0:00:22  0:00:05  0:00:17 1108k
+ 29 25.8M   29 7818k    0     0  1303k      0  0:00:20  0:00:06  0:00:14 1619k
+ 37 25.8M   37 9898k    0     0  1414k      0  0:00:18  0:00:07  0:00:11 1948k
+ 45 25.8M   45 11.8M    0     0  1519k      0  0:00:17  0:00:08  0:00:09 2192k
+ 56 25.8M   56 14.6M    0     0  1661k      0  0:00:15  0:00:09  0:00:06 2324k
+ 64 25.8M   64 16.6M    0     0  1704k      0  0:00:15  0:00:10  0:00:05 2396k
+ 75 25.8M   75 19.5M    0     0  1820k      0  0:00:14  0:00:11  0:00:03 2441k
+ 83 25.8M   83 21.5M    0     0  1839k      0  0:00:14  0:00:12  0:00:02 2434k
+ 95 25.8M   95 24.7M    0     0  1952k      0  0:00:13  0:00:13 --:--:-- 2646k
+ 99 25.8M   99 25.8M    0     0  1888k      0  0:00:14  0:00:14 --:--:-- 2161k
+ 99 25.8M   99 25.8M    0     0  1762k      0  0:00:15  0:00:15 --:--:-- 1779k
+100 25.8M  100 25.8M    0     0  1763k      0  0:00:15  0:00:15 --:--:-- 1415k</code></pre>
+<pre class="sh"><code>curl http://cran-logs.rstudio.com/2019/2019-09-15.csv.gz -o sept_15.csv.gz -s</code></pre>
+<pre><code>## imports_blorr.txt
+## imports_olsrr.txt
+## myfiles
+## mypackage
+## myproject
+## r
+## release_names.txt
+## release_names_18.txt
+## release_names_19.txt
+## sept_08.csv.gz
+## sept_15.csv.gz</code></pre>
+<pre class="sh"><code>tar -cvf release_names.tar release_names.txt</code></pre>
+<pre><code>## release_names.txt</code></pre>
+<pre class="sh"><code>tar -rvf release_names.tar release_names_18.txt release_names_19.txt</code></pre>
+<pre><code>## release_names_18.txt
+## release_names_19.txt</code></pre>
+<pre class="sh"><code>tar -tvf release_names.tar </code></pre>
+<pre><code>## -rw-r--r-- HP/mkpasswd     546 2019-09-16 15:59 release_names.txt
+## -rw-r--r-- HP/mkpasswd      65 2019-09-16 15:58 release_names_18.txt
+## -rw-r--r-- HP/mkpasswd      53 2019-09-16 15:59 release_names_19.txt</code></pre>
+<pre class="sh"><code>rm release_names.txt release_names_18.txt release_names_19.txt
+tar -xvf release_names.tar 
+ls</code></pre>
+<pre><code>## release_names.txt
+## release_names_18.txt
+## release_names_19.txt
+## imports_blorr.txt
+## imports_olsrr.txt
+## myfiles
+## mypackage
+## myproject
+## r
+## release_names.tar
+## release_names.txt
+## release_names_18.txt
+## release_names_19.txt
+## sept_08.csv.gz
+## sept_15.csv.gz</code></pre>
+<pre class="sh"><code>gzip release_names.txt
+ls</code></pre>
+<pre><code>## imports_blorr.txt
+## imports_olsrr.txt
+## myfiles
+## mypackage
+## myproject
+## r
+## release_names.tar
+## release_names.txt.gz
+## release_names_18.txt
+## release_names_19.txt
+## sept_08.csv.gz
+## sept_15.csv.gz</code></pre>
+<pre class="sh"><code>gzip -d sept_15.csv.gz
+ls</code></pre>
+<pre><code>## imports_blorr.txt
+## imports_olsrr.txt
+## myfiles
+## mypackage
+## myproject
+## r
+## release_names.tar
+## release_names.txt.gz
+## release_names_18.txt
+## release_names_19.txt
+## sept_08.csv.gz
+## sept_15.csv</code></pre>
+</div>
+</div>
+<div id="summary" class="section level2">
+<h2>Summary</h2>
+<ul>
+<li><a href="http://r-dbi.github.io/DBI/">DBI</a> to connect and interact with databases</li>
+<li><a href="https://dplyr.tidyverse.org/index.html">dplyr</a> and <a href="https://dbplyr.tidyverse.org/index.html">dbplyr</a> for data transformation</li>
+<li><a href="https://edgararuiz.github.io/dbplot/index.html">dbplot</a> for data visualization</li>
+<li><a href="https://tidymodels.github.io/modeldb/">modeldb</a> and <a href="https://tidymodels.github.io/tidypredict/">tidypredict</a> for data modeling</li>
+<li><a href="https://github.com/rstudio/config">config</a>, <a href="https://github.com/r-lib/keyring">keyring</a>, .Renviron and <code>options()</code> to handle credentials</li>
+<li>always close the database connection</li>
+</ul>
+</div>
+<div id="references" class="section level2">
+<h2>References</h2>
+<ul>
+<li><a href="https://fs.r-lib.org/articles/function-comparisons.html" class="uri">https://fs.r-lib.org/articles/function-comparisons.html</a></li>
+</ul>
+</div>
