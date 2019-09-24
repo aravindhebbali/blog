@@ -1,0 +1,726 @@
+---
+title: "Command Line Basics"
+author: Aravind Hebbali
+twitterImg: /img/dbi_cover_image.png
+description: "Learn to connect, explore and query database from R"
+date: '2019-09-24'
+slug: command-line-basics
+categories:
+  - bash
+tags:
+  - bash
+  - shell
+  - terminal
+  - cli
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r rfm_cover_image, echo=FALSE, fig.align="center", out.width="100%"}
+knitr::include_graphics("/img/dbi_cover_image.png")
+```
+
+## Introduction
+
+In a previous <a href="https://blog.rsquaredacademy.com/quick-guide-r-sqlite/" target="_blank">post</a>, we had briefly looked at connecting to databases from R and using dplyr for querying data. In this new expanded post, we will focus on the following:
+
+- connect to & explore database
+- read & write data
+- use RStudio SQL script & knitr SQL engine
+- query data using dplyr
+- visualize data with dbplot
+- modeling data with modeldb & tidypredict
+- explore RStudio connections pane
+- handling credentials
+
+## Resources
+
+Below are the links to all the resources related to this post:
+
+- <a href="https://slides.rsquaredacademy.com/sql/sqlite.html#/section" target="_blank">Slides</a>
+- <a href="https://github.com/rsquaredacademy-education/online-courses/" target="_blank">Code & Data</a>
+- <a href="https://rstudio.cloud/project/430439" target="_blank">RStudio Cloud</a>
+
+You can try our **free online course** [**Working with Databases using R**](https://rsquared-academy.thinkific.com/courses/working-with-databases-using-r) if you prefer to learn through self paced online courses.
+
+```{r dbi_youtube_demo, eval=TRUE, echo=FALSE}
+blogdown::shortcode("youtube", "bPlGPmjPFeU")
+```
+
+```{sh c0, echo=FALSE}
+cd cline
+```
+
+```{sh whoami}
+whoami
+```
+
+```{sh c2}
+date
+```
+
+```{sh c3a, eval=FALSE}
+pwd
+```
+
+```{sh c3b, echo=FALSE}
+cd cline
+pwd
+```
+
+```{sh c4a, eval=FALSE}
+ls
+```
+
+```{sh c4b, echo=FALSE}
+cd cline
+ls
+```
+
+```{sh c5a, eval=FALSE}
+mkdir data
+ls
+```
+
+```{sh c5b, echo=FALSE}
+cd cline
+mkdir data
+ls
+```
+
+```{sh c6a, eval=FALSE}
+cd r
+pwd
+```
+
+```{sh c6b, echo=FALSE}
+cd cline
+cd r
+pwd
+```
+
+```{sh c7a, eval=FALSE}
+cd ..
+pwd
+```
+
+```{sh c7b, echo=FALSE}
+cd cline/r
+cd ..
+pwd
+```
+
+```{sh c8a, eval=FALSE}
+cd /
+pwd
+```
+
+```{sh c8b, echo=FALSE}
+cd cline
+cd /
+pwd
+```
+
+```{sh c10a, eval=FALSE}
+rmdir data
+ls
+```
+
+```{sh c10b, echo=FALSE}
+cd cline
+rmdir data
+ls
+```
+
+### List Directory Contents
+
+```{sh c11a, eval=FALSE}
+ls -l
+```
+
+```{sh c11b, echo=FALSE}
+cd cline
+ls -l
+```
+
+```{sh c12a, eval=FALSE}
+ls -a
+```
+
+```{sh c12b, echo=FALSE}
+cd cline
+ls -a
+```
+
+```{sh c13a, eval=FALSE}
+ls -la
+```
+
+```{sh c13b, echo=FALSE}
+cd cline
+ls -la
+```
+
+```{sh c14a, eval=FALSE}
+ls -lh
+```
+
+```{sh c14b, echo=FALSE}
+cd cline
+ls -lh
+```
+
+```{sh c15a, eval=FALSE}
+ls -lS
+```
+
+```{sh c15b, echo=FALSE}
+cd cline
+ls -lS
+```
+
+```{sh c16a, eval=FALSE}
+ls -ltr
+```
+
+```{sh c16b, echo=FALSE}
+cd cline
+ls -ltr
+```
+
+### File Management
+
+```{sh c17a, eval=FALSE}
+touch myfile.txt
+ls
+```
+
+```{sh c17b, echo=FALSE}
+cd cline
+touch myfile.txt
+ls
+```
+
+```{sh c19a, eval=FALSE}
+cp release_names.txt release_names_copy.txt
+ls
+```
+
+```{sh c19b, echo=FALSE}
+cd cline
+cp release_names.txt release_names_copy.txt
+ls
+```
+
+```{sh c21a, eval=FALSE}
+cp release_names.txt r/release_names.txt
+```
+
+```{sh c21b, echo=FALSE}
+cd cline
+cp release_names.txt r/release_names.txt
+```
+
+```{sh c20a, eval=FALSE}
+ls r
+```
+
+```{sh c20b, echo=FALSE}
+cd cline
+ls r
+```
+
+```{sh c22a, eval=FALSE}
+cp -r r r2
+ls
+```
+
+```{sh c22b, echo=FALSE}
+cd cline
+cp -r r r2
+ls
+```
+
+```{sh c22c, echo=FALSE}
+cd cline
+rm -r r2
+```
+
+```{sh c23a, eval=FALSE}
+mv release_names_copy.txt r/release_names_copy.txt
+```
+
+```{sh c23b, echo=FALSE}
+cd cline
+mv release_names_copy.txt r/release_names_copy.txt
+```
+
+```{sh c23c, eval=FALSE}
+ls
+```
+
+```{sh c23d, echo=FALSE}
+cd cline
+ls
+```
+
+```{sh c23e, eval=FALSE}
+ls r
+```
+
+```{sh c23f, echo=FALSE}
+cd cline
+ls r
+``` 
+
+```{sh c23aa, echo=FALSE}
+cd cline
+cp r/release_names_copy.txt release_names_copy.txt 
+```
+
+```{sh c24a, eval =FALSE}
+mv -v release_names_copy.txt r/release_names_copy.txt
+```
+
+```{sh c24b, echo=FALSE}
+cd cline
+mv -v release_names_copy.txt r/release_names_copy.txt
+```
+
+```{sh c24c, eval=FALSE}
+ls
+```
+
+```{sh c24d, echo=FALSE}
+cd cline
+ls
+```
+
+```{sh c25a, eval=FALSE}
+rm myfile.txt
+ls
+```
+
+```{sh c25b, echo=FALSE}
+cd cline
+rm myfile.txt
+ls
+```
+
+```{sh c26a, eval=FALSE}
+rm -r myproject1
+ls
+```
+
+```{sh c26b, echo=FALSE}
+cd cline
+rm -r myproject1
+ls
+```
+
+```{sh c27a, eval=FALSE}
+cd myfiles
+rm -v *.txt
+```
+
+```{sh c27b, echo=FALSE}
+cd cline
+cd myfiles
+rm -v *.txt
+```
+
+### Comparing Files
+
+```{sh c29, eval=FALSE}
+diff imports_olsrr.txt imports_blorr.txt
+```
+
+```{r r29, echo=FALSE}
+suppressWarnings(cat(system2('diff', c("imports_olsrr.txt", "imports_blorr.txt"), TRUE), sep = "\n"))
+```
+
+```{sh c30, eval=FALSE}
+diff -w imports_olsrr.txt imports_blorr.txt
+```
+
+```{r r30, echo=FALSE}
+suppressWarnings(cat(system2('diff', c("-w", "imports_olsrr.txt", "imports_blorr.txt"), TRUE), sep = "\n"))
+```
+
+```{sh c31, eval=FALSE}
+diff -y imports_olsrr.txt imports_blorr.txt
+```
+
+```{r r31, echo=FALSE}
+suppressWarnings(cat(system2('diff', c("-y", "imports_olsrr.txt", "imports_blorr.txt"), TRUE), sep = "\n"))
+```
+
+```{sh c32, eval=FALSE}
+diff -u imports_olsrr.txt imports_blorr.txt
+```
+
+```{r r32, echo=FALSE}
+suppressWarnings(cat(system2('diff', c("-u", "imports_olsrr.txt", "imports_blorr.txt"), TRUE), sep = "\n"))
+```
+
+### Input/Output
+
+```{sh c33, eval=FALSE}
+echo Action of the Toes
+```
+
+```{r r33, echo=FALSE}
+system2("echo", c("Action of the Toes"), TRUE)
+```
+
+```{sh c34, eval=FALSE}
+echo Great Truth > release.txt
+```
+
+```{r r34, echo=FALSE}
+system2("echo", c("Great Truth"), stdout = "release.txt")
+```
+
+```{sh 340a, eval=FALSE}
+ls
+```
+
+```{sh 340b, echo=FALSE}
+cd cline
+ls
+```
+
+```{sh c35, eval=FALSE}
+cat release_names.txt
+```
+
+```{r r35, echo=FALSE}
+system2("cat", c("release_names.txt"), TRUE)
+```
+
+```{sh c36, eval=FALSE}
+cat -n release_names.txt
+```
+
+```{r r36, echo=FALSE}
+system2("cat", c("-n", "release_names.txt"), TRUE)
+```
+
+```{sh c37, eval=FALSE}
+cat release_names_18.txt release_names_19.txt > release_names_18_19.txt
+```
+
+```{r r37, echo=FALSE}
+system2("cat", c("release_names_18.txt", "release_names_19.txt"),
+        "release_names_18_19.txt")
+```
+
+```{sh c38, eval=FALSE}
+cat release_names_18_19.txt
+```
+
+```{r r38, echo=FALSE}
+system2("cat", c("release_names_18_19.txt"), TRUE)
+```
+
+```{sh c39a, eval=FALSE}
+head release_names.txt
+```
+
+```{sh c39b, echo=FALSE}
+cd cline
+head release_names.txt
+```
+
+```{sh c40a, eval=FALSE}
+head -n 5 release_names.txt
+```
+
+```{sh c40b, echo=FALSE}
+cd cline
+head -n 5 release_names.txt
+```
+
+```{sh c41a, eval=FALSE}
+head -c 5 release_names.txt
+```
+
+```{sh c41b, echo=FALSE}
+cd cline
+head -c 5 release_names.txt
+```
+
+```{sh c42a, eval=FALSE}
+head -n -5 release_names.txt
+```
+
+```{sh c42b, echo=FALSE}
+cd cline
+head -n -5 release_names.txt
+```
+
+```{sh c43a, eval=FALSE}
+head -c -3 release_names.txt
+```
+
+```{sh c43b, echo=FALSE}
+cd cline
+head -c -3 release_names.txt
+```
+
+```{sh c48a, eval=FALSE}
+sort release_names.txt
+```
+
+```{sh c48b, echo=FALSE}
+cd cline
+sort release_names.txt
+```
+
+```{sh c49a, eval=FALSE}
+sort -r release_names.txt
+```
+
+```{sh c49b, echo=FALSE}
+cd cline
+sort -r release_names.txt
+```
+
+```{sh c51a, eval=FALSE}
+sort -n release_names.txt
+```
+
+```{sh c51b, echo=FALSE}
+cd cline
+sort -n release_names.txt
+```
+
+```{sh c52a, eval=FALSE}
+sort -u release_names.txt
+```
+
+```{sh c52b, echo=FALSE}
+cd cline
+sort -u release_names.txt
+```
+
+```{sh c53a, eval=FALSE}
+wc release_names.txt
+```
+
+```{sh c53b, echo=FALSE}
+cd cline
+wc release_names.txt
+```
+
+```{sh c54a, eval=FALSE}
+wc -l release_names.txt
+```
+
+```{sh c54b, echo=FALSE}
+cd cline
+wc -l release_names.txt
+```
+
+```{sh c55a, eval=FALSE}
+wc -w release_names.txt
+```
+
+```{sh c55b, echo=FALSE}
+cd cline
+wc -w release_names.txt
+```
+
+```{sh c56a, eval=FALSE}
+wc -c release_names.txt
+```
+
+```{sh c56b, echo=FALSE}
+cd cline
+wc -c release_names.txt
+```
+
+```{sh c57a, eval=FALSE}
+grep Very release_names.txt
+```
+
+```{sh c57b, echo=FALSE}
+cd cline
+grep Very release_names.txt
+```
+
+```{sh c58a, eval=FALSE}
+grep -i very release_names.txt
+```
+
+```{sh c58b, echo=FALSE}
+cd cline
+grep -i very release_names.txt
+```
+
+```{sh c59a, eval=FALSE}
+grep -Hn Very release_names.txt
+```
+
+```{sh c59b, echo=FALSE}
+cd cline
+grep -Hn Very release_names.txt
+```
+
+```{sh c60a, eval=FALSE}
+grep -v Very release_names.txt
+```
+
+```{sh c60b, echo=FALSE}
+cd cline
+grep -v Very release_names.txt
+```
+
+```{sh c61a, eval=FALSE}
+find -name release_names.txt
+```
+
+```{sh c61b, echo=FALSE}
+cd cline
+find -name release_names.txt
+```
+
+```{sh c62a, eval=FALSE}
+find r -name '*.txt'
+```
+
+```{sh c62b, echo=FALSE}
+cd cline
+find r -name '*.txt'
+```
+
+```{sh c63a, eval=FALSE}
+find -type d -iname R
+```
+
+```{sh c63b, echo=FALSE}
+cd cline
+find -type d -iname R
+```
+
+```{sh c64a, eval=FALSE}
+find -type d -name r
+```
+
+```{sh c64b, echo=FALSE}
+cd cline
+find -type d -name r
+```
+
+```{sh c65a, eval=FALSE}
+curl https://www.r-project.org/
+```
+
+```{sh c65b, echo=FALSE}
+cd cline
+curl https://www.r-project.org/
+```
+
+```{sh c66a, eval=FALSE}
+curl http://cran-logs.rstudio.com/2019/2019-09-08.csv.gz -o sept_08.csv.gz 
+```
+
+```{sh c66b, echo=FALSE}
+cd cline
+curl http://cran-logs.rstudio.com/2019/2019-09-08.csv.gz -o sept_08.csv.gz 
+```
+
+```{sh c67a, eval=FALSE}
+curl http://cran-logs.rstudio.com/2019/2019-09-15.csv.gz -o sept_15.csv.gz -s
+```
+
+```{sh c67b, echo=FALSE}
+cd cline
+curl http://cran-logs.rstudio.com/2019/2019-09-15.csv.gz -o sept_15.csv.gz -s
+ls
+```
+
+```{sh c68a, eval=FALSE}
+tar -cvf release_names.tar release_names.txt
+```
+
+```{sh c68b, echo=FALSE}
+cd cline
+tar -cvf release_names.tar release_names.txt
+```
+
+```{sh c69a, eval=FALSE}
+tar -rvf release_names.tar release_names_18.txt release_names_19.txt
+```
+
+```{sh c69b, echo=FALSE}
+cd cline
+tar -rvf release_names.tar release_names_18.txt release_names_19.txt
+```
+
+```{sh c70a, eval=FALSE}
+tar -tvf release_names.tar 
+```
+
+```{sh c70b, echo=FALSE}
+cd cline
+tar -tvf release_names.tar 
+```
+
+```{sh c71a, eval=FALSE}
+rm release_names.txt release_names_18.txt release_names_19.txt
+tar -xvf release_names.tar 
+ls
+```
+
+```{sh c71b, echo=FALSE}
+cd cline
+rm release_names.txt release_names_18.txt release_names_19.txt
+tar -xvf release_names.tar 
+ls
+```
+
+```{sh c72a, eval=FALSE}
+gzip release_names.txt
+ls
+```
+
+```{sh c72b, echo=FALSE}
+cd cline
+gzip release_names.txt
+ls
+```
+
+```{sh c73a, eval=FALSE}
+gzip -d sept_15.csv.gz
+ls
+```
+
+```{sh c73b, echo=FALSE}
+cd cline
+gzip -d sept_15.csv.gz
+ls
+```
+
+```{r c74a, echo=FALSE}
+system2("rm", c("-r", "J:/blog/content/post/cline"))
+```
+
+```{sh c74, echo=FALSE}
+cp -r J:/R/rstudio-export cline
+```
+
+## Summary
+
+- [DBI](http://r-dbi.github.io/DBI/) to connect and interact with databases
+- [dplyr](https://dplyr.tidyverse.org/index.html) and [dbplyr](https://dbplyr.tidyverse.org/index.html) for data transformation
+- [dbplot](https://edgararuiz.github.io/dbplot/index.html) for data visualization
+- [modeldb](https://tidymodels.github.io/modeldb/) and [tidypredict](https://tidymodels.github.io/tidypredict/) for data modeling
+- [config](https://github.com/rstudio/config), [keyring](https://github.com/r-lib/keyring), .Renviron and `options()` to handle credentials
+- always close the database connection
+
+## References
+
+- https://fs.r-lib.org/articles/function-comparisons.html
