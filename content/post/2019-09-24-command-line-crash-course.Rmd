@@ -3,8 +3,8 @@ title: "Command Line Basics for R Users"
 author: Aravind Hebbali
 twitterImg: /img/cline_cover_image.png
 description: "Getting Started with the Command Line"
-date: '2019-10-16'
-slug: command-line-basics
+date: '2019-10-22'
+slug: command-line-basics-for-r-users
 categories:
   - bash
 tags:
@@ -28,8 +28,21 @@ library(magrittr)
 knitr::include_graphics("/img/cline_cover_image.png")
 ```
 
+In this tutorial, you will be introduced to shell commands. We have selected a set of commands we think will be useful in general to a wide range of audience.
+We have created a [RStudio Cloud Project](https://rstudio.cloud/project/518720) to ensure that all readers are using the same environment while going through the tutorial. Our goal was to ensure that after completing this tutorial, readers should be able to use the shell for version control, managing cloud services (like deploying your own shiny server etc.), execute commands in R & RMarkdown and execute R scripts in the shell. Apart from learning shell commands, the tutorial will also focus on
+
+- exploring R release names
+- mapping shell commands to R functions
+- RStudio Terminal
+- executing shell commands from R using `system2()` or `processx::run()`
+- execute shell commands in RMarkdown
+- execute R scripts in the shell 
+
+If you want a deeper understanding of using command line for data science, we suggest you read [Data Science at the Command Line](https://www.datascienceatthecommandline.com/). [Software Carpentry](https://software-carpentry.org/) too has a lesson on [shell](https://swcarpentry.github.io/shell-novice/). We have listed more references at the end of the tutorial for the benefit of the readers.
+
 ## Table of Contents
 
+- [Resources](#resources)
 - [Introduction](#intro)
 - [Navigating File System](#navigate)
 - [File Management](#filemanage)
@@ -45,19 +58,21 @@ knitr::include_graphics("/img/cline_cover_image.png")
 - [Summary](#summary)
 - [References](#references)
 
+## Resources {#resources}
+
+Below are the links to all the resources related to this post:
+
+- <a href="https://slides.rsquaredacademy.com/github/shell.pdf" target="_blank">Slides</a>
+- <a href="https://github.com/rsquaredacademy-education/online-courses/" target="_blank">Code & Data</a>
+- <a href="https://rstudio.cloud/project/518720" target="_blank">RStudio Cloud</a>
+
+You can try our **free online course** [**Command Line Basics for R Users**](https://rsquared-academy.thinkific.com/courses/command-line-basics-for-r-users) if you prefer to learn through self paced online courses.
+
+```{r dbi_youtube_demo, eval=TRUE, echo=FALSE}
+blogdown::shortcode("youtube", "")
+```
+
 ## Introduction {#intro}
-
-In this tutorial, you will be introduced to shell commands. We have selected a set of commands we think will be useful in general to a wide range of audience.
-We have created a [RStudio Cloud Project]() to ensure that all readers are using the same environment while going through the tutorial. Our goal was to ensure that after completing this tutorial, readers should be able to use the shell for version control, managing cloud services (like deploying your own shiny server etc.), execute commands in R & RMarkdown and execute R scripts in the shell. Apart from learning shell commands, the tutorial will also focus on
-
-- exploring R release names
-- mapping shell commands to R functions
-- RStudio Terminal
-- executing shell commands from R using `system2()` or `processx::run()`
-- execute shell commands in RMarkdown
-- execute R scripts in the shell 
-
-If you want a deeper understanding of using command line for data science, we suggest you read [Data Science at the Command Line](https://www.datascienceatthecommandline.com/). [Software Carpentry](https://software-carpentry.org/) too has a lesson on [shell](https://swcarpentry.github.io/shell-novice/). We have listed more references at the end of the tutorial for the benefit of the readers.
 
 ### What is Shell/Terminal?
 
@@ -80,7 +95,7 @@ Although we will use the terminal in RStudio on [RStudio Cloud](https://rstudio.
 Applications -> Utility -> Terminal
 
 ```{r launch_mac, echo=FALSE, fig.align="center", out.width="70%"}
-knitr::include_graphics("mac-terminal.png")
+knitr::include_graphics("/img/cline_mac-terminal.png")
 ```
 
 #### Windows
@@ -160,14 +175,14 @@ knitr::include_graphics("/img/cline_wsl-5.png")
 
 You can learn more about the Windows Subsystem for Linux [here](https://docs.microsoft.com/en-us/windows/wsl/about).
 
-### RStudio Terminal
+#### RStudio Terminal
 
 RStudio introduced the terminal with version 1.1.383. The terminal tab is next to the console tab. If it is not visible, use any of the below methods to launch it
 
 - Shift + Alt + T 
 - Tools -> Terminal -> New Terminal
 
-Note, the terminal depends on the underlying operating system. To learn more about the RStudio terminal, read this [article](https://support.rstudio.com/hc/en-us/articles/115010737148-Using-the-RStudio-Terminal) or watch this [webinar](https://resources.rstudio.com/webinars/terminal-updates). In this tutorial, we will use the RStudio terminal on [RStudio Cloud](https://rstudio.cloud/) to ensure that all users have access to Linux bash. You can try all the commands used in this tutorial on your local system as well except in case of Windows users.
+Note, the terminal depends on the underlying operating system. To learn more about the RStudio terminal, read this [article](https://support.rstudio.com/hc/en-us/articles/115010737148-Using-the-RStudio-Terminal) or watch this [webinar](https://resources.rstudio.com/webinars/terminal-updates). In this book, we will use the RStudio terminal on [RStudio Cloud](https://rstudio.cloud/) to ensure that all users have access to Linux bash. You can try all the commands used in this book on your local system as well except in case of Windows users.
 
 ```{r rstudio_terminal, echo=FALSE, fig.align="center", out.width="70%"}
 knitr::include_graphics("/img/cline_rstudio-termina.png")
@@ -264,7 +279,7 @@ data.frame(Command = cname, Description = descrip) %>%
   )
 ```
 
-`man` is used to view the system's reference manual. Let us use it to view the documentation of the `ls` command which we will use in the next section. 
+`man` is used to view the system's reference manual. Let us use it to view the documentation of the `whatis` command which we will use next. 
 
 ```{bash man}
 man whatis
@@ -306,7 +321,7 @@ data.frame(Command = cname, Description = descrip) %>%
   )
 ```
 
-`pwd` displays the name of the current **p**resent **w**orking **d**irectory. 
+`pwd` displays the name of the **p**resent **w**orking **d**irectory. 
 
 ```{bash c3a, eval=FALSE}
 pwd
@@ -350,44 +365,27 @@ pwd
 `mkdir` will create new directory. It will allow you to set file mode (permissions associated with the directory) i.e. who can open/modify/delete the directory.
 
 ```{bash c5a, eval=FALSE}
-mkdir R
+mkdir rfiles
 ls
 ```
 
 ```{bash c5b, echo=FALSE}
 cd cline
-mkdir R
+mkdir rfiles
 ls
 ```
 
 `rmdir` will remove empty directories from the file system. It can be used to remove multiple empty directories as well. If the directory is not empty, `rmdir` will not remove it and instead display a warning that the directory is not empty.
 
 ```{bash c10a, eval=FALSE}
-rmdir R
+rmdir rfiles
 ls
 ```
 
 ```{bash c10b, echo=FALSE}
 cd cline
-rmdir R
+rmdir rfiles
 ls
-```
-
-In R, `getwd()` will return the current working directory. You can use `here()` from the [here](https://here.r-lib.org/) package as well. To change the current
-working directory, use `setwd()`. The [fs](https://fs.r-lib.org/index.html) package provides useful functions for file operations. 
-
-```{r r_nav_file_sys, echo=FALSE}
-cname   <- c("`pwd`", "`ls`", "`cd`", "`mkdir`", "`rmdir`")
-r_map   <- c("`getwd()` / `here::here()`",
-             "`dir()` / `list.files()` / `list.dirs()` / `fs::dir_ls()` / `dir_info()`",
-             "`setwd()`",
-             "`dir.create()` / `fs::dir_create()`",
-             "`fs::dir_delete()`")
-data.frame(Command = cname, R  = r_map) %>% 
-  kable() %>% 
-  kable_styling(
-    bootstrap_options = c("striped", "hover", "condensed", "responsive")
-  )
 ```
 
 ### Change Working Directory
@@ -491,7 +489,7 @@ data.frame(Command = cname, Description = descrip) %>%
   )
 ```
 
-###### List files one per line
+#### List files one per line
 
 ```{bash c11a, eval=FALSE}
 ls -l
@@ -502,7 +500,7 @@ cd cline
 ls -l
 ```
 
-###### List all files including hidden files
+#### List all files including hidden files
 
 ```{bash c12a, eval=FALSE}
 ls -a
@@ -513,7 +511,7 @@ cd cline
 ls -a
 ```
 
-###### Display file permissions, ownership, size & modification date
+#### Display file permissions, ownership, size & modification date
 
 ```{bash c13a, eval=FALSE}
 ls -la
@@ -524,7 +522,7 @@ cd cline
 ls -la
 ```
 
-###### Display size in human readable format
+#### Display size in human readable format
 
 ```{bash c14a, eval=FALSE}
 ls -lh
@@ -535,7 +533,7 @@ cd cline
 ls -lh
 ```
 
-###### Sort list by size
+#### Sort list by size
 
 ```{bash c15a, eval=FALSE}
 ls -lS
@@ -546,7 +544,7 @@ cd cline
 ls -lS
 ```
 
-###### Sort list by modification date
+#### Sort list by modification date
 
 ```{bash c16a, eval=FALSE}
 ls -ltr
@@ -557,11 +555,30 @@ cd cline
 ls -ltr
 ```
 
+### R Functions
+
+In R, `getwd()` will return the current working directory. You can use `here()` from the [here](https://here.r-lib.org/) package as well. To change the current
+working directory, use `setwd()`. The [fs](https://fs.r-lib.org/index.html) package provides useful functions for file operations. 
+
+```{r r_nav_file_sys, echo=FALSE}
+cname   <- c("`pwd`", "`ls`", "`cd`", "`mkdir`", "`rmdir`")
+r_map   <- c("`getwd()` / `here::here()`",
+             "`dir()` / `list.files()` / `list.dirs()` / `fs::dir_ls()` / `dir_info()`",
+             "`setwd()`",
+             "`dir.create()` / `fs::dir_create()`",
+             "`fs::dir_delete()`")
+data.frame(Command = cname, R  = r_map) %>% 
+  kable() %>% 
+  kable_styling(
+    bootstrap_options = c("striped", "hover", "condensed", "responsive")
+  )
+```
+
 ## File Management {#filemanage}
 
 In this section, we will explore commands for file management including:
 
-- change timestamps
+- create new file/change timestamps
 - copying files
 - renaming/moving files
 - deleting files
@@ -581,9 +598,9 @@ data.frame(Command = cname, Description = descrip) %>%
   )
 ```
 
-### Change Timestamp
+### Create new file
 
-`touch` modifies file timestamps. Timestamp is information associated with file modification. It can be any of the following:
+`touch` modifies file timestamps which is information associated with file modification. It can be any of the following:
 
 - access time (the last time the file was read)
 - modification time (the last time the contents of the file was changed)
@@ -605,17 +622,11 @@ ls
 ### Copy Files/Folders
 
 `cp` makes copies of files and directories. The general form of the command is 
-**cp source destination**. By default, it will overwrite files without prompting for confirmation so be cautious before copying files or folders.
+**cp source destination**. By default, it will overwrite files without prompting for confirmation so be cautious while copying files or folders.
 
-```{bash c117a, echo=FALSE}
-cd cline
-mkdir r_releases
-cp release_names.txt release_names_3.txt 
-```
+### Copy files in same folder
 
-##### Copy files in same folder
-
-Let us create a copy of the `release_names.txt` file and name it as `release_names_2.txt`.
+Let us create a copy of `release_names.txt` file and name it as `release_names_2.txt`.
 
 ```{bash c19a, eval=FALSE}
 cp release_names.txt release_names_2.txt
@@ -628,12 +639,18 @@ cp release_names.txt release_names_2.txt
 ls
 ```
 
-##### Copy files into different folder
+#### Copy files into different folder
 
-To copy a file into a different directory/folder, we need to specify the name of the folder along with the name of the file. Let us copy the `release_names.txt` file into the `r_releases` folder (we will retain the same name for the file as we are copying it into a different folder).
+To copy a file into a different directory/folder, we need to specify the name of the destination folder. If the copied file should have a different name, then we need to specify the new name of the file as well. Let us copy the `release_names.txt` file into the `r_releases` folder (we will retain the same name for the file as we are copying it into a different folder).
 
 ```{bash c21a, eval=FALSE}
 cp release_names.txt r_releases/release_names.txt
+```
+
+```{bash c117a, echo=FALSE}
+cd cline
+mkdir r_releases
+cp release_names.txt release_names_3.txt 
 ```
 
 ```{bash c21b, echo=FALSE}
@@ -641,7 +658,7 @@ cd cline
 cp release_names.txt r_releases/release_names.txt
 ```
 
-Let us check if the file has been copied by listing the files in the `r` folder using `ls`.
+Let us check if the file has been copied by listing the files in the `r_releases` folder using `ls`.
 
 ```{bash c20a, eval=FALSE}
 ls r_releases
@@ -652,18 +669,18 @@ cd cline
 ls r_releases
 ```
 
-##### Copy folders
+#### Copy folders
 
-How about making copies of folders? Use the `-r` option to copy entire folders. Let us create a copy of the `r` folder and name it as `R`. The `-r` option stands for `--recursive` i.e. copy directories recursively. 
+How about making copies of folders? Use the `-r` option to copy entire folders. Let us create a copy of the `r` folder and name it as `r2`. The `-r` option stands for `--recursive` i.e. copy directories recursively. 
 
 ```{bash c22a, eval=FALSE}
-cp -r r R
+cp -r r r2
 ls
 ```
 
 ```{bash c22b, echo=FALSE}
 cd cline
-cp -r r R
+cp -r r r2
 ls
 ```
 
@@ -722,7 +739,7 @@ cd cline
 ls r_releases
 ``` 
 
-##### Move files in verbose mode
+#### Move files in verbose mode
 
 To view the details of the files being moved/renamed, use the `-v` option. In the below example, we move the `release_names_3.txt` file into the `r_releases` folder using `mv`. 
 
@@ -735,11 +752,11 @@ cd cline
 mv -v release_names_3.txt r_releases
 ```
 
-##### Do not overwrite existing files
+#### Do not overwrite existing files
 
 How do we ensure that files are not overwritten without prompting the user first? In the below example, we will try to overwrite the `release_names_2.txt` in the `r_releases` folder using `mv` and see what happens. But first, let us look at the contents of the `release_names_2.txt` file using the `cat` command.
 
-We will look into the `cat` command in more detail in the next section but for the time being it is sufficient to know that it prints contents of a file. The file contains release names of different R versions.
+We will look into the `cat` command in more detail in the next chapter but for the time being it is sufficient to know that it prints contents of a file. The file contains release names of different R versions.
 
 ```{bash c77a, eval =FALSE}
 cat r_releases/release_names_2.txt
@@ -750,7 +767,9 @@ cd cline
 cat r_releases/release_names_2.txt
 ```
 
-In our current working directory, we will create another file of the same name i.e. `release_names_2.txt` but its contents are different from the file in the `r` folder. It contains the string `release_names` and nothing else. We will now move this file into the `r_releases` folder but use the option `-n` to ensure that the file in the `r_releases` folder is not overwritten. We can confirm this by printing the contents of the file in the `r_releases` folder.
+In our current working directory, we will create another file of the same name i.e. `release_names_2.txt` but its contents are different from the file in the `r_releases` folder. It contains the string `release_names` and nothing else. We will now move this file into the `r_releases` folder but use the option `-n` to ensure that the file in the `r_releases` folder is not overwritten. We can confirm this by printing the contents of the file in the `r_releases` folder.
+
+The `echo` command is used to print text to the terminal or to write to a file. We will explore it in more detail in the next chapter.
 
 ```{bash c78a, eval =FALSE}
 echo "release_names" > release_names_2.txt 
@@ -765,7 +784,9 @@ mv -n release_names_2.txt r_releases
 cat r_releases/release_names_2.txt
 ```
 
-##### Do not prompt for confirmation before overwriting files
+As you can observe, the contents of the file in the `r_releases` folder has not changed. In the next section, we will learn to overwrite the contents using the `-f` option.
+
+### Do not prompt for confirmation before overwriting files
 
 What if we actually intend to overwrite a file and do not want to be prompted for confirming the same. In this case, we can use the `-f` option which stands for `--force` i.e. do not prompt before overwriting. Let us first print the contents of the `release_names_2.txt` file in the `r_releases` folder.
 
@@ -816,7 +837,7 @@ data.frame(Command = cname, Description = descrip) %>%
   )
 ```
 
-##### Remove files
+#### Remove files
 
 Let us use `rm` to  remove the file `myanalysis.R` (we created it earlier using the `touch` command). 
 
@@ -831,7 +852,7 @@ rm myanalysis.R
 ls
 ```
 
-##### Recursive Deletion
+#### Recursive Deletion
 
 How about folders or directories? We can remove a directory and all its contents including sub-directories using the option `-r` which stands for `--recursive` and removes directories and their contents recursively. Let us remove the `myproject1` folder and all its contents.
 
@@ -846,7 +867,7 @@ rm -r myproject1
 ls
 ```
 
-##### Force Removal
+#### Force Removal
 
 Use the `-f` option which stands for `--force` to forciby remove directory and all its contents without prompting for confirmation or showing error messages. Let us remove the `myproject2` folder and all its contents.
 
@@ -861,9 +882,9 @@ rm -rf myproject2
 ls
 ```
 
-##### Verbose Mode
+#### Verbose Mode
 
-Remove files in verbose mode, printing a message for each removed file. This is useful when you want to see the details of the files being removed. In the below example, we will remove all files with `.txt` extension from the `myfiles` folder. 
+Remove files in verbose mode, printing a message for each removed file. This is useful when you want to see the details of the files being removed. In the below example, we will remove all files with `.txt` extension from the `myfiles` folder. Instead of specifying the name of each text file, we use the wildcard `*` along with `.txt` i.e. any file with the extension `.txt` will be removed.
 
 ```{bash c27a, eval=FALSE}
 cd myfiles
@@ -901,7 +922,7 @@ data.frame(Command = cname, Description = descrip) %>%
   )
 ```
 
-##### Compare Files
+#### Compare Files
 
 Let us compare the contents of the following files
 
@@ -916,7 +937,7 @@ The files contain the names of R packages imported by the [olsrr](https://olsrr.
 - **c** for change
 - **d** for delete
 
-We will ignore white spaces while comparing the files using the `-w` option.
+We will use the `-w` option to ignore white spaces while comparing the files.
 
 ```{bash c30, eval=FALSE}
 diff -w imports_olsrr.txt imports_blorr.txt
@@ -940,7 +961,7 @@ suppressWarnings(cat(system2('diff', c("-w", "imports_blorr.txt", "imports_olsrr
 
 `5d4` indicates **delete line 5 from file 1 to match both the files at line4** i.e. delete `caret` which is line 5 in `imports_blorr.txt` to make both the files identical.
 
-##### Side By Side
+#### Side By Side
 
 To view the differences between the files side by side, use the `-y` option.
 
@@ -952,7 +973,7 @@ diff -y imports_olsrr.txt imports_blorr.txt
 suppressWarnings(cat(system2('diff', c("-y", "imports_olsrr.txt", "imports_blorr.txt"), TRUE), sep = "\n"))
 ```
 
-##### Unified Format
+#### Unified Format
 
 To view the differences between the files in a unified format, use the `-u` option.
 
@@ -964,7 +985,7 @@ diff -u imports_olsrr.txt imports_blorr.txt
 suppressWarnings(cat(system2('diff', c("-u", "imports_olsrr.txt", "imports_blorr.txt"), TRUE), sep = "\n"))
 ```
 
-##### Compare Recursively
+#### Compare Recursively
 
 To compare recursively, use the `-r ` option. Let us compare the `mypackage` and `myproject` folders.
 
@@ -976,7 +997,7 @@ diff -r mypackage myproject
 suppressWarnings(cat(system2('diff', c("-r", "mypackage", "myproject"), TRUE), sep = "\n"))
 ```
 
-##### File Details
+#### File Details
 
 To compare directories and view the names of files that differ, use the `-rq` option. In the below example, we look at the names of files that differ in `mypackage` and `myproject` folders.
 
@@ -987,6 +1008,8 @@ diff -rq mypackage myproject
 ```{r r83, echo=FALSE}
 suppressWarnings(cat(system2('diff', c("-rq", "mypackage", "myproject"), TRUE), sep = "\n"))
 ```
+
+### R Functions
 
 In R, file operations can be performed using functions from both base R and the [fs](https://fs.r-lib.org/index.html) package.
 
@@ -1004,7 +1027,7 @@ data.frame(Command = cname, R = descrip) %>%
   )
 ```
 
-### Input/Output {#inputoutput}
+## Input/Output {#inputoutput}
 
 In this section, we will explore commands that will
 
@@ -1018,8 +1041,8 @@ descrip <- c("Display messages",
              "Print contents of a file",
              "Prints first ten lines of a file by default", 
              "Prints last ten lines of a file by default",
-             "Displays more",
-             "Displays less",
+             "Open a file for interactive reading, scrolling & searching",
+             "Open a file for interactive reading, scrolling & searching",
              "Sort a file in ascending order")
 data.frame(Command = cname, Description = descrip) %>% 
   kable() %>% 
@@ -1046,7 +1069,7 @@ data.frame(Command = cname, Description = descrip) %>%
   )
 ```
 
-##### Print Message
+#### Print Message
 
 Let us start with a simple example. We will print the text `Action of the Toes` to the terminal. It is the release name for R version 3.6.1.
 
@@ -1054,21 +1077,12 @@ Let us start with a simple example. We will print the text `Action of the Toes` 
 echo Action of the Toes
 ```
 
-##### Redirect Output
+#### Redirect Output
 
 What if we want to redirect the output? Instead of printing the text to the terminal, we want to write it to a file. In such cases, use `>` along with the file name to redirect the output to the file. Keep in mind that `>` will overwrite files. If you want to append to files instead of overwriting, use `>>`.
 
 ```{bash c34, eval=FALSE}
 echo Great Truth > release.txt
-```
-
-```{bash 340a, eval=FALSE}
-ls
-```
-
-```{bash 340b, echo=FALSE}
-cd cline
-ls
 ```
 
 ### Print & Concatenate Files
@@ -1092,7 +1106,7 @@ data.frame(Command = cname, Description = descrip) %>%
   )
 ```
 
-##### Print Content
+#### Print Content
 
 Let us print the content of the `release_names.txt` file (it contains R release names).
 
@@ -1105,7 +1119,7 @@ cd cline
 cat release_names.txt
 ```
 
-##### Number All Output Lines
+#### Number All Output Lines
 
 If you want to number the output line, use the `-n` option.
 
@@ -1118,12 +1132,13 @@ cd cline
 cat -n release_names.txt
 ```
 
-##### Concatenate Several Files
+#### Concatenate Several Files
 
-To concatenate the contents of several files into a target file, use `>`. In the below example, we concatenate the contents of the files `release_names_18.txt` and `release_names_19.txt` into a single file `release_names_18_19.txt`. In this case we are not printing the contents of the file to the terminal and instead we read concatenate the contents from both the files and redirect the output to the target file.
+To concatenate the contents of several files into a target file, use `>`. In the below example, we concatenate the contents of the files `release_names_18.txt` and `release_names_19.txt` into a single file `release_names_18_19.txt`. In this case we are not printing the contents of the file to the terminal and instead we concatenate the contents from both the files and redirect the output to the target file.
 
 ```{bash c37a, eval=FALSE}
 cat release_names_18.txt release_names_19.txt > release_names_18_19.txt
+cat release_names_18_19.txt
 ```
 
 ```{bash c37, echo=FALSE}
@@ -1138,7 +1153,7 @@ cat release_names_18_19.txt
 
 ### Head
 
-The `head` command will display the firt 10 lines of a file(s) by default. It can be used to display the first few lines or bytes of a file. 
+The `head` command will display the firt 10 lines of a file(s) by default. It can be used to display the first few lines or bytes of a file as well. 
 
 ```{r table_head, echo=FALSE}
 cname   <- c("`head`", "`head -n`", "`head -c`", "`head -n -x`", "`head -c -x`")
@@ -1154,7 +1169,9 @@ data.frame(Command = cname, Description = descrip) %>%
   )
 ```
 
-##### Output the first parts of a file
+#### Output the first parts of a file
+
+Let us use `head` to display the first 10 lines of the `release_names.txt` file.
 
 ```{bash c39a, eval=FALSE}
 head release_names.txt
@@ -1165,7 +1182,9 @@ cd cline
 head release_names.txt
 ```
 
-##### Output the first n lines of a file
+#### Output the first n lines of a file
+
+Using the `n` option, we can specify the number of lines to be displayed. In the below example, we display the first 5 lines.
 
 ```{bash c40a, eval=FALSE}
 head -n 5 release_names.txt
@@ -1176,7 +1195,9 @@ cd cline
 head -n 5 release_names.txt
 ```
 
-##### Output the first c bytes of a file
+#### Output the first c bytes of a file
+
+The `c` option can be used to display characters or bytes instead of lines. Let us display the first 5 bytes of the `release_names.txt` file.
 
 ```{bash c41a, eval=FALSE}
 head -c 5 release_names.txt
@@ -1187,7 +1208,9 @@ cd cline
 head -c 5 release_names.txt
 ```
 
-##### Output everything but the last 5 lines of a file
+#### Output everything but the last 5 lines of a file
+
+To display the last parts of a file, use `-` while specifying the number of lines. In the below example, we display the last 5 lines of the file.
 
 ```{bash c42a, eval=FALSE}
 head -n -5 release_names.txt
@@ -1198,7 +1221,9 @@ cd cline
 head -n -5 release_names.txt
 ```
 
-##### Output everything but the last 3 bytes of a file
+#### Output everything but the last 3 bytes of a file
+
+In this example, we display the last 3 bytes of the file using the `c` option and `-` while specifying the number of bytes.
 
 ```{bash c43a, eval=FALSE}
 head -c -3 release_names.txt
@@ -1228,7 +1253,9 @@ data.frame(Command = cname, Description = descrip) %>%
   )
 ```
 
-##### Display the last parts of a file
+#### Display the last parts of a file
+
+Let us use `tail` to display the last 10 lines of the file.
 
 ```{bash c100a, eval=FALSE}
 tail release_names.txt
@@ -1239,18 +1266,22 @@ cd cline
 tail release_names.txt
 ```
 
-##### Display the last 10 lines of a file
+#### Display the last 5 lines of a file
+
+As we did in the previous section, use `n` to specify the number of lines to be displayed.
 
 ```{bash c101a, eval=FALSE}
-tail -n 10 release_names.txt
+tail -n 5 release_names.txt
 ```
 
 ```{bash c101b, echo=FALSE}
 cd cline
-tail -n 10 release_names.txt
+tail -n 5 release_names.txt
 ```
 
-##### Display all contents from line 10
+#### Display all contents from line 10
+
+We can use `tail` to display all contents of a file starting from a specific line. In the below example, we display all contents of the file starting from the 10th line using the `n` option and `+` prefix while specifying the number of lines.
 
 ```{bash c102a, eval=FALSE}
 tail -n +10 release_names.txt
@@ -1261,15 +1292,17 @@ cd cline
 tail -n +10 release_names.txt
 ```
 
-##### Display the last 10 bytes of a file
+#### Display the last 10 bytes of a file
+
+Use the `c` option to display the last 7 bytes of a file.
 
 ```{bash c103a, eval=FALSE}
-tail -c 10 release_names.txt
+tail -c 7 release_names.txt
 ```
 
 ```{bash c103b, echo=FALSE}
 cd cline
-tail -c 10 release_names.txt
+tail -c 7 release_names.txt
 ```
 
 ### More
@@ -1351,7 +1384,7 @@ data.frame(Command = cname, Description = descrip) %>%
   )
 ```
 
-##### Sort 
+#### Sort 
 
 Let us sort the contents of the `pkg_names.txt` file. It contains names R packages randomly selected from CRAN.
 
@@ -1364,7 +1397,7 @@ cd cline
 sort pkg_names.txt
 ```
 
-##### Descending Order
+#### Descending Order
 
 Using the `-r` option which stands for `--reverse` the contents of the file can be sorted in descending/reverse order. Let us now sort the contents of the `pkg_names.txt` file in reverse order.
 
@@ -1377,7 +1410,7 @@ cd cline
 sort -r pkg_names.txt
 ```
 
-##### Ignore case
+#### Ignore case
 
 To ignore case while sorting contents, use the `--ignore-case` option. Time to sort the `pkg_names.txt` file while ignoring case.
 
@@ -1390,7 +1423,7 @@ cd cline
 sort --ignore-case pkg_names.txt
 ```
 
-##### Numeric Order
+#### Numeric Order
 
 To sort numerically, use the `-n` option which stands for `--numeric-sort`. In this example, we will use a different file, `package_names.txt` where the package names are prefixed by random numbers between 1 and 100. 
 
@@ -1403,7 +1436,7 @@ cd cline
 sort -n package_names.txt
 ```
 
-##### Preserve Only Unique Lines
+#### Preserve Only Unique Lines
 
 The `-u` option which stands for `--unique` will preserve only unique lines while sorting the contents of the file. In the below example, we remove all duplicate lines from the `pkg_names.txt` while sorting.
 
@@ -1416,11 +1449,11 @@ cd cline
 sort -u pkg_names.txt
 ```
 
-#### Word Count
+### Word Count
 
 `wc` will print newline, word, and  byte  counts  for  file(s). If more than one file is specified, it will also print total line.
        
-##### Count words, bytes and lines
+#### Count words, bytes and lines
 
 ```{bash c53a, eval=FALSE}
 wc release_names.txt
@@ -1431,7 +1464,7 @@ cd cline
 wc release_names.txt
 ```
 
-##### Count lines in a file
+#### Count lines in a file
 
 ```{bash c54a, eval=FALSE}
 wc -l release_names.txt
@@ -1442,7 +1475,7 @@ cd cline
 wc -l release_names.txt
 ```
 
-##### Count words in a file
+#### Count words in a file
 
 ```{bash c55a, eval=FALSE}
 wc -w release_names.txt
@@ -1453,7 +1486,7 @@ cd cline
 wc -w release_names.txt
 ```
 
-##### Count characters(bytes) in a file
+#### Count characters(bytes) in a file
 
 ```{bash c56a, eval=FALSE}
 wc -c release_names.txt
@@ -1484,7 +1517,7 @@ data.frame(Command = cname, Description = descrip) %>%
   )
 ```
 
-### Pattern Matching
+### grep
 
 The `grep` command is used for pattern matching. Along with additional options, it can be used to
 
@@ -1494,7 +1527,7 @@ The `grep` command is used for pattern matching. Along with additional options, 
 - print filename and line number for each match
 - invert match for excluding specific strings
 
-`grep` processes text line by line, and prints any lines which match a specified pattern. `grep`, which stands for **g**lobal **r**egular **e**xpression **p**rint," is a powerful tool for matching a regular expression against text in a file, multiple files, or a stream of input. 
+`grep` processes text line by line, and prints any lines which match a specified pattern. `grep`, which stands for **g**lobal **r**egular **e**xpression **p**rint is a powerful tool for matching a regular expression against text in a file, multiple files, or a stream of input. 
 
 ```{r table_grep, echo=FALSE}
 cname   <- c("`grep`", "`grep -i`", "`grep -RI`", "`grep -E`", "`grep -Hn`", "`grep -v`")
@@ -1511,7 +1544,7 @@ data.frame(Command = cname, Description = descrip) %>%
   )
 ```
 
-##### Match Pattern in Input Text
+#### Match Pattern in Input Text
 
 Using `grep` let us search for packages that inlcude the letter `R` in their names.
 
@@ -1524,7 +1557,7 @@ cd cline
 grep R package_names.txt
 ```
 
-##### Ignore Case
+#### Ignore Case
 
 In the previous case, `grep` returned only those packages whose name included `R` but not `r` i.e. it did not ignore the case of the letter. Using the `-i` option, we will now search while ignoring the case of the letter.
 
@@ -1537,7 +1570,7 @@ cd cline
 grep -i R package_names.txt
 ```
 
-##### Highlight
+#### Highlight
 
 The `--color` option will highlight the matched strings. 
 
@@ -1550,7 +1583,7 @@ cd cline
 grep -i --color R package_names.txt
 ```
 
-##### Print Filename 
+#### Print Filename 
 
 If there is more than one file to search, use the `-H` option to print the filename for each match. 
 
@@ -1563,7 +1596,7 @@ cd cline
 grep -i --color -H bio package_names.txt
 ```
 
-##### Print Corresponding Line Number
+#### Print Corresponding Line Number
 
 The `-n` option will print the corresponding line number of the match in the file.
 
@@ -1576,7 +1609,7 @@ cd cline
 grep -i --color -n bio package_names.txt
 ```
 
-##### Print Filename & Line Number
+#### Print Filename & Line Number
 
 Let us print both the file name and the line number for each match.
 
@@ -1589,7 +1622,7 @@ cd cline
 grep -i --color -Hn R package_names.txt
 ```
 
-##### Invert Match
+#### Invert Match
 
 Use the `-v` option to select non-matching lines. In the below example, we search for packages whose name does not include `R` while ignoring the case.
 
@@ -1602,7 +1635,7 @@ cd cline
 grep -v -i R package_names.txt
 ```
 
-##### Recursive Search
+#### Recursive Search
 
 Use the `-r` option to search recursively. In the below example, we search all files with the `.txt` extension for the string `bio` while ignoring the case.
 
@@ -1622,7 +1655,7 @@ The `find` command can be used for searching files and directories. Using additi
 - search files by extension type
 - ignore case while searching files/directories
 
-`find` powerful tool for working with the files. It can be used on its own to locate files, or in conjunction with other programs to perform operations on those files.
+`find` is a powerful tool for working with the files. It can be used on its own to locate files, or in conjunction with other programs to perform operations on those files.
 
 ```{r table_find, echo=FALSE}
 cname   <- c("`find`", "`find -name '*.txt'`", "`find -type d -iname`", "`find -type d -name`")
@@ -1637,7 +1670,7 @@ data.frame(Command = cname, Description = descrip) %>%
   )
 ```
 
-##### Search Recursively
+#### Search Recursively
 
 Let us use `find` to search for the file `release_names.txt` recursively. The `-name` option is used to specify the name of the file we are searching.
 
@@ -1650,9 +1683,11 @@ cd cline
 find -name release_names.txt
 ```
 
-##### Search by Extension
+There are two files with the name `release_names.txt` present in the current working directory and in `r_releases` directory.
 
-Let us search for all files with `.txt` extension in the `r` folder.
+#### Search by Extension
+
+Let us search for all files with `.txt` extension in the `r_releases` folder.
 
 ```{bash c62a, eval=FALSE}
 find r_releases -name '*.txt'
@@ -1663,7 +1698,9 @@ cd cline
 find r_releases -name '*.txt'
 ```
 
-##### Case-insensitive Mode
+There are 3 files with the `.txt` extension in `r_releases` folder.
+
+#### Case-insensitive Mode
 
 Search for all folders with the name `R` or `r`. Here we use the `-iname` option to ignore case while searching. The `-type` option is used to specify whether we are searching for files or folders. Since we are searching for folder/directory, we use it along with `d` i.e. directory to indicate that we are searching for directories and not files.
 
@@ -1676,7 +1713,7 @@ cd cline
 find -type d -iname R
 ```
 
-##### Case-sensitive Mode
+#### Case-sensitive Mode
 
 Search for all folders with the name `r`. It should exclude any folder with the name `R`.
 
@@ -1707,6 +1744,8 @@ data.frame(Command = cname, Description = descrip) %>%
     bootstrap_options = c("striped", "hover", "condensed", "responsive")
   )
 ```
+
+We have not executed the commands in this ebook as downloading multiple files from the internet will take a lot of time or result in errors but we have checked all the commands offline to ensure that they work.
 
 ### wget
 
@@ -1739,13 +1778,12 @@ data.frame(Command = cname, Description = descrip) %>%
   )
 ```
 
-##### Download URL
+#### Download URL
 
 Let us first use `wget` to download contents of a URL. Note, we are not downloading file as such but just the content of the URL. We will use the URL of the home page of [R](https://www.r-project.org/) project. 
 
 ```{bash c113a, eval=FALSE}
 wget https://www.r-project.org/
-ls
 ```
 
 ```{bash c113b, echo=FALSE, eval=FALSE}
@@ -1756,13 +1794,12 @@ ls
 
 If you look at the list of files, you can see a new file, `index.html` which we just downloaded using `wget`. Downloading contents this way will lead to confusion if we are dealing with multiple URLs. Let us learn to save the contents to a file (we can specify the name of the file which should help avoid confusion.)
 
-##### Specify Filename
+#### Specify Filename
 
 In this example, we download contents from the same URL and in addition specify the name of the file in which the content must be saved. Here we save it in a new file, `rhomepage.html` using the `-o` option followed by the filename.
 
 ```{bash c114a, eval=FALSE}
 wget -o rhomepage.html https://www.r-project.org/
-ls
 ```
 
 ```{bash c114b, echo=FALSE, eval=FALSE}
@@ -1771,7 +1808,7 @@ wget -o rhomepage.html https://www.r-project.org/
 ls
 ```
 
-##### Download File
+#### Download File
 
 How about downloading a file instead of a URL? In this example, we will download a logfile from the [RStudio CRAN](http://cran-logs.rstudio.com/) mirror. It contains the details of R downloads and individual package downloads. If you are a package developer and would want to know the countries in which your packages are downloaded, you will find this useful. We will download the file for 29th September and save it as `sep_29.csv.gz`.
 
@@ -1784,7 +1821,7 @@ cd cline
 wget -o sep_29.csv.gz http://cran-logs.rstudio.com/2019/2019-09-29.csv.gz
 ```
 
-##### Download Multiple URLs 
+#### Download Multiple URLs 
 
 How do we download multiple URLs? One way is to specify the URLs one after the other separated by a space or save all URLs in a file and read them one by one. In the below example, we have saved multiple URLs in the file `urls.txt`. 
 
@@ -1792,7 +1829,7 @@ How do we download multiple URLs? One way is to specify the URLs one after the o
 cat urls.txt
 ```
 
-```{bash c115b, echo=FALSE, eval=FALSE}
+```{bash c115b, echo=FALSE}
 cd cline
 cat urls.txt
 ```
@@ -1803,7 +1840,7 @@ We will download all the above URLs and save them in a new folder `downloads`. T
 wget -P downloads -i urls.txt     
 ```
 
-##### Quiet
+#### Quiet
 
 The `--quiet` option will turn off `wget` output. It will not show any of the following details:
 
@@ -1816,7 +1853,7 @@ The `--quiet` option will turn off `wget` output. It will not show any of the fo
 wget –-quiet http://cran-logs.rstudio.com/2019/2019-10-06.csv.gz
 ```
 
-##### No Verbose
+#### No Verbose
 
 Using the `-nv` or `--no-verbose` option, we can turn off verbose without being completely quiet (as we did in the previous example). Any error messages and basic information will still be printed.
 
@@ -1824,9 +1861,9 @@ Using the `-nv` or `--no-verbose` option, we can turn off verbose without being 
 wget –-no-verbose http://cran-logs.rstudio.com/2019/2019-10-13.csv.gz    
 ```
 
-##### Check Timestamp
+#### Check Timestamp
 
-Let us say we have already downloaded a file from a URL. The file is update from time to time and we intend to keep the local copy updated as well. Using the `--timestamping` option, the local file will have timestamp matching the remote file; if the remote file is not newer (not updated), no download will occur i.e. if the timestamp of the remote file has not changed it will not be downloaded. This is very useful in case of large files where you do not want to download them unless they have been updated.
+Let us say we have already downloaded a file from a URL. The file is updated from time to time and we intend to keep the local copy updated as well. Using the `--timestamping` option, the local file will have timestamp matching the remote file; if the remote file is not newer (not updated), no download will occur i.e. if the timestamp of the remote file has not changed it will not be downloaded. This is very useful in case of large files where you do not want to download them unless they have been updated.
 
 ```{bash c112a, eval=FALSE}
 wget –-timestamping http://cran-logs.rstudio.com/2019/2019-10-13.csv.gz
@@ -1850,7 +1887,7 @@ data.frame(Command = cname, Description = descrip) %>%
   )
 ```
 
-##### Download URL
+#### Download URL
 
 Let us download the home page of the [R](https://www.r-project.org/) project using `curl`.
 
@@ -1863,7 +1900,7 @@ cd cline
 curl https://www.r-project.org/
 ```
 
-##### Specify File
+#### Specify File
 
 Let us download another log file from the [RStudio CRAN](http://cran-logs.rstudio.com/) mirror and save it into a file using the `-o` option. 
 
@@ -1887,7 +1924,7 @@ cd cline
 curl http://cran-logs.rstudio.com/2019/2019-09-01.csv.gz > sep_01.csv.gz
 ```
 
-##### Download Silently
+#### Download Silently
 
 The `-s` option will allow you to download files silently. It will mute `curl` and will not display progress meter or error messages.
 
@@ -1900,6 +1937,8 @@ cd cline
 curl http://cran-logs.rstudio.com/2019/2019-09-01.csv.gz -o sept_01.csv.gz -s
 ls
 ```
+
+### R Functions
 
 In R, we can use `download.file()` to download files from the internet. The following packages offer functionalities that you will find useful.
 
@@ -1943,8 +1982,6 @@ data.frame(Command = cname, Description = descrip) %>%
 
 ## File Compression {#compress}
 
-In this section, we will explore file compression using the following
-
 - `tar`
 - `gzip`
 - `zip`
@@ -1960,7 +1997,7 @@ The `tar` command is used for file compression. It works with both `tar` and
 - create archives
 - append file to existing archives
 
-`tar` creates, maintains, modifies, and extracts files that are archived in the tar format. Tar stands for tape archive and is an archiving file format.
+`tar` creates, maintains, modifies, and extracts files that are archived in the tar format. Tar stands for **t**ape **ar**chive and is an archiving file format.
 
 ```{r table_tar, echo=FALSE}
 cname   <- c("`tar tvf`", "`tar tvfz`", "`tar xvf`", "`tar xvfz`", "`tar cvf`", 
@@ -1989,7 +2026,7 @@ We will use different options along with the `tar` command for listing, extracti
 
 While dealing with `tar.gz` archives we will use `z` in addition to `vf` and the above options. 
 
-##### List
+#### List
 
 Let us list all the files & folders in `release_names.tar`. As mentioned above. to list the files in the archive, we use the `t` option.
 
@@ -2002,7 +2039,7 @@ cd cline
 tar -tvf release_names.tar 
 ```
 
-##### Extract
+#### Extract
 
 Let us extract files from `release_names.tar` using the `x` option in addition to `vf`.
 
@@ -2018,20 +2055,7 @@ tar -xvf release_names.tar
 ls
 ```
 
-##### Create 
-
-Using the `c` option we can create tar archives. In the below example, we are using a single file but you can specify multiple files and folders as well.
-
-```{bash c68a, eval=FALSE}
-tar -cvf release_names.tar release_names.txt
-```
-
-```{bash c68b, echo=FALSE}
-cd cline
-tar -cvf release_names.tar release_names.txt
-```
-
-##### Add 
+#### Add 
 
 To add a file to an existing archive, use the `r` option. Let us add `release_names_18.txt` and `release_names_19.txt` to the archive we created in the previous step. 
 
@@ -2044,25 +2068,20 @@ cd cline
 tar -rvf release_names.tar release_names_18.txt release_names_19.txt
 ```
 
-In R, we can use the `tar()` and `untar()` functions from the `utils` package to handle `.tar` and `.tar.gz` archives.
+#### Create 
 
-```{r r_tar, echo=FALSE}
-cname   <- c("`tar tvf`", "`tar tvfz`", "`tar xvf`", "`tar xvfz`", "`tar cvf`", 
-             "`tar cvfz`")
-descrip <- c("`utils::untar('archive.tar', list = TRUE)`",
-             "`utils::untar('archive.tar.gz', list = TRUE)`",
-             "`utils::untar('archive.tar')`",
-             "`utils::untar('archive.tar.gz')`",
-             "`utils::tar('archive.tar')`",
-             "`utils::tar('archive.tar', compression = 'gzip')`")
-data.frame(Command = cname, R = descrip) %>% 
-  kable() %>% 
-  kable_styling(
-    bootstrap_options = c("striped", "hover", "condensed", "responsive")
-  )
+Using the `c` option we can create tar archives. In the below example, we are using a single file but you can specify multiple files and folders as well.
+
+```{bash c68a, eval=FALSE}
+tar -cvf pkg_names.tar pkg_names.txt
 ```
 
-### gzip, zip & unzip
+```{bash c68b, echo=FALSE}
+cd cline
+tar -cvf pkg_names.tar pkg_names.txt
+```
+
+### gzip
 
 ```{r table_gzip, echo=FALSE}
 cname   <- c("`gzip`", "`gzip -d`", "`gzip -c`", "`zip -r`", "`zip`",                       "`unzip`", "`unzip -d`", "`unzip -l`")
@@ -2084,7 +2103,7 @@ data.frame(Command = cname, Description = descrip) %>%
 
 `gzip`, `gunzip`, and `zcat` commands are used to compress or expand files in the GNU GZIP format i.e. files with `.gz` extension
 
-##### Compress 
+#### Compress 
 
 Let us compress `release_names.txt` file using `gzip`.
 
@@ -2105,7 +2124,7 @@ gunzip release_names.txt.gz
 ```
 
 
-##### Decompress 
+#### Decompress 
 
 Use the `-d` option with `gzip` to decompress a file. In the below example, we decompress the `sept_15.csv.gz` file (downloaded using `wget` or `curl` earlier). You can also use `gunzip` for the same result.
 
@@ -2121,7 +2140,7 @@ gzip -d sept_15.csv.gz
 ls
 ```
 
-##### Specify Filename
+#### Specify Filename
 
 Use `-c` and `>` to specify a different file name while compressing using `gzip`. In the below example, `gzip` will create `releases.txt.gz` instead of `release_names.txt.gz`.
 
@@ -2136,9 +2155,11 @@ gzip -c release_names.txt > releases.txt.gz
 ls
 ```
 
+### zip & unzip
+
 `zip` creates ZIP archives while `unzip` lists and extracts compressed files in a ZIP archive.
 
-##### List 
+#### List 
 
 Let us list all the files and folders in `main_project.zip()` using `unzip` and the `-l` option. 
 
@@ -2151,7 +2172,7 @@ cd cline
 unzip -l main_project.zip
 ```
 
-##### Extract 
+#### Extract 
 
 Using `unzip`, let us now extract files and folders from `zip_example.zip`.
 
@@ -2174,7 +2195,7 @@ unzip zip_example.zip –d myexamples
 system2("unzip", c("zip_example.zip", "-d", "examples"), TRUE)
 ```
 
-##### Compress 
+#### Compress 
 
 Use the `-r` option along with `zip` to create a ZIP archive. In the below example, we create a ZIP archive of `myproject` folder.
 
@@ -2200,7 +2221,7 @@ cd cline
 zip -r packproj.zip myproject mypackage
 ```
 
-##### Add 
+#### Add 
 
 To add a new file/folder to an existing archive, specify the name of the archive followed by the name of the file or the folder. In the below example, we add the `bash.sh` file to the `myproject.zip` archive created in a previous step.
 
@@ -2213,7 +2234,31 @@ cd cline
 zip myproject.zip bash.sh
 ```
 
-In R, we can the [zip]() package has the functionalities to handle ZIP archives. The `tar()` and `untar()` functions from the `utils` package can handle GZIP archives.
+### R Functions
+
+#### tar & tar.gz
+
+In R, we can use the `tar()` and `untar()` functions from the `utils` package to handle `.tar` and `.tar.gz` archives.
+
+```{r r_tar, echo=FALSE}
+cname   <- c("`tar tvf`", "`tar tvfz`", "`tar xvf`", "`tar xvfz`", "`tar cvf`", 
+             "`tar cvfz`")
+descrip <- c("`utils::untar('archive.tar', list = TRUE)`",
+             "`utils::untar('archive.tar.gz', list = TRUE)`",
+             "`utils::untar('archive.tar')`",
+             "`utils::untar('archive.tar.gz')`",
+             "`utils::tar('archive.tar')`",
+             "`utils::tar('archive.tar', compression = 'gzip')`")
+data.frame(Command = cname, R = descrip) %>% 
+  kable() %>% 
+  kable_styling(
+    bootstrap_options = c("striped", "hover", "condensed", "responsive")
+  )
+```
+
+#### zip & gzip
+
+The [zip](https://cran.r-project.org/package=zip) package has the functionalities to handle ZIP archives. The `tar()` and `untar()` functions from the `utils` package can handle GZIP archives.
 
 ```{r r_gzip, echo=FALSE}
 cname   <- c("`gzip`", "`gzip -d`", "`gzip -c`", "`zip -r`", "`zip`",                       "`unzip`", "`unzip -d`", "`unzip -l`")
@@ -2232,7 +2277,7 @@ data.frame(Command = cname, R = descrip) %>%
   )
 ```
 
-### System Info {#sysinfo}
+## System Info {#sysinfo}
 
 In this section, we will explore commands that will allow us to
 
@@ -2279,19 +2324,19 @@ data.frame(Command = cname, Description = descrip) %>%
   )
 ```
 
-##### Print all available information about the system
+#### Print all available information about the system
 
 ```{bash c104a}
 uname -a
 ```
 
-##### Display free, used, swap memory in the system
+#### Display free, used, swap memory in the system
 
 ```{bash c105a}
 free
 ```
 
-##### Display file system disk space usage
+#### Display file system disk space usage
 
 ```{bash c106a}
 df
@@ -2321,19 +2366,6 @@ data.frame(Command = cname, Description = descrip) %>%
   )
 ```
 
-In R, we can use `Sys.sleep()` to delay activity and `history()` to view command history.
-
-```{r r_others, echo=FALSE}
-cname   <- c("`sleep`", "`history`")
-descrip <- c("`Sys.sleep()`",
-             "`history()`")
-data.frame(Command = cname, R = descrip) %>% 
-  kable() %>% 
-  kable_styling(
-    bootstrap_options = c("striped", "hover", "condensed", "responsive")
-  )
-```
-
 ### Funny Commands
 
 Below are a few funny commands for you to try out. Use `sudo apt-get install` to install fortune and banner before trying them.
@@ -2350,7 +2382,23 @@ data.frame(Command = cname, Description = descrip) %>%
   )
 ```
 
-### Execute Commands from R {#system2}
+### R Functions
+
+In R, we can use `Sys.sleep()` to delay activity and `history()` to view command history.
+
+```{r r_others, echo=FALSE}
+cname   <- c("`sleep`", "`history`")
+descrip <- c("`Sys.sleep()`",
+             "`history()`")
+data.frame(Command = cname, R = descrip) %>% 
+  kable() %>% 
+  kable_styling(
+    bootstrap_options = c("striped", "hover", "condensed", "responsive")
+  )
+```
+
+
+## Execute Commands from R {#system2}
 
 Now, let us turn our attention to executing commands from R using `system2()`. 
 Here we will focus on the following
@@ -2359,17 +2407,17 @@ Here we will focus on the following
 - execute commands with arguments
 - redirect output
 
-Let us try to execute a command without any additional arguments. We will execute the `date` command to view the system date. Use `system2()` and specify the command using the `command` argument. Whenever you are trying to execute a command from R, the first argument or input should be the command and it must be enclosed in quotes.
+Let us try to execute a command without any additional arguments. We will execute the `ls` command to list all files and directories. Use `system2()` and specify the command using the `command` argument. Whenever you are trying to execute a command from R, the first argument or input should be the command and it must be enclosed in quotes.
 
 ```{r system2_1a, eval=FALSE}
-system2(command = "date")
+system2(command = "ls")
 ```
 
 ```{r system2_1b, echo=FALSE}
-system2(command = "date", stdout = TRUE)
+system2(command = "ls", stdout = TRUE)
 ```
 
-Great! Now, how do we specify the arguments? The additional arguments of a 
+Great! Now, how do we specify the options? The additional options of a 
 command must be stored as a character vector and specified using the `args`
 argument. In the below example, we delete the `examples` folder we created earlier while decompressing the `zip_example.zip` file.
 
@@ -2404,7 +2452,7 @@ system2(command = "diff",
 
 The `run()` command from the [processx](https://processx.r-lib.org/) package can be used to execute shell commands as well.
 
-### Execute Shell Commands in RStudio {#shellrstudio}
+## Execute Shell Commands in RStudio {#shellrstudio}
 
 In RStudio, commands can be executed from shell scripts by pressing `Ctrl + Enter`. Instead of sending the command to the R console, it is redirected to 
 the terminal where it is executed as shown below.
@@ -2413,7 +2461,7 @@ the terminal where it is executed as shown below.
 knitr::include_graphics("/img/cline_rstudio_shell.gif")
 ```
 
-### RMarkdown {#shellrmarkdown}
+## RMarkdown {#shellrmarkdown}
 
 RMarkdown supports `bash`, `sh` and `awk`. This post was initially  created using `sh` as the underlying operating system is Windows. Later, we used `bash` after installing the Windows subsystem for Linux. Click [here](https://bookdown.org/yihui/rmarkdown/language-engines.html#shell-scripts) to learn more.
 
@@ -2421,14 +2469,15 @@ RMarkdown supports `bash`, `sh` and `awk`. This post was initially  created usin
 knitr::include_graphics("/img/cline_shell_markdown.png")
 ```
 
-### R in the Shell {#rinshell}
+## R in the Shell {#rinshell}
 
 In this section, we will learn to execute R commands and scripts in the command line using:
 
 - `R -e`
 - `Rscript -e`
+- `R CMD BATCH`
 
-The `-e` option allows us to specify R expression(s). `R -e` will launch R and then execute the code specified within quotes. Use semi-colon to execute multiple commands.
+The `-e` option allows us to specify R expression(s). `R -e` will launch R and then execute the code specified within quotes. Use semi-colon to execute multiple expressions as shown below. You will be able to run the below commands only if you are able to launch R from the command line. Windows users need to ensure that R is added to the path environment.
 
 ```{sh c118a}
 R -e "head(mtcars); tail(mtcars)"
@@ -2458,7 +2507,7 @@ If you are more interested, try the [littler](https://cran.r-project.org/package
 - awk
 - sed
 
-### Summary {#summary}
+## Summary {#summary}
 
 - Shell is a text based application for viewing, handling and manipulating files
 - It is also known by the following names
@@ -2471,7 +2520,7 @@ If you are more interested, try the [littler](https://cran.r-project.org/package
 - Execute commands from shell script in RStudio using Ctrl + Enter
 - RMarkdown supports `bash`, `sh` and `awk` 
 
-### References & Further Readings {#references}
+## References & Further Readings {#references}
 
 - https://tldr.sh/
 - https://blog.rstudio.com/2017/08/11/rstudio-v1-1-preview-terminal/
@@ -2486,7 +2535,7 @@ If you are more interested, try the [littler](https://cran.r-project.org/package
 - https://ss64.com/
 - https://www.learnenough.com/command-line-tutorial
 
-### Feedback
+## Feedback
 
 If you see mistakes or want to suggest changes, please create an issue on the
 <a href="https://github.com/rsquaredacademy-infra/blog" target="_blank">source 
@@ -2499,7 +2548,7 @@ system2("rm", c("-r", "J:/blog/content/post/cline"))
 ```
 
 ```{bash c99, echo=FALSE}
-cp -r /mnt/j/R/rstudio-export /mnt/j/blog/content/post/cline
+cp -r /mnt/j/R/courses/live/command-line-basics/bash-tutorial /mnt/j/blog/content/post/cline
 ``` 
 
  
