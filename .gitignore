@@ -3,3 +3,12 @@
 .RData
 .Ruserdata
 public/
+.quarto/
+_site/
+# IMPORTANT: DO NOT gitignore _freeze/ - it must be committed for zero-R Netlify deploys
+# Secrets (untracked after Phase 0 purge - filter-repo removes from history)
+.Renviron
+config.yml
+options.R
+# Local planning docs (not deployed)
+roadmap/
