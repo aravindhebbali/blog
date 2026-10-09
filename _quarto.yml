@@ -1,0 +1,33 @@
+project:
+  type: website
+  output-dir: _site
+
+website:
+  title: "Aravind's Blog"
+  site-url: "https://blog.aravindhebbali.com"
+  description: "R Packages, Economics, and Data Science"
+  navbar:
+    left:
+      - text: "Home"
+        href: index.qmd
+      - text: "Posts"
+        href: posts/index.qmd
+      - text: "About"
+        href: about.qmd
+    right:
+      - icon: github
+        href: https://github.com/aravindhebbali
+      - icon: twitter
+        href: https://twitter.com/hebbaliaravind
+      - icon: rss
+        href: posts/index.xml
+
+format:
+  html:
+    theme: cosmo
+    toc: true
+    code-copy: true
+    code-overflow: wrap
+
+execute:
+  freeze: auto
