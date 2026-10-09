@@ -6,7 +6,9 @@
   QUARTO_VERSION = "1.6.39"
 
 [[plugins]]
-  package = "netlify-plugin-quarto"
+package = "@quarto/netlify-plugin-quarto"
+  [plugins.inputs]
+  version = "1.6.39"
 
 [[headers]]
   for = "/*"
