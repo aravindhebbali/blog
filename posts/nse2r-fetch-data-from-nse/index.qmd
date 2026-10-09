@@ -1,0 +1,249 @@
+---
+title: "Introducing nse2r"
+author: Aravind Hebbali
+description: "Fetch data from the National Stock Exchange, India."
+date: 2020-01-17
+categories:
+  - packages
+tags:
+  - nse
+  - finance
+  - stock
+image: /img/github_nse2r.png
+aliases:
+  - /2020/01/17/nse2r-fetch-data-from-nse/
+  - /2020/01/21/nse2r-fetch-data-from-nse/
+  - /2020/01/21/nse2r-fetch-date-from-nse/
+---
+
+![nse2r](/img/github_nse2r.png){width="70%"}
+
+We are excited to announce the [nse2r](https://nse2r.rsquaredacademy.com) package. [NSE](https://www.nseindia.com/) (National Stock Exchange) is the leading stock exchange of India, located in the city of Mumbai. While users can manually download data from NSE through a browser, importing this data into R becomes cumbersome. The nse2r R package implements the retrieval of data from NSE and aims to reduce the pre-processing steps needed in analyzing such data.
+
+nse2r is inspired by and a port of the Python package [nsetools](https://nsetools.readthedocs.io/en/latest/). The authors and contributors for this R package are not affiliated with NSE and NSE does not offer support for this R package.
+
+With nse2r, you can fetch the following data related to:
+
+- stocks
+    - quote for a given stock
+    - stock description
+    - validate stock symbol/ticker
+    - most actively traded stocks in a month
+    - 52 week high/low
+    - top gainers/losers for the last trading session
+- index
+    - list of NSE indices
+    - validate index symbol/ticker
+    - quote for a given index
+- futures & options
+    - top gainers/losers for the last trading session
+- pre open market data
+    - nifty
+    - nifty bank
+- indices advances & declines
+
+## Installation
+
+```{r cran-install, eval=FALSE}
+# Install release version from CRAN
+install.packages("nse2r")
+
+# Install development version from GitHub
+# install.packages("devtools")
+devtools::install_github("rsquaredacademy/nse2r")
+```
+
+## Usage
+
+```{r load_nse2r, echo=FALSE, message=FALSE, warning=FALSE, eval=FALSE}
+library(nse2r)
+```
+
+nse2r uses consistent prefix `nse_` for easy tab completion.
+
+- `nse_index_` for index
+- `nse_stock_` for stocks
+- `nse_fo_` for futures and options
+- `nse_preopen_` for preopen data
+
+## Preprocessing
+
+nse2r does basic data preprocessing which are listed below:
+
+- modify column data types from `character` to `numeric` and `Date`
+- modify column names
+    - make them more descriptive
+    - to `snake_case` from `camelCase`
+
+Users can retain the names and format as returned by NSE using the `clean_names`
+argument and setting it to `FALSE`.
+
+## Quick Overview
+
+::: {.callout-note}
+The NSE data endpoints this package queries have been protected by bot
+challenges since 2020, so the calls below cannot be re-executed. The `nse2r`
+package itself is also no longer available on CRAN, so the setup chunk is shown
+but not executed. The code is shown as written, and the output captured when
+the post was first published is preserved in the collapsed section under each
+chunk.
+:::
+
+#### Fetch Indices Quote
+
+```{r index_quote, eval=FALSE}
+nse_index_quote()
+
+# retain original column names as returned by NSE
+nse_index_quote(clean_names = FALSE)
+```
+
+<details>
+<summary>Output captured at publication (January 2020)</summary>
+
+````
+## # A tibble: 55 x 4
+##    index_name        last_traded_price  change percent_change
+##    <chr>                         <dbl>   <dbl>          <dbl>
+##  1 NIFTY 50 Pre Open           12195.   -29.2           -0.24
+##  2 NIFTY 50                    12170.   -54.7           -0.45
+##  3 NIFTY NEXT 50               28617.  -137.            -0.48
+##  4 NIFTY100 LIQ 15              3700.   -32.4           -0.87
+##  5 NIFTY BANK                  30948.  -133.            -0.43
+##  6 INDIA VIX                      15.8    0.44           2.85
+##  7 NIFTY 100                   12287.   -56.0           -0.45
+##  8 NIFTY 500                    9988.   -38.2           -0.38
+##  9 NIFTY MIDCAP 100            17952.   -20.7           -0.12
+## 10 NIFTY MIDCAP 50              4941.    -4.25          -0.09
+## # ... with 45 more rows
+````
+````
+## # A tibble: 55 x 4
+##    name              lastPrice  change pChange
+##    <chr>                 <dbl>   <dbl>   <dbl>
+##  1 NIFTY 50 Pre Open   12195.   -29.2    -0.24
+##  2 NIFTY 50            12170.   -54.7    -0.45
+##  3 NIFTY NEXT 50       28617.  -137.     -0.48
+##  4 NIFTY100 LIQ 15      3700.   -32.4    -0.87
+##  5 NIFTY BANK          30948.  -133.     -0.43
+##  6 INDIA VIX              15.8    0.44    2.85
+##  7 NIFTY 100           12287.   -56.0    -0.45
+##  8 NIFTY 500            9988.   -38.2    -0.38
+##  9 NIFTY MIDCAP 100    17952.   -20.7    -0.12
+## 10 NIFTY MIDCAP 50      4941.    -4.25   -0.09
+## # ... with 45 more rows
+````
+
+</details>
+
+#### Top gainers for the last trading session.
+
+```{r stock_top_gainers, eval=FALSE}
+nse_stock_top_gainers()
+
+# retain original column names as returned by NSE
+nse_stock_top_gainers(clean_names = FALSE)
+```
+
+<details>
+<summary>Output captured at publication (January 2020)</summary>
+
+````
+## # A tibble: 10 x 12
+##    symbol series last_corp_annou~ last_corp_annou~ open_price high_price
+##    <chr>  <chr>  <date>           <chr>                 <dbl>      <dbl>
+##  1 INFRA~ EQ     2019-12-19       Interim Dividen~       224.       244.
+##  2 ZEEL   EQ     2019-07-15       Annual General ~       269        287.
+##  3 BPCL   EQ     2019-08-21       Dividend - Rs 8~       458.       466.
+##  4 COALI~ EQ     2019-08-09       Annual General ~       201.       205.
+##  5 KOTAK~ EQ     2019-07-12       Annual General ~      1605       1631.
+##  6 HDFC   EQ     2019-07-19       Annual General ~      2443       2486.
+##  7 ULTRA~ EQ     2019-07-10       Annual General ~      4455       4520 
+##  8 BRITA~ EQ     2019-08-22       Scheme Of Arang~      3100       3130 
+##  9 RELIA~ EQ     2019-08-02       Annual General ~      1529.      1546.
+## 10 TECHM  EQ     2019-07-25       Annual General ~       777.       783.
+## # ... with 6 more variables: low_price <dbl>, last_traded_price <dbl>,
+## #   prev_close_price <dbl>, percent_change <dbl>, traded_quantity <dbl>,
+## #   turnover_in_lakhs <dbl>
+````
+````
+## # A tibble: 10 x 12
+##    symbol series lastCorpAnnounc~ lastCorpAnnounc~ openPrice highPrice
+##    <chr>  <chr>  <date>           <chr>                <dbl>     <dbl>
+##  1 INFRA~ EQ     2019-12-19       Interim Dividen~      224.      244.
+##  2 ZEEL   EQ     2019-07-15       Annual General ~      269       287.
+##  3 BPCL   EQ     2019-08-21       Dividend - Rs 8~      458.      466.
+##  4 COALI~ EQ     2019-08-09       Annual General ~      201.      205.
+##  5 KOTAK~ EQ     2019-07-12       Annual General ~     1605      1631.
+##  6 HDFC   EQ     2019-07-19       Annual General ~     2443      2486.
+##  7 ULTRA~ EQ     2019-07-10       Annual General ~     4455      4520 
+##  8 BRITA~ EQ     2019-08-22       Scheme Of Arang~     3100      3130 
+##  9 RELIA~ EQ     2019-08-02       Annual General ~     1529.     1546.
+## 10 TECHM  EQ     2019-07-25       Annual General ~      777.      783.
+## # ... with 6 more variables: lowPrice <dbl>, ltp <dbl>,
+## #   previousPrice <dbl>, netPrice <dbl>, tradedQuantity <dbl>,
+## #   turnoverInLakhs <dbl>
+````
+
+</details>
+
+#### Stocks that have touched their 52 week highs during the day
+
+```{r stock_year_high, eval=FALSE}
+nse_stock_year_high()
+
+# retain original column names as returned by NSE
+nse_stock_year_high(clean_names = FALSE)
+```
+
+<details>
+<summary>Output captured at publication (January 2020)</summary>
+
+````
+## # A tibble: 44 x 10
+##    symbol symbol_desc date       new_high  year last_traded_pri~ prev_high
+##    <chr>  <chr>       <date>        <dbl> <dbl>            <dbl>     <dbl>
+##  1 AGCNET AGC Networ~ 2020-01-20     223.  223.             223.      212.
+##  2 ALKYL~ Alkyl Amin~ 2020-01-17    1300  1300             1295      1300 
+##  3 APLAP~ APL Apollo~ 2020-01-15    2022. 2022.            1993.     1977.
+##  4 AUBANK AU Small F~ 2020-01-20     892   892              890.      892 
+##  5 BANSW~ Banswara S~ 2020-01-20     123   123              118.      123 
+##  6 BHART~ Bharti Air~ 2020-01-20     515   515              508.      513.
+##  7 CANFI~ Can Fin Ho~ 2019-11-05     467.  467.             467.      434.
+##  8 CDSL   Central De~ 2020-01-20     284.  284.             281.      282 
+##  9 FINEO~ Fine Organ~ 2020-01-20    2266  2266             2200      2238.
+## 10 FORCE~ FORCE MOTO~ 2020-01-20    1504  1504             1470.     1487 
+## # ... with 34 more rows, and 3 more variables: prev_close <dbl>,
+## #   change <dbl>, percent_change <dbl>
+````
+````
+## # A tibble: 44 x 10
+##    symbol symbolDesc dt         value  year   ltp value_old  prev change
+##    <chr>  <chr>      <date>     <dbl> <dbl> <dbl>     <dbl> <dbl>  <dbl>
+##  1 AGCNET AGC Netwo~ 2020-01-20  223.  223.  223.      212.  212.  10.6 
+##  2 ALKYL~ Alkyl Ami~ 2020-01-17 1300  1300  1295      1300  1272.  22.5 
+##  3 APLAP~ APL Apoll~ 2020-01-15 2022. 2022. 1993.     1977. 1943.  50   
+##  4 AUBANK AU Small ~ 2020-01-20  892   892   890.      892   886.   4.05
+##  5 BANSW~ Banswara ~ 2020-01-20  123   123   118.      123   121.  -3.2 
+##  6 BHART~ Bharti Ai~ 2020-01-20  515   515   508.      513.  509.  -0.35
+##  7 CANFI~ Can Fin H~ 2019-11-05  467.  467.  467.      434.  389.  77.8 
+##  8 CDSL   Central D~ 2020-01-20  284.  284.  281.      282   273.   7.85
+##  9 FINEO~ Fine Orga~ 2020-01-20 2266  2266  2200      2238. 2220. -20.3 
+## 10 FORCE~ FORCE MOT~ 2020-01-20 1504  1504  1470.     1487  1466.   4.2 
+## # ... with 34 more rows, and 1 more variable: pChange <dbl>
+````
+
+</details>
+
+
+## Learning More
+
+- [Documentation](https://nse2r.rsquaredacademy.com)
+- [GitHub](https://github.com/rsquaredacademy/nse2r)
+
+## Feedback
+
+All feedback is welcome. Issues (bugs and feature requests) can be posted to
+[github tracker](https://github.com/rsquaredacademy/nse2r/issues).
+For help with code or other related questions, feel free to reach out to us
+at pkgs@rsquaredacademy.com.
