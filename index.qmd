@@ -1,0 +1,17 @@
+---
+title: "Aravind's Blog"
+listing:
+  contents: posts
+  sort: "date desc"
+  type: default
+  categories: true
+  sort-ui: true
+  filter-ui: true
+  feed: true
+page-layout: full
+title-block-banner: true
+---
+
+Welcome. I write about R packages I maintain at
+[Rsquared Academy](https://www.rsquaredacademy.com/) along with occasional
+notes on R, economics and data science.

@@ -1,6 +1,9 @@
 project:
   type: website
   output-dir: _site
+  resources:
+    - img
+    - google02e424888b5e2def.html
 
 website:
   title: "Aravind's Blog"

@@ -1,0 +1,29 @@
+---
+title: "About"
+image: img/aravind.jpg
+about:
+  template: jolla
+  image-shape: round
+  image-width: 15em
+  links:
+    - icon: github
+      text: GitHub
+      href: https://github.com/aravindhebbali
+    - icon: twitter
+      text: Twitter
+      href: https://twitter.com/hebbaliaravind
+    - icon: link
+      text: Rsquared Academy
+      href: https://www.rsquaredacademy.com/
+---
+
+## About this blog
+
+I am Aravind Hebbali. I build and maintain R packages at
+[Rsquared Academy](https://www.rsquaredacademy.com/) and use this blog to
+announce releases, document design decisions, and write about R, economics
+and data science.
+
+Earlier tutorials from 2016 to 2020 now live at
+[blog.rsquaredacademy.com](https://blog.rsquaredacademy.com/), so links to
+them keep working.

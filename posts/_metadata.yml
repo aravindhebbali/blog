@@ -1,0 +1,7 @@
+# Options applied to all posts in this directory
+
+# Freeze computational output: re-execute only when a post's source changes.
+# The resulting _freeze/ cache is committed so Netlify builds need no R runtime.
+freeze: true
+
+author: Aravind Hebbali
