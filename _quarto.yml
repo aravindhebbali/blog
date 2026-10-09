@@ -1,8 +1,13 @@
 project:
   type: website
   output-dir: _site
+  # Render only the Quarto sources. The legacy Hugo/blogdown tree (content/,
+  # themes/, index.Rmd) and roadmap/ are still on disk but must not be built
+  # into the site; they are deleted later in the migration.
+  render:
+    - "*.qmd"
+    - posts
   resources:
-    - img
     - google02e424888b5e2def.html
 
 website:

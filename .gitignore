@@ -12,3 +12,4 @@ config.yml
 options.R
 # Local planning docs (not deployed)
 roadmap/
+/.quarto/
