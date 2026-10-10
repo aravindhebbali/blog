@@ -30,6 +30,7 @@ website:
   open-graph: true
   twitter-card:
     site: "@hebbaliaravind"
+  # TODO: replace with the real GA4 measurement ID when supplied
   google-analytics:
     tracking-id: "G-XXXXXXXXXX"
   cookie-consent: true
