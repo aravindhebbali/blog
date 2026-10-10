@@ -18,6 +18,15 @@
 - `git status` shows only intended files — no stray artifacts.
 - After content edits, spot-check the rendered page in `_site/`.
 
+## Editing frozen posts
+- `_freeze/posts/<slug>/index/execute-results/html.json` caches the post's
+  processed markdown, so prose edits do NOT appear in output from a full
+  `quarto render` alone.
+- After editing a frozen post, run `quarto render <post>/index.qmd` (regenerates
+  the cache) and commit the updated `_freeze/` json in the same commit.
+- A clean fresh-clone render is the way to verify what Netlify will build
+  (Netlify runs plain `quarto render` against committed `_freeze/`).
+
 ## Build commands
 - `quarto render` (or `npm run build`)
 - If not on PATH: `& "$env:LOCALAPPDATA\Programs\Quarto\bin\quarto.exe" render`
