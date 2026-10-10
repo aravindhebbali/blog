@@ -38,7 +38,7 @@ devtools::install_github("rsquaredacademy/rfm")
 rfm_launch_app()
 ```
 
-or try the live version [here](https://www.rsquaredcomputing.com/rfm/).
+or try the live version [here](https://apps.rsquaredacademy.com/).
 
 Read on to learn more about the features of **rfm**, or see the
 [rfm website](https://rfm.rsquaredacademy.com/) for

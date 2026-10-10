@@ -48,7 +48,7 @@ devtools::install_github("rsquaredacademy/blorr")
 blr_launch_app()
 ```
 
-or try the live version [here](https://www.rsquaredcomputing.com/blorr/).
+or try the live version [here](https://apps.rsquaredacademy.com/).
 
 Read on to learn more about the features of **blorr**, or see the 
 [blorr website](https://blorr.rsquaredacademy.com/) for 

@@ -41,7 +41,7 @@ devtools::install_github("rsquaredacademy/vistributions")
 vdist_launch_app()
 ```
 
-or try the live version [here](https://www.rsquaredcomputing.com/vistributions/).
+or try the live version [here](https://apps.rsquaredacademy.com/).
 
 {{< video https://www.youtube.com/embed/Wa44jxAJvTE >}}
 

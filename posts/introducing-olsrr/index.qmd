@@ -47,7 +47,7 @@ devtools::install_github("rsquaredacademy/olsrr")
 ols_launch_app()
 ```
 
-or try the live version [here](https://www.rsquaredcomputing.com/olsrr/).
+or try the live version [here](https://apps.rsquaredacademy.com/).
 
 Read on to learn more about the features of **olsrr**, or see the
 [olsrr website](https://olsrr.rsquaredacademy.com/) for

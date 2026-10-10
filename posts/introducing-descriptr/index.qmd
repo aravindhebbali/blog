@@ -34,7 +34,7 @@ devtools::install_github("rsquaredacademy/descriptr")
 ds_launch_shiny_app()
 ```
 
-or try the live version [here](https://www.rsquaredcomputing.com/descriptr/).
+or try the live version [here](https://apps.rsquaredacademy.com/).
 
 Read on to learn more about the features of **descriptr**, or see the 
 [descriptr website](https://descriptr.rsquaredacademy.com/) for 

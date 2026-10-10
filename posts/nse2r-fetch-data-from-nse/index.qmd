@@ -18,9 +18,9 @@ aliases:
 
 ![nse2r](/img/github_nse2r.png){width="70%"}
 
-We are excited to announce the [nse2r](https://nse2r.rsquaredacademy.com) package. [NSE](https://www.nseindia.com/) (National Stock Exchange) is the leading stock exchange of India, located in the city of Mumbai. While users can manually download data from NSE through a browser, importing this data into R becomes cumbersome. The nse2r R package implements the retrieval of data from NSE and aims to reduce the pre-processing steps needed in analyzing such data.
+We are excited to announce the [nse2r](https://github.com/rsquaredacademy/nse2r) package. [NSE](https://www.nseindia.com/) (National Stock Exchange) is the leading stock exchange of India, located in the city of Mumbai. While users can manually download data from NSE through a browser, importing this data into R becomes cumbersome. The nse2r R package implements the retrieval of data from NSE and aims to reduce the pre-processing steps needed in analyzing such data.
 
-nse2r is inspired by and a port of the Python package [nsetools](https://nsetools.readthedocs.io/en/latest/). The authors and contributors for this R package are not affiliated with NSE and NSE does not offer support for this R package.
+nse2r is inspired by and a port of the Python package [nsetools](https://pypi.org/project/nsetools/). The authors and contributors for this R package are not affiliated with NSE and NSE does not offer support for this R package.
 
 With nse2r, you can fetch the following data related to:
 
@@ -238,7 +238,7 @@ nse_stock_year_high(clean_names = FALSE)
 
 ## Learning More
 
-- [Documentation](https://nse2r.rsquaredacademy.com)
+- [Documentation](https://github.com/rsquaredacademy/nse2r)
 - [GitHub](https://github.com/rsquaredacademy/nse2r)
 
 ## Feedback
