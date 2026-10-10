@@ -17,3 +17,142 @@ package = "@quarto/netlify-plugin-quarto"
     X-Content-Type-Options = "nosniff"
     Referrer-Policy = "strict-origin-when-cross-origin"
     Permissions-Policy = "camera=(), microphone=(), geolocation=()"
+
+# Legacy permalinks (/:year/:month/:day/:slug/) mapped to the Quarto /posts/<slug>/ URLs.
+[[redirects]]
+  from = "/2019/02/07/introducing-olsrr/"
+  to = "/posts/introducing-olsrr/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/2019/02/07/introducing-olsrr/*"
+  to = "/posts/introducing-olsrr/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/2019/02/12/introducing-rfm/"
+  to = "/posts/introducing-rfm/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/2019/02/12/introducing-rfm/*"
+  to = "/posts/introducing-rfm/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/2019/02/19/introducing-descriptr/"
+  to = "/posts/introducing-descriptr/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/2019/02/19/introducing-descriptr/*"
+  to = "/posts/introducing-descriptr/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/2019/02/26/introducing-blorr/"
+  to = "/posts/introducing-blorr/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/2019/02/26/introducing-blorr/*"
+  to = "/posts/introducing-blorr/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/2019/03/12/binning-data-with-rbin/"
+  to = "/posts/binning-data-with-rbin/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/2019/03/12/binning-data-with-rbin/*"
+  to = "/posts/binning-data-with-rbin/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/2019/03/14/introducting-vistributions/"
+  to = "/posts/introducing-vistributions/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/2019/03/14/introducting-vistributions/*"
+  to = "/posts/introducing-vistributions/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/2019/03/14/introducing-vistributions/"
+  to = "/posts/introducing-vistributions/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/2019/04/01/shiny-apps/"
+  to = "/posts/shiny-apps/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/2019/04/01/shiny-apps/*"
+  to = "/posts/shiny-apps/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/2019/07/05/introducing-pkginfo/"
+  to = "/posts/introducing-pkginfo/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/2019/07/05/introducing-pkginfo/*"
+  to = "/posts/introducing-pkginfo/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/2020/01/17/nse2r-fetch-data-from-nse/"
+  to = "/posts/nse2r-fetch-data-from-nse/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/2020/01/17/nse2r-fetch-data-from-nse/*"
+  to = "/posts/nse2r-fetch-data-from-nse/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/2020/01/21/nse2r-fetch-data-from-nse/"
+  to = "/posts/nse2r-fetch-data-from-nse/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/2020/01/21/nse2r-fetch-date-from-nse/"
+  to = "/posts/nse2r-fetch-data-from-nse/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/2020/07/31/rfm-0-2-2/"
+  to = "/posts/rfm-0-2-2/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/2020/07/31/rfm-0-2-2/*"
+  to = "/posts/rfm-0-2-2/"
+  status = 301
+  force = true
