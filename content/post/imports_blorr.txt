@@ -1,5 +1,0 @@
-car
-caret
-checkmate
-clisymbols
-cli
