@@ -1,0 +1,61 @@
+---
+title: "Package Name X.Y.Z"
+author: Aravind Hebbali
+description: "One or two sentence summary of the release highlights."
+date: YYYY-MM-DD
+categories:
+  - packages
+tags:
+  - package_name
+image: /img/package_name_banner.png
+---
+
+## Summary
+
+Brief introduction to the release: what the package does and what the
+headline changes are.
+
+## Installation
+
+```{r install, eval=FALSE}
+# Release version from CRAN
+install.packages("pkgname")
+
+# Development version from GitHub
+# install.packages("devtools")
+devtools::install_github("rsquaredacademy/pkgname")
+```
+
+## What's New
+
+Sections below follow the package `NEWS.md` structure — copy the entry for
+this version verbatim rather than rewriting it, so the post and `NEWS.md`
+never drift apart.
+
+### Breaking Changes
+
+- ...
+
+### New Features
+
+- ...
+
+### Bug Fixes
+
+- ...
+
+## Feedback & Contributions
+
+Report issues or request features on
+[GitHub](https://github.com/rsquaredacademy/pkgname/issues), or start a
+discussion in the package Discussions tab.
+
+<details>
+
+<summary>Session Info</summary>
+
+```{r session-info}
+sessionInfo()
+```
+
+</details>
