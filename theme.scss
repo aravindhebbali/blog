@@ -63,3 +63,67 @@ $wrap: 1080px;
   margin-left: auto;
   margin-right: auto;
 }
+
+// ---------- Header ----------
+// Restyled to the family look: hairline bottom border, pill nav links,
+// square icon buttons on the right.
+
+.navbar {
+  border-bottom: 1px solid #e2e8f0;
+  min-height: 3.5rem;
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+.navbar-brand {
+  font-weight: 600;
+  color: #0f172a;
+}
+
+// Reference layout keeps the brand flush left instead of centered.
+.navbar-brand-container {
+  margin-right: auto;
+  margin-left: 0;
+}
+
+.navbar-brand:hover,
+.navbar-brand:focus {
+  color: #2563eb;
+}
+
+.navbar-nav .nav-link {
+  color: #334155;
+  font-size: 0.9375rem;
+  padding: 0.35rem 0.7rem;
+  border-radius: 6px;
+}
+
+.navbar-nav .nav-link:hover,
+.navbar-nav .nav-link:focus {
+  color: #2563eb;
+  background-color: #f1f5f9;
+}
+
+.navbar-nav .nav-link.active,
+.navbar-nav .nav-link[aria-current="page"] {
+  color: #2563eb;
+  font-weight: 600;
+}
+
+// Icon links get the reference 2.4rem touch targets.
+.navbar-nav .nav-item.compact .nav-link,
+.navbar-nav .nav-link .bi {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 2.4rem;
+  height: 2.4rem;
+  padding: 0;
+  border-radius: 8px;
+  font-size: 1.0625rem;
+}
+
+.navbar-nav .nav-item.compact .nav-link .menu-text {
+  display: none;
+}
+
