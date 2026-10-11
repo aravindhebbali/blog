@@ -1,0 +1,65 @@
+/*-- scss:defaults --*/
+
+// Type: Source Sans Pro (self-hosted) for UI/text, Georgia serif headings,
+// matching the Rsquared Academy site family.
+$font-family-sans-serif: "Source Sans Pro", system-ui, -apple-system,
+  "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif !default;
+$font-family-monospace: ui-monospace, SFMono-Regular, Menlo, Consolas,
+  "Liberation Mono", monospace !default;
+$headings-font-family: Georgia, "Times New Roman", "Liberation Serif", serif !default;
+$headings-font-weight: 600 !default;
+
+// Palette (tokens shared with courses/pkgs sites).
+$body-bg: #fbfcfd !default;
+$body-color: #334155 !default;
+$link-color: #2563eb !default;
+$link-hover-color: #1d4ed8 !default;
+
+$navbar-bg: #ffffff !default;
+$navbar-fg: #0f172a !default;
+$navbar-hl: #2563eb !default;
+$navbar-hover-bg: rgba(15, 23, 42, 0.04) !default;
+
+$footer-bg: #ffffff !default;
+$footer-fg: #334155 !default;
+$footer-muted: #64748b !default;
+$footer-line: #e2e8f0 !default;
+
+$code-bg: #f1f5f9 !default;
+$code-color: #0f172a !default;
+$toc-color: #64748b !default;
+$toc-active-border: #2563eb !default;
+$toc-inactive-border: #e2e8f0 !default;
+$btn-code-copy-color: #64748b !default;
+$btn-code-copy-color-active: #2563eb !default;
+$code-block-bg: #f8fafc !default;
+
+/*-- scss:rules --*/
+
+@font-face {
+  font-family: "Source Sans Pro";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("/assets/fonts/source-sans-pro-latin-400.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "Source Sans Pro";
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url("/assets/fonts/source-sans-pro-latin-600.woff2") format("woff2");
+}
+
+// Shared container width, mirroring .wrap on the reference sites.
+$wrap: 1080px;
+
+.navbar-container,
+.nav-footer,
+#quarto-document-content,
+.quarto-listing {
+  max-width: $wrap;
+  margin-left: auto;
+  margin-right: auto;
+}

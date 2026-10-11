@@ -1,0 +1,27 @@
+/*-- scss:defaults --*/
+
+// Dark palette: Rsquared Academy family dark tokens
+// (canvas #020617, surface #0f172a, accent #7cc0ff).
+$body-bg: #020617 !default;
+$body-color: #e2e8f0 !default;
+$link-color: #7cc0ff !default;
+$link-hover-color: #a8d3ff !default;
+
+$navbar-bg: #0f172a !default;
+$navbar-fg: #f8fafc !default;
+$navbar-hl: #7cc0ff !default;
+$navbar-hover-bg: rgba(255, 255, 255, 0.08) !default;
+
+$footer-bg: #0f172a !default;
+$footer-fg: #e2e8f0 !default;
+$footer-muted: #a8b6c8 !default;
+$footer-line: #24334a !default;
+
+$code-bg: #182338 !default;
+$code-color: #f8fafc !default;
+$toc-color: #a8b6c8 !default;
+$toc-active-border: #7cc0ff !default;
+$toc-inactive-border: #24334a !default;
+$btn-code-copy-color: #a8b6c8 !default;
+$btn-code-copy-color-active: #7cc0ff !default;
+$code-block-bg: #0f172a !default;
