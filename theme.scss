@@ -127,3 +127,31 @@ $wrap: 1080px;
   display: none;
 }
 
+// ---------- Footer ----------
+.nav-footer {
+  border-top: 1px solid #e2e8f0;
+  padding: 1.25rem 1rem 1.75rem;
+  font-size: 0.9375rem;
+  color: #334155;
+}
+
+.nav-footer p {
+  margin: 0 0 0.35rem;
+}
+
+.footer-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 2.4rem;
+  height: 2.4rem;
+  border-radius: 8px;
+  color: #64748b;
+}
+
+.footer-icon:hover,
+.footer-icon:focus-visible {
+  color: #2563eb;
+  background-color: #f1f5f9;
+}
+
