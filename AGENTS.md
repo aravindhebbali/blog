@@ -32,6 +32,13 @@
 - If not on PATH: `& "$env:LOCALAPPDATA\Programs\Quarto\bin\quarto.exe" render`
 - Legacy Hugo/blogdown tree (`content/`, `themes/`, `static/`, `config.toml`,
   `index.Rmd`, `layouts/`) is deleted by Phase 3 — never re-add references.
+- CI (Netlify) builds via `netlify.toml`: it downloads pinned Quarto 1.6.39
+  into `$NETLIFY_BUILD_BASE` (NOT the repo tree — a `quarto-*/` folder inside
+  the repo gets picked up by the `*.qmd` render glob) and runs `quarto render`.
+  Do not add the `@quarto/netlify-plugin-quarto` plugin (v0.0.5 passes the raw
+  version to the GitHub API and 404s on tag lookup).
+- Emergency manual deploy (bypasses CI): `netlify deploy --prod --no-build
+  --dir=_site` after a local render.
 
 ## Current phase plan
 1. Content fixes + build verification
