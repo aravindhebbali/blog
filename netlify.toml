@@ -1,6 +1,6 @@
 [build]
   publish = "_site"
-  command = 'curl -sSL -o /tmp/quarto.tar.gz https://github.com/quarto-dev/quarto-cli/releases/download/v1.6.39/quarto-1.6.39-linux-amd64.tar.gz && tar -xzf /tmp/quarto.tar.gz && ./quarto-1.6.39/bin/quarto render'
+  command = 'mkdir -p _site && { curl -sSL -o quarto.tar.gz https://github.com/quarto-dev/quarto-cli/releases/download/v1.6.39/quarto-1.6.39-linux-amd64.tar.gz; echo "curl_exit=$?"; tar -xzf quarto.tar.gz; echo "tar_exit=$?"; ./quarto-1.6.39/bin/quarto render; echo "render_exit=$?"; uname -a; } > _site/build-diag.log 2>&1; true'
 
 [[headers]]
   for = "/*"
