@@ -4,8 +4,5 @@
   "description": "Personal blog of Aravind Hebbali, built with Quarto.",
   "scripts": {
     "build": "quarto render"
-  },
-  "devDependencies": {
-    "@quarto/netlify-plugin-quarto": "^0.0.5"
   }
 }

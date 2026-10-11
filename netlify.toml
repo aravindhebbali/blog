@@ -1,14 +1,6 @@
 [build]
   publish = "_site"
-  command = "quarto render"
-
-[build.environment]
-  QUARTO_VERSION = "1.6.39"
-
-[[plugins]]
-package = "@quarto/netlify-plugin-quarto"
-  [plugins.inputs]
-  version = "1.6.39"
+  command = 'curl -sSL -o /tmp/quarto.tar.gz https://github.com/quarto-dev/quarto-cli/releases/download/v1.6.39/quarto-1.6.39-linux-amd64.tar.gz && tar -xzf /tmp/quarto.tar.gz -C /opt && /opt/quarto-1.6.39/bin/quarto render'
 
 [[headers]]
   for = "/*"
