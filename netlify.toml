@@ -10,6 +10,11 @@
     Referrer-Policy = "strict-origin-when-cross-origin"
     Permissions-Policy = "camera=(), microphone=(), geolocation=()"
 
+[[headers]]
+  for = "/site-kit/*"
+  [headers.values]
+    Cache-Control = "public, max-age=86400"
+
 # Legacy permalinks (/:year/:month/:day/:slug/) mapped to the Quarto /posts/<slug>/ URLs.
 [[redirects]]
   from = "/2019/02/07/introducing-olsrr/"
