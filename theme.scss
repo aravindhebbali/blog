@@ -1,0 +1,208 @@
+/*-- scss:defaults --*/
+
+// Type: Source Sans Pro (self-hosted) for UI/text, Georgia serif headings,
+// matching the Rsquared Academy site family.
+$font-family-sans-serif: "Source Sans Pro", system-ui, -apple-system,
+  "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif !default;
+$font-family-monospace: ui-monospace, SFMono-Regular, Menlo, Consolas,
+  "Liberation Mono", monospace !default;
+$headings-font-family: Georgia, "Times New Roman", "Liberation Serif", serif !default;
+$headings-font-weight: 600 !default;
+
+// Palette (tokens shared with courses/pkgs sites).
+$body-bg: #fbfcfd !default;
+$body-color: #334155 !default;
+$link-color: #2563eb !default;
+$link-hover-color: #1d4ed8 !default;
+
+$navbar-bg: #ffffff !default;
+$navbar-fg: #0f172a !default;
+$navbar-hl: #2563eb !default;
+$navbar-hover-bg: rgba(15, 23, 42, 0.04) !default;
+
+$footer-bg: #ffffff !default;
+$footer-fg: #334155 !default;
+$footer-muted: #64748b !default;
+$footer-line: #e2e8f0 !default;
+
+$code-bg: #f1f5f9 !default;
+$code-color: #0f172a !default;
+$toc-color: #64748b !default;
+$toc-active-border: #2563eb !default;
+$toc-inactive-border: #e2e8f0 !default;
+$btn-code-copy-color: #64748b !default;
+$btn-code-copy-color-active: #2563eb !default;
+$code-block-bg: #f8fafc !default;
+
+/*-- scss:rules --*/
+
+@font-face {
+  font-family: "Source Sans Pro";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("/assets/fonts/source-sans-pro-latin-400.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "Source Sans Pro";
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url("/assets/fonts/source-sans-pro-latin-600.woff2") format("woff2");
+}
+
+// Shared container width, mirroring .wrap on the reference sites.
+$wrap: 1080px;
+
+.navbar-container,
+.nav-footer,
+#quarto-document-content,
+.quarto-listing,
+.quarto-title-banner .quarto-title {
+  max-width: $wrap;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+// The banner is a grid; stretch the title to the shared width so it lines up with the content.
+.quarto-title-banner .quarto-title {
+  width: 100%;
+  justify-self: center;
+}
+
+// ---------- Header ----------
+// Restyled to the family look: hairline bottom border, pill nav links,
+// square icon buttons on the right.
+
+.navbar {
+  border-bottom: 1px solid #e2e8f0;
+  min-height: 3.5rem;
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+.navbar-brand {
+  font-weight: 600;
+  color: #0f172a;
+}
+
+// Reference layout keeps the brand flush left instead of centered.
+.navbar-brand-container {
+  margin-right: auto;
+  margin-left: 0;
+}
+
+.navbar-brand:hover,
+.navbar-brand:focus {
+  color: #2563eb;
+}
+
+.navbar-nav .nav-link {
+  color: #334155;
+  font-size: 0.9375rem;
+  padding: 0.35rem 0.7rem;
+  border-radius: 6px;
+}
+
+.navbar-nav .nav-link:hover,
+.navbar-nav .nav-link:focus {
+  color: #2563eb;
+  background-color: #f1f5f9;
+}
+
+.navbar-nav .nav-link.active,
+.navbar-nav .nav-link[aria-current="page"] {
+  color: #2563eb;
+  font-weight: 600;
+}
+
+// Icon links get the reference 2.4rem touch targets.
+.navbar-nav .nav-item.compact .nav-link,
+.navbar-nav .nav-link .bi {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 2.4rem;
+  height: 2.4rem;
+  padding: 0;
+  border-radius: 8px;
+  font-size: 1.0625rem;
+}
+
+.navbar-nav .nav-item.compact .nav-link .menu-text {
+  display: none;
+}
+
+// ---------- Footer ----------
+.nav-footer {
+  border-top: 1px solid #e2e8f0;
+  padding: 1.25rem 1rem 1.75rem;
+  font-size: 0.9375rem;
+  color: #334155;
+}
+
+.nav-footer p {
+  margin: 0 0 0.35rem;
+}
+
+.footer-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 2.4rem;
+  height: 2.4rem;
+  border-radius: 8px;
+  color: #64748b;
+}
+
+.footer-icon:hover,
+.footer-icon:focus-visible {
+  color: #2563eb;
+  background-color: #f1f5f9;
+}
+
+// ---------- Post listing cards ----------
+// Uniform card dimensions: fixed 16:9 crop, fixed title/description blocks,
+// same radius/border/hover vocabulary as the reference family.
+.quarto-grid-item.card {
+  background-color: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 14px;
+  overflow: hidden;
+  transition: transform 0.15s ease, box-shadow 0.15s ease, border-color 0.15s ease;
+}
+
+.quarto-grid-item.card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 14px 34px rgba(2, 6, 23, 0.12);
+  border-color: #cbd5e1;
+}
+
+.quarto-grid-item.card .card-img {
+  // contain, not cover: package logos must not lose their edges
+  object-fit: contain;
+  background-color: #ffffff;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.quarto-grid-item .listing-title {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  min-height: 2.42em;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 1.15rem;
+}
+
+.quarto-grid-item .listing-description {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  min-height: 4.42em;
+  font-size: 0.875rem;
+  color: #64748b;
+}
+

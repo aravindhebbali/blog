@@ -1,0 +1,121 @@
+/*-- scss:defaults --*/
+
+// Dark palette: Rsquared Academy family dark tokens
+// (canvas #020617, surface #0f172a, accent #7cc0ff).
+$body-bg: #020617 !default;
+$body-color: #e2e8f0 !default;
+$link-color: #7cc0ff !default;
+$link-hover-color: #a8d3ff !default;
+
+$navbar-bg: #0f172a !default;
+$navbar-fg: #f8fafc !default;
+$navbar-hl: #7cc0ff !default;
+$navbar-hover-bg: rgba(255, 255, 255, 0.08) !default;
+
+$footer-bg: #0f172a !default;
+$footer-fg: #e2e8f0 !default;
+$footer-muted: #a8b6c8 !default;
+$footer-line: #24334a !default;
+
+$code-bg: #182338 !default;
+$code-color: #f8fafc !default;
+$toc-color: #a8b6c8 !default;
+$toc-active-border: #7cc0ff !default;
+$toc-inactive-border: #24334a !default;
+$btn-code-copy-color: #a8b6c8 !default;
+$btn-code-copy-color-active: #7cc0ff !default;
+$code-block-bg: #0f172a !default;
+
+/*-- scss:rules --*/
+
+// Shared container width, mirroring .wrap on the reference sites.
+$wrap: 1080px;
+
+.navbar-container,
+.nav-footer,
+#quarto-document-content,
+.quarto-listing,
+.quarto-title-banner .quarto-title {
+  max-width: $wrap;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+// The banner is a grid; stretch the title to the shared width so it lines up with the content.
+.quarto-title-banner .quarto-title {
+  width: 100%;
+  justify-self: center;
+}
+
+// ---------- Header (dark) ----------
+.navbar {
+  border-bottom: 1px solid #24334a;
+}
+
+.navbar-brand {
+  font-weight: 600;
+  color: #f8fafc;
+}
+
+.navbar-brand:hover,
+.navbar-brand:focus {
+  color: #7cc0ff;
+}
+
+.navbar-nav .nav-link {
+  color: #e2e8f0;
+  font-size: 0.9375rem;
+  padding: 0.35rem 0.7rem;
+  border-radius: 6px;
+}
+
+.navbar-nav .nav-link:hover,
+.navbar-nav .nav-link:focus {
+  color: #7cc0ff;
+  background-color: #182338;
+}
+
+.navbar-nav .nav-link.active,
+.navbar-nav .nav-link[aria-current="page"] {
+  color: #7cc0ff;
+  font-weight: 600;
+}
+
+// ---------- Footer (dark) ----------
+.nav-footer {
+  border-top: 1px solid #24334a;
+}
+
+.footer-icon {
+  color: #a8b6c8;
+}
+
+.footer-icon:hover {
+  color: #7cc0ff;
+}
+
+// ---------- Post listing cards (dark) ----------
+.quarto-grid-item.card {
+  background-color: #0f172a;
+  border: 1px solid #24334a;
+  border-radius: 14px;
+}
+
+.quarto-grid-item.card:hover {
+  border-color: #3d4d66;
+  box-shadow: 0 14px 34px rgba(2, 6, 23, 0.6);
+}
+
+.quarto-grid-item.card .card-img {
+  border-bottom: 1px solid #24334a;
+}
+
+.quarto-listing-filter .input-group-text {
+  background-color: #0f172a;
+  border-color: #24334a;
+  color: #a8b6c8;
+}
+
+.quarto-grid-item .listing-description {
+  color: #a8b6c8;
+}
