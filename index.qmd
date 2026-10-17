@@ -3,11 +3,11 @@ title: "Aravind's Blog"
 listing:
   contents: posts
   sort: "date desc"
-  type: default
-  categories: true
-  sort-ui: true
-  filter-ui: true
+  type: grid
+  grid-columns: 3
+  grid-item-border: false
   feed: true
+  filter-ui: true
 page-layout: full
 title-block-banner: true
 ---
