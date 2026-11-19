@@ -16,10 +16,6 @@ execute:
 ```{r}
 #| label: setup
 #| include: false
-cran_lib <- "C:/Users/DELL/AppData/Local/Temp/olsrr-cran-lib"
-if (dir.exists(cran_lib)) {
-  .libPaths(c(cran_lib, .libPaths()))
-}
 stopifnot(packageVersion("olsrr") == "0.7.1")
 library(olsrr)
 ```
@@ -252,7 +248,7 @@ Or install the development version from GitHub:
 #| label: install-github
 #| eval: false
 # install.packages("devtools")
-devtools::install_github("rsquaredacademy/olsrr")
+devtools::install_github("rsquaredacademy/olsrr", ref = "develop")
 ```
 
 For the complete list of changes across versions, see the [release notes](https://olsrr.rsquaredacademy.com/news/). Bug reports and feature requests are welcome on the [GitHub issue tracker](https://github.com/rsquaredacademy/olsrr/issues).
